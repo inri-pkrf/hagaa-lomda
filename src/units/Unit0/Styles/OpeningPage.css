@@ -1,0 +1,32 @@
+.OpeningPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffe2e2, #fff6f0);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  text-align: center;
+}
+
+.OpeningPage__header {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  max-width: 500px;
+}
+
+.OpeningPage__title {
+  font-size: 48px;
+  color: #ff6b81;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.OpeningPage__subtitle {
+  font-size: 20px;
+  color: #555;
+  line-height: 1.6;
+}
