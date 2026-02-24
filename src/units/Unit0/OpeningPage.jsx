@@ -1,6 +1,5 @@
 import React from 'react';
 import './Styles/OpeningPage.css';
-
 function OpeningPage() {
   return (
     <main className="OpeningPage">
