@@ -1,0 +1,78 @@
+.Questions {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  overflow: hidden;
+  /* background-color: #f0dcbc; */
+  background-color:rgb(186, 250, 250);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.carousel-stack-container {
+  position: absolute;
+  right: 2vw;
+  margin-top: 30vh;
+  width: 60vw;
+  height: 500px;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.carousel-stack {
+  position: relative;
+  width: 50vw;
+  height: 76vh;
+  perspective: 1500px;
+  margin: 0 auto;
+}
+
+.Questions.btn-text {
+  display: block;
+}
+
+.Questions .text-label {
+  font-size: 2.5vmin;
+  font-weight: lighter;
+  color: rgb(0, 0, 0);
+}
+
+.Questions .btn-text-next {
+  position: absolute;
+  margin-top: -32vh;
+  left: 10vw;
+}
+
+.Questions .btn-text-end {
+  position: absolute;
+  margin-top: -32vh;
+  left: 10vw;
+}
+
+.Questions .btn-text-prev {
+  position: absolute;
+  margin-top: -32vh;
+  left: 88vw;
+}
+
+.Questions .btn-text-next .img-arrow {
+  width: 9vmin;
+  height: 15vmin;
+  background-image: url('/public/assets/Btns/arrowBlack.png');
+}
+
+.Questions .btn-text-prev .img-arrow {
+  width: 7vmin;
+  height: 12vmin;
+  background-image: url('/public/assets/Btns/arrowBlack.png');
+}
+
+.Questions .btn-text-end .img-arrow {
+  width: 7vmin;
+  height: 12vmin;
+}

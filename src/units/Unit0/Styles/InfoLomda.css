@@ -1,0 +1,115 @@
+.InfoLomda {
+     position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    overflow: hidden;
+    background-color: #e9f3f8;
+    /* use the public folder path (CRA serves it at the root) */
+    background-image: url("/public/assets/General/mainBackground.png");
+    /* make sure the image always fills the viewport */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* optional: keeps it fixed during scroll */
+    overflow: hidden;
+    direction: rtl;
+}
+.InfoLomdaCard {
+position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffffb9;
+    border-radius: 80px;
+    padding: 5vw;
+    width: 77vw;
+    height: 60vh;
+}
+.InfoLomda-title {
+font-family: 'Karantina';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 5vmin;
+    line-height: 49px;
+    text-align: right;
+    color: #000000;
+    position: relative;
+    margin-top: -2vh;
+}
+.InfoLomda-par1 {
+font-family: 'Assistant';
+font-style: normal;
+font-weight: 400;
+font-size: 2.8vmin;
+line-height: 1.2em;
+text-align: right;
+color: #000000;
+
+}
+.InfoLomda-par2{
+font-family: 'Assistant';
+font-style: normal;
+font-weight: 400;
+font-size: 2.8vmin;
+line-height: 1.2em;
+text-align: right;
+color: #000000;
+border: #000000 2px solid;
+border-radius: 30px;
+padding: 1vw;
+}
+.InfoLomda-par3{
+font-family: 'Assistant';
+font-style: normal;
+font-weight: 400;
+font-size: 2.8vmin;
+line-height: 1.2em;
+text-align: right;
+color: #000000;
+padding: 1vw;
+}
+.InfoLomda-par4{
+font-family: 'Assistant';
+font-style: normal;
+font-weight: 400;
+font-size: 2.8vmin;
+line-height: 1.2em;
+text-align: right;
+color: #000000;
+}
+.InfoLomda-ul{
+font-family: 'Assistant';
+font-style: normal;
+font-weight: 400;
+font-size: 2.8vmin;
+line-height: 1.2em;
+text-align: right;
+color: #000000;
+padding-right: 6vw;
+}
+.start-button-InfoLomda {
+  padding: 12px 30px;
+  font-size: 3vmin;
+  font-weight: 700;
+  font-family: 'Assistant', sans-serif;
+  color: #fff;
+  position: absolute;
+  left: 8%;
+  top: 80%;
+  background: linear-gradient(
+    45deg,
+    #ff6b6b, 
+    #f7d794, 
+    #63cdda, 
+    #ff6b6b
+  );
+  background-size: 300% 300%;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: all 0.4s ease;
+}

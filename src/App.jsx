@@ -1,16 +1,17 @@
 import './App.css';
-import { HashRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import React from 'react';
-
+import Questions from './components/Questions';
 import OpeningPage from './units/Unit0/OpeningPage';
-
+import Header from './components/Header';
+import InfoLomda from './units/Unit0/InfoLomda';
 function App() {
   const navigate = useNavigate();
-  const location = useLocation();
 
   return (
     <div className="App">
-      {/* לוגו שניתן ללחוץ עליו */}
+      <Header />
+      {/* אפשר להחזיר את הלוגו אם רוצים */}
       {/* <img
         src={`${process.env.PUBLIC_URL}/Assets/logos/logo.png`}
         alt="main-logo"
@@ -18,21 +19,19 @@ function App() {
         onClick={() => navigate('/')}
       /> */}
 
-      {/* Routes – כרגע רק עמוד פתיחה */}
       <Routes>
         <Route path="/" element={<OpeningPage />} />
+        <Route path="/questions/:chapter" element={<Questions />} />
+        <Route path="/info-lomda" element={<InfoLomda />} />
       </Routes>
     </div>
   );
 }
 
-// AppWrapper עם HashRouter
-function AppWrapper() {
+export default function AppWrapper() {
   return (
     <Router>
       <App />
     </Router>
   );
 }
-
-export default AppWrapper;

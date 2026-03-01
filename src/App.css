@@ -1,10 +1,22 @@
 .App {
   text-align: center;
 }
-
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&family=Karantina:wght@300;400;700&display=swap');
+@import url(" https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap");
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}.main-logo {
+  position: absolute;
+  top: 2vh;
+  right: 2vw;
+  width: 4.5%;
+  z-index: 2000;
+  cursor: pointer;
+}
+
+.main-logo:hover {
+  transform: scale(1.05);
 }
 
 @media (prefers-reduced-motion: no-preference) {

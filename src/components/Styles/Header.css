@@ -1,0 +1,45 @@
+/* Header.css */
+.app-header-0{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background:linear-gradient(
+    90deg,      /* כיוון אופקי (מימין לשמאל) */
+    #CACACA 0%, /* צבע התחלתי */
+    #FFFFFF 100% /* צבע סופי */
+  );; /* צבע רקע לדוגמה */
+  color: white;
+  direction: rtl;
+  height: 8vh;
+  border-radius: 0 0 30px 30px;
+  top: 0vh;
+  position: relative;
+  z-index: 1000;
+}
+
+
+.logo-container {
+  display: flex;
+  gap: 15px;
+    justify-content: flex-end; /* מיישר את הלוגואים לימין */
+  align-items: center;       /* אם רוצים ליישר אנכית במרכז */
+}
+
+.logo {
+  height: 5vh;
+}
+
+.header-title {
+/* כותרת */
+position: absolute;
+right:50%; 
+transform: translateX(50%);
+font-family: 'Karantina';
+font-style: normal;
+font-weight: 700;
+font-size: 8vmin;
+line-height: 83px;
+text-align: center;
+color: #004162;
+}

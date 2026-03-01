@@ -1,0 +1,152 @@
+.question-card {
+  position: relative;
+  height: 80vh;
+  width: 60vw;
+  margin: 20px auto;
+  border-radius: 20px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  background-color: var(--card-bg-color, white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: bold;
+  user-select: none;
+  padding: 20px 40px;
+  text-align: center;
+  box-sizing: border-box;
+  z-index: 100000;
+}
+
+.question-card.locked .answer-button {
+  cursor: default !important;
+}
+
+.question-name {
+  font-family: "Assistant", sans-serif;
+  color: #454545;
+  font-size: 4vmin;
+  font-weight: 300;
+  margin-bottom: 40px;
+  direction: rtl;
+  direction: rtl;
+
+}
+
+.question-counter {
+  position: absolute;
+  left: 3vw;
+  top: 5vh;
+  font-family: "Karantina";
+  font-size: 6vmin;
+  font-weight: 500;
+  color: #454545;
+}
+
+.show-right-btn {
+  font-family: "Assistant";
+  display: block;
+  margin: 20px auto 0 auto;
+  padding: 12px 28px;
+  font-size: 3vmin;
+  font-weight: 600;
+  color: black;
+  background-color: transparent;
+  border: 2px solid black;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  user-select: none;
+  text-align: center;
+  direction: rtl;
+}
+
+.show-right-btn:hover {
+  background-color: rgb(43, 43, 43);
+  color: white;
+}
+
+.correct-answer {
+  font-family: "Assistant";
+  font-weight: lighter;
+  font-size: 3.5vmin;
+  background-color: #ffffffb9;
+  border-radius: 80px;
+  padding: 5vw;
+  direction: rtl;
+}
+
+.answers-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+.answer-button {
+  width: 100%;
+  min-height: 200px;
+  background-color: #ffffffb9;
+  border: 2px solid #ccc;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 2.8vmin;
+  font-family: "Assistant", sans-serif;
+  transition: background-color 0.3s, border-color 0.3s;
+  direction: rtl;
+  text-align: center;
+  user-select: none;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* אם יש בדיוק 3 כפתורים – נמרכז את השלישי בשורה שנייה */
+.answers-grid:has(.answer-button:nth-child(3):last-child) .answer-button:nth-child(3) {
+  grid-column: span 2;
+  justify-self: center;
+  width: 50%;
+}
+
+/* אפקט בלחיצה */
+.answer-button:hover:not(:disabled) {
+  border: #000000 solid 3px;
+}
+
+/* צבע רקע לתשובה נכונה */
+.answer-button.correct {
+  background-color: #d4edda;
+  border-color: #28a745;
+  color: #155724;
+  cursor: default;
+}
+
+/* צבע רקע לתשובה לא נכונה */
+.answer-button.incorrect {
+  background-color: #ff9ea6;
+  border: #dc3545 solid 3px;
+  color: #70030e;
+  cursor: default;
+}
+
+.result-message {
+  position: absolute;
+  bottom: 2vh;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Assistant', sans-serif;
+  font-weight: 300;
+  font-size: 3.5vmin;
+  padding: 0.8vw 2vw;
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.829);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  color: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  direction: rtl;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

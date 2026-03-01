@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './NavigationButtons.css';
+import './Styles/NavigationButtons.css';
 
 function NavigationButtons({ previousPath, nextPath, unitNumber }) {
   const navigate = useNavigate();

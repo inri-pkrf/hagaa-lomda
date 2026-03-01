@@ -1,32 +1,58 @@
 .OpeningPage {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #ffe2e2, #fff6f0);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  padding: 20px;
-  text-align: center;
+     position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    overflow: hidden;
+    background-color: #e9f3f8;
+    /* use the public folder path (CRA serves it at the root) */
+    background-image: url("/public/assets/General/mainBackground.png");
+    /* make sure the image always fills the viewport */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* optional: keeps it fixed during scroll */
+    overflow: hidden;
 }
 
-.OpeningPage__header {
-  background: #fff;
-  padding: 40px 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  max-width: 500px;
+.openingPage-building {
+position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70vw;
+    max-height: 110vh;
+    height: auto;
 }
-
-.OpeningPage__title {
-  font-size: 48px;
-  color: #ff6b81;
-  margin-bottom: 20px;
+.start-button-openingPage {
+  padding: 12px 30px;
+  font-size: 3vmin;
   font-weight: 700;
+  font-family: 'Assistant', sans-serif;
+  color: #fff;
+  position: absolute;
+  left: 8%;
+  top: 80%;
+  background: linear-gradient(
+    45deg,
+    #ff6b6b, 
+    #f7d794, 
+    #63cdda, 
+    #ff6b6b
+  );
+  background-size: 300% 300%;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: all 0.4s ease;
 }
 
-.OpeningPage__subtitle {
-  font-size: 20px;
-  color: #555;
-  line-height: 1.6;
+/* אפקט hover */
+.start-button-openingPage:hover {
+  transform: scale(1.1) rotate(-2deg);
+  background-position: 100% 0;
+  box-shadow: 0 12px 20px rgba(0,0,0,0.3);
 }

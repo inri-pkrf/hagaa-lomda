@@ -1,14 +1,19 @@
 import React from 'react';
 import './Styles/OpeningPage.css';
+import { useNavigate } from 'react-router-dom';
+
 function OpeningPage() {
+  const navigate = useNavigate();
   return (
     <main className="OpeningPage">
-      <header className="OpeningPage__header">
-        <h1 className="OpeningPage__title">לומדה הג"א</h1>
-        <p className="OpeningPage__subtitle">
-          ברוכים הבאים ללומדה הג"א. התחילו ללמוד את היחידות בסדר כרונולוגי.
-        </p>
-      </header>
+        <img
+          className='openingPage-building'
+          src={`${process.env.PUBLIC_URL}/assets/General/mainBuilding.png`}
+          alt="Pakar Logo"></img>
+          <button className="start-button-openingPage" onClick={() => navigate('/info-lomda')}>
+כפתור התחלה לבינתיים           </button>
+        
+    
     </main>
   );
 }
