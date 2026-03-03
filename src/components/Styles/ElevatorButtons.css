@@ -1,0 +1,113 @@
+/* קונטיינר הכפתורים */
+.elevator-buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1vw;
+  border-radius: 30px;
+  border: 3px solid black;
+  background-color: #ebebeb;
+  transition: background-color 0.3s ease;
+}
+
+/* כותרת */
+.elevator-title {
+  margin-bottom: 10px;
+  font-size: 4vmin;
+  font-weight: bold;
+  color: #fff;
+  font-family: "KARANTINA", sans-serif;
+  padding: 7px 10px;
+  border-radius: 15px;
+  transition: background-color 0.3s ease;
+}
+
+/* פאנל כפתורים אנכי */
+.elevator-panel {
+  display: flex;
+  flex-direction: column-reverse; /* 1 בתחתית, 4 למעלה */
+  gap: 15px;
+  align-items: center;
+}
+
+/* כפתורים */
+.floor-button {
+  width: 60px;
+  height: 60px;
+  border: 3px solid #3b2a1f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  font-weight: bold;
+  border-radius: 10px;
+  background: #eee;
+  transition: 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.floor-button.disabled {
+  cursor: not-allowed;
+  opacity: 0.4; /* מציג שזה לא פעיל */
+  background-color: #ccc; /* רקע אפור */
+  border-color: #999; /* גבול כהה */
+  box-shadow: none;
+  color: #666;
+}
+/* צבעי יחידות + glow */
+.floor-button.unit1.active {
+  border-color: #58BFE2;
+  box-shadow: 0 0 15px #58BFE2;
+}
+
+.floor-button.unit2.active {
+  border-color: #56C3A9;
+  box-shadow: 0 0 15px #56C3A9;
+}
+
+.floor-button.unit3.active {
+  border-color: #FFB356;
+  box-shadow: 0 0 15px #FFB356;
+}
+
+.floor-button.unit4.active {
+  border-color: #EA6F72;
+  box-shadow: 0 0 15px #EA6F72;
+}
+
+/* hover */
+.floor-button.unit1:hover {
+  background-color: #58BFE2;
+  color: #fff;
+}
+
+.floor-button.unit2:hover {
+  background-color: #56C3A9;
+  color: #fff;
+}
+
+.floor-button.unit3:hover {
+  background-color: #FFB356;
+  color: #fff;
+}
+
+.floor-button.unit4:hover {
+  background-color: #EA6F72;
+  color: #fff;
+}
+
+/* רקע כותרת לפי יחידה */
+.elevator-buttons-container.unit1 .elevator-title {
+  background-color: #58BFE2;
+}
+
+.elevator-buttons-container.unit2 .elevator-title {
+  background-color: #56C3A9;
+}
+
+.elevator-buttons-container.unit3 .elevator-title {
+  background-color: #FFB356;
+}
+
+.elevator-buttons-container.unit4 .elevator-title {
+  background-color: #EA6F72;
+}

@@ -1,0 +1,47 @@
+.Elevator {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  margin-top: 0vh;
+}
+
+.elevator-img,
+.elevator-img-inside {
+  position: absolute;
+  width: 100vw;
+  height: auto;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease, transform 2s ease;
+}
+
+/* מצב רגיל נראה */
+.visible {
+  opacity: 1;
+}
+
+/* fade רגיל */
+.fade-out {
+  opacity: 0;
+}
+
+/* fade עדין יותר לפנים */
+.fade-in-slow {
+  opacity: 1;
+  transition: opacity 2s ease;
+}
+
+/* זום חלק */
+.zoom-in {
+  transform: scale(2.2);
+  transition: transform 2.5s ease;
+}
+.buttons-wrapper {
+      position: absolute;
+    bottom: 25%;
+    right: 27%;
+    z-index: 10;
+    pointer-events: auto;
+}
