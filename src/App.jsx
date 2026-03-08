@@ -12,6 +12,7 @@ import IntroUnitOne from './units/Unit1/IntroUnitOne.jsx';
 import IntroUnitTwo from './units/Unit2/IntroUnitTwo';
 import IntroUnitThree from './units/Unit3/IntroUnitThree';
 import IntroUnitFour from './units/Unit4/IntroUnitFour';  
+import Threats from './units/Unit1/Threats.jsx';
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -39,6 +40,7 @@ function App() {
         <Route path="/unit-opening/:unitName" element={<UnitOpeningPage />} />
         <Route path="/goals" element={<Goals />} />
         <Route path="/intro-unit-one" element={<IntroUnitOne />} />
+        <Route path="/threats" element={<Threats />} />
         <Route path="/intro-unit-two" element={<IntroUnitTwo />} />
         <Route path="/intro-unit-three" element={<IntroUnitThree />} />
         <Route path="/intro-unit-four" element={<IntroUnitFour />} />

@@ -19,3 +19,114 @@
     height: auto;
     margin-top: 5vh;
 }
+
+.door-signs-UnitOne {
+  position: absolute;
+    top: 2vh;
+    left: -4vw;
+    width: 100vw;
+    height: 60vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5vw;
+}
+
+.door-sign-UnitOne-first,
+.door-sign-UnitOne-second,
+.door-sign-UnitOne-third,
+.door-sign-UnitOne-fourth {
+    width: 20vw;
+    height: 25vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 2vw; /* Increase horizontal margin */
+    /* Removed background */
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.door-sign-UnitOne-first {
+ position: absolute;
+
+   right: 2vw;
+}
+.door-sign-UnitOne-second {
+     position: absolute;
+
+   right: 30vw;
+}
+.door-sign-UnitOne-third {
+         position: absolute;
+
+   right: 58vw;
+}
+.door-sign-UnitOne-fourth {
+       position: absolute;
+    left: -1vw;
+}
+
+.door-sign-UnitOne-first:hover,
+.door-sign-UnitOne-second:hover,
+.door-sign-UnitOne-third:hover,
+.door-sign-UnitOne-fourth:hover {
+    transform: scale(1.05);
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.door-sign-UnitOne-title-first{
+    font-size: 4vmin;
+    font-weight: 400;
+    font-family: "Karantina";
+    color: #000000;
+    text-align: center;
+    top: 20vh;
+    position: relative;
+    transform: rotate(5deg);
+}
+.door-sign-UnitOne-title-second{
+    font-size: 4vmin;
+    font-weight: 400;
+    font-family: "Karantina";
+    color: #000000;
+    text-align: center;
+    top: 20vh;
+    position: relative;
+}
+.door-sign-UnitOne-title-third{
+    font-size: 4vmin;
+    font-weight: 400;
+    font-family: "Karantina";
+    color: #000000;
+    text-align: center;
+    top: 20vh;
+    position: relative;
+}
+.door-sign-UnitOne-title-fourth{
+    font-size: 4vmin;
+    font-weight: 400;
+    font-family: "Karantina";
+    color: #000000;
+    text-align: center;
+    top: 20vh;
+    position: relative;
+     transform: rotate(355deg);
+
+}
+
+.door-sign-UnitOne-first img,
+.door-sign-UnitOne-second img,
+.door-sign-UnitOne-third img,
+.door-sign-UnitOne-fourth img {
+    width: 100%;
+    height: auto;
+    max-height: 25vh;
+    object-fit: contain;
+}
