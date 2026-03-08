@@ -7,7 +7,8 @@
 }
 
 .elevator-img,
-.elevator-img-inside {
+.elevator-img-inside,
+.elevator-img-open-inside {
   position: absolute;
   width: 100vw;
   height: auto;
@@ -31,6 +32,12 @@
 .fade-in-slow {
   opacity: 1;
   transition: opacity 2s ease;
+}
+
+/* fade in for open inside */
+.fade-in {
+  opacity: 1;
+  transition: opacity 1s ease;
 }
 
 /* זום חלק */

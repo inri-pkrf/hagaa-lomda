@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Styles/Elevator.css';
 import ElevatorButtons from './ElevatorButtons';
 
 function Elevator() {
+  const navigate = useNavigate();
   const [stage, setStage] = useState(0);
   const [showButtons, setShowButtons] = useState(false);
+  const [selectedUnit, setSelectedUnit] = useState(null);
+  const [showOpenInside, setShowOpenInside] = useState(false);
 
   useEffect(() => {
     const timers = [
@@ -17,6 +21,14 @@ function Elevator() {
 
     return () => timers.forEach(clearTimeout);
   }, []);
+
+  const handleUnitSelect = (unitName) => {
+    setSelectedUnit(unitName);
+    // הצג את התמונה הפתוחה בפנים עם אנימציה
+    setTimeout(() => setShowOpenInside(true), 500);
+    // לאחר האנימציה, נווט לעמוד הפתיחה של היחידה
+    setTimeout(() => navigate(`/unit-opening/${unitName}`), 2000);
+  };
 
   return (
     <main className="Elevator">
@@ -45,10 +57,19 @@ function Elevator() {
         alt=""
       />
 
+      {/* מעלית פתוחה בפנים לאחר בחירה */}
+      {showOpenInside && (
+        <img
+          className="elevator-img-open-inside fade-in"
+          src={`${process.env.PUBLIC_URL}/assets/General/ElevatorOpenInside.png`}
+          alt=""
+        />
+      )}
+
       {/* הכפתורים – מופיעים עם דיליי קצר אחרי התמונה השלישית */}
-      {showButtons && (
+      {showButtons && !selectedUnit && (
         <div className="buttons-wrapper">
-          <ElevatorButtons unit="unit1" />
+          <ElevatorButtons unit="unit1" onUnitSelect={handleUnitSelect} />
         </div>
       )}
 

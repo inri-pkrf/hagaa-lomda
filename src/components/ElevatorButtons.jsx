@@ -1,7 +1,7 @@
 import React from "react";
 import "./Styles/ElevatorButtons.css";
 
-function ElevatorButtons({ unit }) {
+function ElevatorButtons({ unit, onUnitSelect }) {
   const currentUnit = Number(unit.replace("unit", ""));
   const floors = [1, 2, 3, 4];
 
@@ -14,6 +14,24 @@ function ElevatorButtons({ unit }) {
   };
   const title = unitTitles[currentUnit] || "";
 
+  // מיפוי קומות לשמות יחידות
+  const floorToUnit = {
+    1: "UnitOne",
+    2: "UnitTwo",
+    3: "UnitThree",
+    4: "UnitFour",
+  };
+
+  const handleFloorClick = (floor) => {
+    if (floor <= currentUnit) {
+      const unitName = floorToUnit[floor];
+      sessionStorage.setItem('currentUnit', unitName);
+      if (onUnitSelect) {
+        onUnitSelect(unitName);
+      }
+    }
+  };
+
   return (
     <div className={`elevator-buttons-container ${unit}`}>
       <h2 className="elevator-title">{title}</h2>
@@ -24,6 +42,7 @@ function ElevatorButtons({ unit }) {
             <div
               key={floor}
               className={`floor-button ${unit} ${isActive ? "active" : "disabled"}`}
+              onClick={() => handleFloorClick(floor)}
             >
               {floor}
             </div>
