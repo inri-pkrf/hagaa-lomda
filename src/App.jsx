@@ -7,6 +7,7 @@ import Header from './components/Header';
 import InfoLomda from './units/Unit0/InfoLomda';
 import Elevator from './components/Elevator';
 import UnitOpeningPage from './components/UnitOpeningPage';
+import Goals from './components/Goals';
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -32,6 +33,7 @@ function App() {
         <Route path="/info-lomda" element={<InfoLomda />} />
         <Route path="/elevator" element={<Elevator />} />
         <Route path="/unit-opening/:unitName" element={<UnitOpeningPage />} />
+        <Route path="/goals" element={<Goals />} />
       </Routes>
     </div>
   );

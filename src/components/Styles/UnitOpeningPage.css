@@ -16,82 +16,100 @@
 }
 
 .UnitOpeningPage__building {
-position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70vw;
+    position: absolute;
+    width: 40vw;
+    margin-top: 15vh;
     max-height: 110vh;
     height: auto;
+    right: 5vw;
 }
 
-.UnitOpeningPage__title {
-  font-size: 48px;
-  color: #ff6b81;
-  margin-bottom: 20px;
-  font-weight: 700;
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
+.UnitOpeningPage__title{
+    font-family: "Karantina";
+    font-size: 6vmin;
+    color: var(--card-text);
+    position: absolute;
+    top: -4vh;
+    right: 17vw;
 }
-
-.UnitOpeningPage__title {
-  font-size: 20px;
-  color: #555;
-  line-height: 1.6;
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
+.UnitOpeningPage__subtitle{
+    font-family: "Karantina";
+    font-size: 5vmin;
+    font-weight: 400;
+     color: var(--card-text);
 }
 .UnitOpeningPage_cards{
+      width: 37vw;
+    height: 47vh;
+    padding: 40px;
+    background: var(--card-main);
+    border-radius: 50px;
+    text-align: center;
+    direction: rtl;
+    left: 7vw;
+    top: 30vh;
+    position: relative;
+    z-index: 2;
+    border: #6c6d6d solid 0.5px;
+
+}
+.UnitOpeningPage__text{
+        text-align: right;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    gap: 20px;
-}
-.UnitOpeningPage__title {
-  font-size: 18px;
-  color: #333;
-  line-height: 1.8;
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  max-width: 80vw;
+    font-family: "ASsistant";
+    font-size: 2.8vmin;
+    color: var(--card-text);
+    right: 8vw;
+    margin-top: -6vh;
 }
 
-/* .start-button-openingPage {
-  padding: 12px 30px;
-  font-size: 3vmin;
-  font-weight: 700;
-  font-family: 'Assistant', sans-serif;
-  color: #fff;
-  position: absolute;
-  left: 8%;
-  top: 80%;
-  background: linear-gradient(
-    45deg,
-    #ff6b6b,
-    #f7d794,
-    #63cdda,
-    #ff6b6b
-  );
-  background-size: 300% 300%;
-  border: none;
-  border-radius: 25px;
-  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-  cursor: pointer;
-  transition: all 0.4s ease;
+
+.UnitOpeningPage_cards::before{
+content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #cfe7f3;
+    border-radius: 50px;
+    border: #6c6d6d solid 0.5px;
+    top: -46px;
+    right: 46px;
+    z-index: -1;
 }
 
-.start-button-openingPage:hover {
+.UnitOpeningPage_cards::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--card-layer2);
+    border-radius: 50px;
+    border: #6c6d6d solid 0.5px;
+    top: -24px;
+    left: -21px;
+    z-index: -2;
+}
+
+ .start-button-unitOpeningPage {
+padding: 12px 30px;
+    font-size: 3vmin;
+    font-weight: 700;
+    font-family: 'Assistant', sans-serif;
+    color: #fff;
+    position: absolute;
+    left: 8%;
+    top: 88%;
+    background: linear-gradient(45deg, #ff6b6b, #f7d794, #63cdda, #ff6b6b);
+    background-size: 300% 300%;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.start-button-unitOpeningPage:hover {
   transform: scale(1.1) rotate(-2deg);
   background-position: 100% 0;
   box-shadow: 0 12px 20px rgba(0,0,0,0.3);
-} */
+} 

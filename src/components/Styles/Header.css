@@ -4,12 +4,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  background:linear-gradient(
-    90deg,      /* כיוון אופקי (מימין לשמאל) */
-    #CACACA 0%, /* צבע התחלתי */
-    #FFFFFF 100% /* צבע סופי */
-  );; /* צבע רקע לדוגמה */
-  color: white;
+  background: var(--bg-color);
+  color: var(--text-color);
   direction: rtl;
   height: 8vh;
   border-radius: 0 0 30px 30px;
