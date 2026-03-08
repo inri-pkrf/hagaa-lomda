@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Explaining3() {
+function IntroUnitThree() {
   return (
     <div>
       <h2>Unit 3 - Explaining 3</h2>
@@ -9,5 +9,5 @@ function Explaining3() {
   );
 }
 
-export default Explaining3;
+export default IntroUnitThree;
 

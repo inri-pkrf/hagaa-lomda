@@ -1,10 +1,18 @@
 import React from 'react';
-
+import './style/IntroUnitOne.css';
 function IntroUnitOne() {
+          sessionStorage.setItem('MainTitle', "יחידה 1");
+
   return (
-    <div>
-      <h2>Unit 1 - Intro</h2>
-      <p>This is a placeholder for the Unit 1 introduction screen.</p>
+    <div className='IntroUnitOne'>
+
+      <img className='first-background' src={`${process.env.PUBLIC_URL}/assets/General/Doors/Doors.png`} alt="Intro Unit 1" />
+      <div>
+        <div>
+        
+      </div>
+      </div>
+    
     </div>
   );
 }

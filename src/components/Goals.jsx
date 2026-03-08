@@ -12,11 +12,14 @@ function Goals() {
     return <div>Goals data not found for {currentUnit}</div>;
   }
 
+  // כל פעם שנרצה לשנות את הכותרת של היחידה נשנה ככה
+  sessionStorage.setItem('MainTitle', data.title);
+
   const { title, subtitle, text, buttonText, navigateTo, colors } = data;
 
   return (
     <div
-      className="goals-container"
+      className="Goals"
       style={{
         '--main-color': colors.main,
         '--layer1-color': colors.layer1,
@@ -24,7 +27,6 @@ function Goals() {
         '--text-color': colors.text
       }}
     >
-      <h2 className="goals-title">{title}</h2>
       <p className="goals-subtitle">{subtitle}</p>
       <div className="goals-text">{text}</div>
       <button

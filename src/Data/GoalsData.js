@@ -1,7 +1,7 @@
 // OpeningData.js
 const openingData = {
     UnitOne: {
-        title: "מטרות יחידת לימוד מס' 1",
+        title: "מטרות יחידת לימוד מס' 1",
         subtitle: `יחידת לימוד זו היא יחידת הלימוד הראשונה במסגרת הכשרתך לתפקיד ממונה הג"א, באמצעותה תוכלו:  `,
         text: <>
 
@@ -21,7 +21,7 @@ const openingData = {
         </>,
 
         buttonText: "מעבר  ליחידה 1",
-        navigateTo: "src/units/Unit1/IntroUnitOne.jsx",
+        navigateTo: "/intro-unit-one",
         colors: {
             main: "#92c1e4ff",
             layer1: "#cfe7f3",
@@ -45,7 +45,7 @@ const openingData = {
         </>,
 
         buttonText: "מעבר ליחידה 2 ",
-        navigateTo: "src/units/Unit1/IntroUnitOne.jsx",
+        navigateTo: "/intro-unit-two",
         colors: {
             main: "#92c1e4ff",
             layer1: "#cfe7f3",
@@ -81,7 +81,7 @@ const openingData = {
         </>,
 
         buttonText: "מעבר ליחידה 3 ",
-        navigateTo: "src/units/Unit3/IntroUnitThree.jsx",
+        navigateTo: "/intro-unit-three",
         colors: {
             main: "#92c1e4ff",
             layer1: "#cfe7f3",
@@ -115,7 +115,7 @@ const openingData = {
         </>,
 
         buttonText: "מעבר ליחידה 4 ",
-        navigateTo: "src/units/Unit4/IntroUnitFour.jsx",
+        navigateTo: "/intro-unit-four",
         colors: {
             main: "#92c1e4ff",
             layer1: "#cfe7f3",

@@ -8,6 +8,10 @@ import InfoLomda from './units/Unit0/InfoLomda';
 import Elevator from './components/Elevator';
 import UnitOpeningPage from './components/UnitOpeningPage';
 import Goals from './components/Goals';
+import IntroUnitOne from './units/Unit1/IntroUnitOne.jsx';
+import IntroUnitTwo from './units/Unit2/IntroUnitTwo';
+import IntroUnitThree from './units/Unit3/IntroUnitThree';
+import IntroUnitFour from './units/Unit4/IntroUnitFour';  
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -34,6 +38,10 @@ function App() {
         <Route path="/elevator" element={<Elevator />} />
         <Route path="/unit-opening/:unitName" element={<UnitOpeningPage />} />
         <Route path="/goals" element={<Goals />} />
+        <Route path="/intro-unit-one" element={<IntroUnitOne />} />
+        <Route path="/intro-unit-two" element={<IntroUnitTwo />} />
+        <Route path="/intro-unit-three" element={<IntroUnitThree />} />
+        <Route path="/intro-unit-four" element={<IntroUnitFour />} />
       </Routes>
     </div>
   );
