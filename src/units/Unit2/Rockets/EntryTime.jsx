@@ -1,14 +1,14 @@
 import React from 'react';
 
-function Rockets() {
+function EntryTime() {
   return (
     <div>
-      <h2>יחידה 2 טילים העמוד של הטילים והמסגרות
+      <h2> יחידה 2 טילים זמן כניסה למרחב מוגן
       </h2>
       <p>This is a placeholder for the Unit 2 Rockets screen.</p>
     </div>
   );
 }
 
-export default Rockets;
+export default EntryTime;
 

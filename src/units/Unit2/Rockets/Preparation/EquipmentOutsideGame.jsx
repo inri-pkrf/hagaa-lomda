@@ -1,13 +1,13 @@
 import React from 'react';
 
-function EquipmentOutside() {
+function EquipmentOutsideGame() {
   return (
     <div>
-      <h2>Unit 2 - Equipment Outside</h2>
+      <h2>משחק ציוד ואחזקה  - מחוץ למבנה </h2>
       <p>This is a placeholder for the Unit 2 EquipmentOutside screen.</p>
     </div>
   );
 }
 
-export default EquipmentOutside;
+export default EquipmentOutsideGame;
 

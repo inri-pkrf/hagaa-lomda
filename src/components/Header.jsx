@@ -10,7 +10,7 @@ const Header = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       const newUnit = sessionStorage.getItem('currentUnit') || 'UnitZero';
-      const newTitle = sessionStorage.getItem('MainTitle') || 'כותרת ראשית';
+      const newTitle = sessionStorage.getItem('MainTitle') || "מבנה שיעור הסמכה דיגיטלי";
       if (newUnit !== currentUnit) setCurrentUnit(newUnit);
       if (newTitle !== mainTitle) setMainTitle(newTitle);
     }, 500); // Check every 500ms

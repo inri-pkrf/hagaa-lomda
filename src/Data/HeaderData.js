@@ -2,8 +2,8 @@
 const headerData = {
   UnitZero: {
     backgroundColor: "#CACACA",
-    textColor: "#000",
-    mainTitle: "כותרת ראשית"
+    textColor: "#004162",
+    mainTitle: "מבנה שיעור הסמכה דיגיטלי"
   },
   UnitOne: {
     backgroundColor: "#3FC6F3",
