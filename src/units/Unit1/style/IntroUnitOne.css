@@ -130,3 +130,38 @@
     max-height: 25vh;
     object-fit: contain;
 }
+.doorOneDone{
+  z-index: 10;
+    width: auto;
+    height: 64vh;
+    position: absolute;
+    top: 15vh;
+    right: 0vw;
+}
+
+.doorTwoDone{
+     z-index: 10;
+    width: auto;
+    height: 57vh;
+    position: absolute;
+    top: 16vh;
+    right: 26vw;
+}
+
+.doorThreeDone{
+ z-index: 10;
+    width: auto;
+    height: 57vh;
+    position: absolute;
+    top: 16vh;
+    right: 55vw;
+}
+
+.doorFourDone{
+ z-index: 10;
+    width: auto;
+    height: 68vh;
+    position: absolute;
+    top: 14vh;
+    right: 83vw;
+}

@@ -1,2 +1,30 @@
 /* Styles for Unit1 Threats screen */
+.room-background {
+  width: 100vw;
+  height: 90vh;   /* כי 10vh כבר תפוס למעלה */
+  object-fit: cover;
 
+  position: fixed;
+  top: 10vh;
+  left: 0;
+
+  z-index: -1;
+
+  transition: transform 2s ease-in-out;
+  transform-origin: center;
+}
+
+.zoom-in {
+  transform: scale(2.0); /* Increased zoom towards the TV */
+}
+
+.zoom-out {
+  transform: scale(0.99); /* Zoom out to normal size */
+}
+.tv{
+    width: 92vw;
+    height: auto;
+    top: -2vh;
+    position: absolute;
+    left: 4vw;
+}

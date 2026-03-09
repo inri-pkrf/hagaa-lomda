@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Population() {
+function States() {
   const navigate = useNavigate();
   const [completed, setCompleted] = useState(false);
 
   const handleComplete = () => {
-    // Mark unitOne-fourth as finished
-    sessionStorage.setItem('unitOne-fourth', 'finished');
-    sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'unitOne-fourth', state: 'finished' }));
+    // Mark unitOne-second as finished
+    sessionStorage.setItem('unitOne-second', 'finished');
+    sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'unitOne-second', state: 'finished' }));
     setCompleted(true);
     // Navigate back to IntroUnitOne after a short delay
     setTimeout(() => {
@@ -18,8 +18,8 @@ function Population() {
 
   return (
     <div style={{ padding: '20px', textAlign: 'center' }}>
-      <h2>אוכלוסיה</h2>
-      <p>This is the Population (אוכלוסיה) screen placeholder.</p>
+      <h2>מצבי תפקוד</h2>
+      <p>This is the States (מצבי תפקוד) screen placeholder.</p>
       
       {!completed && (
         <button 
@@ -40,5 +40,5 @@ function Population() {
   );
 }
 
-export default Population;
+export default States;
 

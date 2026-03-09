@@ -1,6 +1,6 @@
 import './App.css';
 import { HashRouter as Router, Routes, Route, useNavigate , useLocation } from 'react-router-dom';
-import React from 'react';
+import React, { useState } from 'react';
 import Questions from './components/Questions';
 import OpeningPage from './units/Unit0/OpeningPage';
 import Header from './components/Header';
@@ -9,6 +9,9 @@ import Elevator from './components/Elevator';
 import UnitOpeningPage from './components/UnitOpeningPage';
 import Goals from './components/Goals';
 import IntroUnitOne from './units/Unit1/IntroUnitOne.jsx';
+import States from './units/Unit1/States.jsx';
+import Interfaces from './units/Unit1/Interfaces.jsx';
+import Population from './units/Unit1/Population.jsx';
 import IntroUnitTwo from './units/Unit2/IntroUnitTwo';
 import IntroUnitThree from './units/Unit3/IntroUnitThree';
 import IntroUnitFour from './units/Unit4/IntroUnitFour';  
@@ -17,20 +20,15 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [videoPlaying, setVideoPlaying] = useState(
+    sessionStorage.getItem('VIDEO_IS_PLAYING') === 'true'
+  );
+
   return (
     <div className="App">
       <>
-      {location.pathname !== "/elevator" && <Header />}
-
-      {/* שאר ה-Routes שלך */}
-    </>
-      {/* אפשר להחזיר את הלוגו אם רוצים */}
-      {/* <img
-        src={`${process.env.PUBLIC_URL}/Assets/logos/logo.png`}
-        alt="main-logo"
-        className="main-logo"
-        onClick={() => navigate('/')}
-      /> */}
+        {location.pathname !== "/elevator" && !videoPlaying && <Header />}
+      </>
 
       <Routes>
         <Route path="/" element={<OpeningPage />} />
@@ -40,7 +38,10 @@ function App() {
         <Route path="/unit-opening/:unitName" element={<UnitOpeningPage />} />
         <Route path="/goals" element={<Goals />} />
         <Route path="/intro-unit-one" element={<IntroUnitOne />} />
-        <Route path="/threats" element={<Threats />} />
+        <Route path="/threats" element={<Threats setVideoPlaying={setVideoPlaying} />} />
+        <Route path="/states" element={<States />} />
+        <Route path="/interfaces" element={<Interfaces />} />
+        <Route path="/population" element={<Population />} />
         <Route path="/intro-unit-two" element={<IntroUnitTwo />} />
         <Route path="/intro-unit-three" element={<IntroUnitThree />} />
         <Route path="/intro-unit-four" element={<IntroUnitFour />} />
