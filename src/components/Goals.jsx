@@ -8,13 +8,13 @@ function Goals() {
   const currentUnit = sessionStorage.getItem('currentUnit') || 'UnitOne'; // default to UnitOne if not set
   const data = goalsData[currentUnit];
 
-  // Track which goals should be visible (for animation)
+  // מתי נראה 
   const [visibleGoals, setVisibleGoals] = useState([]);
 
   // כל פעם שנרצה לשנות את הכותרת של היחידה נשנה ככה
   sessionStorage.setItem('MainTitle', data ? data.title : '');
 
-  // Map unit names to cloud image filenames
+  // לפי היחידה תמונה של ענן
   const cloudImages = {
     UnitOne: 'cloudUnitOne.png',
     UnitTwo: 'cloudUnitTwo.png',
@@ -57,7 +57,7 @@ function Goals() {
     >
       <p className="goals-subtitle">{subtitle}</p>
       
-      {/* Render each goal in a separate cloud with staggered animation */}
+      {/*  אנימציה של העננים במטרות */}
       <div className="goals-list">
         {goals && goals.map((goal, index) => (
           <div 
