@@ -1,26 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import '../style/States.css';
 function States() {
   const navigate = useNavigate();
   const [completed, setCompleted] = useState(false);
+   const [bgImage, setBgImage] = useState(`${process.env.PUBLIC_URL}/assets/UnitOneImgs/StatesBackground.png`);
+  const [animate, setAnimate] = useState(false);
+  useEffect(() => {
+      // מתחיל זום אחרי רגע קטן
+      const startZoom = setTimeout(() => {
+        setAnimate('zoom-in-board');
+      }, 500);
+  
+      // בסוף הזום מחליפים לתמונה של הטלוויזיה ומתחילים זום אאוט
+      const changeImage = setTimeout(() => {
+        setBgImage(`${process.env.PUBLIC_URL}/assets/UnitOneImgs/StatesArtBoard.png`);
+        setAnimate('zoom-out-board');
+      }, 2500);
+    }, []);
 
   const handleComplete = () => {
-    // Mark unitOne-second as finished
+    // מסמן שסיימתי את הפרק
     sessionStorage.setItem('unitOne-second', 'finished');
     sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'unitOne-second', state: 'finished' }));
     setCompleted(true);
-    // Navigate back to IntroUnitOne after a short delay
+    //מוביל חזרה לדלתות
     setTimeout(() => {
       navigate('/intro-unit-one');
     }, 500);
   };
 
+
   return (
-    <div style={{ padding: '20px', textAlign: 'center' }}>
-      <h2>מצבי תפקוד</h2>
-      <p>This is the States (מצבי תפקוד) screen placeholder.</p>
-      
+     <div className="threats-container">
+      <img
+className={`room-background-states ${animate} ${bgImage.includes('ArtBoard') ? 'Board' : ''}`}        src={bgImage}
+        alt=""
+      />
+  
       {!completed && (
         <button 
           onClick={handleComplete}

@@ -1,2 +1,30 @@
-/* Styles for Unit1 states screens */
+.room-background-states {
+  width: 100vw;
+  height: 90vh;
+  object-fit: cover;
 
+  position: fixed;
+  top: 10vh;
+  left: 0;
+
+  z-index: -1;
+
+  transition: transform 2s ease-in-out;
+  transform-origin: 50% 15%; /* הזום מתמקד בחלק העליון */
+}
+
+.zoom-in-board {
+  transform: scale(2.0);
+}
+
+.zoom-out-board {
+  transform: scale(1);
+}
+
+.Board {
+  width: auto;
+    height: 95vh;
+    top: 11vh;
+    position: absolute;
+    left: 11vw;
+}

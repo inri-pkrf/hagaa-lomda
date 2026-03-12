@@ -7,6 +7,10 @@ function Threats({ setVideoPlaying }) {
   const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
+    // שינוי כותרת תפריט ראשי
+
+    sessionStorage.setItem('MainTitle', " היערכות לאיומים");
+
     // מתחיל זום אחרי רגע קטן
     const startZoom = setTimeout(() => {
       setAnimate('zoom-in');
@@ -39,7 +43,7 @@ function Threats({ setVideoPlaying }) {
   return (
     <div className="threats-container">
       <img
-        className={`room-background ${animate} ${bgImage.includes('ThreatsTv') ? 'tv' : ''}`}
+        className={`room-background-threats ${animate} ${bgImage.includes('ThreatsTv') ? 'tv' : ''}`}
         src={bgImage}
         alt=""
       />
