@@ -4,20 +4,32 @@ import '../style/States.css';
 function States() {
   const navigate = useNavigate();
   const [completed, setCompleted] = useState(false);
-   const [bgImage, setBgImage] = useState(`${process.env.PUBLIC_URL}/assets/UnitOneImgs/StatesBackground.png`);
+  const [bgImage, setBgImage] = useState(`${process.env.PUBLIC_URL}/assets/UnitOneImgs/StatesBackground.png`);
   const [animate, setAnimate] = useState(false);
+  const [showCards, setShowCards] = useState(false);
   useEffect(() => {
-      // מתחיל זום אחרי רגע קטן
-      const startZoom = setTimeout(() => {
-        setAnimate('zoom-in-board');
-      }, 500);
-  
-      // בסוף הזום מחליפים לתמונה של הטלוויזיה ומתחילים זום אאוט
-      const changeImage = setTimeout(() => {
-        setBgImage(`${process.env.PUBLIC_URL}/assets/UnitOneImgs/StatesArtBoard.png`);
-        setAnimate('zoom-out-board');
-      }, 2500);
-    }, []);
+
+  const startZoom = setTimeout(() => {
+    setAnimate('zoom-in-board');
+  }, 500);
+
+  const changeImage = setTimeout(() => {
+    setBgImage(`${process.env.PUBLIC_URL}/assets/UnitOneImgs/StatesArtBoard.png`);
+    setAnimate('zoom-out-board');
+  }, 2500);
+
+  // הכרטיסים מופיעים אחרי שהזום אאוט הסתיים
+  const showCardsTimer = setTimeout(() => {
+    setShowCards(true);
+  }, 4500);
+
+  return () => {
+    clearTimeout(startZoom);
+    clearTimeout(changeImage);
+    clearTimeout(showCardsTimer);
+  };
+
+}, []);
 
   const handleComplete = () => {
     // מסמן שסיימתי את הפרק
@@ -32,14 +44,22 @@ function States() {
 
 
   return (
-     <div className="threats-container">
+    <div className="threats-container">
       <img
-className={`room-background-states ${animate} ${bgImage.includes('ArtBoard') ? 'Board' : ''}`}        src={bgImage}
+        className={`room-background-states ${animate} ${bgImage.includes('ArtBoard') ? 'Board' : ''}`} src={bgImage}
         alt=""
       />
-  
+      {showCards && (
+        <>
+          <div className='card-div-states cardOneStates'>שגרה</div>
+          <div className='card-div-states cardTwoStates'>מעבר משגרה לחירום</div>
+          <div className='card-div-states cardThreeStates'>שגרת חירום</div>
+          <div className='card-div-states cardFourStates'>אירוע חירום</div>
+        </>
+      )}
+
       {!completed && (
-        <button 
+        <button
           onClick={handleComplete}
           style={{
             padding: '10px 20px',
@@ -51,7 +71,7 @@ className={`room-background-states ${animate} ${bgImage.includes('ArtBoard') ? '
           סיים וחזור
         </button>
       )}
-      
+
       {completed && <p>הפרק הושלם! מעבר לדף הראשי...</p>}
     </div>
   );

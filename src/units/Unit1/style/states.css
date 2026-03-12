@@ -28,3 +28,59 @@
     position: absolute;
     left: 11vw;
 }
+.card-div-states{
+  animation: cardsFade 0.6s ease;
+}
+
+@keyframes cardsFade{
+  from{
+    opacity:0;
+    transform: translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+.card-div-states {
+  width: 18vw;
+  height: 18vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 7vmin;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-family: "Karantina";
+  font-weight: lighter;
+}
+.cardOneStates{
+    position: absolute;
+    top: 23vh;
+    left: 18vw;
+    transform: rotate(345deg);
+    background-color: #9dfee7;
+}
+.cardTwoStates{
+    position: absolute;
+    top: 15vh;
+    right: 25vw;
+    background-color: #9FE3F6;
+}
+
+.cardThreeStates{
+    position: absolute;
+    top: 60vh;
+    right: 15vw;
+    transform: rotate(15deg);
+
+    background-color: #FFE49B;
+}
+.cardFourStates{
+    position: absolute;
+    top: 60vh;
+    left: 35vw;
+    background-color: #FF9A9A;
+}

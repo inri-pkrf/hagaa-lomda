@@ -1,13 +1,34 @@
-import React from 'react';
+import React from "react";
+import "../style/InterfacePopUp.css";
 
-function InterfacePopUp() {
+function InterfacePopUp({ title, image, description, onClose }) {
   return (
-    <div>
-      <h2>Unit 1 - Interface Pop Up</h2>
-      <p>This is a placeholder for the Unit 1 InterfacePopUp screen.</p>
+    <div className="popup-overlay">
+      <div className="popup-box">
+
+        <button className="popup-close" onClick={onClose}>
+          ✕
+        </button>
+
+        <h2 className="popup-title">{title}</h2>
+
+        <div className="popup-content">
+
+          <p className="popup-description">{description}</p>
+
+          {image && (
+            <img
+              src={image}
+              alt={title}
+              className="popup-character"
+            />
+          )}
+
+        </div>
+
+      </div>
     </div>
   );
 }
 
 export default InterfacePopUp;
-
