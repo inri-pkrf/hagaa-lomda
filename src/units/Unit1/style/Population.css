@@ -1,2 +1,112 @@
 /* Styles for Unit1 Population screen */
+.population-container {
+position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 20px;
+    background-color: #e7e6d8;
+    overflow: hidden;
+}
+.room-background-population {
+  width: 100vw;
+  height: 90vh;   /* כי 10vh כבר תפוס למעלה */
+  object-fit: cover;
 
+  position: fixed;
+  top: 10vh;
+  left: 0;
+
+  z-index: -1;
+
+  transition: transform 2s ease-in-out;
+  transform-origin: 50% 15%;
+}
+.zoom-in-population {
+  transform: scale(2.0); /* Increased zoom towards the TV */
+}
+
+.zoom-out-population {
+  transform: scale(0.9); /* Zoom out to normal size */
+}
+
+
+.PopulationLaptop{
+    width: 115vw;
+    height: auto;
+    position: fixed;
+    top: -16vh;
+    left: -8vw;
+
+}
+
+.population-laptop-check{
+    position: absolute;
+    top: 52vh;
+    right: 56vw;
+    font-size: 8vmin;
+    color: #29b5fc;
+    font-weight: bold;
+
+}
+/* זום אאוט אגרסיבי */
+.zoom-out-strong{
+  animation: zoomOutStrong 1.2s ease-in forwards;
+}
+
+@keyframes zoomOutStrong{
+  from{
+    transform: scale(1);
+  }
+  to{
+    transform: scale(0.85);
+    opacity:0;
+  }
+}
+
+
+/* פייד אין לרקע */
+.fade-in-background{
+  animation: fadeBackground 0.8s ease forwards;
+}
+
+@keyframes fadeBackground{
+  from{
+    opacity:0;
+    transform:scale(1.05);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+
+@keyframes zoomInLeft {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.5);
+  }
+}
+.zoom-in-left{
+  animation: zoomInLeft 1.2s ease forwards;
+}
+.zoom-out-gentle {
+  transform: scale(0.8);
+  transition: transform 1.5s ease-in-out;
+}
+.room-background-population.zoom-in-left {
+  transform-origin: 5% 50%; /* קצת שמאלה מהמרכז */
+  animation: zoomInLeft 1.2s ease-in-out forwards;
+}
+.final-binders {
+  width: 51vw;
+  position: absolute;
+  left: 50%;              /* מציב את התמונה באמצע המסך */
+  top: 54%;               /* אם רוצים גם אנכית במרכז */
+  transform: translate(-50%, -50%); /* מותאם למרכז בדיוק */
+  transition: all 1.5s ease-in-out;
+}

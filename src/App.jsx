@@ -16,6 +16,7 @@ import IntroUnitTwo from './units/Unit2/IntroUnitTwo';
 import IntroUnitThree from './units/Unit3/IntroUnitThree';
 import IntroUnitFour from './units/Unit4/IntroUnitFour';  
 import Threats from './units/Unit1/Threats.jsx';
+import PopulationLaptop from './units/Unit1/Population/PopulationLaptop.jsx';
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -42,6 +43,7 @@ function App() {
         <Route path="/states" element={<States />} />
         <Route path="/interfaces" element={<Interfaces />} />
         <Route path="/population" element={<Population />} />
+        <Route path="/populationInfo" element={<PopulationLaptop />} />
         <Route path="/intro-unit-two" element={<IntroUnitTwo />} />
         <Route path="/intro-unit-three" element={<IntroUnitThree />} />
         <Route path="/intro-unit-four" element={<IntroUnitFour />} />

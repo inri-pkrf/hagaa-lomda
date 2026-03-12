@@ -1,44 +1,80 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import '../style/Population.css';
 
 function Population() {
   const navigate = useNavigate();
-  const [completed, setCompleted] = useState(false);
+  const location = useLocation();
 
-  const handleComplete = () => {
-    // Mark unitOne-fourth as finished
-    sessionStorage.setItem('unitOne-fourth', 'finished');
-    sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'unitOne-fourth', state: 'finished' }));
-    setCompleted(true);
-    // Navigate back to IntroUnitOne after a short delay
-    setTimeout(() => {
-      navigate('/intro-unit-one');
-    }, 500);
-  };
+  const backgroundImg = `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/PopulationBackground.png`;
+  const laptopImg = `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/PopulationLaptop.png`;
+  const bindersImg = `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/PopulationFolders.png`;
+
+  const [bgImage, setBgImage] = useState(backgroundImg);
+  const [animate, setAnimate] = useState('');
+  const [showCheck, setShowCheck] = useState(false);
+
+  useEffect(() => {
+    sessionStorage.setItem('MainTitle', " אוכלוסיה");
+
+    const laptopFinished =
+      location.state?.laptopFinished ||
+      sessionStorage.getItem("populationLaptopFinished");
+
+ const steps = laptopFinished
+  ? [
+      { bg: laptopImg, animate: 'zoom-out-strong', delay: 2000 },
+      { bg: backgroundImg, animate: 'fade-in-background', delay: 1500 },
+      { showCheck: true, delay: 1200 },
+      { animate: 'zoom-in-left', delay: 1500 , hideCheck: true },
+      { bg: bindersImg, animate: 'zoom-in-gentle', delay: 1800 },  
+      { animate: 'zoom-out-gentle', delay: 1800 }, // zoom-out קלסרים
+      { animate: 'final-binders', delay: 0 }, // <-- כאן את נותנת CLASS חדש
+      // { navigate: '/population-parts' },
+    ]
+      : [
+          { animate: 'zoom-in-population', delay: 1000 },
+          { bg: laptopImg, animate: 'zoom-out-population', delay: 2500 },
+          { navigate: '/PopulationInfo', delay: 2000 },
+        ];
+
+    let index = 0;
+    let timeout;
+
+    const runStep = () => {
+      const step = steps[index];
+      if (!step) return;
+
+      if (step.bg) setBgImage(step.bg);
+      if (step.animate) setAnimate(step.animate);
+if (step.showCheck) setShowCheck(true);
+if (step.hideCheck) setShowCheck(false);
+      if (step.navigate) {
+        navigate(step.navigate);
+        return;
+      }
+
+      timeout = setTimeout(() => {
+        index++;
+        runStep();
+      }, step.delay || 1000);
+    };
+
+    runStep();
+
+    return () => clearTimeout(timeout);
+  }, [navigate, location]);
 
   return (
-    <div style={{ padding: '20px', textAlign: 'center' }}>
-      <h2>אוכלוסיה</h2>
-      <p>This is the Population (אוכלוסיה) screen placeholder.</p>
-      
-      {!completed && (
-        <button 
-          onClick={handleComplete}
-          style={{
-            padding: '10px 20px',
-            fontSize: '16px',
-            cursor: 'pointer',
-            marginTop: '20px'
-          }}
-        >
-          סיים וחזור
-        </button>
-      )}
-      
-      {completed && <p>הפרק הושלם! מעבר לדף הראשי...</p>}
+    <div className="population-container">
+      <img
+        className={`room-background-population ${animate}`}
+        src={bgImage}
+        alt=""
+      />
+      {showCheck && <div className="population-laptop-check">✔</div>}
     </div>
   );
 }
 
 export default Population;
-
