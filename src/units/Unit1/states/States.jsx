@@ -109,22 +109,22 @@ useEffect(() => {
           <div className='card-div-states cardOneStates'
             onClick={() => handleCardClick(1)}
           >
-            שגרה{openedCards.has(1) && <span style={{color: 'green', fontSize: '24px', marginLeft: '10px'}}>✓</span>}
+            שגרה{openedCards.has(1) && <span style={{color: 'green', fontSize: '6vmin', marginLeft: '10px',fontWeight:'bold'}}>✓</span>}
           </div>
           <div className='card-div-states cardTwoStates'
             onClick={() => handleCardClick(2)}
           >
-            מעבר משגרה לחירום{openedCards.has(2) && <span style={{color: 'green', fontSize: '24px', marginLeft: '10px'}}>✓</span>}
+            מעבר משגרה לחירום{openedCards.has(2) && <span style={{color: 'green', fontSize: '6vmin', marginLeft: '10px',fontWeight:'bold'}}>✓</span>}
           </div>
           <div className='card-div-states cardThreeStates'
             onClick={() => handleCardClick(3)}
           >
-            שגרת חירום{openedCards.has(3) && <span style={{color: 'green', fontSize: '24px', marginLeft: '10px'}}>✓</span>}
+            שגרת חירום{openedCards.has(3) && <span style={{color: 'green', fontSize: '6vmin', marginLeft: '10px',fontWeight:'bold'}}>✓</span>}
           </div>
           <div className='card-div-states cardFourStates'
             onClick={() => handleCardClick(4)}
           >
-            אירוע חירום{openedCards.has(4) && <span style={{color: 'green', fontSize: '24px', marginLeft: '10px'}}>✓</span>}
+            אירוע חירום{openedCards.has(4) && <span style={{color: 'green', fontSize: '6vmin', marginLeft: '10px',fontWeight:'bold'}}>✓</span>}
           </div>
         </>
       )}

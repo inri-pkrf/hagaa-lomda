@@ -29,8 +29,8 @@ function Population() {
       { animate: 'zoom-in-left', delay: 1500 , hideCheck: true },
       { bg: bindersImg, animate: 'zoom-in-gentle', delay: 1800 },  
       { animate: 'zoom-out-gentle', delay: 1800 }, // zoom-out קלסרים
-      { animate: 'final-binders', delay: 0 }, // <-- כאן את נותנת CLASS חדש
-      // { navigate: '/population-parts' },
+      { animate: 'final-binders', delay: 0 },
+      { navigate: '/population-parts', delay: 6000 }
     ]
       : [
           { animate: 'zoom-in-population', delay: 1000 },

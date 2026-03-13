@@ -14,11 +14,11 @@
 }
 
 .states-card {
-    width: 69vw;
+       width: 69vw;
     height: 71vh;
     padding: 50px 60px;
     text-align: right;
-    right: -3vw;
+    right: 0vw;
     top: 6vh;
     direction: rtl;
     position: relative;
