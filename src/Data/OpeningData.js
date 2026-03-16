@@ -7,6 +7,7 @@ const openingData = {
         mainTitle: "יחידה 1: מבוא",
         text: <>
 
+
             <ul>
                 <b>בסיום תדעו:</b>
                 <li>
@@ -23,8 +24,10 @@ const openingData = {
                 <li>
                     לפרֵט מי הגופים המסייעים לך בביצוע משימתך</li>
 
+
             </ul>
         </>,
+
 
         buttonText: "מעבר למטרות יחידה 1",
         colors: {
@@ -34,12 +37,13 @@ const openingData = {
             text: "#004162"
         },
     },
-    Unit2: {
+    UnitTwo: {
         title: "בפרק השני",
         subtitle: `בפרק השני תכיר את האיומים על העורף ותבין מהי תוכנית התגוננות `,
         image: "/assets/General/OpeningUnitPage/unitTwoStartBuilding.png",
         mainTitle: "יחידה 2: הכנה",
         text: <>
+
 
             <ul>
                 <b>בסיום תדעו:</b>
@@ -56,6 +60,13 @@ const openingData = {
         </>,
         buttonText: "מעבר למטרות יחידה 2",
         navigateTo: "/goals"
+        ,
+        colors: {
+            main: "#73ac9e",
+            layer1: "#CCEEE6",
+            layer2: "#CCEEE6",
+            text: "#196352"
+        },
     },
     UnitThree: {
         title: "בפרק השלישי",
@@ -63,6 +74,7 @@ const openingData = {
         image: "/assets/General/OpeningUnitPage/unitThreeStartBuilding.png",
         mainTitle: "יחידה 3: צוותי חירום",
         text: <>
+
 
             <ul>
                 <b>בסיום תדעו:</b>
@@ -92,6 +104,7 @@ const openingData = {
         mainTitle: "יחידה 4: סיכום",
         text: <>
 
+
             <ul>
                 <b>בסיום תדעו:</b>
                 <li>
@@ -104,11 +117,15 @@ const openingData = {
                     לתאר את סדר הפעולות באירוע חירום במפעל
                 </li>
 
+
             </ul>
         </>,
         buttonText: "התחל יחידה",
     },
 
+
 };
 
+
 export default openingData;
+
