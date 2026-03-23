@@ -4,7 +4,6 @@
     height: 100%;
     object-fit: cover;
     position: fixed;
-    /* top: 10vh; */
     left: 0;
     z-index: -1;
     transition: transform 2s ease-in-out;
@@ -18,10 +17,118 @@
 .threats-container.zoom-out {
   transform: scale(0.99); /* Zoom out to normal size */
 }
-.threats-container .tv{
-    width: 92vw;
-    height: auto;
-    top: -2vh;
+
+.threats-container .tv {
+  width: 88vw;
+    height: 83vh;
     position: absolute;
-    left: 4vw;
+    left: 50%;
+    top: 5vh;
+    transform: translateX(-50%);
+}
+
+.subtext-threats{
+ font-size: 1.2rem;
+    text-align: center;
+    position: absolute;
+    top: 13vh;
+    width: 100%;
+    z-index: 1;
+}
+
+.click-div-tv {
+    width: 28%;
+    height: 35%;
+    position: absolute;
+    top: 20%;
+    left: 36%;
+    z-index: 1000;
+    cursor: pointer;
+    
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.1) 50%, 
+        rgba(255, 255, 255, 0.2) 50%
+    );
+    background-size: 100% 4px;
+    
+    backdrop-filter: blur(1px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    
+    transition: all 0.3s ease;
+
+    /* האנימציה החדשה: שם, זמן, סוג תנועה, וחזרה אינסופית */
+    animation: fade-pulse 1.7s ease-in-out infinite;
+}
+
+.click-div-tv:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: scale(1.02);
+    
+    /* כשעומדים עם העכבר, האפקט נעצר כדי שיהיה קל ללחוץ */
+    animation-play-state: paused; 
+    opacity: 1; 
+}
+
+/* הגדרת האנימציה - נעלם וחוזר לאט */
+@keyframes fade-pulse {
+    0%, 100% {
+        opacity: 1; /* מצב גלוי מלא */
+    }
+    50% {
+        opacity: 0.3; /* מצב כמעט נעלם - אפשר לשנות ל-0 אם רוצים שייעלם לגמרי */
+    }
+}
+
+/* שכבת האפלה על המשרד */
+.overlay-dark-threats {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px); /* טשטוש המשרד */
+    z-index: 10;
+    animation: fadeInThreats 0.5s ease;
+}
+
+/* קונטיינר הטלוויזיה שצף במרכז */
+.tv-zoom-container {
+    position: absolute;
+    left: 50%;
+    top: 2vh; /* מיקום הטלוויזיה במסך */
+    transform: translateX(-50%);
+    width: 81vw; /* הגודל שהגדרת ל-tv קודם */
+    z-index: 20;
+    animation: tvPopIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.tv-frame-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* אנימציות */
+@keyframes fadeInThreats {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes tvPopIn {
+    from { opacity: 0; transform: translateX(-50%) scale(0.8); }
+    to { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+/* עדכון ה-VideoThreats-container שיושב בתוך ה-TV */
+.VideoThreats-container {
+    position: absolute;
+    top: 8%; /* כוונון הווידאו שייכנס בדיוק לתוך מסגרת הטלוויזיה */
+    left: 5%;
+    width: 90%;
+    height: 75%;
+    overflow: hidden;
+    z-index: 21;
 }

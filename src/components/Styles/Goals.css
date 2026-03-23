@@ -25,11 +25,13 @@
 }
 
 .goals-subtitle {
-  font-size: 1.2rem;
-  margin-top: 5vh;
-  text-align: center;
-  padding: 0 20px;
-  z-index: 1;
+      font-size: 1.2rem;
+    /* margin-top: 7vh; */
+    text-align: center;
+    position: relative;
+    top: 7vh;
+    padding: 0 20px;
+    z-index: 1;
 }
 
 .goals-background-cloud {
@@ -97,7 +99,7 @@
 
 .goal-cloud {
   position: absolute;
-  width: 35vw;
+  width: 30vw;
   height: auto;
   object-fit: contain;
   z-index: 0;

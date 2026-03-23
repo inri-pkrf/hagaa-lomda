@@ -1,5 +1,5 @@
-.IntroUnitOne{
-     position: fixed;
+.IntroUnitOne {
+    position: fixed;
     top: 0vh;
     left: 0;
     width: 100vw;
@@ -10,18 +10,24 @@
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    background-attachment: fixed; 
+    background-attachment: fixed;
     overflow: hidden;
     direction: rtl;
 }
-.first-background{
-    width: 100vw;
+
+.first-background {
+    /* width: 100vw;
     height: auto;
-    margin-top: 5vh;
+    margin-top: 5vh; */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
 }
 
 .door-signs-UnitOne {
-  position: absolute;
+    position: absolute;
     top: 2vh;
     left: -4vw;
     width: 100vw;
@@ -43,29 +49,33 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0 2vw; /* Increase horizontal margin */
+    margin: 0 2vw;
+    /* Increase horizontal margin */
     /* Removed background */
     border-radius: 10px;
     transition: transform 0.3s ease;
 }
 
 .door-sign-UnitOne-first {
- position: absolute;
+    position: absolute;
 
-   right: 2vw;
+    right: 2vw;
 }
+
 .door-sign-UnitOne-second {
-     position: absolute;
+    position: absolute;
 
-   right: 30vw;
+    right: 30vw;
 }
+
 .door-sign-UnitOne-third {
-         position: absolute;
+    position: absolute;
 
-   right: 58vw;
+    right: 58vw;
 }
+
 .door-sign-UnitOne-fourth {
-       position: absolute;
+    position: absolute;
     left: -1vw;
 }
 
@@ -81,7 +91,7 @@
     pointer-events: none;
 }
 
-.door-sign-UnitOne-title-first{
+.door-sign-UnitOne-title-first {
     font-size: 4vmin;
     font-weight: 400;
     font-family: "Karantina";
@@ -91,7 +101,8 @@
     position: relative;
     transform: rotate(5deg);
 }
-.door-sign-UnitOne-title-second{
+
+.door-sign-UnitOne-title-second {
     font-size: 4vmin;
     font-weight: 400;
     font-family: "Karantina";
@@ -100,7 +111,8 @@
     top: 20vh;
     position: relative;
 }
-.door-sign-UnitOne-title-third{
+
+.door-sign-UnitOne-title-third {
     font-size: 4vmin;
     font-weight: 400;
     font-family: "Karantina";
@@ -109,7 +121,8 @@
     top: 20vh;
     position: relative;
 }
-.door-sign-UnitOne-title-fourth{
+
+.door-sign-UnitOne-title-fourth {
     font-size: 4vmin;
     font-weight: 400;
     font-family: "Karantina";
@@ -117,7 +130,7 @@
     text-align: center;
     top: 20vh;
     position: relative;
-     transform: rotate(355deg);
+    transform: rotate(355deg);
 
 }
 
@@ -130,8 +143,9 @@
     max-height: 25vh;
     object-fit: contain;
 }
-.doorOneDone{
-  z-index: 10;
+
+.doorOneDone {
+    z-index: 10;
     width: auto;
     height: 64vh;
     position: absolute;
@@ -139,8 +153,8 @@
     right: 0vw;
 }
 
-.doorTwoDone{
-     z-index: 10;
+.doorTwoDone {
+    z-index: 10;
     width: auto;
     height: 57vh;
     position: absolute;
@@ -148,8 +162,8 @@
     right: 26vw;
 }
 
-.doorThreeDone{
- z-index: 10;
+.doorThreeDone {
+    z-index: 10;
     width: auto;
     height: 57vh;
     position: absolute;
@@ -157,8 +171,8 @@
     right: 55vw;
 }
 
-.doorFourDone{
- z-index: 10;
+.doorFourDone {
+    z-index: 10;
     width: auto;
     height: 68vh;
     position: absolute;
@@ -167,9 +181,9 @@
 }
 
 
-.doorOneDone, 
-.doorTwoDone, 
-.doorThreeDone, 
+.doorOneDone,
+.doorTwoDone,
+.doorThreeDone,
 .doorFourDone {
-    pointer-events: none; 
+    pointer-events: none;
 }

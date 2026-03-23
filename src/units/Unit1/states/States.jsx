@@ -8,7 +8,7 @@ function States() {
   const navigate = useNavigate();
   const [completed, setCompleted] = useState(false);
   const [openedCards, setOpenedCards] = useState(new Set());
-  const [bgImage, setBgImage] = useState(`${process.env.PUBLIC_URL}/assets/UnitOneImgs/StatesBackground.png`);
+  const [bgImage, setBgImage] = useState(`${process.env.PUBLIC_URL}/assets/UnitOneImgs/חיווי לוח 1.png`);
   const image = `${process.env.PUBLIC_URL}/assets/UnitOneImgs/StatesPin.png`;
   // const [animate, setAnimate] = useState(false); // REMARKED
   const [showCards, setShowCards] = useState(false);
@@ -81,21 +81,45 @@ function States() {
     setSelectedId(null);
   };
 
-  return (
-    <div className="threats-container" onClick={handleBackgroundClick} style={{ cursor: showCards ? 'default' : 'pointer' }}>
-      <img
-        className={`room-background-states ${bgImage.includes('ArtBoard') ? 'Board' : ''}`} 
-        src={bgImage}
-        alt=""
-      />
+return (
+  <div className="threats-container">
+    <div className='subtext-threats'>
+      לחצו על הלוח במשרד כדי ללמוד על המצבים השונים של העורף
+    </div>
 
-      {showCards && (
-        <>
-          <img className='pinState' id="states-pin1" src={image} alt="States Pin" />
-          <img className='pinState' id="states-pin2" src={image} alt="States Pin" />
-          <img className='pinState' id="states-pin3" src={image} alt="States Pin" />
-          <img className='pinState' id="states-pin4" src={image} alt="States Pin" />
+    {/* רקע המשרד - תמיד קבוע מאחור */}
+    <img
+      className="room-background-states"
+      src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/חיווי לוח 1.png`}
+      alt="Background"
+    />
+
+    {/* האזור הלחיץ שמופיע רק לפני המעבר ללוח */}
+    {!showCards && (
+      <div className='click-div-states' onClick={handleBackgroundClick}></div>
+    )}
+
+    {/* מצב לוח פתוח */}
+    {showCards && (
+      <>
+        {/* שכבת ההאפלה */}
+        <div className="overlay-dark"></div>
+        
+        {/* הקונטיינר של הלוח והתוכן שלו */}
+        <div className="board-container-wrapper">
+          <img 
+            className="Board-image-element" 
+            src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/StatesArtBoard.png`} 
+            alt="Board" 
+          />
           
+          {/* הפינים - כעת הם ממוקמים יחסית ללוח */}
+          <img className='pinState' id="states-pin1" src={image} alt="Pin" />
+          <img className='pinState' id="states-pin2" src={image} alt="Pin" />
+          <img className='pinState' id="states-pin3" src={image} alt="Pin" />
+          <img className='pinState' id="states-pin4" src={image} alt="Pin" />
+          
+          {/* הכרטיסיות - כעת הן ממוקמות יחסית ללוח */}
           <div className='card-div-states cardOneStates' onClick={(e) => { e.stopPropagation(); handleCardClick(1); }}>
             שגרה{openedCards.has(1) && <span className="check-mark">✓</span>}
           </div>
@@ -108,28 +132,26 @@ function States() {
           <div className='card-div-states cardFourStates' onClick={(e) => { e.stopPropagation(); handleCardClick(4); }}>
             אירוע חירום{openedCards.has(4) && <span className="check-mark">✓</span>}
           </div>
-        </>
-      )}
+        </div>
+      </>
+    )}
 
-      {showCardPopup && selectedId != null && (
-        <StatesCard
-          {...StatesData[selectedId]}
-          onClose={closeStateCard}
-        />
-      )}
+    {/* פופ-אפ פרטני לכל כרטיס */}
+    {showCardPopup && selectedId != null && (
+      <StatesCard
+        {...StatesData[selectedId]}
+        onClose={closeStateCard}
+      />
+    )}
 
-      {openedCards.size === 4 && !completed && (
-        <button
-          onClick={(e) => { e.stopPropagation(); handleComplete(); }}
-          className='ending-button-states'
-        >
-          סיים וחזור
-        </button>
-      )}
-
-      {completed && <p className="completion-msg">הפרק הושלם! מעבר לדף הראשי...</p>}
-    </div>
-  );
+    {/* כפתור סיום - מחוץ ללוח כדי שיישאר במיקום קבוע במסך */}
+    {openedCards.size === 4 && !completed && (
+      <button onClick={handleComplete} className='ending-button-states'>
+        סיים וחזור
+      </button>
+    )}
+  </div>
+);
 }
 
 export default States;

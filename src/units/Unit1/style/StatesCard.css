@@ -4,82 +4,72 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
-  background: rgba(0,0,0,0.35);
-  z-index: 1000;
+  /* האוברליי הזה יסתיר את כל המסך, כולל ההדר */
+  background: rgba(0, 0, 0, 0.6); 
+  z-index: 99999; 
 }
 
 .states-card {
-       width: 69vw;
-    height: 71vh;
-    padding: 50px 60px;
-    text-align: right;
-    right: 0vw;
-    top: 6vh;
-    direction: rtl;
-    position: relative;
+  /* התאמה למידות של הלוח המקורי שלך */
+    width: 56vw;
+    height: 61vh;
+  padding: 60px;
+  text-align: right;
+  direction: rtl;
+  position: relative;
+  
+  /* עיגול פינות קל שיתאים למראה של לוח/דף */
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  
+  /* אנימציית כניסה של צמיחה מהמרכז */
+  animation: cardPop 0.3s ease-out;
+}
+
+@keyframes cardPop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 .states-close {
   position: absolute;
   top: 20px;
-  left: 25px;
-
+  left: 30px; /* צד שמאל כי הטקסט בימין */
   border: none;
   background: none;
   font-size: 8vmin;
   cursor: pointer;
-    font-family: "Karantina";
-    font-weight: bolder;
+  font-family: "Karantina";
+  font-weight: bolder;
   color: #3b2a1a;
+  z-index: 10;
 }
 
+/* שאר הסטייל לטקסט נראה מעולה, רק וידאתי גדלים רספונסיביים */
 .card-title {
   font-size: 7vmin;
-  font-weight: 800;
+  margin-top: 0;
   color: #3b2a1a;
   font-family: "Karantina";
-
-  margin-bottom: 10px;
 }
 
 .card-subtitle {
-  font-size: 2vw;
-  font-weight: 600;
+  font-size: 2.5vmin;
   text-decoration: underline;
-
-  color: #3b2a1a;
   margin-bottom: 20px;
 }
 
 .card-description {
-  font-size: 1.5vw;
-  margin-bottom: 20px;
-  color: #3b2a1a;
-}
-
-.card-tasks {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  font-size: 2.5vmin;
+  line-height: 1;
+  margin-bottom: 30px;
 }
 
 .card-tasks li {
-  font-size: 1.4vw;
-  margin-bottom: 12px;
-  color: #3b2a1a;
-
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.card-tasks li::before {
-  content: "✔";
-  color: #1f1f1f;
-  font-weight: bold;
+  font-size: 2.5vmin;
+  margin-bottom: 10px;
+  list-style: none;
 }

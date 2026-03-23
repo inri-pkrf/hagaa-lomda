@@ -1,17 +1,34 @@
-/* Styles for Unit1 VideoThreats screen */
-
-.VideoThreats {
-    width: 106vw;
-    height: 114vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.VideoThreats-background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     position: fixed;
-    top: -7vh;
-    left: -3.5vw;
-    z-index: -1;
+    /* top: 10vh; */
+    left: 0;
+    background-color: #fff8e8;
+    z-index: -1000;
 }
-.video-threats-button{
+
+.VideoThreats-container {
+    width: 76vw;
+    height: 85vh;
+    position: absolute;
+    left: 50%;
+    top: 8vh;
+    transform: translateX(-50%);
+    display: block;
+    overflow: hidden;
+}
+
+.VideoThreats-video {
+    width: 75vw;
+    height: 82vh;
+    border: none;
+    object-fit: fill;
+    /* פקודה שמנסה להכריח את התוכן להימתח */
+}
+
+.video-threats-button {
     padding: 12px 30px;
     font-size: 3vmin;
     font-weight: 700;
