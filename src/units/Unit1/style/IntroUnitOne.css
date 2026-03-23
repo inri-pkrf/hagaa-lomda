@@ -165,3 +165,11 @@
     top: 14vh;
     right: 83vw;
 }
+
+
+.doorOneDone, 
+.doorTwoDone, 
+.doorThreeDone, 
+.doorFourDone {
+    pointer-events: none; 
+}

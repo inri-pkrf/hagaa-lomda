@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 20px;
+  padding: 0px 20px;
   background: var(--bg-color);
   color: var(--text-color);
   direction: rtl;
@@ -23,7 +23,7 @@
 }
 
 .logo {
-  height: 5vh;
+  height: 6vh;
 }
 
 .header-title {
@@ -34,7 +34,7 @@ transform: translateX(50%);
 font-family: 'Karantina';
 font-style: normal;
 font-weight: 700;
-font-size: 8vmin;
+font-size: 6vmin;
 line-height: 83px;
 text-align: center;
 color: #004162;

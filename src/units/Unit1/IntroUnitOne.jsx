@@ -6,10 +6,8 @@ function IntroUnitOne() {
   const navigate = useNavigate();
   const [doorImage, setDoorImage] = useState(`${process.env.PUBLIC_URL}/assets/General/Doors/Doors.png`);
   
-  // Track which sign is being opened (door opening animation)
   const [openingSign, setOpeningSign] = useState(null);
   
-  // Track which chapters are finished
   const [finishedChapters, setFinishedChapters] = useState({
     unitOneFirst: false,
     unitOneSecond: false,
@@ -20,13 +18,11 @@ function IntroUnitOne() {
   useEffect(() => {
     sessionStorage.setItem('MainTitle', "יחידה 1");
     
-    // Check currentChapter from sessionStorage
     const currentChapterStr = sessionStorage.getItem('currentChapter');
     if (currentChapterStr) {
       try {
         const currentChapter = JSON.parse(currentChapterStr);
         
-        // If no chapter is set, set default
         if (!currentChapter.name) {
           sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'unitOne-first', state: 'not started' }));
         }
@@ -37,7 +33,6 @@ function IntroUnitOne() {
       sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'unitOne-first', state: 'not started' }));
     }
     
-    // Also check for individual finished chapters stored separately
     const finished1 = sessionStorage.getItem('unitOne-first') === 'finished';
     const finished2 = sessionStorage.getItem('unitOne-second') === 'finished';
     const finished3 = sessionStorage.getItem('unitOne-third') === 'finished';
@@ -51,9 +46,24 @@ function IntroUnitOne() {
     });
   }, []);
 
+// 1. Determine the furthest point the user has reached
+const reachedSecond = finishedChapters.unitOneFirst;
+const reachedThird = finishedChapters.unitOneSecond;
+const reachedFourth = finishedChapters.unitOneThird;
+
+// 2. A door is clickable if:
+//    - It is the first door
+//    - OR the previous door is finished
+//    - OR the door itself was already finished (revisiting)
+const canEnterFirst = true;
+const canEnterSecond = reachedSecond || finishedChapters.unitOneSecond;
+const canEnterThird = reachedThird || finishedChapters.unitOneThird;
+const canEnterFourth = reachedFourth || finishedChapters.unitOneFourth;
+
   const handleSignOneClick = () => {
     setDoorImage(`${process.env.PUBLIC_URL}/assets/General/Doors/DoorOneOpen.png`);
     setOpeningSign(1);
+    sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'unitOne-first', state: 'not started' })); // קטן אבל חשוב
     setTimeout(() => {
       navigate('/threats');
     }, 2000);
@@ -91,48 +101,49 @@ function IntroUnitOne() {
       <img className='first-background' src={doorImage} alt="Intro Unit 1" />
       
       <div className='door-signs-UnitOne'>
-        {/* Sign 1 - היערכות לאיום */}
+        
+        {/* Sign 1 */}
         {openingSign !== 1 && (
           <div 
             className='door-sign-UnitOne-first' 
-            onClick={handleSignOneClick} 
-            style={{ cursor: 'pointer' }}
+            onClick={!openingSign && canEnterFirst ? handleSignOneClick : undefined}
+            style={{ cursor: !openingSign && canEnterFirst ? 'pointer' : 'default' }}
           >
             <p className='door-sign-UnitOne-title-first'>היערכות לאיומים</p>
             <img src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsSigns/DoorSignOne.png`} alt="Sign 1" />
           </div>
         )}
 
-        {/* Sign 2 - מצבי תפקוד */}
+        {/* Sign 2 */}
         {openingSign !== 2 && (
           <div 
-            className={`door-sign-UnitOne-second ${!finishedChapters.unitOneFirst ? 'disabled' : ''}`}
-            onClick={finishedChapters.unitOneFirst && !openingSign ? handleSignTwoClick : undefined}
-            style={{ cursor: finishedChapters.unitOneFirst && !openingSign ? 'pointer' : 'default' }}
+            className={`door-sign-UnitOne-second ${!canEnterSecond ? 'disabled' : ''}`}
+            onClick={!openingSign && canEnterSecond ? handleSignTwoClick : undefined}
+            style={{ cursor: !openingSign && canEnterSecond ? 'pointer' : 'default' }}
           >
             <p className='door-sign-UnitOne-title-second'>מצבי תפקוד</p>
             <img src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsSigns/DoorSignTwo.png`} alt="Sign 2" />
           </div>
         )}
 
-        {/* Sign 3 - ממשקים */}
+        {/* Sign 3 */}
         {openingSign !== 3 && (
           <div 
-            className={`door-sign-UnitOne-third ${!finishedChapters.unitOneSecond ? 'disabled' : ''}`}
-            onClick={finishedChapters.unitOneSecond && !openingSign ? handleSignThreeClick : undefined}
-            style={{ cursor: finishedChapters.unitOneSecond && !openingSign ? 'pointer' : 'default' }}
+            className={`door-sign-UnitOne-third ${!canEnterThird ? 'disabled' : ''}`}
+            onClick={!openingSign && canEnterThird ? handleSignThreeClick : undefined}
+            style={{ cursor: !openingSign && canEnterThird ? 'pointer' : 'default' }}
           >
             <p className='door-sign-UnitOne-title-third'>ממשקים </p>
             <img src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsSigns/DoorSignThree.png`} alt="Sign 3" />
           </div>
         )}
 
-        {/* Sign 4 - אוכלוסיה */}
+        {/* Sign 4 */}
         {openingSign !== 4 && (
           <div 
-            className={`door-sign-UnitOne-fourth ${!finishedChapters.unitOneThird ? 'disabled' : ''}`}
-            onClick={finishedChapters.unitOneThird && !openingSign ? handleSignFourClick : undefined}
-            style={{ cursor: finishedChapters.unitOneThird && !openingSign ? 'pointer' : 'default' }}
+            className={`door-sign-UnitOne-fourth ${!canEnterFourth ? 'disabled' : ''}`}
+            onClick={!openingSign && canEnterFourth ? handleSignFourClick : undefined}
+            style={{ cursor: !openingSign && canEnterFourth ? 'pointer' : 'default' }}
           >
             <p className='door-sign-UnitOne-title-fourth'>אוכלוסיה </p>
             <img src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsSigns/DoorSignFour.png`} alt="Sign 4" />
@@ -140,7 +151,6 @@ function IntroUnitOne() {
         )}
       </div>
       
-      {/* Done images - shown when chapter is finished */}
       {finishedChapters.unitOneFirst && (
         <img className='doorOneDone' src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorOneDone.png`} alt="Door 1 Done" />
       )}
@@ -161,4 +171,3 @@ function IntroUnitOne() {
 }
 
 export default IntroUnitOne;
-

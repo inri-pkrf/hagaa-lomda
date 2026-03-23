@@ -2,67 +2,66 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import StatesData from "../../../Data/Unit1/StatesData";
 import StatesCard from './StatesCard';
-import '../style/States.css';
+import '../style/states.css';
+
 function States() {
   const navigate = useNavigate();
   const [completed, setCompleted] = useState(false);
   const [openedCards, setOpenedCards] = useState(new Set());
   const [bgImage, setBgImage] = useState(`${process.env.PUBLIC_URL}/assets/UnitOneImgs/StatesBackground.png`);
   const image = `${process.env.PUBLIC_URL}/assets/UnitOneImgs/StatesPin.png`;
-  const [animate, setAnimate] = useState(false);
+  // const [animate, setAnimate] = useState(false); // REMARKED
   const [showCards, setShowCards] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const [showCardPopup, setShowCardPopup] = useState(false);
-useEffect(() => {
-  // Load opened cards from sessionStorage
-  const saved = sessionStorage.getItem('statesOpenedCards');
-  if (saved) {
-    setOpenedCards(new Set(JSON.parse(saved)));
-  }
 
-  const startZoom = setTimeout(() => {
-    setAnimate('zoom-in-board');
-  }, 500);
+  useEffect(() => {
+    // Load opened cards from sessionStorage
+    const saved = sessionStorage.getItem('statesOpenedCards');
+    if (saved) {
+      setOpenedCards(new Set(JSON.parse(saved)));
+    }
 
+    /* REMARKED: AUTOMATIC ANIMATION LOGIC
+    const startZoom = setTimeout(() => {
+      setAnimate('zoom-in-board');
+    }, 500);
 
-  const changeImage = setTimeout(() => {
+    const changeImage = setTimeout(() => {
+      setBgImage(`${process.env.PUBLIC_URL}/assets/UnitOneImgs/StatesArtBoard.png`);
+      setAnimate('zoom-out-board');
+    }, 2500);
+
+    const showCardsTimer = setTimeout(() => {
+      setShowCards(true);
+    }, 4500);
+
+    return () => {
+      clearTimeout(startZoom);
+      clearTimeout(changeImage);
+      clearTimeout(showCardsTimer);
+    };
+    */
+  }, []);
+
+  // NEW: Manual skip/cut to the board content
+  const handleBackgroundClick = () => {
+    if (showCards) return; // Don't trigger if already on the board
+
     setBgImage(`${process.env.PUBLIC_URL}/assets/UnitOneImgs/StatesArtBoard.png`);
-    setAnimate('zoom-out-board');
-  }, 2500);
-
-
-  // הכרטיסים מופיעים אחרי שהזום אאוט הסתיים
-  const showCardsTimer = setTimeout(() => {
     setShowCards(true);
-  }, 4500);
-
-
-
-
-
-  return () => {
-    clearTimeout(startZoom);
-    clearTimeout(changeImage);
-    clearTimeout(showCardsTimer);
+    // If you need to keep the "Board" specific class for styling:
+    // setAnimate('manual-cut'); 
   };
 
-
-}, []);
-
-
   const handleComplete = () => {
-    // מסמן שסיימתי את הפרק
     sessionStorage.setItem('unitOne-second', 'finished');
     sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'unitOne-second', state: 'finished' }));
     setCompleted(true);
-    // Clear opened cards for next visit if needed
-    // sessionStorage.removeItem('statesOpenedCards');
-    //מוביל חזרה לדלתות
     setTimeout(() => {
       navigate('/intro-unit-one');
     }, 2000);
   };
-
 
   const handleCardClick = (id) => {
     const newOpened = new Set(openedCards);
@@ -77,58 +76,40 @@ useEffect(() => {
     setShowCardPopup(true);
   };
 
-
   const closeStateCard = () => {
     setShowCardPopup(false);
     setSelectedId(null);
   };
 
-
-
-
   return (
-    <div className="threats-container">
+    <div className="threats-container" onClick={handleBackgroundClick} style={{ cursor: showCards ? 'default' : 'pointer' }}>
       <img
-        className={`room-background-states ${animate} ${bgImage.includes('ArtBoard') ? 'Board' : ''}`} src={bgImage}
+        className={`room-background-states ${bgImage.includes('ArtBoard') ? 'Board' : ''}`} 
+        src={bgImage}
         alt=""
       />
 
-
       {showCards && (
         <>
-        <img className='pinState' id="states-pin1" src={image} alt="States Pin" />
-        <img className='pinState' id="states-pin2" src={image} alt="States Pin" />
-        <img className='pinState' id="states-pin3" src={image} alt="States Pin" />
-        <img className='pinState' id="states-pin4" src={image} alt="States Pin" />
-        </>
-      )}
-
-
-      {showCards && (
-        <>
-          <div className='card-div-states cardOneStates'
-            onClick={() => handleCardClick(1)}
-          >
-            שגרה{openedCards.has(1) && <span style={{color: 'green', fontSize: '6vmin', marginLeft: '10px',fontWeight:'bold'}}>✓</span>}
+          <img className='pinState' id="states-pin1" src={image} alt="States Pin" />
+          <img className='pinState' id="states-pin2" src={image} alt="States Pin" />
+          <img className='pinState' id="states-pin3" src={image} alt="States Pin" />
+          <img className='pinState' id="states-pin4" src={image} alt="States Pin" />
+          
+          <div className='card-div-states cardOneStates' onClick={(e) => { e.stopPropagation(); handleCardClick(1); }}>
+            שגרה{openedCards.has(1) && <span className="check-mark">✓</span>}
           </div>
-          <div className='card-div-states cardTwoStates'
-            onClick={() => handleCardClick(2)}
-          >
-            מעבר משגרה לחירום{openedCards.has(2) && <span style={{color: 'green', fontSize: '6vmin', marginLeft: '10px',fontWeight:'bold'}}>✓</span>}
+          <div className='card-div-states cardTwoStates' onClick={(e) => { e.stopPropagation(); handleCardClick(2); }}>
+            מעבר משגרה לחירום{openedCards.has(2) && <span className="check-mark">✓</span>}
           </div>
-          <div className='card-div-states cardThreeStates'
-            onClick={() => handleCardClick(3)}
-          >
-            שגרת חירום{openedCards.has(3) && <span style={{color: 'green', fontSize: '6vmin', marginLeft: '10px',fontWeight:'bold'}}>✓</span>}
+          <div className='card-div-states cardThreeStates' onClick={(e) => { e.stopPropagation(); handleCardClick(3); }}>
+            שגרת חירום{openedCards.has(3) && <span className="check-mark">✓</span>}
           </div>
-          <div className='card-div-states cardFourStates'
-            onClick={() => handleCardClick(4)}
-          >
-            אירוע חירום{openedCards.has(4) && <span style={{color: 'green', fontSize: '6vmin', marginLeft: '10px',fontWeight:'bold'}}>✓</span>}
+          <div className='card-div-states cardFourStates' onClick={(e) => { e.stopPropagation(); handleCardClick(4); }}>
+            אירוע חירום{openedCards.has(4) && <span className="check-mark">✓</span>}
           </div>
         </>
       )}
-
 
       {showCardPopup && selectedId != null && (
         <StatesCard
@@ -137,22 +118,18 @@ useEffect(() => {
         />
       )}
 
-
-{openedCards.size === 4 && !completed && (
+      {openedCards.size === 4 && !completed && (
         <button
-          onClick={handleComplete}
+          onClick={(e) => { e.stopPropagation(); handleComplete(); }}
           className='ending-button-states'
         >
           סיים וחזור
         </button>
       )}
 
-
-      {completed && <p>הפרק הושלם! מעבר לדף הראשי...</p>}
+      {completed && <p className="completion-msg">הפרק הושלם! מעבר לדף הראשי...</p>}
     </div>
   );
 }
 
-
 export default States;
-

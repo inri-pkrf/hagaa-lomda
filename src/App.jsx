@@ -15,7 +15,7 @@ import Population from './units/Unit1/Population/Population.jsx';
 import IntroUnitTwo from './units/Unit2/IntroUnitTwo';
 import IntroUnitThree from './units/Unit3/IntroUnitThree';
 import IntroUnitFour from './units/Unit4/IntroUnitFour';  
-import Threats from './units/Unit1/Threats.jsx';
+import Threats from './units/Unit1/Threats/Threats.jsx';
 import PopulationLaptop from './units/Unit1/Population/PopulationLaptop.jsx';
 import PopulationFolders from './units/Unit1/Population/PopulationFolder.jsx';
 import PopulationGame from './units/Unit1/Population/PopulationGame.jsx';
