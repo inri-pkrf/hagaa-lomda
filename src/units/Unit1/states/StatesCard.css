@@ -1,0 +1,75 @@
+.states-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* האוברליי הזה יסתיר את כל המסך, כולל ההדר */
+  background: rgba(0, 0, 0, 0.6); 
+  z-index: 99999; 
+}
+
+.states-card {
+  /* התאמה למידות של הלוח המקורי שלך */
+    width: 56vw;
+    height: 61vh;
+  padding: 60px;
+  text-align: right;
+  direction: rtl;
+  position: relative;
+  
+  /* עיגול פינות קל שיתאים למראה של לוח/דף */
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  
+  /* אנימציית כניסה של צמיחה מהמרכז */
+  animation: cardPop 0.3s ease-out;
+}
+
+@keyframes cardPop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.states-close {
+  position: absolute;
+  top: 20px;
+  left: 30px; /* צד שמאל כי הטקסט בימין */
+  border: none;
+  background: none;
+  font-size: 8vmin;
+  cursor: pointer;
+  font-family: "Karantina";
+  font-weight: bolder;
+  color: #3b2a1a;
+  z-index: 10;
+}
+
+/* שאר הסטייל לטקסט נראה מעולה, רק וידאתי גדלים רספונסיביים */
+.card-title {
+  font-size: 7vmin;
+  margin-top: 0;
+  color: #3b2a1a;
+  font-family: "Karantina";
+}
+
+.card-subtitle {
+  font-size: 2.5vmin;
+  text-decoration: underline;
+  margin-bottom: 20px;
+}
+
+.card-description {
+  font-size: 2.5vmin;
+  line-height: 1;
+  margin-bottom: 30px;
+}
+
+.card-tasks li {
+  font-size: 2.5vmin;
+  margin-bottom: 10px;
+  list-style: none;
+}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../style/PopulationFolder.css';
+import './PopulationFolder.css';
 import FolderPopUp from './FolderPopUp';
 import { populationDataFolders } from '../../../Data/Unit1/PopulationDataFolders';
 
@@ -81,13 +81,18 @@ if (!visited.includes(id)) {
         />
       )}
       {visitedFolders.length === 3 && (
-      <button
-        className="gameButton"
-        onClick={() => navigate("/populationGame")}
-      >
-        למשחק גרירה
-      </button>
-    )}
+  <button
+    className="gameButton"
+    onClick={() => {
+      // 1. שמירה שסיימנו את הקלסרים
+      sessionStorage.setItem("populationFoldersFinished", "true");
+      // 2. חזרה לחדר הראשי עם סטייט מעודכן
+      navigate("/population", { state: { foldersFinished: true } });
+    }}
+  >
+    חזרה למשרד
+  </button>
+)}
 
     </div>
   );

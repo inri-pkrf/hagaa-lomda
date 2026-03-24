@@ -1,0 +1,87 @@
+.populationFolder-container{
+    position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        padding: 20px;
+        background-color: #e7e6d8;
+        overflow: hidden;
+}
+
+.Population-foldersImg{
+    width: 43vw;
+    position: absolute;
+    left: 50%;
+    top: 52%;
+    transform: translate(-50%, -50%);
+}
+
+.populationFolder-text{
+    width: 8vw;
+    height: 39vh;
+    border-radius: 8px;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+.populationFolder-text:hover{
+  
+    background-color: #e9e9e9;
+    border: #000000 5px solid;
+}
+.firstText{
+    position: absolute;
+        top: 25vh;
+    left: 32vw;
+    transform: rotate(-2deg);
+    color: #000000;
+    font-weight: lighter;
+    font-family: "Karantina";
+    font-size: 4Vmin;
+}
+.secondText{
+   position: absolute;
+ top: 25vh;
+    left: 45vw;
+    transform: rotate(-2deg);
+    color: #000000;
+    font-weight: lighter;
+    font-family: "Karantina";
+    font-size: 4Vmin;
+}
+.thirdText{
+    position: absolute;
+        top: 25vh;
+    left: 58vw;
+
+    transform: rotate(-2deg);
+    color: #000000;
+    font-weight: lighter;
+    font-family: "Karantina";
+    font-size: 4Vmin;
+}
+.checkMarkFolder{
+    position:absolute;
+  top:-10px;
+  left:-10px;
+  font-size:28px;
+  color:green;
+  font-weight:bold;
+}
+.gameButton{
+     padding: 12px 30px;
+    font-size: 3vmin;
+    font-weight: 700;
+    font-family: 'Assistant', sans-serif;
+    color: #fff;
+    position: absolute;
+    left: 8%;
+    top: 88%;
+    background: linear-gradient(45deg, #ff6b6b, #f7d794, #63cdda, #ff6b6b);
+    background-size: 300% 300%;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.4s ease; 
+}

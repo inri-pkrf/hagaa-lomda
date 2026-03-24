@@ -1,5 +1,5 @@
 import React from "react";
-import "../style/FolderPopUp.css";
+import "./FolderPopUp.css";
 
 function FolderPopUp({ data, close }) {
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../style/VideoThreats.css';
+import './VideoThreats.css';
 
 
 function VideoThreats({ setVideoPlaying }) {

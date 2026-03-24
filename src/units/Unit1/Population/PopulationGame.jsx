@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../style/PopulationGame.css";
+import "./PopulationGame.css";
 import { useNavigate } from 'react-router-dom';
 
 
@@ -169,11 +169,13 @@ export default function PopulationGame() {
         <button
           className="gameButton"
           onClick={() => {
-            sessionStorage.setItem("currentUnit", "UnitTwo");
-            navigate("/elevator");
+            // שמירה שסיימנו את המשחק
+            sessionStorage.setItem("populationGameFinished", "true");
+            // חזרה לחדר (במקום ישר למעלית)
+            navigate("/population", { state: { gameFinished: true } });
           }}
         >
-          ליחידה הבאה
+          סיום תרגול
         </button>
       )}
     </div>

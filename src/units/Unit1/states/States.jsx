@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import StatesData from "../../../Data/Unit1/StatesData";
 import StatesCard from './StatesCard';
-import '../style/states.css';
+import './states.css';
 
 function States() {
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../style/Threats.css';
+import './Threats.css';
 import VideoThreats from './VideoThreats';
 
 function Threats({ setVideoPlaying }) {

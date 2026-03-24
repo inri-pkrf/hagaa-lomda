@@ -1,5 +1,5 @@
 import React from "react";
-import "../style/StatesCard.css";
+import "./StatesCard.css";
 
 function StatesCard({ title, subTitle, description, tasks, color, onClose }) {
   return (

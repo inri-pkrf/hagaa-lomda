@@ -1,0 +1,72 @@
+.popup-overlay{
+  position: fixed;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  background: rgba(0,0,0,0.5);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+}
+
+.popup-container{
+  position: relative;
+  width: 70vw;
+  top: 6vh;
+}
+
+.folderImg{
+  width:100%;
+  display:block;
+}
+
+/* צד שמאל */
+.popup-left{
+  position: absolute;
+    left: 13vw;
+    top: 5vh;
+    text-align: center;
+}
+
+.popup-left h2{
+  font-size:7vmin;
+  color:#000000;
+  margin-bottom:20px;
+  font-family: "Karantina";
+  font-weight: lighter;
+}
+
+.popupIcon{
+  width:5vw;
+}
+
+/* הטקסט בצד ימין */
+.popup-text{
+position: absolute;
+    top: 13vh;
+    right: 7vw;
+    width: 350px;
+    font-size: 3vmin;
+    line-height: 1.64;
+    text-align: right;
+    color: #3b2b2b;
+    background: #ffffff40;
+    font-family: "Assistant";
+    direction: rtl;
+}
+
+/* כפתור סגירה */
+.closeBtn{
+  position:absolute;
+  top:20px;
+  left:20px;
+  background:white;
+  border:none;
+  font-size:24px;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  cursor:pointer;
+}
