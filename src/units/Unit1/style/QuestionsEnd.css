@@ -1,2 +1,11 @@
 /* Styles for Unit1 QuestionsEnd screen */
 
+.summary-btn {
+    background-color: #ff9800; /* כתום בולט או צבע חגיגי אחר */
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}

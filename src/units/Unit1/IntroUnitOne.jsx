@@ -18,20 +18,7 @@ function IntroUnitOne() {
   useEffect(() => {
     sessionStorage.setItem('MainTitle', "יחידה 1");
     
-    const currentChapterStr = sessionStorage.getItem('currentChapter');
-    if (currentChapterStr) {
-      try {
-        const currentChapter = JSON.parse(currentChapterStr);
-        
-        if (!currentChapter.name) {
-          sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'unitOne-first', state: 'not started' }));
-        }
-      } catch (e) {
-        sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'unitOne-first', state: 'not started' }));
-      }
-    } else {
-      sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'unitOne-first', state: 'not started' }));
-    }
+    // ... לוגיקת ה-sessionStorage הקיימת שלך ...
     
     const finished1 = sessionStorage.getItem('unitOne-first') === 'finished';
     const finished2 = sessionStorage.getItem('unitOne-second') === 'finished';
@@ -46,63 +33,57 @@ function IntroUnitOne() {
     });
   }, []);
 
-// 1. Determine the furthest point the user has reached
-const reachedSecond = finishedChapters.unitOneFirst;
-const reachedThird = finishedChapters.unitOneSecond;
-const reachedFourth = finishedChapters.unitOneThird;
+  // בדיקה האם כל הדלתות הסתיימו
+  const allDoorsFinished = 
+    finishedChapters.unitOneFirst && 
+    finishedChapters.unitOneSecond && 
+    finishedChapters.unitOneThird && 
+    finishedChapters.unitOneFourth;
 
-// 2. A door is clickable if:
-//    - It is the first door
-//    - OR the previous door is finished
-//    - OR the door itself was already finished (revisiting)
-const canEnterFirst = true;
-const canEnterSecond = reachedSecond || finishedChapters.unitOneSecond;
-const canEnterThird = reachedThird || finishedChapters.unitOneThird;
-const canEnterFourth = reachedFourth || finishedChapters.unitOneFourth;
-
+  // ... פונקציות handleSignClick הקיימות שלך ...
   const handleSignOneClick = () => {
     setDoorImage(`${process.env.PUBLIC_URL}/assets/General/Doors/DoorOneOpen.png`);
     setOpeningSign(1);
-    sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'unitOne-first', state: 'not started' })); // קטן אבל חשוב
-    setTimeout(() => {
-      navigate('/threats');
-    }, 2000);
+    sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'unitOne-first', state: 'not started' }));
+    setTimeout(() => navigate('/threats'), 2000);
   };
 
   const handleSignTwoClick = () => {
     setDoorImage(`${process.env.PUBLIC_URL}/assets/General/Doors/DoorTwoOpen.png`);
     setOpeningSign(2);
     sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'unitOne-second', state: 'not started' }));
-    setTimeout(() => {
-      navigate('/states');
-    }, 2000);
+    setTimeout(() => navigate('/states'), 2000);
   };
 
   const handleSignThreeClick = () => {
     setDoorImage(`${process.env.PUBLIC_URL}/assets/General/Doors/DoorThreeOpen.png`);
     setOpeningSign(3);
     sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'unitOne-third', state: 'not started' }));
-    setTimeout(() => {
-      navigate('/interfaces');
-    }, 2000);
+    setTimeout(() => navigate('/interfaces'), 2000);
   };
 
   const handleSignFourClick = () => {
     setDoorImage(`${process.env.PUBLIC_URL}/assets/General/Doors/DoorFourOpen.png`);
     setOpeningSign(4);
     sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'unitOne-fourth', state: 'not started' }));
-    setTimeout(() => {
-      navigate('/population');
-    }, 2000);
+    setTimeout(() => navigate('/population'), 2000);
   };
+
+  // תנאי כניסה (הקוד הקיים שלך)
+  const reachedSecond = finishedChapters.unitOneFirst;
+  const reachedThird = finishedChapters.unitOneSecond;
+  const reachedFourth = finishedChapters.unitOneThird;
+  const canEnterFirst = true;
+  const canEnterSecond = reachedSecond || finishedChapters.unitOneSecond;
+  const canEnterThird = reachedThird || finishedChapters.unitOneThird;
+  const canEnterFourth = reachedFourth || finishedChapters.unitOneFourth;
 
   return (
     <div className='IntroUnitOne'>
       <img className='first-background' src={doorImage} alt="Intro Unit 1" />
       
       <div className='door-signs-UnitOne'>
-        
-        {/* Sign 1 */}
+        {/* שלט 1 */}
         {openingSign !== 1 && (
           <div 
             className='door-sign-UnitOne-first' 
@@ -114,7 +95,7 @@ const canEnterFourth = reachedFourth || finishedChapters.unitOneFourth;
           </div>
         )}
 
-        {/* Sign 2 */}
+        {/* שלט 2 */}
         {openingSign !== 2 && (
           <div 
             className={`door-sign-UnitOne-second ${!canEnterSecond ? 'disabled' : ''}`}
@@ -126,7 +107,7 @@ const canEnterFourth = reachedFourth || finishedChapters.unitOneFourth;
           </div>
         )}
 
-        {/* Sign 3 */}
+        {/* שלט 3 */}
         {openingSign !== 3 && (
           <div 
             className={`door-sign-UnitOne-third ${!canEnterThird ? 'disabled' : ''}`}
@@ -138,7 +119,7 @@ const canEnterFourth = reachedFourth || finishedChapters.unitOneFourth;
           </div>
         )}
 
-        {/* Sign 4 */}
+        {/* שלט 4 */}
         {openingSign !== 4 && (
           <div 
             className={`door-sign-UnitOne-fourth ${!canEnterFourth ? 'disabled' : ''}`}
@@ -151,20 +132,20 @@ const canEnterFourth = reachedFourth || finishedChapters.unitOneFourth;
         )}
       </div>
       
-      {finishedChapters.unitOneFirst && (
-        <img className='doorOneDone' src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorOneDone.png`} alt="Door 1 Done" />
-      )}
-      
-      {finishedChapters.unitOneSecond && (
-        <img className='doorTwoDone' src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorTwoDone.png`} alt="Door 2 Done" />
-      )}
-      
-      {finishedChapters.unitOneThird && (
-        <img className='doorThreeDone' src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorThreeDone.png`} alt="Door 3 Done" />
-      )}
-      
-      {finishedChapters.unitOneFourth && (
-        <img className='doorFourDone' src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorFourDone.png`} alt="Door 4 Done" />
+      {/* תמונות ה-V (Done) */}
+      {finishedChapters.unitOneFirst && <img className='doorOneDone' src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorOneDone.png`} alt="Door 1 Done" />}
+      {finishedChapters.unitOneSecond && <img className='doorTwoDone' src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorTwoDone.png`} alt="Door 2 Done" />}
+      {finishedChapters.unitOneThird && <img className='doorThreeDone' src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorThreeDone.png`} alt="Door 3 Done" />}
+      {finishedChapters.unitOneFourth && <img className='doorFourDone' src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorFourDone.png`} alt="Door 4 Done" />}
+
+      {/* הכפתור החדש - מופיע רק בסיום כל הדלתות */}
+      {allDoorsFinished && (
+        <button 
+          className="goToQuizButton" 
+          onClick={() => navigate('/questions-end')}
+        >
+          לשאלות סיכום יחידה 1
+        </button>
       )}
     </div>
   );

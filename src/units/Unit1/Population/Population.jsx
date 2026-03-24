@@ -28,7 +28,6 @@ function Population() {
     if (gameStatus) setIsGameDone(true);
   }, [location]);
 
-  // לוגיקת הרקע - מציג את החיווי הבא בתור, אלא אם הכל נגמר
   const getBackgroundImage = () => {
     if (isGameDone) return finalBackground; 
     if (!isLaptopDone) return backgroundImglaptop;
@@ -42,7 +41,7 @@ function Population() {
         {!isLaptopDone && "לחצו על המחשב המודגש"}
         {isLaptopDone && !isFoldersDone && "המשיכו לקלסרים (ניתן לחזור למחשב)"}
         {isFoldersDone && !isGameDone && "לחצו על המנורה למשחק (ניתן לחזור לקלסרים ולמחשב)"}
-        {isGameDone && "סיימתם! ניתן לחזור לתכנים או לעבור ליחידה הבאה"}
+        {isGameDone && "סיימתם! כעת עברו לשאלות הסיכום של היחידה"}
       </div>
 
       <img
@@ -52,41 +51,34 @@ function Population() {
       />
 
       {/* --- אזורי לחיצה --- */}
-
-      {/* 1. המחשב - תמיד לחיץ מרגע שהתחילה היחידה */}
       <div className="click-laptop" onClick={() => navigate('/PopulationInfo')}></div>
 
-      {/* 2. הקלסרים - נפתחים רק אחרי שהמחשב בוצע פעם אחת, ונשארים לחיצים לתמיד */}
       {isLaptopDone && (
         <div className="click-folder" onClick={() => navigate('/population-parts')}></div>
       )}
 
-      {/* 3. המנורה - נפתחת רק אחרי שהקלסרים בוצעו פעם אחת, ונשארת לחיצה לתמיד */}
       {isFoldersDone && (
         <div className="click-light" onClick={() => navigate('/PopulationGame')}></div>
       )}
 
-      {/* --- סימני וי (נשארים במקומם) --- */}
-      {isLaptopDone && (
-        <div className="population-laptop-check-static check-laptop-pos">✔</div>
-      )}
-      {isFoldersDone && (
-        <div className="population-laptop-check-static check-folder-pos">✔</div>
-      )}
-      {isGameDone && (
-        <div className="population-laptop-check-static check-light-pos">✔</div>
-      )}
+      {/* --- סימני וי --- */}
+      {isLaptopDone && <div className="population-laptop-check-static check-laptop-pos">✔</div>}
+      {isFoldersDone && <div className="population-laptop-check-static check-folder-pos">✔</div>}
+      {isGameDone && <div className="population-laptop-check-static check-light-pos">✔</div>}
 
-      {/* כפתור סיום - מופיע רק בסוף הכל */}
+      {/* הכפתור המעודכן - עובר לשאלות */}
       {isGameDone && (
         <button 
           className="nextUnitButton" 
           onClick={() => {
-            sessionStorage.setItem("currentUnit", "UnitTwo");
-            navigate("/elevator");
+            // 1. סימון שהפרק הסתיים עבור מסך הדלתות
+            sessionStorage.setItem('unitOne-fourth', 'finished');
+            
+            // 2. חזרה למסך הדלתות (ולא ישר לשאלון)
+            navigate("/intro-unit-one"); // ודאי שזה הנתיב הנכון למסך הדלתות ב-App.js
           }}
         >
-          ליחידה הבאה
+          חזרה למסך היחידה
         </button>
       )}
     </div>

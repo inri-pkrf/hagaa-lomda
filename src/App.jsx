@@ -1,7 +1,7 @@
 import './App.css';
-import { HashRouter as Router, Routes, Route, useNavigate , useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import React, { useState } from 'react';
-import Questions from './components/Questions';
+import QuestionsEnd from './units/Unit1/QuestionsEnd.jsx';
 import OpeningPage from './units/Unit0/OpeningPage';
 import Header from './components/Header';
 import InfoLomda from './units/Unit0/InfoLomda';
@@ -14,11 +14,13 @@ import Interfaces from './units/Unit1/Interfences/Interfaces.jsx';
 import Population from './units/Unit1/Population/Population.jsx';
 import IntroUnitTwo from './units/Unit2/IntroUnitTwo';
 import IntroUnitThree from './units/Unit3/IntroUnitThree';
-import IntroUnitFour from './units/Unit4/IntroUnitFour';  
+import IntroUnitFour from './units/Unit4/IntroUnitFour';
 import Threats from './units/Unit1/Threats/Threats.jsx';
 import PopulationLaptop from './units/Unit1/Population/PopulationLaptop.jsx';
 import PopulationFolders from './units/Unit1/Population/PopulationFolder.jsx';
 import PopulationGame from './units/Unit1/Population/PopulationGame.jsx';
+import SummaryCheckList from './units/Unit1/SummaryCheckList.jsx';
+
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -35,7 +37,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<OpeningPage />} />
-        <Route path="/questions/:chapter" element={<Questions />} />
+        {/* <Route path="/questions/:chapter" element={<Questions />} /> */}
         <Route path="/info-lomda" element={<InfoLomda />} />
         <Route path="/elevator" element={<Elevator />} />
         <Route path="/unit-opening/:unitName" element={<UnitOpeningPage />} />
@@ -48,6 +50,8 @@ function App() {
         <Route path="/populationInfo" element={<PopulationLaptop />} />
         <Route path="/population-parts" element={<PopulationFolders />} />
         <Route path="/populationGame" element={<PopulationGame />} />
+        <Route path="/summary-checklist" element={<SummaryCheckList />} />
+        <Route path="/questions-end" element={<QuestionsEnd />} />
         <Route path="/intro-unit-two" element={<IntroUnitTwo />} />
         <Route path="/intro-unit-three" element={<IntroUnitThree />} />
         <Route path="/intro-unit-four" element={<IntroUnitFour />} />
