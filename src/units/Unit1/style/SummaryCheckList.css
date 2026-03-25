@@ -1,116 +1,112 @@
 /* Styles for Unit1 SummaryCheckList screen */
 
-.summary-checklist-container {
-    height: 100vh;
-    background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%); /* רקע טורקיזי עדין */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.checklist-card {
-    background: white;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    max-width: 500px;
-    width: 100%;
-    direction: rtl;
-}
-
-.checklist-title {
-    color: #00796b;
-    margin-bottom: 10px;
-    font-size: 2rem;
-}
-
-.checklist-subtitle {
-    color: #555;
-    margin-bottom: 30px;
-}
-
-.tasks-list {
-    margin-bottom: 30px;
-}
-
-.task-item {
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    margin-bottom: 10px;
-    background: #f9f9f9;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border: 1px solid transparent;
-}
-
-.task-item:hover {
-    background: #f0f0f0;
-}
-
-.task-done {
-    background: #e8f5e9;
-    border-color: #a5d6a7;
-}
-
-.checkbox {
-    width: 25px;
-    height: 25px;
-    border: 2px solid #00796b;
-    border-radius: 5px;
-    margin-left: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: white;
-}
-
-.task-done .checkbox {
-    background: #00796b;
-    border-color: #00796b;
-}
-
-.checkmark {
-    color: white;
-    font-weight: bold;
-}
-
-.task-text {
-    font-size: 1.1rem;
-    color: #333;
-}
 
 .finish-unit-section {
     text-align: center;
     animation: fadeIn 0.5s ease-in;
 }
 
+
 .congrats-msg {
     color: #2e7d32;
     font-weight: bold;
     margin-bottom: 20px;
+    direction: rtl;
 }
+
 
 .finish-btn {
     background-color: #00796b;
+    top: 87%;
+    left: 43%;
+    position: absolute;
     color: white;
     border: none;
     padding: 15px 30px;
     font-size: 1.2rem;
     border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s;
 }
+
 
 .finish-btn:hover {
     transform: scale(1.05);
     background-color: #004d40;
 }
 
+
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.check-list {
+    position: absolute;
+    top: 15%;
+    left: 17%;
+    width: 27%;
+    height: 75%;
+}
+
+
+.end-building {
+    position: absolute;
+    top: 15%;
+    left: 60%;
+    width: 31%;
+    height: 70%;
+}
+
+
+#checklist-text1 {
+    z-index: 2;
+    left: 19%;
+    position: absolute;
+    top: 33%;
+}
+
+
+#checklist-text2 {
+    z-index: 2;
+    left: 19%;
+    position: absolute;
+    top: 39%;
+}
+
+
+#checklist-text3 {
+    z-index: 2;
+    left: 19%;
+    position: absolute;
+    top: 57%;
+}
+
+
+#checklist-text4 {
+    z-index: 2;
+    left: 19%;
+    position: absolute;
+    top: 68%;
+}
+
+
+.checklist-text {
+    width: 22%;
+    font-size: 1.4vw;
+    direction: rtl;
+    text-align: right;
+    line-height: 1.9;
+    color: #322217;
+    font-family: 'Assistant', sans-serif;
+    font-weight: 600;
 }

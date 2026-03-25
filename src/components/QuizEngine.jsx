@@ -36,7 +36,7 @@ const QuizEngine = ({ data, unitNumber, onFinished }) => {
 
   return (
     <div className="quiz-engine-container">
-      <header className="quiz-engine-header">
+      {/* <header className="quiz-engine-header">
         <div className="quiz-progress-wrapper">
           <span className="progress-text">{progressPercent}% התקדמות</span>
           <div className="progress-dots">
@@ -48,7 +48,7 @@ const QuizEngine = ({ data, unitNumber, onFinished }) => {
           </div>
         </div>
         <h1 className="quiz-header-title">שאלות לסיכום</h1>
-      </header>
+      </header> */}
 
       <main className="quiz-engine-main">
         <div className="question-counter">
@@ -84,7 +84,6 @@ const QuizEngine = ({ data, unitNumber, onFinished }) => {
 
       <footer className="quiz-engine-footer">
         <div className="nav-controls">
-          {/* הכפתור בתוך המנוע מופיע רק אם השאלון לא נגמר */}
           <button 
             className="quiz-nav-btn next-btn" 
             disabled={status !== 'correct'}
@@ -94,6 +93,7 @@ const QuizEngine = ({ data, unitNumber, onFinished }) => {
           </button>
         </div>
       </footer>
+      
     </div>
   );
 };

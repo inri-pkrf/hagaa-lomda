@@ -1,157 +1,185 @@
 .quiz-engine-container {
-    direction: rtl;
-    min-height: 100vh;
-    background: linear-gradient(to bottom, #f0f7f6, #ffffff);
-    display: flex;
-    flex-direction: column;
-    font-family: 'Assistant', sans-serif;
+  direction: rtl;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #f0f7f6, #ffffff);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Assistant', sans-serif;
 }
 
 /* Header Style */
 .quiz-engine-header {
-    background-color: #4fb3a5; /* הטורקיז מהתמונה */
-    color: white;
-    padding: 15px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 0 0 25px 25px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background-color: #4fb3a5;
+  color: white;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0 0 25px 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .quiz-progress-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 5px 15px;
-    border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 5px 15px;
+  border-radius: 20px;
 }
 
 .progress-dots {
-    display: flex;
-    gap: 8px;
+  display: flex;
+  gap: 8px;
 }
 
 .dot {
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: #fff;
-    color: #4fb3a5;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  color: #4fb3a5;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 }
 
 .dot.filled {
-    background: #1a4d45;
-    color: white;
+  background: #1a4d45;
+  color: white;
 }
 
 /* Main Content */
 .quiz-engine-main {
-    flex: 1;
-    padding: 40px 20px;
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.question-counter {
-    color: #4fb3a5;
-    font-weight: bold;
-    font-size: 1.3rem;
-    margin-bottom: 5px;
-}
-
-.quiz-instruction {
-    color: #666;
-    margin-bottom: 30px;
+  flex: 1;
+  padding: 10px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Assistant', sans-serif;
+  overflow: hidden;
 }
 
 .quiz-question-text {
-    color: #2c3e50;
-    font-size: 1.8rem;
-    margin-bottom: 40px;
-    line-height: 1.4;
+color: #2c3e50;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    line-height: 1.3;
+    font-family: 'Karantina';
+    margin-top: 14vh;
+    font-weight: normal;
+}
+
+.question-counter {
+color: #2c3e50;
+  font-weight: bold;
+  font-size: 3rem;
+  margin-bottom: 5px;
+  text-align: right;
+  position: absolute;
+  top: 10vh;
+  right: 2vw;
+  font-family: 'Karantina';
+}
+
+.quiz-instruction {
+  color: #666;
+  margin-bottom: 30px;
+  text-align: right;
+  position: absolute;
+  top: 15vh;
+  right: 2vw;
 }
 
 /* Answer Buttons */
 .quiz-answers-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
 }
 
 .quiz-answer-button {
-    background: white;
-    border: 2px solid #e0e0e0;
-    border-radius: 40px; /* עיגול חזק כמו בתמונה */
-    padding: 18px 30px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    color: #444;
-    text-align: right;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 40px;
+  padding: 18px 30px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: #444;
+  text-align: right;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  font-family: 'Assistant', sans-serif;
+
 }
 
 .quiz-answer-button:hover {
-    border-color: #4fb3a5;
+  border-color: #4fb3a5;
 }
 
 /* Correct & Wrong States */
 .quiz-answer-button.correct-choice {
-    border-color: #4caf50;
-    background-color: #f1f9f1;
-    color: #2e7d32;
-    border-width: 3px;
+  border-color: #4caf50;
+  background-color: #f1f9f1;
+  color: #2e7d32;
+  border-width: 3px;
 }
 
 .quiz-answer-button.wrong-choice {
-    border-color: #f44336;
-    background-color: #fff5f5;
-    color: #c62828;
-    border-width: 3px;
+  border-color: #f44336;
+  background-color: #fff5f5;
+  color: #c62828;
+  border-width: 3px;
 }
 
 /* Feedback */
 .quiz-feedback-box {
-    margin-top: 25px;
-    height: 30px;
+  margin-top: 25px;
+  height: 30px;
 }
 
 .feedback-msg {
-    font-weight: bold;
-    font-size: 1.2rem;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
-.feedback-msg.success { color: #4caf50; }
-.feedback-msg.error { color: #f44336; }
+.feedback-msg.success {
+  color: #4caf50;
+}
 
-/* Footer */
+.feedback-msg.error {
+  color: #f44336;
+}
+
 .quiz-engine-footer {
-    padding: 30px;
-    display: flex;
-    justify-content: flex-end;
+  padding: 15px 30px;
+  /* צמצום מ-30 ל-15 */
+  background: white;
+  /* אופציונלי: נותן הפרדה ויזואלית */
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .quiz-nav-btn {
-    background-color: #40e0d0;
-    color: white;
-    border: none;
-    padding: 12px 35px;
-    border-radius: 30px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(64, 224, 208, 0.3);
+  background-color: #40e0d0;
+  color: white;
+  border: none;
+  padding: 12px 35px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(64, 224, 208, 0.3);
 }
 
 .quiz-nav-btn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-    box-shadow: none;
+  background-color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
 }

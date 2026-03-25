@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+// הוסיפי את useEffect לתוך הסוגריים המסולסלים
+import React, { useState, useEffect } from 'react'; 
 import { useNavigate } from 'react-router-dom';
 import QuizEngine from '../../components/QuizEngine';
 import questionsDataOne from '../../Data/QuestionsData/QuestionDataOne';
@@ -8,23 +9,23 @@ function QuestionsEnd() {
   const navigate = useNavigate();
   const [quizFinished, setQuizFinished] = useState(false);
 
-  // הפונקציה שתופעל כשהמנוע יסיים את כל השאלות
+  // עכשיו useEffect יעבוד ולא יזרוק שגיאה
+  useEffect(() => {
+    sessionStorage.setItem('MainTitle', "שאלות סיכום יחידה 1");
+  }, []);
+
   const handleQuizCompletion = () => {
     setQuizFinished(true);
   };
 
   return (
     <div className="questions-end-page">
-      {/* אנחנו מעבירים את הפונקציה handleQuizCompletion למנוע.
-        כשהמנוע יסיים, הוא יפעיל אותה וזה ישנה את quizFinished ל-true
-      */}
       <QuizEngine 
         data={questionsDataOne} 
         unitNumber={1} 
         onFinished={handleQuizCompletion} 
       />
 
-      {/* הכפתור הזה מופיע מחוץ למנוע, רק כשהשאלון הסתיים */}
       {quizFinished && (
         <div className="summary-navigation-container">
             <button

@@ -3,41 +3,155 @@ import { useNavigate } from 'react-router-dom';
 import { populationDataLaptop } from '../../../Data/Unit1/PopulationDataLaptop';
 import './PopulationLaptop.css';
 
+
 function PopulationLaptop() {
   const navigate = useNavigate();
-  const [index, setIndex] = useState(0);
+  const [current, setCurrent] = useState(null);
+  const [openIndex, setOpenIndex] = useState(null);
+  const [visited, setVisited] = useState([]);
+ 
+  const [completed, setCompleted] = useState([]);
 
-const nextSlide = () => {
-  if (index < populationDataLaptop.length - 1) {
-    setIndex(index + 1);
-  } else {
-    // כאן הוספנו את השמירה בזיכרון
-    sessionStorage.setItem("populationLaptopFinished", "true"); 
-    navigate('/population'); 
-  }
-};
 
-  const current = populationDataLaptop[index];
+  const handleAccordion = (index) => {
+    setOpenIndex(index);
+    if (!visited.includes(index)) {
+      setVisited([...visited, index]);
+    }
+  };
+
+
+  const handleCardClick = (item) => {
+    setCurrent(item);
+    setOpenIndex(null);
+    setVisited([]);
+   
+    if (!completed.includes(item.id)) {
+      setCompleted([...completed, item.id]);
+    }
+  };
+
+
+  const handleBackToLaptop = () => {
+    if (completed.length === populationDataLaptop.length) {
+      sessionStorage.setItem("populationLaptopFinished", "true");
+      navigate('/population');
+    } else {
+      setCurrent(null);
+    }
+  };
+
 
   return (
-    <div className='populationLaptop-container'>
+    <div className="populationLaptop-container">
+
+
       <img
         src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/מסך מחשב.jpeg`}
-        alt="Population Laptop"
-        className="populationLaptop-background"
+        className={`populationLaptop-background ${!current ? 'visible' : 'hidden'}`}
+        alt="laptop-closed"
       />
 
-      <div className='population-content'>
-        <h2>{current.title}</h2>
-        <p>{current.text}</p>
-      </div>
 
-      <button className='PopulationNextButton' onClick={nextSlide}>
-        הבא
-      </button>
+      <img
+        src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/computerInfo.png`}
+        className={`populationLaptop-background open-laptop ${current ? 'visible' : 'hidden'}`}
+        alt="laptop-open"
+      />
 
+
+      {!current && (
+        <div className="cards-container">
+          {populationDataLaptop.map(item => (
+            <div
+              key={item.id}
+              className="card"
+              onClick={() => handleCardClick(item)}
+            >
+              {completed.includes(item.id) && (
+                <img
+                  src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorThreeDone.png`}
+                  className="completed-overlay-img-population"
+                  alt="completed"
+                />
+              )}
+
+
+              <h3>{item.title}</h3>
+              <img
+                src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/populotion${item.id}.png`}
+                className="card-main-img"
+                alt=""
+              />
+            </div>
+          ))}
+        </div>
+      )}
+
+
+      {current && (
+        <div className="content-screen">
+          <div className="header-with-image">
+            <img
+              src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/populotion${current.id}.png`}
+              className="header-main-img"
+              alt=""
+            />
+            <h2>{current.title}</h2>
+          </div>
+
+
+          {current.type === "text" && (
+            <p className="normal-text">{current.content}</p>
+          )}
+
+
+          {current.type === "accordion" && (
+            <div className="accordion-container">
+              {current.content.map((item, i) => (
+                <div key={i} className={`accordion-item ${openIndex === i ? 'active' : ''}`}>
+                  <div
+                    className="accordion-header"
+                    onClick={() => handleAccordion(i)}
+                  >
+                    <span className="accordion-title">{item.title}</span>
+                    <img
+                      src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/arrow.png`}
+                      className="accordion-icon"
+                      alt="arrow"
+                    />
+                  </div>
+
+
+                  {openIndex === i && (
+                    <div className="accordion-content">
+                      <p>{item.text}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+
+
+          {current.footerNote && (
+            <div className="special-footer-note">
+              <p>{current.footerNote}</p>
+            </div>
+          )}
+
+
+          {(current.type === "text" || visited.length === (current.content?.length || 0)) && (
+            <button className="back-btn" onClick={handleBackToLaptop}>
+              {completed.length === populationDataLaptop.length ? "סיום ויציאה" : "חזרה למחשב"}
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 }
 
+
 export default PopulationLaptop;
+

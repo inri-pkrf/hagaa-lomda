@@ -18,22 +18,22 @@
 }
 
 .folderImg{
-  width:100%;
+  width:90%;
   display:block;
 }
 
 /* צד שמאל */
 .popup-left{
-  position: absolute;
-    left: 13vw;
-    top: 5vh;
+    position: absolute;
+    left: 12vw;
+    top: 4vh;
     text-align: center;
 }
 
 .popup-left h2{
   font-size:7vmin;
   color:#000000;
-  margin-bottom:20px;
+  margin-bottom:6px;
   font-family: "Karantina";
   font-weight: lighter;
 }
@@ -44,12 +44,12 @@
 
 /* הטקסט בצד ימין */
 .popup-text{
-position: absolute;
-    top: 13vh;
-    right: 7vw;
-    width: 350px;
+    position: absolute;
+    top: 10vh;
+    right: 14vw;
+    width: 260px;
     font-size: 3vmin;
-    line-height: 1.64;
+    line-height: 2;
     text-align: right;
     color: #3b2b2b;
     background: #ffffff40;
