@@ -1,81 +1,338 @@
-.gamePage{
-direction:rtl;
-text-align:center;
-padding:40px;
-font-family:Arial;
+.gamePage {
+
+    direction: rtl;
+
+    overflow: hidden;
+
+    background-color: #fdf9f4;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    padding: 2vh 20px;
+
+    font-family: 'Assistant', sans-serif;
+
 }
 
-.gameTitle{
-font-size:28px;
-margin-bottom:10px;
+
+
+.gameTitle {
+
+    font-size: 1.6rem;
+
+    color: #472e1a;
+
+    margin-bottom: -15px;
+
+    text-align: center;
+
 }
 
-.gameSub{
-font-size:20px;
-margin-bottom:40px;
+
+
+.gameSub {
+
+    font-size: 1.1rem;
+
+    color: #472e1a;
+
+    margin-bottom: 2vh;
+
 }
 
-.game-container{
-display:flex;
-justify-content:center;
-gap:80px;
-align-items:flex-start;
+
+
+.game-container {
+
+    margin-top: 4vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+    /* מצמיד למעלה כדי שלא יזוז בסיום */
+
+    gap: 60px;
+
+    width: 100%;
+
+    max-width: 1100px;
+
+    flex: 1;
+
 }
 
-/* פריטים לגרירה */
 
-.items{
-width:420px;
+
+.items-column {
+
+    display: flex;
+
+    flex-direction: column;
+
 }
 
-.draggable{
-background:#a8bfd3;
-padding:20px;
-margin-bottom:20px;
-border-radius:10px;
-cursor:grab;
-font-size:18px;
-line-height:1.6;
+
+
+.drag-item-card {
+
+    background-color: #1e3a5f;
+
+    color: white;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    cursor: grab;
+
+    font-size: 0.95rem;
+
+    line-height: 1.4;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    text-align: center;
+
+    width: 78%;
+
+    margin-bottom: 5vh;
+
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+    top: 12vh;
+
 }
 
-/* הקופסה הגדולה */
 
-.targetsWrapper{
-width:420px;
-background:#c8d3df;
-border-radius:20px;
-overflow:hidden;
+
+/* המכולה התכולה של היעדים */
+
+.targets-wrapper {
+
+    width: 440px;
+
+    background-color: #c6d9e9;
+
+    /* רקע תכלת בהיר */
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+
 }
 
-.targetsHeader{
-background:linear-gradient(#7fb2d2,#6aa2c8);
-padding:15px;
-font-size:24px;
-font-weight:bold;
-color:#2e2e2e;
+
+
+.targets-header {
+
+    background-color: #54ccf4;
+
+    /* כותרת תכלת חזק */
+
+    color: #472e1a;
+
+    padding: 12px;
+
+    font-size: 1.3rem;
+
+    font-weight: bold;
+
+    text-align: center;
+
 }
 
-.targetsBody{
-padding:25px;
+
+
+.targets-body {
+
+    padding-left: 50px;
+
+    padding-bottom: 5vh;
+
+    padding-right: 50px;
+
+    display: flex;
+
+    flex-direction: column;
+
 }
 
-/* אזורי הגרירה */
 
-.target{
-background:#d5e0ea;
-border:3px solid #7fb2d2;
-border-radius:18px;
-padding:15px;
-margin-bottom:25px;
-min-height:90px;
+
+.category-group {
+
+    display: flex;
+
+    flex-direction: column;
+
 }
 
-.target h3{
-margin-bottom:10px;
-font-size:18px;
+
+
+.category-label {
+
+    font-size: 1rem;
+
+    color: #472e1a;
+
+    font-weight: bold;
+
+    margin-right: 5px;
+
+    margin-bottom: 0vh;
+
 }
 
-.correct{
-border:3px solid #5ea245;
-background:#e7f5e7;
+
+
+/* ריבועי המטרה */
+
+.target-box {
+
+    border: 2px solid #54ccf4;
+
+    border-radius: 12px;
+
+    min-height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 10px;
+
+    transition: all 0.3s ease;
+
+}
+
+
+
+.target-box.filled {
+
+    border: 2px solid forestgreen;
+
+    border-style: solid;
+
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+
+}
+
+
+
+.target-box p {
+
+    margin: 0;
+
+    font-size: 0.95rem;
+
+    color: #472e1a;
+
+    text-align: center;
+
+}
+
+
+/* צד שמאל - הפריטים והסיכום */
+/* --- מצב התחלה (זמן המשחק) --- */
+.items-column {
+    width: 500px;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+    position: static;
+    margin-top: 0;
+    margin-left: 0;
+    transform: none;
+}
+
+/* --- מצב סיכום (רק כש-isGameOver אמת) --- */
+/* השילוב של שני ה-classes מבטיח שהעיצוב יחול רק בסוף */
+.items-column.items-column-final {
+    gap: 28px;
+    position: relative;
+    top: 13vh;
+    left: 3vw;
+}
+
+/* עיצוב רשימת הסיכום עצמה */
+.final-summary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.summary-row-animate {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    opacity: 0;
+    animation: fadeInRow 0.6s ease-out forwards;
+}
+
+.summary-blue-card {
+    background-color: #cdf0fc;
+    color: #472e1a;
+    padding: 5px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    font-weight: 500;
+}
+
+.summary-icon {
+    width: 50px;
+    height: auto;
+    margin-left: 2vw;
+}
+
+/* אנימציה להופעה חלקה */
+@keyframes fadeInRow {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+.finish-game-btn {
+
+    margin-bottom: 2vh;
+
+    background-color: #4fb3a5;
+
+    color: white;
+
+    border: none;
+
+    padding: 10px 40px;
+
+    border-radius: 25px;
+
+    font-size: 1.1rem;
+
 }

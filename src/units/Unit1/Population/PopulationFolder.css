@@ -10,17 +10,16 @@
 }
 
 .Population-foldersImg{
-    width: 43vw;
-    position: absolute;
-    left: 50%;
-    top: 52%;
-    transform: translate(-50%, -50%);
+width: 51vw;
+  position: absolute;
+  left: 50%;              /* מציב את התמונה באמצע המסך */
+  top: 54%;               /* אם רוצים גם אנכית במרכז */
+  transform: translate(-50%, -50%); /* מותאם למרכז בדיוק */
 }
 
 .populationFolder-text{
-    width: 8vw;
-    height: 39vh;
-    border-radius: 8px;
+    width: 10vw;
+    height: 47vh;
     background-color: #ffffff;
     cursor: pointer;
 }
@@ -31,8 +30,8 @@
 }
 .firstText{
     position: absolute;
-        top: 25vh;
-    left: 32vw;
+    top: 20vh;
+    left: 28vw;
     transform: rotate(-2deg);
     color: #000000;
     font-weight: lighter;
@@ -41,8 +40,8 @@
 }
 .secondText{
    position: absolute;
- top: 25vh;
-    left: 45vw;
+    top: 20vh;
+    left: 43vw;
     transform: rotate(-2deg);
     color: #000000;
     font-weight: lighter;
@@ -51,9 +50,8 @@
 }
 .thirdText{
     position: absolute;
-        top: 25vh;
-    left: 58vw;
-
+    top: 20vh;
+    left: 59vw;
     transform: rotate(-2deg);
     color: #000000;
     font-weight: lighter;
@@ -76,7 +74,7 @@
     color: #fff;
     position: absolute;
     left: 8%;
-    top: 80%;
+    top: 88%;
     background: linear-gradient(45deg, #ff6b6b, #f7d794, #63cdda, #ff6b6b);
     background-size: 300% 300%;
     border: none;
