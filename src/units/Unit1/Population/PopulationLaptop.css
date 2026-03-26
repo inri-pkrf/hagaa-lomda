@@ -16,19 +16,9 @@
     top: 58%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 87%;
-    z-index: 1;
-    transition: width 0.3s ease, opacity 0.4s ease-in-out;
-}
-
-
-.populationLaptop-background.open-laptop {
     width: 73%;
-}
-
-
-.populationLaptop-background.visible {
-    opacity: 1;
+    z-index: 1;
+    transition: opacity 0.4s ease-in-out;
 }
 
 
@@ -40,7 +30,7 @@
 
 .cards-container {
     position: absolute;
-    top: 53%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
@@ -84,7 +74,7 @@
 
 .card h3 {
     color: #3e2723;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin-top: 10px;
     margin-bottom: 20px;
     min-height: 3em;
@@ -108,6 +98,7 @@
 
 
 .content-screen {
+    font-size: 1.2rem;
     direction: rtl;
     position: absolute;
     top: 53%;
@@ -120,7 +111,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    overflow-y: auto; /* שיניתי ל-auto כדי שיוכלו לגלול אם יש תוכן רב */
+    overflow-y: hidden;
     overflow-x: hidden;
     color: #3e2723;
     box-sizing: border-box;
@@ -168,6 +159,7 @@
 }
 
 
+/* אקורדיון */
 .accordion-container {
     width: 90%;
     margin-top: 10px;
@@ -248,7 +240,7 @@
     border-radius: 8px;
     text-align: center;
     box-sizing: border-box;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 

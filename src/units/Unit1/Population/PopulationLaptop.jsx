@@ -9,12 +9,16 @@ function PopulationLaptop() {
   const [current, setCurrent] = useState(null);
   const [openIndex, setOpenIndex] = useState(null);
   const [visited, setVisited] = useState([]);
- 
   const [completed, setCompleted] = useState([]);
 
 
   const handleAccordion = (index) => {
-    setOpenIndex(index);
+    if (openIndex === index) {
+      setOpenIndex(null);
+    } else {
+      setOpenIndex(index);
+    }
+   
     if (!visited.includes(index)) {
       setVisited([...visited, index]);
     }
@@ -47,27 +51,17 @@ function PopulationLaptop() {
 
 
       <img
-        src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/מסך מחשב.jpeg`}
-        className={`populationLaptop-background ${!current ? 'visible' : 'hidden'}`}
-        alt="laptop-closed"
-      />
-
-
-      <img
         src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/computerInfo.png`}
-        className={`populationLaptop-background open-laptop ${current ? 'visible' : 'hidden'}`}
-        alt="laptop-open"
+        className="populationLaptop-background visible"
+        alt="laptop-background"
       />
 
 
+      {/* בחירת כרטיסים */}
       {!current && (
         <div className="cards-container">
           {populationDataLaptop.map(item => (
-            <div
-              key={item.id}
-              className="card"
-              onClick={() => handleCardClick(item)}
-            >
+            <div key={item.id} className="card" onClick={() => handleCardClick(item)}>
               {completed.includes(item.id) && (
                 <img
                   src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorThreeDone.png`}
@@ -75,8 +69,6 @@ function PopulationLaptop() {
                   alt="completed"
                 />
               )}
-
-
               <h3>{item.title}</h3>
               <img
                 src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/populotion${item.id}.png`}
@@ -89,6 +81,7 @@ function PopulationLaptop() {
       )}
 
 
+      {/* מסך התוכן */}
       {current && (
         <div className="content-screen">
           <div className="header-with-image">
@@ -101,19 +94,14 @@ function PopulationLaptop() {
           </div>
 
 
-          {current.type === "text" && (
-            <p className="normal-text">{current.content}</p>
-          )}
+          {current.type === "text" && <p className="normal-text">{current.content}</p>}
 
 
           {current.type === "accordion" && (
             <div className="accordion-container">
               {current.content.map((item, i) => (
                 <div key={i} className={`accordion-item ${openIndex === i ? 'active' : ''}`}>
-                  <div
-                    className="accordion-header"
-                    onClick={() => handleAccordion(i)}
-                  >
+                  <div className="accordion-header" onClick={() => handleAccordion(i)}>
                     <span className="accordion-title">{item.title}</span>
                     <img
                       src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/arrow.png`}
@@ -121,8 +109,6 @@ function PopulationLaptop() {
                       alt="arrow"
                     />
                   </div>
-
-
                   {openIndex === i && (
                     <div className="accordion-content">
                       <p>{item.text}</p>
@@ -135,9 +121,7 @@ function PopulationLaptop() {
 
 
           {current.footerNote && (
-            <div className="special-footer-note">
-              <p>{current.footerNote}</p>
-            </div>
+            <div className="special-footer-note"><p>{current.footerNote}</p></div>
           )}
 
 
@@ -154,4 +138,6 @@ function PopulationLaptop() {
 
 
 export default PopulationLaptop;
+
+
 
