@@ -1,10 +1,27 @@
-/* Styles for Unit1 SummaryCheckList screen */
-
-
+.OpeningPage {
+     position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    overflow: hidden;
+    background-color: #e9f3f8;
+    /* use the public folder path (CRA serves it at the root) */
+    background-image: url("/public/assets/General/mainBackground.png");
+    /* make sure the image always fills the viewport */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* optional: keeps it fixed during scroll */
+    overflow: hidden;
+}
 .finish-unit-section {
     text-align: center;
     animation: fadeIn 0.5s ease-in;
 }
+
+
 
 
 .congrats-msg {
@@ -12,7 +29,10 @@
     font-weight: bold;
     margin-bottom: 20px;
     direction: rtl;
+    z-index: 2;
 }
+
+
 
 
 .finish-btn {
@@ -31,10 +51,14 @@
 }
 
 
+
+
 .finish-btn:hover {
     transform: scale(1.05);
     background-color: #004d40;
 }
+
+
 
 
 @keyframes fadeIn {
@@ -43,11 +67,14 @@
         transform: translateY(10px);
     }
 
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
+
+
 
 
 .check-list {
@@ -59,6 +86,8 @@
 }
 
 
+
+
 .end-building {
     position: absolute;
     top: 15%;
@@ -68,36 +97,46 @@
 }
 
 
+
+
 #checklist-text1 {
     z-index: 2;
-    left: 19%;
+    left: 18%;
     position: absolute;
     top: 33%;
 }
 
 
+
+
 #checklist-text2 {
     z-index: 2;
-    left: 19%;
+    left: 18%;
     position: absolute;
     top: 39%;
 }
 
 
+
+
 #checklist-text3 {
     z-index: 2;
-    left: 19%;
+    left: 18%;
     position: absolute;
     top: 57%;
 }
 
 
+
+
 #checklist-text4 {
     z-index: 2;
-    left: 19%;
+    left: 18%;
     position: absolute;
     top: 68%;
 }
+
+
 
 
 .checklist-text {
@@ -110,3 +149,48 @@
     font-family: 'Assistant', sans-serif;
     font-weight: 600;
 }
+
+
+#checklist-pin1{
+    position: absolute;
+    top: 35.5%;
+    left: 40.2%;
+    width: 2%;
+}
+
+
+#checklist-pin2{
+    position: absolute;
+    top: 41.5%;
+    left: 40.2%;
+    width: 2%;
+}
+
+
+#checklist-pin3{
+    position: absolute;
+    top: 59.5%;
+    left: 40.2%;
+    width: 2%;
+}
+
+
+#checklist-pin4{
+    position: absolute;
+    top: 70.5%;
+    left: 40.2%;
+    width: 2%;
+}
+
+
+#checklist-pin1:hover, #checklist-pin2:hover, #checklist-pin3:hover, #checklist-pin4:hover {
+    transform: scale(1.2);
+    transition: transform 0.2s;
+}
+
+
+#checklist-text1:hover, #checklist-text2:hover, #checklist-text3:hover, #checklist-text4:hover {
+    color: #2f9ae7;
+    transition: color 0.2s;
+}
+

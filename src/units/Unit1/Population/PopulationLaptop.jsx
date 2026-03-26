@@ -18,7 +18,8 @@ function PopulationLaptop() {
     } else {
       setOpenIndex(index);
     }
-   
+
+
     if (!visited.includes(index)) {
       setVisited([...visited, index]);
     }
@@ -29,7 +30,8 @@ function PopulationLaptop() {
     setCurrent(item);
     setOpenIndex(null);
     setVisited([]);
-   
+
+
     if (!completed.includes(item.id)) {
       setCompleted([...completed, item.id]);
     }
@@ -51,13 +53,12 @@ function PopulationLaptop() {
 
 
       <img
-        src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/computerInfo.png`}
+        src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/populationComp.png`}
         className="populationLaptop-background visible"
         alt="laptop-background"
       />
 
 
-      {/* בחירת כרטיסים */}
       {!current && (
         <div className="cards-container">
           {populationDataLaptop.map(item => (
@@ -81,7 +82,6 @@ function PopulationLaptop() {
       )}
 
 
-      {/* מסך התוכן */}
       {current && (
         <div className="content-screen">
           <div className="header-with-image">
