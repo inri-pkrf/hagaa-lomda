@@ -118,7 +118,14 @@ export default function PopulationGame() {
                   </div>
                 </div>
               ))}
-              <button className="finish-game-btn" onClick={() => navigate("/population")}>
+              {/* בתוך PopulationGame.js - החלק של הסיום */}
+              <button
+                className="finish-game-btn"
+                onClick={() => {
+                  sessionStorage.setItem("populationGameFinished", "true");
+                  navigate("/population");
+                }}
+              >
                 סיום תרגול
               </button>
             </div>
