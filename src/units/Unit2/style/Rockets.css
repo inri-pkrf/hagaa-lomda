@@ -1,2 +1,158 @@
 /* Styles for Unit2 Rockets screens */
 
+.rockets-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f6f8;
+    z-index: 100;
+}
+
+
+.rockets-background-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    opacity: 1;
+}
+
+
+.sequence-active .rockets-background-layer {
+    animation: fadeOutBackground 4s ease-in-out forwards;
+}
+
+
+.rockets-header {
+    position: absolute;
+    top: 8vh;
+    text-align: center;
+    color: #3e2723;
+    z-index: 10;
+}
+
+
+.rockets-frames-container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+    z-index: 5;
+    width: 95vw;
+    position: absolute;
+    top: 15vh;
+    transform: scale(0.6);
+}
+
+
+.sequence-active .rockets-frames-container {
+    animation: smoothFrameSequence 4s ease-in-out forwards;
+}
+
+
+.rocket-frame-item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 13vw;
+    height: auto;
+}
+
+
+.rocket-frame-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+
+.rocket-frame-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    text-align: center;
+    color: #3e2723;
+    font-size: 0.9rem;
+    font-weight: bold;
+    direction: rtl;
+}
+
+
+@keyframes smoothFrameSequence {
+    0% {
+        top: 15vh;
+        transform: scale(0.6);
+    }
+
+
+    50% {
+        top: 15vh;
+        transform: scale(1);
+    }
+
+
+    60% {
+        top: 15vh;
+        transform: scale(1);
+    }
+
+
+    100% {
+        top: 40vh;
+        transform: scale(1.2);
+        gap: 1vw;
+    }
+}
+
+
+@keyframes fadeOutBackground {
+    0% {
+        opacity: 1;
+    }
+
+
+    50% {
+        opacity: 1;
+    }
+
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+.fade-in-delayed {
+    animation: fadeInDelayedAnimation 1s ease 4s forwards;
+    opacity: 0;
+}
+
+
+@keyframes fadeInDelayedAnimation {
+    from {
+        opacity: 0;
+    }
+
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+

@@ -1,0 +1,90 @@
+.pg-container {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 50px;
+    padding: 6px 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    direction: rtl;
+    width: fit-content;
+    border: 1px solid #e0e0e0;
+}
+
+
+.pg-steps-section {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 15px;
+    border-left: 2px solid #f0f0f0;
+}
+
+
+.pg-track {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    left: 15px;
+    height: 6px;
+    background-color: #e6e6e6;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+
+.pg-step-wrapper {
+    position: relative;
+    z-index: 2;
+    margin-left: -6px;
+}
+
+
+.pg-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+
+.pg-step-wrapper.active .pg-circle {
+    background-color: #56c3a9;
+    color: white;
+    box-shadow: 0 0 8px rgba(86, 195, 169, 0.4);
+}
+
+
+.pg-step-wrapper.inactive .pg-circle {
+    background-color: #dadada;
+    color: #999;
+}
+
+
+.pg-text-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-right: 15px;
+}
+
+
+.pg-label {
+    font-size: 18px;
+    color: #1a4b70;
+    font-weight: 500;
+}
+
+
+.pg-percentage {
+    font-size: 26px;
+    color: #1a4b70;
+    font-weight: 800;
+}
+
+
+

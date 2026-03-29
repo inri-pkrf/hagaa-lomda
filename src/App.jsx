@@ -24,6 +24,8 @@ import PopulationFolders from './units/Unit1/Population/PopulationFolder.jsx';
 import PopulationGame from './units/Unit1/Population/PopulationGame.jsx';
 import SummaryCheckList from './units/Unit1/SummaryCheckList.jsx';
 
+import Rockets from './units/Unit2/Rockets/Rockets.jsx';
+
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -61,6 +63,8 @@ return (
 
         {/* יחידות אחרות (בינתיים ללא Layout) */}
         <Route path="/intro-unit-two" element={<IntroUnitTwo />} />
+        <Route path="/rockets" element={<Rockets />} />
+
         <Route path="/intro-unit-three" element={<IntroUnitThree />} />
         <Route path="/intro-unit-four" element={<IntroUnitFour />} />
       </Routes>
