@@ -16,6 +16,8 @@ box-shadow: 0 8px 10px -6px rgba(0, 0, 0, 0.2);
 }
 
 
+
+
 .logo-container {
   display: flex;
   gap: 15px;
@@ -23,14 +25,16 @@ box-shadow: 0 8px 10px -6px rgba(0, 0, 0, 0.2);
   align-items: center;       /* אם רוצים ליישר אנכית במרכז */
 }
 
+
 .logo {
   height: 6vh;
 }
 
+
 .header-title {
 /* כותרת */
 position: absolute;
-right:50%; 
+right:50%;
 transform: translateX(50%);
 font-family: 'Karantina';
 font-style: normal;
@@ -40,3 +44,10 @@ line-height: 83px;
 text-align: center;
 color: #004162;
 }
+
+
+.app-header-0 .pg-container {
+    max-height: 4vh;
+    min-width: fit-content;
+}
+

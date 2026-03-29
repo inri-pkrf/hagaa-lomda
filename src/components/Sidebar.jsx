@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import './Styles/Sidebar.css';
 import { ChevronRight, ChevronLeft, Lock, Check } from 'lucide-react';
 
+
 const Sidebar = ({ unitInfo }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+
 
   // פונקציית פתיחה/סגירה ששולחת אירוע לעדכון הנתונים מה-Storage
   const toggleSidebar = () => {
@@ -15,6 +17,7 @@ const Sidebar = ({ unitInfo }) => {
     setIsOpen(!isOpen);
   };
 
+
   // פונקציית ניווט - מנווטת רק אם הפרק לא נעול
   const handleNavigation = (path, isLocked) => {
     if (!isLocked && path) {
@@ -23,55 +26,71 @@ const Sidebar = ({ unitInfo }) => {
     }
   };
 
+
   if (!unitInfo) return null;
+
 
   return (
     <>
       {/* Overlay - הרקע הכהה שמחשיך את המסך */}
-      <div 
-        className={`sidebar-overlay ${isOpen ? 'visible' : ''}`} 
-        onClick={() => setIsOpen(false)} 
+      <div
+        className={`sidebar-overlay ${isOpen ? 'visible' : ''}`}
+        onClick={() => setIsOpen(false)}
       />
 
+
       <div className={`sidebar-container ${!isOpen ? 'closed' : ''}`}>
-        
+       
         {/* לשונית החץ הקטנה */}
-        <button 
-          className="toggle-tab" 
+        <button
+          className="toggle-tab"
           onClick={toggleSidebar}
           style={{ backgroundColor: unitInfo.color }}
           aria-label={isOpen ? "סגור תפריט" : "פתח תפריט"}
         >
-          {isOpen ? <ChevronRight size={24} /> : <ChevronLeft size={24} />}
+          {isOpen ? <ChevronRight size={35} /> : <ChevronLeft size={35} />}
         </button>
 
+
         {/* תוכן הנאבר */}
-        <div className="sidebar-content">
-          
+        <div
+          className="sidebar-content"
+          style={{
+            '--scrollbar-thumb': unitInfo.color,
+            '--scrollbar-thumb-hover': unitInfo.color,
+            '--scrollbar-track': '#ecf0f1'
+          }}
+        >
+         
           {/* באנר עליון עם כותרת היחידה */}
           <header className="sidebar-header">
+            <div className="logo-container-sidebar">
+              <img src={`${process.env.PUBLIC_URL}/assets/logos/collageLogo.png`} alt="Logo 1" className="logo" />
+              <img src={`${process.env.PUBLIC_URL}/assets/logos/pakarLogo.png`} alt="Logo 2" className="logo" />
+            </div>
             <div className="unit-banner" style={{ backgroundColor: unitInfo.color }}>
-              <ChevronLeft size={18} />
+              <ChevronRight size={45} strokeWidth={1.5}/>
               <span className="unit-title">{unitInfo.title}</span>
-              <ChevronRight size={18} />
+              <ChevronLeft size={45} strokeWidth={1.5}/>
             </div>
           </header>
+
 
           <div className="chapters-wrapper">
             {unitInfo.chapters.map((chapter, idx) => (
               <div key={idx} className="chapter-group">
-                
+               
                 {/* כרטיסיית פרק ראשי */}
-                <div 
+                <div
                   className={`chapter-card ${chapter.isLocked ? 'is-locked' : 'clickable'}`}
-                  style={{ 
+                  style={{
                     backgroundColor: chapter.isLocked ? '#e0e0e0' : unitInfo.color,
                     cursor: chapter.isLocked ? 'not-allowed' : 'pointer'
                   }}
                   onClick={() => handleNavigation(chapter.path, chapter.isLocked)}
                 >
                   <span className="chapter-label">{chapter.title}</span>
-                  
+                 
                   <div className="chapter-icon-container">
                     {chapter.isLocked ? (
                       <Lock size={16} className="lock-icon" />
@@ -87,16 +106,17 @@ const Sidebar = ({ unitInfo }) => {
                   </div>
                 </div>
 
+
                 {/* רשימת תתי פרקים (במידה וקיימים) */}
                 {chapter.subChapters?.map((sub, sIdx) => (
-                  <div 
-                    key={sIdx} 
+                  <div
+                    key={sIdx}
                     className={`sub-chapter-item ${chapter.isLocked ? 'disabled' : 'clickable'}`}
                     style={{ cursor: chapter.isLocked ? 'not-allowed' : 'pointer' }}
                     onClick={() => handleNavigation(sub.path, chapter.isLocked)}
                   >
                     <span className="sub-title">{sub.title}</span>
-                    
+                   
                     {/* סימן V כחול לתת-פרק שהושלם */}
                     {sub.isFinished && (
                       <div className="check-badge-sub" style={{ backgroundColor: 'white' }}>
@@ -114,4 +134,6 @@ const Sidebar = ({ unitInfo }) => {
   );
 };
 
+
 export default Sidebar;
+

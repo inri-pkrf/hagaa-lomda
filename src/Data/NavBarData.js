@@ -6,14 +6,7 @@ const NavBarData = [
             { title: "פתיחה", path: "/unit-opening/UnitOne" },
             { title: "מטרות", path: "/goals" },
             { title: "היערכות לאיומים", path: "/threats" },
-            {
-                title: "מצבי תפקוד", path: "/states",
-                subChapters: [
-                    { title: "שיעור 1" },
-                    { title: "שיעור 2" },
-                    { title: "שיעור 3" }
-                ]
-            },
+            { title: "מצבי תפקוד", path: "/states" },
             { title: "ממשקים", path: "/interfaces" },
             {
                 title: "אוכלוסיה", path: "/population",

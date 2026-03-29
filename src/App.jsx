@@ -25,6 +25,8 @@ import PopulationGame from './units/Unit1/Population/PopulationGame.jsx';
 import SummaryCheckList from './units/Unit1/SummaryCheckList.jsx';
 
 import Rockets from './units/Unit2/Rockets/Rockets.jsx';
+import InfoRockets from './units/Unit2/Rockets/Preparation/InfoRockets.jsx';
+
 
 function App() {
   const navigate = useNavigate();
@@ -34,7 +36,7 @@ function App() {
     sessionStorage.getItem('VIDEO_IS_PLAYING') === 'true'
   );
 
-return (
+  return (
     <div className="App">
       {!videoPlaying && location.pathname !== "/elevator" && <Header />}
 
@@ -64,6 +66,7 @@ return (
         {/* יחידות אחרות (בינתיים ללא Layout) */}
         <Route path="/intro-unit-two" element={<IntroUnitTwo />} />
         <Route path="/rockets" element={<Rockets />} />
+        <Route path="/info-rockets" element={<InfoRockets />} />
 
         <Route path="/intro-unit-three" element={<IntroUnitThree />} />
         <Route path="/intro-unit-four" element={<IntroUnitFour />} />

@@ -1,20 +1,25 @@
 /* Sidebar.css */
 
+
 /* האוברליי השחור על כל המסך */
 .sidebar-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6); /* שחור שקוף מעט יותר כהה */
+  background: rgba(0, 0, 0, 0.7);
+  /* שחור שקוף מעט יותר כהה */
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
-  z-index: 9998; /* מתחת לנאבר אבל מעל התוכן */
+  z-index: 9998;
+  /* מתחת לנאבר אבל מעל התוכן */
 }
+
 
 .sidebar-overlay.visible {
   opacity: 1;
   pointer-events: auto;
 }
+
 
 /* הקונטיינר הראשי - תמיד בפינה הימנית */
 .sidebar-container {
@@ -23,59 +28,74 @@
   right: 0;
   height: 100vh;
   display: flex;
-  align-items: center; /* ממרכז את הכפתור הקטן אנכית */
+  align-items: center;
+  /* ממרכז את הכפתור הקטן אנכית */
   z-index: 9999;
   transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+
 }
+
 
 /* כשהוא סגור - אנחנו מזיזים את כל הקונטיינר ימינה, חוץ מהכפתור */
 .sidebar-container.closed {
-  transform: translateX(320px); 
+  transform: translateX(320px);
 }
+
 
 /* הדיב הקטן עם החץ (הלשונית) */
 .toggle-tab {
-  width: 45px;
-  height: 90px;
+  width: 35px;
+  height: 100px;
   border: none;
-  border-radius: 15px 0 0 15px; /* עיגול רק בצד שמאל */
+  border-radius: 13px 0 0 13px;
+  /* עיגול רק בצד שמאל */
   cursor: pointer;
-  color: white;
+  color: #FFF6EC;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   position: absolute;
-  left: -45px; /* מוציא את הכפתור מחוץ לדיב של הנאבר */
+  left: -35px;
+  /* מוציא את הכפתור מחוץ לדיב של הנאבר */
   top: 50%;
   transform: translateY(-50%);
 }
 
+
 .toggle-tab:hover {
-  width: 50px; /* אפקט קטן בריחופ */
+  width: 50px;
+  /* אפקט קטן בריחופ */
   left: -50px;
 }
 
 
+
+
 .sidebar-content {
   width: 320px;
-  background: #fdf8f0; /* צבע שמנת עדין רקע */
+  background: #FFF6EC;
+  /* צבע שמנת עדין רקע */
   height: 100vh;
   display: flex;
   flex-direction: column;
-  box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
-  direction: rtl; /* יישור לימין עבור עברית */
+  direction: rtl;
+  /* יישור לימין עבור עברית */
 }
+
 
 /* כותרת עליונה עם לוגו ובאנר */
 .sidebar-header {
-  padding: 20px 15px;
+  padding-top: 10px;
+  padding-bottom: 20px;
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
+
 
 .unit-banner {
   display: flex;
@@ -83,14 +103,44 @@
   align-items: center;
   padding: 12px 15px;
   color: white;
-  border-radius: 8px; /* פינות מעוגלות לבאנר */
   font-weight: bold;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.unit-title {
-  font-size: 1.1rem;
+
+.logo-container-sidebar {
+  display: flex;
+  justify-content: center;
+  gap: 7.5vw;
 }
+
+
+
+
+.unit-banner svg {
+  transition: transform 0.2s ease, stroke 0.2s ease;
+}
+
+
+.unit-banner:hover svg {
+  transform: scale(1.15);
+  stroke: #cccccc;
+  /* צבע כהה יותר בהובר */
+}
+
+
+.unit-banner:active svg {
+  stroke: #999999;
+  /* צבע עוד יותר כהה בלחיצה */
+}
+
+
+.unit-title {
+  font-size: 2.8rem;
+  font-family: karantina, sans-serif;
+  font-weight: 400;
+}
+
 
 /* רשימת הפרקים */
 .chapters-wrapper {
@@ -98,7 +148,10 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  width: 18vw;
+  margin-bottom: 3vh;
 }
+
 
 .chapter-group {
   display: flex;
@@ -106,40 +159,49 @@
   gap: 6px;
 }
 
+
 /* כרטיסיית פרק ראשי */
 .chapter-card {
   width: 100%;
   padding: 14px 18px;
-  border-radius: 12px; /* מעוגל מאוד כמו בתמונה */
+  border-radius: 12px;
+  /* מעוגל מאוד כמו בתמונה */
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border: none;
   font-weight: 700;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
 }
 
+
 .chapter-card.is-locked {
-  background-color: #d1d1d1 !important; /* אפור לפרק נעול */
+  background-color: #d1d1d1 !important;
+  /* אפור לפרק נעול */
   color: #888;
 }
 
+
 /* תת-פרק (הפסים הכחולים הבהירים) */
 .sub-chapter-item {
-  width: 95%; /* מעט יותר קצר מהפרק הראשי */
-  margin-right: auto; /* הזחה שמאלה כדי ליצור היררכיה */
-  background: #bdefff; /* כחול בהיר מאוד */
+  width: 95%;
+  /* מעט יותר קצר מהפרק הראשי */
+  margin-right: auto;
+  /* הזחה שמאלה כדי ליצור היררכיה */
+  background: #bdefff;
+  /* כחול בהיר מאוד */
   padding: 10px 15px;
   border-radius: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   font-size: 0.95rem;
   color: #2c3e50;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
+
 
 /* העיגול הלבן עם ה-V */
 .check-badge {
@@ -150,13 +212,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
+
 
 /* אייקון המנעול */
 .lock-icon-style {
   opacity: 0.6;
 }
+
 
 /* ריבוע קטן לפרק פתוח שטרם הושלם */
 .unlock-icon {
@@ -166,17 +230,20 @@
   border-radius: 3px;
 }
 
+
 /* עיגול ה-V בפרק הראשי */
 .check-badge-main {
   width: 20px;
   height: 20px;
-  background-color: white; /* רקע לבן כדי שה-V הצבעוני יבלוט */
+  background-color: white;
+  /* רקע לבן כדי שה-V הצבעוני יבלוט */
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 
 /* עיגול ה-V בתתי הפרקים */
 .check-badge-sub {
@@ -186,8 +253,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
+
 
 /* אפקט הובר לכרטיסיות לחיצות */
 .chapter-card.clickable:hover {
@@ -195,6 +263,54 @@
   transform: translateX(-2px);
 }
 
+
 .sub-chapter-item.clickable:hover {
   background-color: #a5e6ff !important;
+}
+
+/* 1. הקונטיינר הראשי של הגלגלת */
+.sidebar-content {
+  scrollbar-color: var(--scrollbar-thumb, #3498db) var(--scrollbar-track, #ecf0f1);
+  scrollbar-width: auto;
+}
+
+
+::-webkit-scrollbar {
+  width: 16px;
+  /* רוחב הגלגלת האנכית (עבה יותר) */
+  height: 16px;
+  /* גובה הגלגלת האופקית */
+}
+
+
+/* 2. "האגודל" - החלק שזז */
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb, #3498db);
+  /* צבע האגודל */
+  border-radius: 4px;
+  /* פינות מעוגלות */
+  border: 2px solid #ecf0f1;
+  /* גבול דק סביב האגודל כדי שיראה מופרד */
+}
+
+
+/* 3. אפקט ריחוב (hover) על האגודל */
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover, #2980b9);
+  /* צבע כהה יותר בזמן ריחוב */
+}
+
+
+/* 4. "המסלול" - הרקע של הגלגלת */
+::-webkit-scrollbar-track {
+  background-color: var(--scrollbar-track, #ecf0f1);
+  /* צבע המסלול */
+  border-radius: 4px;
+  /* פינות מעוגלות */
+}
+
+
+/* 5. הפינה בין שתי גלגלות (אם יש גם אופקית) */
+::-webkit-scrollbar-corner {
+  background-color: #ecf0f1;
 }
