@@ -16,6 +16,7 @@ function QuestionsEnd() {
 
   const handleQuizCompletion = () => {
     setQuizFinished(true);
+    window.dispatchEvent(new Event('updateNavbar'));
   };
 
   return (

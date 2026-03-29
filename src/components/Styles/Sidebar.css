@@ -1,0 +1,200 @@
+/* Sidebar.css */
+
+/* האוברליי השחור על כל המסך */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6); /* שחור שקוף מעט יותר כהה */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 9998; /* מתחת לנאבר אבל מעל התוכן */
+}
+
+.sidebar-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* הקונטיינר הראשי - תמיד בפינה הימנית */
+.sidebar-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center; /* ממרכז את הכפתור הקטן אנכית */
+  z-index: 9999;
+  transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* כשהוא סגור - אנחנו מזיזים את כל הקונטיינר ימינה, חוץ מהכפתור */
+.sidebar-container.closed {
+  transform: translateX(320px); 
+}
+
+/* הדיב הקטן עם החץ (הלשונית) */
+.toggle-tab {
+  width: 45px;
+  height: 90px;
+  border: none;
+  border-radius: 15px 0 0 15px; /* עיגול רק בצד שמאל */
+  cursor: pointer;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  position: absolute;
+  left: -45px; /* מוציא את הכפתור מחוץ לדיב של הנאבר */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.toggle-tab:hover {
+  width: 50px; /* אפקט קטן בריחופ */
+  left: -50px;
+}
+
+
+.sidebar-content {
+  width: 320px;
+  background: #fdf8f0; /* צבע שמנת עדין רקע */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+  overflow-y: auto;
+  direction: rtl; /* יישור לימין עבור עברית */
+}
+
+/* כותרת עליונה עם לוגו ובאנר */
+.sidebar-header {
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.unit-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  color: white;
+  border-radius: 8px; /* פינות מעוגלות לבאנר */
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.unit-title {
+  font-size: 1.1rem;
+}
+
+/* רשימת הפרקים */
+.chapters-wrapper {
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chapter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* כרטיסיית פרק ראשי */
+.chapter-card {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 12px; /* מעוגל מאוד כמו בתמונה */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  font-weight: 700;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.chapter-card.is-locked {
+  background-color: #d1d1d1 !important; /* אפור לפרק נעול */
+  color: #888;
+}
+
+/* תת-פרק (הפסים הכחולים הבהירים) */
+.sub-chapter-item {
+  width: 95%; /* מעט יותר קצר מהפרק הראשי */
+  margin-right: auto; /* הזחה שמאלה כדי ליצור היררכיה */
+  background: #bdefff; /* כחול בהיר מאוד */
+  padding: 10px 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #2c3e50;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* העיגול הלבן עם ה-V */
+.check-badge {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* אייקון המנעול */
+.lock-icon-style {
+  opacity: 0.6;
+}
+
+/* ריבוע קטן לפרק פתוח שטרם הושלם */
+.unlock-icon {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 3px;
+}
+
+/* עיגול ה-V בפרק הראשי */
+.check-badge-main {
+  width: 20px;
+  height: 20px;
+  background-color: white; /* רקע לבן כדי שה-V הצבעוני יבלוט */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* עיגול ה-V בתתי הפרקים */
+.check-badge-sub {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* אפקט הובר לכרטיסיות לחיצות */
+.chapter-card.clickable:hover {
+  filter: brightness(0.95);
+  transform: translateX(-2px);
+}
+
+.sub-chapter-item.clickable:hover {
+  background-color: #a5e6ff !important;
+}

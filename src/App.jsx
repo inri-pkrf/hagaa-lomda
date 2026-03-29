@@ -5,8 +5,11 @@ import QuestionsEnd from './units/Unit1/QuestionsEnd.jsx';
 import OpeningPage from './units/Unit0/OpeningPage';
 import Header from './components/Header';
 import InfoLomda from './units/Unit0/InfoLomda';
+import SideBar from './components/Sidebar.jsx';
 import Elevator from './components/Elevator';
+import UnitOneLayout from './units/Unit1/UnitOneLayout';
 import UnitOpeningPage from './components/UnitOpeningPage';
+import UnitOneSideBar from './units/Unit1/UnitOneSidebar.jsx';
 import Goals from './components/Goals';
 import IntroUnitOne from './units/Unit1/IntroUnitOne.jsx';
 import States from './units/Unit1/states/States.jsx';
@@ -29,29 +32,34 @@ function App() {
     sessionStorage.getItem('VIDEO_IS_PLAYING') === 'true'
   );
 
-  return (
+return (
     <div className="App">
-      <>
-        {location.pathname !== "/elevator" && !videoPlaying && <Header />}
-      </>
+      {!videoPlaying && location.pathname !== "/elevator" && <Header />}
 
       <Routes>
+        {/* דפים ללא סידבר */}
         <Route path="/" element={<OpeningPage />} />
-        {/* <Route path="/questions/:chapter" element={<Questions />} /> */}
         <Route path="/info-lomda" element={<InfoLomda />} />
         <Route path="/elevator" element={<Elevator />} />
         <Route path="/unit-opening/:unitName" element={<UnitOpeningPage />} />
         <Route path="/goals" element={<Goals />} />
-        <Route path="/intro-unit-one" element={<IntroUnitOne />} />
-        <Route path="/threats" element={<Threats setVideoPlaying={setVideoPlaying} />} />
-        <Route path="/states" element={<States />} />
-        <Route path="/interfaces" element={<Interfaces />} />
-        <Route path="/population" element={<Population />} />
-        <Route path="/populationInfo" element={<PopulationLaptop />} />
-        <Route path="/population-parts" element={<PopulationFolders />} />
-        <Route path="/populationGame" element={<PopulationGame />} />
-        <Route path="/summary-checklist" element={<SummaryCheckList />} />
-        <Route path="/questions-end" element={<QuestionsEnd />} />
+
+        {/* --- התחלת יחידה 1 עם Layout --- */}
+        <Route element={<UnitOneLayout />}>
+          <Route path="/intro-unit-one" element={<IntroUnitOne />} />
+          <Route path="/threats" element={<Threats setVideoPlaying={setVideoPlaying} />} />
+          <Route path="/states" element={<States />} />
+          <Route path="/interfaces" element={<Interfaces />} />
+          <Route path="/population" element={<Population />} />
+          <Route path="/populationInfo" element={<PopulationLaptop />} />
+          <Route path="/population-parts" element={<PopulationFolders />} />
+          <Route path="/populationGame" element={<PopulationGame />} />
+          <Route path="/summary-checklist" element={<SummaryCheckList />} />
+          <Route path="/questions-end" element={<QuestionsEnd />} />
+        </Route>
+        {/* --- סיום יחידה 1 --- */}
+
+        {/* יחידות אחרות (בינתיים ללא Layout) */}
         <Route path="/intro-unit-two" element={<IntroUnitTwo />} />
         <Route path="/intro-unit-three" element={<IntroUnitThree />} />
         <Route path="/intro-unit-four" element={<IntroUnitFour />} />

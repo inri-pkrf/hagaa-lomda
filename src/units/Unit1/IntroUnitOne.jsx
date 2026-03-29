@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import UnitOneSidebar from './UnitOneSidebar'; // הקומפוננטה החדשה
 import './style/IntroUnitOne.css';
 
 function IntroUnitOne() {
   const navigate = useNavigate();
   const [doorImage, setDoorImage] = useState(`${process.env.PUBLIC_URL}/assets/General/Doors/Doors.png`);
-  
   const [openingSign, setOpeningSign] = useState(null);
   
   const [finishedChapters, setFinishedChapters] = useState({
@@ -18,29 +18,17 @@ function IntroUnitOne() {
   useEffect(() => {
     sessionStorage.setItem('MainTitle', "יחידה 1");
     
-    // ... לוגיקת ה-sessionStorage הקיימת שלך ...
-    
-    const finished1 = sessionStorage.getItem('unitOne-first') === 'finished';
-    const finished2 = sessionStorage.getItem('unitOne-second') === 'finished';
-    const finished3 = sessionStorage.getItem('unitOne-third') === 'finished';
-    const finished4 = sessionStorage.getItem('unitOne-fourth') === 'finished';
-    
     setFinishedChapters({
-      unitOneFirst: finished1,
-      unitOneSecond: finished2,
-      unitOneThird: finished3,
-      unitOneFourth: finished4
+      unitOneFirst: sessionStorage.getItem('unitOne-first') === 'finished',
+      unitOneSecond: sessionStorage.getItem('unitOne-second') === 'finished',
+      unitOneThird: sessionStorage.getItem('unitOne-third') === 'finished',
+      unitOneFourth: sessionStorage.getItem('unitOne-fourth') === 'finished'
     });
   }, []);
 
-  // בדיקה האם כל הדלתות הסתיימו
-  const allDoorsFinished = 
-    finishedChapters.unitOneFirst && 
-    finishedChapters.unitOneSecond && 
-    finishedChapters.unitOneThird && 
-    finishedChapters.unitOneFourth;
+  const allDoorsFinished = Object.values(finishedChapters).every(val => val === true);
 
-  // ... פונקציות handleSignClick הקיימות שלך ...
+  // פונקציות הניווט (ללא שינוי)
   const handleSignOneClick = () => {
     setDoorImage(`${process.env.PUBLIC_URL}/assets/General/Doors/DoorOneOpen.png`);
     setOpeningSign(1);
@@ -69,83 +57,57 @@ function IntroUnitOne() {
     setTimeout(() => navigate('/population'), 2000);
   };
 
-  // תנאי כניסה (הקוד הקיים שלך)
-  const reachedSecond = finishedChapters.unitOneFirst;
-  const reachedThird = finishedChapters.unitOneSecond;
-  const reachedFourth = finishedChapters.unitOneThird;
-  const canEnterFirst = true;
-  const canEnterSecond = reachedSecond || finishedChapters.unitOneSecond;
-  const canEnterThird = reachedThird || finishedChapters.unitOneThird;
-  const canEnterFourth = reachedFourth || finishedChapters.unitOneFourth;
+  // תנאי כניסה
+  const canEnterSecond = finishedChapters.unitOneFirst;
+  const canEnterThird = finishedChapters.unitOneSecond;
+  const canEnterFourth = finishedChapters.unitOneThird;
 
   return (
     <div className='IntroUnitOne'>
+      {/* פשוט קוראים לקומפוננטה המוכנה - היא כבר תדע מה לעשות */}
+      <UnitOneSidebar />
+
       <img className='first-background' src={doorImage} alt="Intro Unit 1" />
       
       <div className='door-signs-UnitOne'>
         {/* שלט 1 */}
         {openingSign !== 1 && (
-          <div 
-            className='door-sign-UnitOne-first' 
-            onClick={!openingSign && canEnterFirst ? handleSignOneClick : undefined}
-            style={{ cursor: !openingSign && canEnterFirst ? 'pointer' : 'default' }}
-          >
+          <div className='door-sign-UnitOne-first' onClick={!openingSign ? handleSignOneClick : undefined} style={{ cursor: 'pointer' }}>
             <p className='door-sign-UnitOne-title-first'>היערכות לאיומים</p>
             <img src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsSigns/DoorSignOne.png`} alt="Sign 1" />
           </div>
         )}
-
         {/* שלט 2 */}
         {openingSign !== 2 && (
-          <div 
-            className={`door-sign-UnitOne-second ${!canEnterSecond ? 'disabled' : ''}`}
-            onClick={!openingSign && canEnterSecond ? handleSignTwoClick : undefined}
-            style={{ cursor: !openingSign && canEnterSecond ? 'pointer' : 'default' }}
-          >
+          <div className={`door-sign-UnitOne-second ${!canEnterSecond ? 'disabled' : ''}`} onClick={!openingSign && canEnterSecond ? handleSignTwoClick : undefined}>
             <p className='door-sign-UnitOne-title-second'>מצבי תפקוד</p>
             <img src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsSigns/DoorSignTwo.png`} alt="Sign 2" />
           </div>
         )}
-
         {/* שלט 3 */}
         {openingSign !== 3 && (
-          <div 
-            className={`door-sign-UnitOne-third ${!canEnterThird ? 'disabled' : ''}`}
-            onClick={!openingSign && canEnterThird ? handleSignThreeClick : undefined}
-            style={{ cursor: !openingSign && canEnterThird ? 'pointer' : 'default' }}
-          >
+          <div className={`door-sign-UnitOne-third ${!canEnterThird ? 'disabled' : ''}`} onClick={!openingSign && canEnterThird ? handleSignThreeClick : undefined}>
             <p className='door-sign-UnitOne-title-third'>ממשקים </p>
             <img src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsSigns/DoorSignThree.png`} alt="Sign 3" />
           </div>
         )}
-
         {/* שלט 4 */}
         {openingSign !== 4 && (
-          <div 
-            className={`door-sign-UnitOne-fourth ${!canEnterFourth ? 'disabled' : ''}`}
-            onClick={!openingSign && canEnterFourth ? handleSignFourClick : undefined}
-            style={{ cursor: !openingSign && canEnterFourth ? 'pointer' : 'default' }}
-          >
+          <div className={`door-sign-UnitOne-fourth ${!canEnterFourth ? 'disabled' : ''}`} onClick={!openingSign && canEnterFourth ? handleSignFourClick : undefined}>
             <p className='door-sign-UnitOne-title-fourth'>אוכלוסיה </p>
             <img src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsSigns/DoorSignFour.png`} alt="Sign 4" />
           </div>
         )}
       </div>
       
-      {/* תמונות ה-V (Done) */}
-      {finishedChapters.unitOneFirst && <img className='doorOneDone' src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorOneDone.png`} alt="Door 1 Done" />}
-      {finishedChapters.unitOneSecond && <img className='doorTwoDone' src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorTwoDone.png`} alt="Door 2 Done" />}
-      {finishedChapters.unitOneThird && <img className='doorThreeDone' src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorThreeDone.png`} alt="Door 3 Done" />}
-      {finishedChapters.unitOneFourth && <img className='doorFourDone' src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorFourDone.png`} alt="Door 4 Done" />}
+      {/* תמונות ה-V */}
+      {finishedChapters.unitOneFirst && <img className='doorOneDone' src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorOneDone.png`} alt="1" />}
+      {finishedChapters.unitOneSecond && <img className='doorTwoDone' src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorTwoDone.png`} alt="2" />}
+      {finishedChapters.unitOneThird && <img className='doorThreeDone' src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorThreeDone.png`} alt="3" />}
+      {finishedChapters.unitOneFourth && <img className='doorFourDone' src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorFourDone.png`} alt="4" />}
 
-      {/* הכפתור החדש - מופיע רק בסיום כל הדלתות */}
       {allDoorsFinished && (
-        <button 
-          className="goToQuizButton" 
-          onClick={() => navigate('/questions-end')}
-        >
-          לשאלות סיכום יחידה 1
-        </button>
+        <button className="goToQuizButton" onClick={() => navigate('/questions-end')}>לשאלות סיכום יחידה 1</button>
       )}
     </div>
   );
