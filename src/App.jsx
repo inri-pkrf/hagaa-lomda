@@ -42,6 +42,7 @@ function App() {
   return (
     <div className="App">
       {!videoPlaying && location.pathname !== "/elevator" && <Header />}
+      <Buttons></Buttons>
 
       <Routes>
         {/* דפים ללא סידבר */}
