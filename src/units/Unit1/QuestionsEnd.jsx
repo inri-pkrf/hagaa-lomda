@@ -1,5 +1,4 @@
-// הוסיפי את useEffect לתוך הסוגריים המסולסלים
-import React, { useState, useEffect } from 'react'; 
+import React, { useEffect } from 'react'; 
 import { useNavigate } from 'react-router-dom';
 import QuizEngine from '../../components/QuizEngine';
 import questionsDataOne from '../../Data/QuestionsData/QuestionDataOne';
@@ -7,16 +6,20 @@ import './style/QuestionsEnd.css';
 
 function QuestionsEnd() {
   const navigate = useNavigate();
-  const [quizFinished, setQuizFinished] = useState(false);
 
-  // עכשיו useEffect יעבוד ולא יזרוק שגיאה
   useEffect(() => {
     sessionStorage.setItem('MainTitle', "שאלות סיכום יחידה 1");
   }, []);
 
   const handleQuizCompletion = () => {
-    setQuizFinished(true);
+    // 1. סימון שהשאלות הסתיימו (בשביל ה-V בסיידבר)
+    sessionStorage.setItem('unitOne-questions', 'finished');
+    
+    // 2. עדכון ה-Sidebar בזמן אמת
     window.dispatchEvent(new Event('updateNavbar'));
+    
+    // 3. ניווט ישיר לדף הסיכום (במקום להציג כפתור נוסף)
+    navigate('/summary-checklist');
   };
 
   return (
@@ -26,17 +29,6 @@ function QuestionsEnd() {
         unitNumber={1} 
         onFinished={handleQuizCompletion} 
       />
-
-      {quizFinished && (
-        <div className="summary-navigation-container">
-            <button
-                className="quiz-nav-btn summary-btn highlight-btn"
-                onClick={() => navigate('/summary-checklist')}
-            >
-                לסיכום יחידה 1 🏁
-            </button>
-        </div>
-      )}
     </div>
   );
 }

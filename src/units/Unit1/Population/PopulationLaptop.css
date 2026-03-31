@@ -65,7 +65,6 @@
 
 
 .card:hover {
-    background: rgba(255, 255, 255, 0.2);
     border-color: #ffb356;
     transform: translateY(-5px);
 }
@@ -124,6 +123,8 @@
     background-color: antiquewhite;
     box-sizing: border-box;
     padding: 25px;
+    border: 2px solid gray;
+    border-radius: 1vw;
 }
 
 
@@ -174,6 +175,7 @@
     font-size: 1.8rem;
     margin: 0;
     font-weight: bold;
+    font-family: "Karantina";
 }
 
 
@@ -232,23 +234,27 @@
 }
 
 
-.content-screen button.back-btn {
-    flex-shrink: 0;
+.back-btn {
+  flex-shrink: 0;
     background-color: #3e2723;
     color: white;
     border: none;
-    padding: 12px 30px;
+    padding: 9px 22px;
     border-radius: 25px;
     cursor: pointer;
     margin-top: auto;
     margin-bottom: 10px;
     font-family: inherit;
     font-weight: bold;
+    left: 23vw;
+    bottom: 7vw;
+    z-index: 99;
+    position: absolute;
     transition: all 0.2s ease;
 }
 
 
-.content-screen button.back-btn:hover {
+.back-btn:hover {
     transform: scale(1.05);
     background-color: #5d4037;
 }
@@ -273,4 +279,3 @@
     text-align: center !important;
     padding: 0 !important;
 }
-

@@ -168,6 +168,14 @@ padding: 40px 14px;
   direction: rtl;
 }
 
+.t6.visited::after,
+.t7.visited::after,
+.t8.visited::after,
+.t9.visited::after,
+.t10.visited::after {
+  transform: scaleX(-1);
+}
+
 
 .tringle:not(.visited):hover {
   filter: drop-shadow(0 0 0.6vw #fff6a5) drop-shadow(0 0 1vw #ffe066);

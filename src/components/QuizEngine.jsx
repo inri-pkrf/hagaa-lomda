@@ -4,18 +4,50 @@ import './Styles/QuizEngine.css';
 
 const QuizEngine = ({ data, unitNumber, onFinished }) => {
   const navigate = useNavigate();
-  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  // מפתחות ייחודיים לסטורג'
+  const answersKey = `unit_${unitNumber}_quiz_answers`;
+  const indexKey = `unit_${unitNumber}_quiz_index`;
+
+  // טעינת האינדקס האחרון שהמשתמש היה בו (ברירת מחדל 0)
+  const [currentIndex, setCurrentIndex] = useState(() => {
+    const savedIndex = sessionStorage.getItem(indexKey);
+    return savedIndex ? parseInt(savedIndex, 10) : 0;
+  });
+
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [status, setStatus] = useState(null);
 
+  // אפקט לטעינת תשובות שמורות בכל פעם שהאינדקס משתנה
+  useEffect(() => {
+    const savedAnswers = JSON.parse(sessionStorage.getItem(answersKey)) || {};
+    
+    if (savedAnswers[currentIndex] !== undefined) {
+      setSelectedAnswer(savedAnswers[currentIndex]);
+      setStatus('correct');
+    } else {
+      setSelectedAnswer(null);
+      setStatus(null);
+    }
+    
+    // שמירת האינדקס הנוכחי בסטורג' כדי שאם יחזרו לסיידבר זה יישמר
+    sessionStorage.setItem(indexKey, currentIndex.toString());
+  }, [currentIndex, answersKey, indexKey]);
+
   const currentQuestion = data[currentIndex];
-  const progressPercent = Math.round(((currentIndex + 1) / data.length) * 100);
 
   const handleAnswerClick = (index) => {
     if (status === 'correct') return;
+
     setSelectedAnswer(index);
+
     if (index === currentQuestion.correctAnswer) {
       setStatus('correct');
+      
+      // שמירת התשובה הנכונה
+      const savedAnswers = JSON.parse(sessionStorage.getItem(answersKey)) || {};
+      savedAnswers[currentIndex] = index;
+      sessionStorage.setItem(answersKey, JSON.stringify(savedAnswers));
     } else {
       setStatus('wrong');
     }
@@ -24,10 +56,7 @@ const QuizEngine = ({ data, unitNumber, onFinished }) => {
   const handleNext = () => {
     if (currentIndex < data.length - 1) {
       setCurrentIndex(prev => prev + 1);
-      setSelectedAnswer(null);
-      setStatus(null);
     } else {
-      // במקום לנווט, אנחנו קוראים לפונקציה שהאבא הביא לנו
       if (onFinished) {
         onFinished();
       }
@@ -36,20 +65,6 @@ const QuizEngine = ({ data, unitNumber, onFinished }) => {
 
   return (
     <div className="quiz-engine-container">
-      {/* <header className="quiz-engine-header">
-        <div className="quiz-progress-wrapper">
-          <span className="progress-text">{progressPercent}% התקדמות</span>
-          <div className="progress-dots">
-             {data.map((_, i) => (
-               <div key={i} className={`dot ${i <= currentIndex ? 'filled' : ''}`}>
-                 {i + 1}
-               </div>
-             ))}
-          </div>
-        </div>
-        <h1 className="quiz-header-title">שאלות לסיכום</h1>
-      </header> */}
-
       <main className="quiz-engine-main">
         <div className="question-counter">
           שאלת סיכום {currentIndex + 1} מתוך {data.length}
@@ -64,11 +79,13 @@ const QuizEngine = ({ data, unitNumber, onFinished }) => {
             if (selectedAnswer === index) {
               stateClass = status === 'correct' ? "correct-choice" : "wrong-choice";
             }
+            
             return (
               <button
                 key={index}
                 className={`quiz-answer-button ${stateClass}`}
                 onClick={() => handleAnswerClick(index)}
+                disabled={status === 'correct' && selectedAnswer !== index}
               >
                 {answer}
               </button>
@@ -84,16 +101,22 @@ const QuizEngine = ({ data, unitNumber, onFinished }) => {
 
       <footer className="quiz-engine-footer">
         <div className="nav-controls">
+          {/* כפתור הקודם - אופציונלי אם את רוצה לאפשר חזרה אחורה */}
+          {currentIndex > 0 && (
+            <button className="quiz-nav-btn prev-btn" onClick={() => setCurrentIndex(prev => prev - 1)}>
+              ⬅ שאלה קודמת
+            </button>
+          )}
+
           <button 
             className="quiz-nav-btn next-btn" 
             disabled={status !== 'correct'}
             onClick={handleNext}
           >
-            לשאלה הבאה ↪
+            {currentIndex === data.length - 1 ? "סיום שאלון" : "לשאלה הבאה ↪"}
           </button>
         </div>
       </footer>
-      
     </div>
   );
 };

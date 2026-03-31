@@ -1,6 +1,9 @@
 import './App.css';
 import { HashRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import React, { useState } from 'react';
+
+import Buttons from './components/Buttons';
+
 import QuestionsEnd from './units/Unit1/QuestionsEnd.jsx';
 import OpeningPage from './units/Unit0/OpeningPage';
 import Header from './components/Header';
@@ -45,11 +48,12 @@ function App() {
         <Route path="/" element={<OpeningPage />} />
         <Route path="/info-lomda" element={<InfoLomda />} />
         <Route path="/elevator" element={<Elevator />} />
-        <Route path="/unit-opening/:unitName" element={<UnitOpeningPage />} />
-        <Route path="/goals" element={<Goals />} />
+
 
         {/* --- התחלת יחידה 1 עם Layout --- */}
         <Route element={<UnitOneLayout />}>
+          <Route path="/unit-opening/:unitName" element={<UnitOpeningPage />} />
+          <Route path="/goals" element={<Goals />} />
           <Route path="/intro-unit-one" element={<IntroUnitOne />} />
           <Route path="/threats" element={<Threats setVideoPlaying={setVideoPlaying} />} />
           <Route path="/states" element={<States />} />

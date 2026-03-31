@@ -1,0 +1,50 @@
+.buttons-page-corner {
+  position: fixed ;
+  bottom: -1vw ;
+  left: -1vw ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8vw;
+  z-index: 1000000000;
+}
+.app-button {
+  --main-color: var(--btn-color, #3FC6F3);
+  background: var(--main-color);
+  border: none;
+  border-radius: 1vw;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  width: 5vw;
+  height: 5vw;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 2vw rgba(0,0,0,0.16);
+  cursor: pointer;
+  transition: transform .2s ease, filter .2s ease;
+}
+
+.app-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+.app-button:active:not(:disabled) {
+  transform: translateY(1vw);
+}
+
+.app-button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.app-button__icon {
+  width: 5vw;
+  height: 5vw;
+  object-fit: contain;
+}
+
+.app-button__icon.back {
+  transform: scaleX(-1);
+}

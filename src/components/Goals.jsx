@@ -21,7 +21,7 @@ function Goals() {
     UnitThree: 'cloudUnitThree.png',
     UnitFour: 'cloudUnitFour.png'
   };
-  
+
   const cloudImage = cloudImages[currentUnit] || 'cloudUnitOne.png';
 
   // Animate goals one by one on mount
@@ -29,7 +29,7 @@ function Goals() {
     if (data && data.goals && data.goals.length > 0) {
       // Reset visibility
       setVisibleGoals([]);
-      
+
       // Show goals one by one with delay
       data.goals.forEach((_, index) => {
         setTimeout(() => {
@@ -56,28 +56,37 @@ function Goals() {
       }}
     >
       <p className="goals-subtitle">{subtitle}</p>
-      
+
       {/*  אנימציה של העננים במטרות */}
       <div className="goals-list">
         {goals && goals.map((goal, index) => (
-          <div 
-            key={index} 
+          <div
+            key={index}
             className={`goal-item ${index >= 3 ? 'second-row' : 'first-row'} ${visibleGoals.includes(index) ? 'visible' : ''}`}
             style={{ animationDelay: `${index * 0.1}s` }}
           >
-            <img 
-              className="goal-cloud" 
-              src={`${process.env.PUBLIC_URL}/assets/General/cloudsGoals/${cloudImage}`} 
-              alt={`Goal ${index + 1}`} 
+            <img
+              className="goal-cloud"
+              src={`${process.env.PUBLIC_URL}/assets/General/cloudsGoals/${cloudImage}`}
+              alt={`Goal ${index + 1}`}
             />
             <span className="goal-text">{goal}</span>
           </div>
         ))}
       </div>
-      
-      <button
+
+     <button
         className="goals-button"
-        onClick={() => navigate(navigateTo)}
+        onClick={() => {
+          // 1. עדכון המפתח והערך שיתאימו ל-Sidebar
+          sessionStorage.setItem('unitOne-goals', 'finished');
+          
+          // 2. שליחת האירוע לעדכון ה-Sidebar בזמן אמת
+          window.dispatchEvent(new Event('updateNavbar'));
+          
+          // 3. ניווט לדף הבא (היערכות לאיומים)
+          navigate(navigateTo);
+        }}
       >
         {buttonText}
       </button>

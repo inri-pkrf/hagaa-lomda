@@ -83,54 +83,54 @@ function PopulationLaptop() {
 
 
       {current && (
-        <div className="content-screen">
-          <div className="header-with-image">
-            <img
-              src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/populotion${current.id}.png`}
-              className="header-main-img"
-              alt=""
-            />
-            <h2>{current.title}</h2>
+        <>
+          <div className="content-screen">
+            <div className="header-with-image">
+              <img
+                src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/populotion${current.id}.png`}
+                className="header-main-img"
+                alt=""
+              />
+              <h2>{current.title}</h2>
+            </div>
+
+            {current.type === "text" && <p className="normal-text">{current.content}</p>}
+
+            {current.type === "accordion" && (
+              <div className="accordion-container">
+                {current.content.map((item, i) => (
+                  <div key={i} className={`accordion-item ${openIndex === i ? 'active' : ''}`}>
+                    <div className="accordion-header" onClick={() => handleAccordion(i)}>
+                      <span className="accordion-title">{item.title}</span>
+                      <img
+                        src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/arrow.png`}
+                        className="accordion-icon"
+                        alt="arrow"
+                      />
+                    </div>
+                    {openIndex === i && (
+                      <div className="accordion-content">
+                        <p>{item.text}</p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {current.footerNote && (
+              <div className="special-footer-note">
+                <p>{current.footerNote}</p>
+              </div>
+            )}
           </div>
 
-
-          {current.type === "text" && <p className="normal-text">{current.content}</p>}
-
-
-          {current.type === "accordion" && (
-            <div className="accordion-container">
-              {current.content.map((item, i) => (
-                <div key={i} className={`accordion-item ${openIndex === i ? 'active' : ''}`}>
-                  <div className="accordion-header" onClick={() => handleAccordion(i)}>
-                    <span className="accordion-title">{item.title}</span>
-                    <img
-                      src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/arrow.png`}
-                      className="accordion-icon"
-                      alt="arrow"
-                    />
-                  </div>
-                  {openIndex === i && (
-                    <div className="accordion-content">
-                      <p>{item.text}</p>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
-
-
-          {current.footerNote && (
-            <div className="special-footer-note"><p>{current.footerNote}</p></div>
-          )}
-
-
           {(current.type === "text" || visited.length === (current.content?.length || 0)) && (
-            <button className="back-btn" onClick={handleBackToLaptop}>
+            <button className="back-btn side-btn" onClick={handleBackToLaptop}>
               {completed.length === populationDataLaptop.length ? "סיום ויציאה" : "חזרה למחשב"}
             </button>
           )}
-        </div>
+        </>
       )}
     </div>
   );

@@ -4,10 +4,18 @@ import NavBarData from '../../Data/NavBarData';
 
 const UnitOneSidebar = () => {
   const getProgress = () => ({
-    chapter1: sessionStorage.getItem('unitOne-first') === 'finished',
-    chapter2: sessionStorage.getItem('unitOne-second') === 'finished',
-    chapter3: sessionStorage.getItem('unitOne-third') === 'finished',
-    chapter4: sessionStorage.getItem('unitOne-fourth') === 'finished',
+    opening: sessionStorage.getItem('unitOne-opening') === 'finished',
+    goals: sessionStorage.getItem('unitOne-goals') === 'finished',
+    threats: sessionStorage.getItem('unitOne-first') === 'finished',
+    states: sessionStorage.getItem('unitOne-second') === 'finished',
+    interfaces: sessionStorage.getItem('unitOne-third') === 'finished',
+    population: sessionStorage.getItem('unitOne-fourth') === 'finished',
+    questions: sessionStorage.getItem('unitOne-questions') === 'finished',
+    
+    // תתי-שיעורים
+    pop1: sessionStorage.getItem('populationLaptopFinished') === 'true',
+    pop2: sessionStorage.getItem('populationFoldersFinished') === 'true',
+    pop3: sessionStorage.getItem('populationGameFinished') === 'true',
   });
 
   const [finished, setFinished] = useState(getProgress());
@@ -27,52 +35,59 @@ const UnitOneSidebar = () => {
     
     return {
       ...base,
-      chapters: base.chapters.map((ch, index) => {
+      chapters: base.chapters.map((ch) => {
         let isLocked = true;
         let isFinished = false;
 
-        // --- לוגיקת פתיחת פרקים (מניעת הדיליי) ---
+        // --- לוגיקה לפי כותרת הפרק (הכי בטוח) ---
         
-        if (index === 0 || index === 1) {
-          // פתיחה ומטרות - תמיד פתוחים
-          isLocked = false;
-          // אם בכל זאת את רוצה V עליהם כשמסיימים את הפרק הראשון:
-          isFinished = index === 0 ? finished.chapter1 : false; 
+        if (ch.title === "פתיחה") {
+          isLocked = false; // תמיד פתוח
+          isFinished = finished.opening;
         } 
-        else if (index === 2) {
-          // היערכות לאיומים - הפרק הלימודי הראשון - תמיד פתוח
-          isLocked = false;
-          isFinished = finished.chapter1;
+        else if (ch.title === "מטרות") {
+          isLocked = !finished.opening; // נפתח כשפתיחה הסתיימה
+          isFinished = finished.goals;
         }
-        else if (index === 3) {
-          // מצבי תפקוד - נפתח כשפרק 1 (איומים) מסתיים
-          isLocked = !finished.chapter1;
-          isFinished = finished.chapter2;
+        else if (ch.title === "היערכות לאיומים") {
+          isLocked = !finished.goals; // נפתח כשמטרות הסתיימו
+          isFinished = finished.threats;
         }
-        else if (index === 4) {
-          // ממשקים - נפתח כשפרק 2 (מצבי תפקוד) מסתיים
-          isLocked = !finished.chapter2;
-          isFinished = finished.chapter3;
+        else if (ch.title === "מצבי תפקוד") {
+          isLocked = !finished.threats;
+          isFinished = finished.states;
         }
-        else if (index === 5) {
-          // אוכלוסייה - נפתח כשפרק 3 (ממשקים) מסתיים
-          isLocked = !finished.chapter3;
-          isFinished = finished.chapter4;
+        else if (ch.title === "ממשקים") {
+          isLocked = !finished.states;
+          isFinished = finished.interfaces;
         }
-        else {
-          // שאלות סיכום וצ'קליסט - נפתחים כשפרק 4 (אוכלוסייה) מסתיים
-          isLocked = !finished.chapter4;
+        else if (ch.title === "אוכלוסיה") {
+          isLocked = !finished.interfaces;
+          isFinished = finished.population;
+        }
+        else if (ch.title === "שאלות סיכום") {
+          isLocked = !finished.population;
+          isFinished = finished.questions;
+        }
+        else if (ch.title === "סיכום פרק") {
+          isLocked = !finished.questions;
+          isFinished = false; 
         }
 
-        return {
-          ...ch,
-          isLocked,
-          isFinished,
-          subChapters: ch.subChapters?.map(sub => ({
-            ...sub,
-            isFinished: isFinished
-          }))
-        };
+        // עדכון תתי-שיעורים (אוכלוסייה)
+        const updatedSubChapters = ch.subChapters?.map((sub, subIndex) => {
+          let subFinished = false;
+          if (ch.title === "אוכלוסיה") {
+            if (subIndex === 0) subFinished = finished.pop1;
+            if (subIndex === 1) subFinished = finished.pop2;
+            if (subIndex === 2) subFinished = finished.pop3;
+          } else {
+            subFinished = isFinished;
+          }
+          return { ...sub, isFinished: subFinished };
+        });
+
+        return { ...ch, isLocked, isFinished, subChapters: updatedSubChapters };
       })
     };
   };

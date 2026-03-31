@@ -19,27 +19,31 @@ function UnitOpeningPage() {
   const colors = data.colors;
   return (
     <main className="UnitOpeningPage" style={{
-    "--card-main": colors.main,
-    "--card-layer1": colors.layer1,
-    "--card-layer2": colors.layer2,
-    "--card-text": colors.text
-  }}>
+      "--card-main": colors.main,
+      "--card-layer1": colors.layer1,
+      "--card-layer2": colors.layer2,
+      "--card-text": colors.text
+    }}>
       <img
         className='UnitOpeningPage__building'
         src={`${process.env.PUBLIC_URL}${data.image}`}
         alt={`${unitName} Image`}
       />
-    
+
       <div className='UnitOpeningPage_cards'>
-          <h1 className="UnitOpeningPage__title">{data.title}</h1>
-      <p className="UnitOpeningPage__subtitle">{data.subtitle}</p>
-            <p className="UnitOpeningPage__text">{data.text}</p>
+        <h1 className="UnitOpeningPage__title">{data.title}</h1>
+        <p className="UnitOpeningPage__subtitle">{data.subtitle}</p>
+        <p className="UnitOpeningPage__text">{data.text}</p>
 
       </div>
       {/* כל הכפתורים יעברו בהמשך לחצים */}
-      <button
+     <button
         className="start-button-unitOpeningPage"
-        onClick={() => navigate("/goals")}
+        onClick={() => {
+          sessionStorage.setItem('unitOne-opening', 'finished'); 
+          window.dispatchEvent(new Event('updateNavbar'));
+          navigate("/goals");
+        }}
       >
         {data.buttonText}
       </button>
