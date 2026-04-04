@@ -266,18 +266,24 @@
 /* --- מצב סיכום (רק כש-isGameOver אמת) --- */
 /* השילוב של שני ה-classes מבטיח שהעיצוב יחול רק בסוף */
 .items-column.items-column-final {
-    gap: 28px;
-    position: relative;
-    top: 13vh;
-    left: 3vw;
+    position: static; 
+    transform: none;
+    margin: 0;
 }
 
 /* עיצוב רשימת הסיכום עצמה */
 .final-summary-list {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    width: 100%;
+    padding-top: 55px; /* גובה ה-targets-header כדי להתחיל באותו קו */
+}
+
+
+
+.summary-row-wrapper {
+    height: 100px;     /* חייב להיות זהה ל-height ב-category-group */
+    display: flex;
+    align-items: center; /* ממרכז את הכרטיס הכחול מול תיבת המטרה */
 }
 
 .summary-row-animate {
@@ -289,16 +295,15 @@
 }
 
 .summary-blue-card {
-    background-color: #cdf0fc;
-    color: #472e1a;
-    padding: 5px 20px;
-    border-radius: 12px;
+    height: 60px;      /* גובה קבוע שדומה ל-target-box */
     display: flex;
     align-items: center;
+    background-color: #cdf0fc;
+    border-radius: 12px;
+    padding: 5px 15px;
+    width: 30vw;
     flex: 1;
-    font-weight: 500;
 }
-
 .summary-icon {
     width: 50px;
     height: auto;
@@ -329,10 +334,10 @@
 
     border: none;
 
-    padding: 10px 40px;
+    padding: 10px 20px;
 
     border-radius: 25px;
 
     font-size: 1.1rem;
-
+    cursor: pointer;
 }

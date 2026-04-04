@@ -1,24 +1,23 @@
+/* --- דף הרקע הכללי --- */
 .InfoLomda {
-     position: fixed;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-size: cover;
-    overflow: hidden;
     background-color: #e9f3f8;
-    /* use the public folder path (CRA serves it at the root) */
     background-image: url("/public/assets/General/mainBackground.png");
-    /* make sure the image always fills the viewport */
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    background-attachment: fixed; /* optional: keeps it fixed during scroll */
+    background-attachment: fixed;
     overflow: hidden;
     direction: rtl;
 }
+
+/* --- הכרטיס הלבן המרכזי --- */
 .InfoLomdaCard {
-position: absolute;
+    position: absolute;
     top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -27,89 +26,103 @@ position: absolute;
     padding: 5vw;
     width: 77vw;
     height: 60vh;
+    display: flex; 
+    flex-direction: column;
 }
+
+/* --- תוכן הצעדים (טקסט) --- */
+.step-content {
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* --- כותרת וטקסטים --- */
 .InfoLomda-title {
-font-family: 'Karantina';
-    font-style: normal;
+    font-family: 'Karantina', sans-serif;
     font-weight: 700;
     font-size: 5vmin;
-    line-height: 49px;
+    line-height: 1.1em;
     text-align: right;
     color: #000000;
-    position: relative;
     margin-top: -2vh;
+    margin-bottom: 2vh;
 }
-.InfoLomda-par1 {
-font-family: 'Assistant';
-font-style: normal;
-font-weight: 400;
-font-size: 2.8vmin;
-line-height: 1.2em;
-text-align: right;
-color: #000000;
 
+.InfoLomda-par1, .InfoLomda-par3, .InfoLomda-par4 {
+    font-family: 'Assistant', sans-serif;
+    font-size: 2.8vmin;
+    line-height: 1.4em;
+    text-align: right;
+    color: #000000;
+    margin-bottom: 2vh;
 }
-.InfoLomda-par2{
-font-family: 'Assistant';
-font-style: normal;
-font-weight: 400;
-font-size: 2.8vmin;
-line-height: 1.2em;
-text-align: right;
-color: #000000;
-border: #000000 2px solid;
-border-radius: 30px;
-padding: 1vw;
+
+.InfoLomda-par2 {
+    font-family: 'Assistant', sans-serif;
+    font-size: 2.8vmin;
+    line-height: 1.4em;
+    text-align: right;
+    color: #000000;
+    border: #000000 2px solid;
+    border-radius: 30px;
+    padding: 1.5vw;
+    margin-bottom: 2vh;
 }
-.InfoLomda-par3{
-font-family: 'Assistant';
-font-style: normal;
-font-weight: 400;
-font-size: 2.8vmin;
-line-height: 1.2em;
-text-align: right;
-color: #000000;
-padding: 1vw;
+
+.InfoLomda-ul {
+    font-family: 'Assistant', sans-serif;
+    font-size: 2.8vmin;
+    line-height: 1.5em;
+    text-align: right;
+    color: #000000;
+    padding-right: 6vw;
+    margin-bottom: 2vh;
 }
-.InfoLomda-par4{
-font-family: 'Assistant';
-font-style: normal;
-font-weight: 400;
-font-size: 2.8vmin;
-line-height: 1.2em;
-text-align: right;
-color: #000000;
+
+/* --- מערכת כפתורי הניווט --- */
+.info-navigation-buttons {
+    display: flex;
+    justify-content: flex-end; /* מצמיד את הכפתורים לשמאל (כיוון "הבא") */
+    align-items: center;
+    gap: 20px;
+    margin-top: auto; 
+    padding-top: 2vh;
+    /* הוספת מיקום יחסי כדי שיתיישר מול ה-Card */
+    width: 100%;
 }
-.InfoLomda-ul{
-font-family: 'Assistant';
-font-style: normal;
-font-weight: 400;
-font-size: 2.8vmin;
-line-height: 1.2em;
-text-align: right;
-color: #000000;
-padding-right: 6vw;
+
+/* --- עיצוב הכפתורים המשותף (העיצוב המקורי שלך) --- */
+.nav-btn-prev, .start-button-InfoLomda {
+    padding: 12px 30px;
+    font-size: 3vmin;
+    font-weight: 700;
+    font-family: 'Assistant', sans-serif;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: all 0.4s ease;
+    
+    /* הגרדיאנט המקורי שלך */
+    background: linear-gradient(
+        45deg,
+        #ff6b6b,
+        #f7d794,
+        #63cdda,
+        #ff6b6b
+    );
+    background-size: 300% 300%;
 }
-.start-button-InfoLomda {
-  padding: 12px 30px;
-  font-size: 3vmin;
-  font-weight: 700;
-  font-family: 'Assistant', sans-serif;
-  color: #fff;
-  position: absolute;
-  left: 8%;
-  top: 80%;
-  background: linear-gradient(
-    45deg,
-    #ff6b6b, 
-    #f7d794, 
-    #63cdda, 
-    #ff6b6b
-  );
-  background-size: 300% 300%;
-  border: none;
-  border-radius: 25px;
-  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-  cursor: pointer;
-  transition: all 0.4s ease;
+
+/* אפקט גלי לגרדיאנט בזמן מעבר עכבר */
+.nav-btn-prev:hover, .start-button-InfoLomda:hover {
+    transform: scale(1.05);
+    background-position: 100% 0;
+    box-shadow: 0 12px 20px rgba(0,0,0,0.3);
+}
+
+/* אופציונלי: לתת לכפתור "חזור" גוון קצת שונה כדי להבדיל ביניהם */
+.nav-btn-prev {
+    filter: grayscale(0.3); /* קצת פחות צבעוני כדי שיהיה ברור שזה משני */
 }

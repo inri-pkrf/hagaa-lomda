@@ -3,21 +3,9 @@ import "./PopulationGame.css";
 import { useNavigate } from 'react-router-dom';
 
 const itemsData = [
-  {
-    id: 1,
-    text: "לכידות, תמיכה חברתית, הפגה, מורל, תעסוקה",
-    correct: "social"
-  },
-  {
-    id: 2,
-    text: "מידע שוטף, הכוונה והדרכה על דרכי התמודדות, איתור בני משפחה ודאגה לשלומם",
-    correct: "info"
-  },
-  {
-    id: 3,
-    text: "חילוץ, הצלה, טיפול בנפגעים, צמצום נזקים, מרחב מוגן, ציוד בסיסי (מזון, מים)",
-    correct: "physical"
-  }
+  { id: 1, text: "לכידות, תמיכה חברתית, הפגה, מורל, תעסוקה", correct: "social" },
+  { id: 2, text: "מידע שוטף, הכוונה והדרכה על דרכי התמודדות, איתור בני משפחה ודאגה לשלומם", correct: "info" },
+  { id: 3, text: "חילוץ, הצלה, טיפול בנפגעים, צמצום נזקים, מרחב מוגן, ציוד בסיסי (מזון, מים)", correct: "physical" }
 ];
 
 export default function PopulationGame() {
@@ -32,12 +20,8 @@ export default function PopulationGame() {
   const handleDrop = (e, category) => {
     const id = Number(e.dataTransfer.getData("itemId"));
     const item = itemsData.find(i => i.id === id);
-
     if (item.correct === category) {
-      setPlaced(prev => ({
-        ...prev,
-        [category]: id
-      }));
+      setPlaced(prev => ({ ...prev, [category]: id }));
       setAvailableItems(prev => prev.filter(i => i.id !== id));
     }
   };
@@ -56,7 +40,7 @@ export default function PopulationGame() {
       </p>
 
       <div className="game-container">
-        {/* צד ימין - המטרות (נשאר קבוע) */}
+        {/* צד ימין - המטרות */}
         <div className="targets-wrapper">
           <div className="targets-header">סוגי צרכים</div>
           <div className="targets-body">
@@ -89,8 +73,7 @@ export default function PopulationGame() {
           </div>
         </div>
 
-        {/* צד שמאל - פריטים נגררים או סיכום סופי */}
-        {/* צד שמאל - פריטים נגררים או סיכום סופי */}
+        {/* צד שמאל - פריטים או סיכום */}
         <div className={`items-column ${isGameOver ? "items-column-final" : ""}`}>
           {!isGameOver ? (
             availableItems.map(item => (
@@ -102,23 +85,24 @@ export default function PopulationGame() {
           ) : (
             <div className="final-summary-list">
               {[
-                { id: 1, img: "BlueIconPopulation.png" },
-                { id: 2, img: "BlueIconPopulation2.png" },
-                { id: 3, img: "BlueIconPopulation3.png" }
+                { id: 1, img: "BlueIconPopulation3.png" }, // פיזי
+                { id: 2, img: "BlueIconPopulation.png" },  // חברתי
+                { id: 3, img: "BlueIconPopulation2.png" }  // מידע
               ].map((item, index) => (
-                <div key={item.id} className="summary-row-animate" style={{ animationDelay: `${index * 0.4}s` }}>
-                  <span className="arrow-icon">➔</span>
-                  <div className="summary-blue-card">
-                    <img
-                      src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/${item.img}`}
-                      alt=""
-                      className="summary-icon"
-                    />
-                    <p>מתן מענה לצרכים אלו יסייע בשמירה על החוסן ובחזרה לשגרה</p>
+                <div key={item.id} className="summary-row-wrapper">
+                  <div className="summary-row-animate" style={{ animationDelay: `${index * 0.4}s` }}>
+                    <span className="arrow-icon">➔</span>
+                    <div className="summary-blue-card">
+                      <img
+                        src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/${item.img}`}
+                        alt=""
+                        className="summary-icon"
+                      />
+                      <p>מתן מענה לצרכים אלו יסייע בשמירה על החוסן ובחזרה לשגרה</p>
+                    </div>
                   </div>
                 </div>
               ))}
-              {/* בתוך PopulationGame.js - החלק של הסיום */}
               <button
                 className="finish-game-btn"
                 onClick={() => {

@@ -53,13 +53,13 @@ const InterfencesData = {
     name: "מדא",
     description: `אחראי על ניהול האירוע בהיבט הפינוי והטיפול בנפגעים בהיותו חלק מגופי ההצלה האזרחיים.`,
     image: `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Interfences/Medic.png`,
-    coloeCircle: "#3fc6f3"
+    coloeCircle: "#ea6f72"
   },
   10: {
     name: "כבאות והצלה",
     description: `אמונים על ניהול האירוע בהיבט הכבאות וההצלה (לרבות חומרים מסוכנים) בהיותם חלק מגופי ההצלה האזרחיים.`,
     image: `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Interfences/Fireman.png`,
-    coloeCircle: "#3fc6f3"
+    coloeCircle: "#ea6f72"
   }
 };
 
