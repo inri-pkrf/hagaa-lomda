@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 
+
+
 function InfoRockets() {
   const sliderImages = [
     `${process.env.PUBLIC_URL}/assets/unitTwoImgs/gallery1.png`,
@@ -10,15 +12,21 @@ function InfoRockets() {
   ];
 
 
+
+
   const [currentIndex, setCurrentIndex] = useState(0);
+
+
 
 
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
-    }, 4000);
+    }, 5000);
     return () => clearInterval(timer);
   }, [currentIndex]);
+
+
 
 
   const nextSlide = () => {
@@ -26,9 +34,13 @@ function InfoRockets() {
   };
 
 
+
+
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev === 0 ? sliderImages.length - 1 : prev - 1));
   };
+
+
 
 
   return (
@@ -45,6 +57,8 @@ function InfoRockets() {
           </div>
 
 
+
+
           <div className="text-item">
             <div className="text-decorator"></div>
             <p>
@@ -55,9 +69,13 @@ function InfoRockets() {
         </div>
 
 
+
+
         <div className="sub-page-image-section">
           <div className="slider-wrapper">
             <button className="slider-arrow prev" onClick={prevSlide}>&#10095;</button>
+
+
 
 
             <div className="image-container">
@@ -72,8 +90,12 @@ function InfoRockets() {
             </div>
 
 
+
+
             <button className="slider-arrow next" onClick={nextSlide}>&#10094;</button>
           </div>
+
+
 
 
           <div className="img-pagination-dots">
@@ -92,11 +114,7 @@ function InfoRockets() {
 }
 
 
+
+
 export default InfoRockets;
-
-
-
-
-
-
 

@@ -48,3 +48,29 @@
     transform: rotate(360deg);
   }
 }
+
+
+.developer-reset-btn {
+  position: fixed;
+  top: 10px;
+  right: 200px;
+  z-index: 9999; /* מוודא שהוא מעל הכל */
+  background: #ff4757; /* אדום בולט */
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-family: 'Assistant', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.developer-reset-btn:hover {
+  opacity: 1;
+  background: #ff6b81;
+}
+
+/* בגרסה הסופית פשוט תוכלי למחוק את זה או להוסיף display: none */

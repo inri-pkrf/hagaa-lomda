@@ -39,8 +39,23 @@ function App() {
     sessionStorage.getItem('VIDEO_IS_PLAYING') === 'true'
   );
 
+  // פונקציית האיפוס
+  const handleResetAll = () => {
+    const confirmReset = window.confirm("האם לאפס את כל ההתקדמות בלומדה ולחזור להתחלה?");
+    if (confirmReset) {
+      sessionStorage.clear(); // מוחק את כל ה-sessionStorage
+      navigate('/'); // מחזיר לדף הפתיחה
+      window.location.reload(); // מרענן כדי לאפס סטייטים פנימיים אם יש
+    }
+  };
+
   return (
     <div className="App">
+      {/* כפתור איפוס זמני לפיתוח - יופיע בפינה העליונה */}
+      <button className="developer-reset-btn" onClick={handleResetAll}>
+        איפוס לומדה 🔄
+      </button>
+
       {!videoPlaying && location.pathname !== "/elevator" && <Header />}
       <Buttons></Buttons>
 

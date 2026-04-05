@@ -1,34 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import goalsData from '../Data/GoalsData';
+import headerData from '../Data/HeaderData';
 import './Styles/Goals.css';
+
 
 function Goals() {
   const navigate = useNavigate();
   const currentUnit = sessionStorage.getItem('currentUnit') || 'UnitOne'; // default to UnitOne if not set
   const data = goalsData[currentUnit];
 
-  // מתי נראה 
+
+  // מתי נראה
   const [visibleGoals, setVisibleGoals] = useState([]);
+
 
   // כל פעם שנרצה לשנות את הכותרת של היחידה נשנה ככה
   sessionStorage.setItem('MainTitle', data ? data.title : '');
 
-  // לפי היחידה תמונה של ענן
-  const cloudImages = {
-    UnitOne: 'cloudUnitOne.png',
-    UnitTwo: 'cloudUnitTwo.png',
-    UnitThree: 'cloudUnitThree.png',
-    UnitFour: 'cloudUnitFour.png'
-  };
-
-  const cloudImage = cloudImages[currentUnit] || 'cloudUnitOne.png';
 
   // Animate goals one by one on mount
   useEffect(() => {
     if (data && data.goals && data.goals.length > 0) {
       // Reset visibility
       setVisibleGoals([]);
+
 
       // Show goals one by one with delay
       data.goals.forEach((_, index) => {
@@ -39,11 +35,15 @@ function Goals() {
     }
   }, [data]);
 
+
   if (!data) {
     return <div>Goals data not found for {currentUnit}</div>;
   }
 
+
   const { title, subtitle, goals, buttonText, navigateTo, colors } = data;
+  const headerColor = headerData[currentUnit]?.backgroundColor || colors.main;
+
 
   return (
     <div
@@ -57,7 +57,8 @@ function Goals() {
     >
       <p className="goals-subtitle">{subtitle}</p>
 
-      {/*  אנימציה של העננים במטרות */}
+
+      {/*  אנימציה של המטרות */}
       <div className="goals-list">
         {goals && goals.map((goal, index) => (
           <div
@@ -65,25 +66,25 @@ function Goals() {
             className={`goal-item ${index >= 3 ? 'second-row' : 'first-row'} ${visibleGoals.includes(index) ? 'visible' : ''}`}
             style={{ animationDelay: `${index * 0.1}s` }}
           >
-            <img
+            <div
               className="goal-cloud"
-              src={`${process.env.PUBLIC_URL}/assets/General/cloudsGoals/${cloudImage}`}
-              alt={`Goal ${index + 1}`}
+              style={{ borderColor: headerColor }}
             />
             <span className="goal-text">{goal}</span>
           </div>
         ))}
       </div>
 
+
      <button
         className="goals-button"
         onClick={() => {
           // 1. עדכון המפתח והערך שיתאימו ל-Sidebar
           sessionStorage.setItem('unitOne-goals', 'finished');
-          
+         
           // 2. שליחת האירוע לעדכון ה-Sidebar בזמן אמת
           window.dispatchEvent(new Event('updateNavbar'));
-          
+         
           // 3. ניווט לדף הבא (היערכות לאיומים)
           navigate(navigateTo);
         }}
@@ -94,4 +95,6 @@ function Goals() {
   );
 }
 
+
 export default Goals;
+

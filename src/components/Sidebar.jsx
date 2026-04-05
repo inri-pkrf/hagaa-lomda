@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Styles/Sidebar.css';
-import { ChevronRight, ChevronLeft, Lock, Check } from 'lucide-react';
+import { ChevronRight, ChevronLeft, ChevronDown, Lock, Check } from 'lucide-react'; // הוספנו ChevronDown
 
 const Sidebar = ({ unitInfo }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [expandedChapters, setExpandedChapters] = useState(new Set());
   const navigate = useNavigate();
 
   const toggleSidebar = () => {
@@ -45,46 +46,75 @@ const Sidebar = ({ unitInfo }) => {
           </header>
 
           <div className="chapters-wrapper">
-            {unitInfo.chapters.map((chapter, idx) => (
-              <div key={idx} className="chapter-group">
-                <div
-                  className={`chapter-card ${chapter.isLocked ? 'is-locked' : 'clickable'}`}
-                  style={{
-                    backgroundColor: chapter.isLocked ? '#e0e0e0' : unitInfo.color,
-                    cursor: chapter.isLocked ? 'not-allowed' : 'pointer'
-                  }}
-                  onClick={() => handleNavigation(chapter.path, chapter.isLocked)}
-                >
-                  <span className="chapter-label">{chapter.title}</span>
-                  <div className="chapter-icon-container">
-                    {chapter.isLocked ? (
-                      <Lock size={16} className="lock-icon" />
-                    ) : chapter.isFinished ? (
-                      <div className="check-badge-main">
-                        <Check size={12} color={unitInfo.color} strokeWidth={4} />
-                      </div>
-                    ) : (
-                      <div className="unlock-icon" />
-                    )}
-                  </div>
-                </div>
+            {unitInfo.chapters.map((chapter, idx) => {
+              const hasSubChapters = chapter.subChapters && chapter.subChapters.length > 0;
+              const isExpanded = expandedChapters.has(idx);
 
-                {chapter.subChapters?.map((sub, sIdx) => (
+              return (
+                <div key={idx} className="chapter-group">
                   <div
-                    key={sIdx}
-                    className={`sub-chapter-item ${chapter.isLocked ? 'disabled' : 'clickable'}`}
-                    onClick={() => handleNavigation(sub.path, chapter.isLocked)}
+                    className={`chapter-card ${chapter.isLocked ? 'is-locked' : 'clickable'}`}
+                    style={{
+                      backgroundColor: chapter.isLocked ? '#e0e0e0' : unitInfo.color,
+                      cursor: chapter.isLocked ? 'not-allowed' : 'pointer'
+                    }}
+                    onClick={() => {
+                      if (hasSubChapters) {
+                        setExpandedChapters(prev => {
+                          const newSet = new Set(prev);
+                          if (newSet.has(idx)) newSet.delete(idx);
+                          else newSet.add(idx);
+                          return newSet;
+                        });
+                      } else if (!chapter.isLocked) {
+                        handleNavigation(chapter.path, chapter.isLocked);
+                      }
+                    }}
                   >
-                    <span className="sub-title">{sub.title}</span>
-                    {sub.isFinished && (
-                      <div className="check-badge-sub">
-                        <Check size={12} color={unitInfo.color} strokeWidth={4} />
-                      </div>
-                    )}
+                    {/* צד ימין של הכרטיס: טקסט ואז חץ פתיחה */}
+                    <div className="chapter-main-content">
+                      <span className="chapter-label">{chapter.title}</span>
+                      {hasSubChapters && (
+                        <ChevronDown
+                          size={18}
+                          className={`arrow-icon ${isExpanded ? 'rotated' : ''}`}
+                          style={{ marginRight: '8px' }} // רווח בין הטקסט לחץ
+                        />
+                      )}
+                    </div>
+
+                    {/* צד שמאל של הכרטיס: מנעול או V */}
+                    <div className="chapter-icon-container">
+                      {chapter.isLocked ? (
+                        <Lock size={16} className="lock-icon" />
+                      ) : chapter.isFinished ? (
+                        <div className="check-badge-main">
+                          <Check size={12} color={unitInfo.color} strokeWidth={4} />
+                        </div>
+                      ) : (
+                        <div className="unlock-icon" />
+                      )}
+                    </div>
                   </div>
-                ))}
-              </div>
-            ))}
+
+                  {/* הצגת תתי פרקים */}
+                  {isExpanded && hasSubChapters && chapter.subChapters.map((sub, sIdx) => (
+                    <div
+                      key={sIdx}
+                      className={`sub-chapter-item ${chapter.isLocked ? 'disabled' : 'clickable'}`}
+                      onClick={() => handleNavigation(sub.path, chapter.isLocked)}
+                    >
+                      <span className="sub-title">{sub.title}</span>
+                      {sub.isFinished && (
+                        <div className="check-badge-sub">
+                          <Check size={12} color={unitInfo.color} strokeWidth={4} />
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

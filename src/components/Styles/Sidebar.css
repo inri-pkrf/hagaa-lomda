@@ -1,25 +1,20 @@
 /* Sidebar.css */
 
-
 /* האוברליי השחור על כל המסך */
 .sidebar-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.7);
-  /* שחור שקוף מעט יותר כהה */
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
   z-index: 9998;
-  /* מתחת לנאבר אבל מעל התוכן */
 }
-
 
 .sidebar-overlay.visible {
   opacity: 1;
   pointer-events: auto;
 }
-
 
 /* הקונטיינר הראשי - תמיד בפינה הימנית */
 .sidebar-container {
@@ -29,18 +24,14 @@
   height: 100vh;
   display: flex;
   align-items: center;
-  /* ממרכז את הכפתור הקטן אנכית */
   z-index: 9999;
   transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-
 }
 
-
-/* כשהוא סגור - אנחנו מזיזים את כל הקונטיינר ימינה, חוץ מהכפתור */
+/* כשהוא סגור - אנחנו מזיזים את כל הקונטיינר ימינה */
 .sidebar-container.closed {
   transform: translateX(320px);
 }
-
 
 /* הדיב הקטן עם החץ (הלשונית) */
 .toggle-tab {
@@ -48,7 +39,6 @@
   height: 100px;
   border: none;
   border-radius: 13px 0 0 13px;
-  /* עיגול רק בצד שמאל */
   cursor: pointer;
   color: #FFF6EC;
   display: flex;
@@ -58,114 +48,91 @@
   transition: all 0.3s ease;
   position: absolute;
   left: -35px;
-  /* מוציא את הכפתור מחוץ לדיב של הנאבר */
   top: 50%;
   transform: translateY(-50%);
 }
 
-
 .toggle-tab:hover {
   width: 50px;
-  /* אפקט קטן בריחופ */
   left: -50px;
 }
 
-
-
-
+/* --- התוכן הפנימי של הסיידבר --- */
 .sidebar-content {
   width: 320px;
   background: #FFF6EC;
-  /* צבע שמנת עדין רקע */
   height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center; /* ממרכז את כל הילדים (Header, Wrapper) */
   box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
-  direction: rtl;
-  /* יישור לימין עבור עברית */
+  overflow-x: hidden;
+  direction: rtl; /* יישור לימין עבור עברית */
+  box-sizing: border-box;
 }
 
-
-/* כותרת עליונה עם לוגו ובאנר */
+/* כותרת עליונה */
 .sidebar-header {
+  width: 100%;
   padding-top: 10px;
   padding-bottom: 20px;
   display: flex;
   flex-direction: column;
   gap: 15px;
+  align-items: center;
 }
 
-
 .unit-banner {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 15px;
+  padding: 12px 20px;
   color: white;
   font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
-
 
 .logo-container-sidebar {
   display: flex;
   justify-content: center;
-  gap: 7.5vw;
+  gap: 20px;
+  width: 100%;
 }
-
-
-
-
-.unit-banner svg {
-  transition: transform 0.2s ease, stroke 0.2s ease;
-}
-
-
-.unit-banner:hover svg {
-  transform: scale(1.15);
-  stroke: #cccccc;
-  /* צבע כהה יותר בהובר */
-}
-
-
-.unit-banner:active svg {
-  stroke: #999999;
-  /* צבע עוד יותר כהה בלחיצה */
-}
-
 
 .unit-title {
   font-size: 2.8rem;
-  font-family: karantina, sans-serif;
+  font-family: 'Karantina', sans-serif;
   font-weight: 400;
+  text-align: center;
 }
 
-
-/* רשימת הפרקים */
+/* --- רשימת הפרקים - המרכוז כאן --- */
 .chapters-wrapper {
-  padding: 10px 20px;
+  padding: 10px 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  width: 18vw;
-  margin-bottom: 3vh;
+  width: 80%;          /* תופס 90% מרוחב הסיידבר */
+  max-width: 280px;    /* מגביל כדי שלא ימרח במסכים רחבים */
+  margin: 0 auto;      /* ממרכז את הקונטיינר עצמו */
+  box-sizing: border-box;
 }
-
 
 .chapter-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+  align-items: center; /* ממרכז את תתי הפרקים ביחס לפרק הראשי */
 }
-
 
 /* כרטיסיית פרק ראשי */
 .chapter-card {
   width: 100%;
   padding: 14px 18px;
   border-radius: 12px;
-  /* מעוגל מאוד כמו בתמונה */
   color: white;
   display: flex;
   justify-content: space-between;
@@ -174,24 +141,18 @@
   font-weight: 700;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
+  box-sizing: border-box;
 }
-
 
 .chapter-card.is-locked {
   background-color: #d1d1d1 !important;
-  /* אפור לפרק נעול */
   color: #888;
 }
 
-
-/* תת-פרק (הפסים הכחולים הבהירים) */
+/* תת-פרק (הפסים הכחולים) */
 .sub-chapter-item {
-  width: 95%;
-  /* מעט יותר קצר מהפרק הראשי */
-  margin-right: auto;
-  /* הזחה שמאלה כדי ליצור היררכיה */
+  width: 92%;           /* מעט יותר צר מהפרק הראשי למראה היררכי */
   background: #bdefff;
-  /* כחול בהיר מאוד */
   padding: 10px 15px;
   border-radius: 10px;
   display: flex;
@@ -199,44 +160,16 @@
   align-items: center;
   font-size: 0.95rem;
   color: #2c3e50;
+  box-sizing: border-box;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin: 0 auto;       /* ממרכז את תת הפרק */
 }
 
-
-/* העיגול הלבן עם ה-V */
-.check-badge {
+/* אייקונים ועיגולים */
+.check-badge-main, .check-badge-sub {
   width: 20px;
   height: 20px;
   background-color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-
-/* אייקון המנעול */
-.lock-icon-style {
-  opacity: 0.6;
-}
-
-
-/* ריבוע קטן לפרק פתוח שטרם הושלם */
-.unlock-icon {
-  width: 16px;
-  height: 16px;
-  border: 2px solid rgba(255, 255, 255, 0.8);
-  border-radius: 3px;
-}
-
-
-/* עיגול ה-V בפרק הראשי */
-.check-badge-main {
-  width: 20px;
-  height: 20px;
-  background-color: white;
-  /* רקע לבן כדי שה-V הצבעוני יבלוט */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -244,73 +177,58 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-
-/* עיגול ה-V בתתי הפרקים */
-.check-badge-sub {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+.lock-icon-style {
+  opacity: 0.6;
 }
 
-
-/* אפקט הובר לכרטיסיות לחיצות */
+/* אפקטים */
 .chapter-card.clickable:hover {
   filter: brightness(0.95);
-  transform: translateX(-2px);
+  transform: scale(1.02);
 }
-
 
 .sub-chapter-item.clickable:hover {
   background-color: #a5e6ff !important;
 }
 
-/* 1. הקונטיינר הראשי של הגלגלת */
+/* --- עיצוב הגלגלת (Scrollbar) --- */
 .sidebar-content {
-  scrollbar-color: var(--scrollbar-thumb, #3498db) var(--scrollbar-track, #ecf0f1);
-  scrollbar-width: auto;
+  scrollbar-color: #a0a0a0 #e8e8e8;
+  scrollbar-width: thin;
 }
-
 
 ::-webkit-scrollbar {
-  width: 16px;
-  /* רוחב הגלגלת האנכית (עבה יותר) */
-  height: 16px;
-  /* גובה הגלגלת האופקית */
+  width: 10px;
 }
 
-
-/* 2. "האגודל" - החלק שזז */
 ::-webkit-scrollbar-thumb {
-  background-color: var(--scrollbar-thumb, #3498db);
-  /* צבע האגודל */
-  border-radius: 4px;
-  /* פינות מעוגלות */
-  border: 2px solid #ecf0f1;
-  /* גבול דק סביב האגודל כדי שיראה מופרד */
+  background-color: #a0a0a0;
+  border-radius: 10px;
 }
 
-
-/* 3. אפקט ריחוב (hover) על האגודל */
-::-webkit-scrollbar-thumb:hover {
-  background-color: var(--scrollbar-thumb-hover, #2980b9);
-  /* צבע כהה יותר בזמן ריחוב */
-}
-
-
-/* 4. "המסלול" - הרקע של הגלגלת */
 ::-webkit-scrollbar-track {
-  background-color: var(--scrollbar-track, #ecf0f1);
-  /* צבע המסלול */
-  border-radius: 4px;
-  /* פינות מעוגלות */
+  background-color: #e8e8e8;
 }
 
+/* סידור התוכן בתוך הכרטיס כדי שהחץ והטקסט יהיו אחד ליד השני */
+.chapter-main-content {
+  display: flex;
+  align-items: center;
+  flex-direction: row; /* מבטיח שהטקסט יהיה ראשון מימין */
+}
 
-/* 5. הפינה בין שתי גלגלות (אם יש גם אופקית) */
-::-webkit-scrollbar-corner {
-  background-color: #ecf0f1;
+.chapter-label {
+  white-space: nowrap; /* מונע מהטקסט לרדת שורה לפני החץ */
+}
+
+/* עיצוב החץ והאנימציה שלו */
+.arrow-icon {
+  transition: transform 0.3s ease;
+  /* במבנה RTL, rotate(90deg) יגרום לו להצביע שמאלה (פנימה) */
+  transform: rotate(90deg); 
+}
+
+.arrow-icon.rotated {
+  /* מסתובב למטה כשהפרק פתוח */
+  transform: rotate(0deg); 
 }
