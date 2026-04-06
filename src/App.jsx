@@ -29,6 +29,7 @@ import SummaryCheckList from './units/Unit1/SummaryCheckList.jsx';
 
 import Rockets from './units/Unit2/Rockets/Rockets.jsx';
 import InfoRockets from './units/Unit2/Rockets/Preparation/InfoRockets.jsx';
+import Preparation from './units/Unit2/Rockets/Preparation/Preparation.jsx';
 
 
 function App() {
@@ -87,6 +88,7 @@ function App() {
         <Route path="/intro-unit-two" element={<IntroUnitTwo />} />
         <Route path="/rockets" element={<Rockets />} />
         <Route path="/info-rockets" element={<InfoRockets />} />
+        <Route path="/preparation" element={<Preparation />} />
 
         <Route path="/intro-unit-three" element={<IntroUnitThree />} />
         <Route path="/intro-unit-four" element={<IntroUnitFour />} />

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-
-
+import { useNavigate } from 'react-router-dom';
 
 
 function InfoRockets() {
+  const navigate = useNavigate();
+ 
   const sliderImages = [
     `${process.env.PUBLIC_URL}/assets/unitTwoImgs/gallery1.png`,
     `${process.env.PUBLIC_URL}/assets/unitTwoImgs/gallery2.jpg`,
@@ -12,21 +13,15 @@ function InfoRockets() {
   ];
 
 
-
-
   const [currentIndex, setCurrentIndex] = useState(0);
-
-
 
 
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
-    }, 5000);
+    }, 4000);
     return () => clearInterval(timer);
   }, [currentIndex]);
-
-
 
 
   const nextSlide = () => {
@@ -34,13 +29,16 @@ function InfoRockets() {
   };
 
 
-
-
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev === 0 ? sliderImages.length - 1 : prev - 1));
   };
 
 
+  // פונקציה שמטפלת בחזרה ופתיחת השלב הבא
+  const handleBackAndUnlock = () => {
+    sessionStorage.setItem('unlockedStep', '2'); // שומרים שהשלב הבא שפתוח הוא 2
+    navigate(-1); // או שאת יכולה לכתוב את הנתיב המדויק, למשל navigate('/rockets')
+  };
 
 
   return (
@@ -57,8 +55,6 @@ function InfoRockets() {
           </div>
 
 
-
-
           <div className="text-item">
             <div className="text-decorator"></div>
             <p>
@@ -66,9 +62,13 @@ function InfoRockets() {
               להימצא בו בזמן ירי טילים.
             </p>
           </div>
+
+
+          {/* הכפתור החדש פה למטה, תוכלי להלביש עליו איזה קלאס שתרצי לעיצוב */}
+          <button className="finish-part-rockets" onClick={handleBackAndUnlock}>
+            הבנתי, המשך
+          </button>
         </div>
-
-
 
 
         <div className="sub-page-image-section">
@@ -76,9 +76,7 @@ function InfoRockets() {
             <button className="slider-arrow prev" onClick={prevSlide}>&#10095;</button>
 
 
-
-
-            <div className="image-container">
+            <div className="image-container-rockets-part1">
               {sliderImages.map((imgUrl, index) => (
                 <img
                   key={index}
@@ -90,12 +88,8 @@ function InfoRockets() {
             </div>
 
 
-
-
             <button className="slider-arrow next" onClick={nextSlide}>&#10094;</button>
           </div>
-
-
 
 
           <div className="img-pagination-dots">
@@ -114,7 +108,7 @@ function InfoRockets() {
 }
 
 
-
-
 export default InfoRockets;
+
+
 

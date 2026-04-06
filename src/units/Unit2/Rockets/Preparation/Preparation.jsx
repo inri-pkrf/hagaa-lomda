@@ -1,13 +1,91 @@
 import React from 'react';
+import TopicCircle from '../../../../components/TopicCircle.jsx';
+import '../../style/Preparation.css';
+
 
 function Preparation() {
+  const topicsData = [
+    {
+      id: 1,
+      title: "כיצד המרחב המוגן שומר עלינו?",
+      bgColor: "#FFB356",
+      icon: "shelter-man.png",
+      hasInfo: false,
+      hasPlay: true,
+      isCompleted: false
+    },
+    {
+      id: 2,
+      title: "התרעה",
+      bgColor: "#56C3A9",
+      icon: "siren.png",
+      hasInfo: true,
+      hasPlay: true
+    },
+    {
+      id: 3,
+      title: "כיצד נתגונן?",
+      bgColor: "#00ADEF",
+      icon: "questionIcon.png",
+      hasInfo: true,
+      hasPlay: true
+    },
+    {
+      id: 4,
+      title: "בחירת מרחב מוגן",
+      bgColor: "#E2787A",
+      icon: "choose-space.png",
+      hasInfo: true,
+      hasPlay: false
+    },
+    {
+      id: 5,
+      title: "למה חשוב להמתין 10 דקות?",
+      bgColor: "#E67E22",
+      icon: "timer10.png",
+      hasInfo: true,
+      hasPlay: true
+    },
+    {
+      id: 6,
+      title: "ציוד ואחזקת מרחב מוגן",
+      bgColor: "#567691",
+      icon: "equipment.png",
+      hasInfo: true,
+      hasPlay: false
+    },
+  ];
+ 
+  const handleTopicClick = (id) => {
+    console.log("Navigating to topic:", id);
+    // כאן תבוא הלוגיקה של הניווט (navigate)
+  };
+
+
   return (
-    <div>
-      <h2>יחידה 2 היערכות העמוד עם העיגולים שנבחר נושאים</h2>
-      <p>This is a placeholder for the Unit 2 Preparation screen.</p>
+    <div className="preparation-page-container">
+      <h1 className="preparation-main-header">היערכות והתנהגות בתרחיש ירי טילים</h1>
+      <p className="preparation-sub-text">
+        לפניך מספר עקרונות להיערכות והתנהגות בתרחיש ירי טילים.<br />
+        <strong>יש ללחוץ על האייקונים להרחבה:</strong>
+      </p>
+
+
+      <div className="topics-grid">
+        {topicsData.map((topic) => (
+          <TopicCircle
+            key={topic.id}
+            {...topic}
+            onClick={handleTopicClick}
+          />
+        ))}
+      </div>
     </div>
   );
 }
-
 export default Preparation;
+
+
+
+
 
