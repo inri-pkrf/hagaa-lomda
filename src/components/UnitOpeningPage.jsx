@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import openingData from '../Data/OpeningData';
-import './Styles/UnitOpeningPage.css'; // Assuming shared styles
+import './Styles/UnitOpeningPage.css';
 
 function UnitOpeningPage() {
   const navigate = useNavigate();
   const { unitName } = useParams();
   const data = openingData[unitName];
 
+  // --- לוגיקת האזנה לחצים הכלליים ---
+  useEffect(() => {
+    const handleNext = () => {
+      // ביצוע הלוגיקה שהייתה בכפתור
+      sessionStorage.setItem('unitOne-opening', 'finished'); 
+      window.dispatchEvent(new Event('updateNavbar'));
+      navigate("/goals");
+    };
+
+    // אנחנו מאזינים רק ל"הבא", כי "חזור" בדף הזה פשוט יחזור אחורה בראוטר כרגיל
+    window.addEventListener('onNextNav', handleNext);
+
+    return () => {
+      window.removeEventListener('onNextNav', handleNext);
+    };
+  }, [navigate]);
 
   if (!data) {
     return <div>Unit data not found for {unitName}</div>;
@@ -17,6 +33,7 @@ function UnitOpeningPage() {
   sessionStorage.setItem('MainTitle', data.mainTitle);
 
   const colors = data.colors;
+  
   return (
     <main className="UnitOpeningPage" style={{
       "--card-main": colors.main,
@@ -34,10 +51,10 @@ function UnitOpeningPage() {
         <h1 className="UnitOpeningPage__title">{data.title}</h1>
         <p className="UnitOpeningPage__subtitle">{data.subtitle}</p>
         <p className="UnitOpeningPage__text">{data.text}</p>
-
       </div>
-      {/* כל הכפתורים יעברו בהמשך לחצים */}
-     <button
+
+      {/* הכפתור הישן בהערה - הניווט עובר לחצים הכלליים */}
+      {/* <button
         className="start-button-unitOpeningPage"
         onClick={() => {
           sessionStorage.setItem('unitOne-opening', 'finished'); 
@@ -46,7 +63,8 @@ function UnitOpeningPage() {
         }}
       >
         {data.buttonText}
-      </button>
+      </button> 
+      */}
     </main>
   );
 }

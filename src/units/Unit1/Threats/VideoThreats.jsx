@@ -2,19 +2,38 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './VideoThreats.css';
 
-
 function VideoThreats({ setVideoPlaying }) {
   const navigate = useNavigate();
-  const [showButton, setShowButton] = useState(false);
+  const [canFinish, setCanFinish] = useState(false);
 
   useEffect(() => {
-    // מציג את הכפתור אחרי 5 שניות, כדי שהוידאו יתחיל
+    // טיימר המאפשר סיום רק אחרי 2 שניות
     const showButtonTimer = setTimeout(() => {
-      setShowButton(true);
+      setCanFinish(true);
+      window.dispatchEvent(new Event('updateNavbar'));
     }, 2000);
 
-    return () => clearTimeout(showButtonTimer);
-  }, []);
+    const handleNext = (e) => {
+      // אנחנו עוצרים את הניווט הכללי של Buttons.js בכל מקרה
+      // כדי שהקומפוננטה הזו תחליט לאן לנווט (למסדרון)
+      e.preventDefault(); 
+
+      if (canFinish) {
+        // אם עברו 2 שניות, נבצע את לוגיקת הסיום והחזרה למסדרון
+        handleVideoEnd();
+      } else {
+        // אם המשתמש לוחץ לפני הזמן, לא קורה כלום
+        console.log("הסרטון טרם הסתיים");
+      }
+    };
+
+    window.addEventListener('onNextNav', handleNext);
+    
+    return () => {
+      clearTimeout(showButtonTimer);
+      window.removeEventListener('onNextNav', handleNext);
+    };
+  }, [canFinish]);
 
   const handleVideoEnd = () => {
     if (setVideoPlaying) {
@@ -22,9 +41,15 @@ function VideoThreats({ setVideoPlaying }) {
     } else {
       sessionStorage.setItem('VIDEO IS PLAYING', 'false');
     }
-    // Mark unitOne-first as finished
+    
+    // 1. עדכון סטטוס הפרק
     sessionStorage.setItem('unitOne-first', 'finished');
     sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'UnitOne-first', state: 'finished' }));
+    
+    // 2. עדכון ה-Sidebar בזמן אמת (להופעת ה-V)
+    window.dispatchEvent(new Event('updateNavbar'));
+    
+    // 3. ניווט ידני למסדרון (בדיוק מה שהכפתור עשה)
     navigate('/intro-unit-one');
   };
 
@@ -39,15 +64,16 @@ function VideoThreats({ setVideoPlaying }) {
           title="Video Threats"
           className='VideoThreats-video'
         ></iframe>
-        {showButton && (
+
+        {/* הכפתור הישן בהערה */}
+        {/* {canFinish && (
           <button onClick={handleVideoEnd} className="video-threats-button">
-            כפתור סיום לסרטון לבינתיים
+            סיום
           </button>
-        )}
+        )} */}
       </div>
     </div>
   );
 }
 
 export default VideoThreats;
-

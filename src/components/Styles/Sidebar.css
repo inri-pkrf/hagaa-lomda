@@ -222,13 +222,13 @@
 }
 
 /* עיצוב החץ והאנימציה שלו */
-.arrow-icon {
+.arrow-icon-sidebar {
   transition: transform 0.3s ease;
   /* במבנה RTL, rotate(90deg) יגרום לו להצביע שמאלה (פנימה) */
   transform: rotate(90deg); 
 }
 
-.arrow-icon.rotated {
+.arrow-icon-sidebar.rotated {
   /* מסתובב למטה כשהפרק פתוח */
   transform: rotate(0deg); 
 }

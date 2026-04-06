@@ -129,12 +129,6 @@ function Interfaces() {
         )
       }
 
-      {
-        completed && (
-          <p className="completed-text">הפרק הושלם! מעבר לדף הראשי...</p>
-        )
-      }
-
       {selectedItem && (
         <InterfacePopUp
           title={selectedItem.name}

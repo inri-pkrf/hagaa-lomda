@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import UnitOneSidebar from './UnitOneSidebar'; // הקומפוננטה החדשה
+import UnitOneSidebar from './UnitOneSidebar';
 import './style/IntroUnitOne.css';
 
 function IntroUnitOne() {
@@ -26,9 +26,36 @@ function IntroUnitOne() {
     });
   }, []);
 
+  // --- לוגיקת החצים הכלליים ---
+  useEffect(() => {
+    const handleNext = (e) => {
+      // אם כבר יש אנימציה של דלת נפתחת, אל תעשה כלום
+      if (openingSign) return;
+
+      e.preventDefault(); // עוצר את הניווט האוטומטי של Buttons.js לפרק הבא במסדרון
+
+      // החלטה איזו דלת לפתוח לפי סדר ההתקדמות
+      if (!finishedChapters.unitOneFirst) {
+        handleSignOneClick();
+      } else if (!finishedChapters.unitOneSecond) {
+        handleSignTwoClick();
+      } else if (!finishedChapters.unitOneThird) {
+        handleSignThreeClick();
+      } else if (!finishedChapters.unitOneFourth) {
+        handleSignFourClick();
+      } else {
+        // אם הכל גמור, החץ יעביר לשאלות הסיכום
+        navigate('/questions-end');
+      }
+    };
+
+    window.addEventListener('onNextNav', handleNext);
+    return () => window.removeEventListener('onNextNav', handleNext);
+  }, [finishedChapters, openingSign]);
+
   const allDoorsFinished = Object.values(finishedChapters).every(val => val === true);
 
-  // פונקציות הניווט (ללא שינוי)
+  // פונקציות פתיחת הדלתות
   const handleSignOneClick = () => {
     setDoorImage(`${process.env.PUBLIC_URL}/assets/General/Doors/DoorOneOpen.png`);
     setOpeningSign(1);
@@ -57,41 +84,35 @@ function IntroUnitOne() {
     setTimeout(() => navigate('/population'), 2000);
   };
 
-  // תנאי כניסה
   const canEnterSecond = finishedChapters.unitOneFirst;
   const canEnterThird = finishedChapters.unitOneSecond;
   const canEnterFourth = finishedChapters.unitOneThird;
 
   return (
     <div className='IntroUnitOne'>
-      {/* פשוט קוראים לקומפוננטה המוכנה - היא כבר תדע מה לעשות */}
       <UnitOneSidebar />
 
       <img className='first-background' src={doorImage} alt="Intro Unit 1" />
       
       <div className='door-signs-UnitOne'>
-        {/* שלט 1 */}
         {openingSign !== 1 && (
           <div className='door-sign-UnitOne-first' onClick={!openingSign ? handleSignOneClick : undefined} style={{ cursor: 'pointer' }}>
             <p className='door-sign-UnitOne-title-first'>היערכות לאיומים</p>
             <img src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsSigns/DoorSignOne.png`} alt="Sign 1" />
           </div>
         )}
-        {/* שלט 2 */}
         {openingSign !== 2 && (
           <div className={`door-sign-UnitOne-second ${!canEnterSecond ? 'disabled' : ''}`} onClick={!openingSign && canEnterSecond ? handleSignTwoClick : undefined}>
             <p className='door-sign-UnitOne-title-second'>מצבי תפקוד</p>
             <img src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsSigns/DoorSignTwo.png`} alt="Sign 2" />
           </div>
         )}
-        {/* שלט 3 */}
         {openingSign !== 3 && (
           <div className={`door-sign-UnitOne-third ${!canEnterThird ? 'disabled' : ''}`} onClick={!openingSign && canEnterThird ? handleSignThreeClick : undefined}>
             <p className='door-sign-UnitOne-title-third'>ממשקים </p>
             <img src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsSigns/DoorSignThree.png`} alt="Sign 3" />
           </div>
         )}
-        {/* שלט 4 */}
         {openingSign !== 4 && (
           <div className={`door-sign-UnitOne-fourth ${!canEnterFourth ? 'disabled' : ''}`} onClick={!openingSign && canEnterFourth ? handleSignFourClick : undefined}>
             <p className='door-sign-UnitOne-title-fourth'>אוכלוסיה </p>
@@ -106,9 +127,10 @@ function IntroUnitOne() {
       {finishedChapters.unitOneThird && <img className='doorThreeDone' src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorThreeDone.png`} alt="3" />}
       {finishedChapters.unitOneFourth && <img className='doorFourDone' src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorFourDone.png`} alt="4" />}
 
-      {allDoorsFinished && (
+      {/* הכפתור הישן בהערה - החץ ינווט לכאן אוטומטית כשהכל ייגמר */}
+      {/* {allDoorsFinished && (
         <button className="goToQuizButton" onClick={() => navigate('/questions-end')}>לשאלות סיכום יחידה 1</button>
-      )}
+      )} */}
     </div>
   );
 }

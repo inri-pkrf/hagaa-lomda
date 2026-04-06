@@ -20,10 +20,14 @@
 }
 
 
+
+
 .goals-title {
   font-size: 2rem;
   margin-bottom: 10px;
 }
+
+
 
 
 .goals-subtitle {
@@ -37,6 +41,8 @@
 }
 
 
+
+
 .goals-background-cloud {
   position: absolute;
   top: 0;
@@ -47,6 +53,8 @@
   z-index: 0;
   pointer-events: none;
 }
+
+
 
 
 .goals-list {
@@ -66,6 +74,8 @@
 }
 
 
+
+
 /* Override for 2 items */
 .goals-list:has(.goal-item:nth-child(2)):not(:has(.goal-item:nth-child(3))) .goal-item:first-child {
   grid-column: span 1;
@@ -81,16 +91,22 @@
 }
 
 
+
+
 .goal-item.visible {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
 
 
+
+
 /* First row - centered single item (or first 3 items centered) */
 .goal-item.first-row {
   justify-content: center;
 }
+
+
 
 
 /* Second row - two items side by side */
@@ -100,10 +116,14 @@
 }
 
 
+
+
 /* When there are 2 or more items, first one takes center */
 .goals-list .goal-item:first-child {
   justify-content: center;
 }
+
+
 
 
 /* When there are 3 items, first row has 1 centered, second row has 2 */
@@ -113,10 +133,14 @@
 }
 
 
+
+
 /* When there are exactly 2 items, place them side by side in one row */
 .goals-list:has(.goal-item:nth-child(2)):not(:has(.goal-item:nth-child(3))) .goal-item {
   grid-column: span 1;
 }
+
+
 
 
 .goals-list:has(.goal-item:nth-child(2)):not(:has(.goal-item:nth-child(3))) {
@@ -126,15 +150,18 @@
 }
 
 
+
+
 .goal-cloud {
   position: absolute;
   width: 30vw;
-  height: 15vh;
-  background-color: white;
-  border: 4px solid;
-  border-radius: 20px;
+  height: 20vh;
+  background-color: rgba(240, 248, 255, 0.47);
+  border: 5px outset;
+  border-radius: 35px;
   z-index: 0;
   animation: float 3s ease-in-out infinite;
+  transition: background 0.5s ease;
 }
 
 
@@ -148,9 +175,13 @@
 }
 
 
+
+
 .goal-item.visible .goal-cloud {
   animation: float 3s ease-in-out infinite;
 }
+
+
 
 
 .goal-text {
@@ -163,7 +194,10 @@
   font-weight: 500;
   max-width: 15vw;
   word-wrap: break-word;
+  animation: float 3s ease-in-out infinite;
 }
+
+
 
 
 .goals-button {
@@ -182,6 +216,8 @@
   z-index: 1;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+
 
 
 .goals-button:hover {

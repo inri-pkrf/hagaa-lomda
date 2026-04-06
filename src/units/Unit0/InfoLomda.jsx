@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Styles/InfoLomda.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,10 +7,39 @@ function InfoLomda() {
     // 0 = חלק ראשון, 1 = חלק שני
     const [step, setStep] = useState(0);
 
+    // --- לוגיקת שליטה מהחצים הכלליים ---
+    useEffect(() => {
+        const handleNext = (e) => {
+            // אם אנחנו בצעד הראשון, נעבור לצעד השני ונעצור את המעבר לדף הבא בראוטר
+            if (step === 0) {
+                e.preventDefault(); // עוצר את הניווט הכללי ב-Buttons.js
+                setStep(1);
+            }
+            // אם אנחנו בצעד 1, לא נעצור את האירוע והחץ ינווט כרגיל ל-/elevator
+        };
+
+        const handlePrev = (e) => {
+            // אם אנחנו בצעד השני, נחזור לצעד הראשון ונעצור את החזרה לדף הקודם בהיסטוריה
+            if (step === 1) {
+                e.preventDefault(); 
+                setStep(0);
+            }
+        };
+
+        // הוספת המאזינים לאירועים שהגדרנו ב-Buttons.js
+        window.addEventListener('onNextNav', handleNext);
+        window.addEventListener('onPrevNav', handlePrev);
+
+        // ניקוי המאזינים ביציאה מהקומפוננטה
+        return () => {
+            window.removeEventListener('onNextNav', handleNext);
+            window.removeEventListener('onPrevNav', handlePrev);
+        };
+    }, [step]); // המאזין מתעדכן בכל פעם שה-step משתנה
+
     return (
         <div className="InfoLomda">
             <div className='InfoLomdaCard'>
-                {/* הכותרת נמצאת כאן - מחוץ לצעדים - ולכן תישאר תמיד */}
                 <h2 className="InfoLomda-title">ברוכים וברוכות הבאים והבאות ללומדה להכשרת ממונה הג"א</h2>
 
                 {/* --- צעד 1: פסקאות פתיחה --- */}
@@ -48,8 +77,8 @@ function InfoLomda() {
                     </div>
                 )}
 
-                {/* --- מערכת כפתורי הניווט (בתוך הקארד כדי שיהיה קל למקם) --- */}
-                <div className="info-navigation-buttons">
+                {/* --- מערכת כפתורי הניווט הפנימית (מושבתת בהערה) --- */}
+                {/* <div className="info-navigation-buttons">
                     {step === 1 && (
                         <button className="nav-btn-prev" onClick={() => setStep(0)}>
                             חזור
@@ -65,7 +94,9 @@ function InfoLomda() {
                             התחל למידה
                         </button>
                     )}
-                </div>
+                </div> 
+                */}
+                
             </div>
         </div>
     );

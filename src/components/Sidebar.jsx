@@ -77,7 +77,7 @@ const Sidebar = ({ unitInfo }) => {
                       {hasSubChapters && (
                         <ChevronDown
                           size={18}
-                          className={`arrow-icon ${isExpanded ? 'rotated' : ''}`}
+                          className={`arrow-icon-sidebar ${isExpanded ? 'rotated' : ''}`}
                           style={{ marginRight: '8px' }} // רווח בין הטקסט לחץ
                         />
                       )}

@@ -4,46 +4,60 @@ import goalsData from '../Data/GoalsData';
 import headerData from '../Data/HeaderData';
 import './Styles/Goals.css';
 
-
 function Goals() {
   const navigate = useNavigate();
-  const currentUnit = sessionStorage.getItem('currentUnit') || 'UnitOne'; // default to UnitOne if not set
+  const currentUnit = sessionStorage.getItem('currentUnit') || 'UnitOne'; 
   const data = goalsData[currentUnit];
 
-
-  // מתי נראה
   const [visibleGoals, setVisibleGoals] = useState([]);
 
-
-  // כל פעם שנרצה לשנות את הכותרת של היחידה נשנה ככה
+  // עדכון כותרת ראשית
   sessionStorage.setItem('MainTitle', data ? data.title : '');
 
-
-  // Animate goals one by one on mount
+  // אנימציה של המטרות בכניסה לדף
   useEffect(() => {
     if (data && data.goals && data.goals.length > 0) {
-      // Reset visibility
       setVisibleGoals([]);
-
-
-      // Show goals one by one with delay
       data.goals.forEach((_, index) => {
         setTimeout(() => {
           setVisibleGoals(prev => [...prev, index]);
-        }, 300 + (index * 500)); // 300ms initial delay, then 500ms between each
+        }, 300 + (index * 500));
       });
     }
   }, [data]);
 
+  // --- לוגיקת החצים הכלליים: מחליפה את הכפתור המקורי ---
+  useEffect(() => {
+    const handleNext = (e) => {
+      // 1. עצירת הניווט האוטומטי כדי לבצע את הפקודות של הכפתור הישן
+      e.preventDefault();
+
+      // 2. הפקודות שהיו בכפתור: עדכון ה-Session כדי שהסיידבר ידע שהפרק נגמר
+      sessionStorage.setItem('unitOne-goals', 'finished');
+      
+      // 3. שליחת האירוע שמעדכן את הסיידבר ויזואלית (מוסיף V)
+      window.dispatchEvent(new Event('updateNavbar'));
+      
+      // 4. ניווט לדף הבא כפי שמוגדר ב-Data
+      if (data && data.navigateTo) {
+        navigate(data.navigateTo);
+      }
+    };
+
+    // האזנה לחץ הבא
+    window.addEventListener('onNextNav', handleNext);
+    
+    return () => {
+      window.removeEventListener('onNextNav', handleNext);
+    };
+  }, [data, navigate]);
 
   if (!data) {
     return <div>Goals data not found for {currentUnit}</div>;
   }
 
-
-  const { title, subtitle, goals, buttonText, navigateTo, colors } = data;
+  const { subtitle, goals, colors } = data;
   const headerColor = headerData[currentUnit]?.backgroundColor || colors.main;
-
 
   return (
     <div
@@ -57,8 +71,6 @@ function Goals() {
     >
       <p className="goals-subtitle">{subtitle}</p>
 
-
-      {/*  אנימציה של המטרות */}
       <div className="goals-list">
         {goals && goals.map((goal, index) => (
           <div
@@ -75,26 +87,20 @@ function Goals() {
         ))}
       </div>
 
-
-     <button
+      {/* הכפתור המקורי נשאר בהערה - החץ מחליף אותו לחלוטין */}
+      {/* <button
         className="goals-button"
         onClick={() => {
-          // 1. עדכון המפתח והערך שיתאימו ל-Sidebar
           sessionStorage.setItem('unitOne-goals', 'finished');
-         
-          // 2. שליחת האירוע לעדכון ה-Sidebar בזמן אמת
           window.dispatchEvent(new Event('updateNavbar'));
-         
-          // 3. ניווט לדף הבא (היערכות לאיומים)
           navigate(navigateTo);
         }}
       >
         {buttonText}
-      </button>
+      </button> 
+      */}
     </div>
   );
 }
 
-
 export default Goals;
-
