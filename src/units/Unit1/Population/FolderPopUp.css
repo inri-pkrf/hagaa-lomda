@@ -11,16 +11,19 @@
   z-index:1000;
 }
 
+
 .popup-container{
   position: relative;
   width: 70vw;
   top: 6vh;
 }
 
+
 .folderImg{
   width:90%;
   display:block;
 }
+
 
 /* צד שמאל */
 .popup-left{
@@ -30,6 +33,7 @@
     text-align: center;
 }
 
+
 .popup-left h2{
   font-size:7vmin;
   color:#000000;
@@ -38,9 +42,11 @@
   font-weight: lighter;
 }
 
+
 .popupIcon{
   width:5vw;
 }
+
 
 /* הטקסט בצד ימין */
 .popup-text{
@@ -55,7 +61,9 @@
     background: #ffffff40;
     font-family: "Assistant";
     direction: rtl;
+    width: 20vw;
 }
+
 
 /* כפתור סגירה */
 .closeBtn{
@@ -70,3 +78,4 @@
   border-radius:50%;
   cursor:pointer;
 }
+

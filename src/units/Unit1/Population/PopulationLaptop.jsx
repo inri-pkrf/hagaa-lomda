@@ -4,12 +4,16 @@ import { populationDataLaptop } from '../../../Data/Unit1/PopulationDataLaptop';
 import './PopulationLaptop.css';
 
 
+
+
 function PopulationLaptop() {
   const navigate = useNavigate();
   const [current, setCurrent] = useState(null);
   const [openIndex, setOpenIndex] = useState(null);
   const [visited, setVisited] = useState([]);
   const [completed, setCompleted] = useState([]);
+
+
 
 
   const handleAccordion = (index) => {
@@ -20,10 +24,14 @@ function PopulationLaptop() {
     }
 
 
+
+
     if (!visited.includes(index)) {
       setVisited([...visited, index]);
     }
   };
+
+
 
 
   const handleCardClick = (item) => {
@@ -32,10 +40,14 @@ function PopulationLaptop() {
     setVisited([]);
 
 
+
+
     if (!completed.includes(item.id)) {
       setCompleted([...completed, item.id]);
     }
   };
+
+
 
 
   const handleBackToLaptop = () => {
@@ -48,8 +60,12 @@ function PopulationLaptop() {
   };
 
 
+
+
   return (
     <div className="populationLaptop-container">
+
+
 
 
       <img
@@ -59,15 +75,17 @@ function PopulationLaptop() {
       />
 
 
+
+
       {!current && (
         <div className="cards-container">
           {populationDataLaptop.map(item => (
-            <div key={item.id} className="card" onClick={() => handleCardClick(item)}>
+            <div key={item.id} className={`card ${completed.includes(item.id) ? 'completed' : ''}`} onClick={() => handleCardClick(item)}>
               {completed.includes(item.id) && (
                 <img
-                  src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorThreeDone.png`}
-                  className="completed-overlay-img-population"
+                  src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Interfences/doneSign.png`}
                   alt="completed"
+                  className="completed done-img-population"
                 />
               )}
               <h3>{item.title}</h3>
@@ -94,7 +112,9 @@ function PopulationLaptop() {
               <h2>{current.title}</h2>
             </div>
 
+
             {current.type === "text" && <p className="normal-text">{current.content}</p>}
+
 
             {current.type === "accordion" && (
               <div className="accordion-container">
@@ -118,12 +138,14 @@ function PopulationLaptop() {
               </div>
             )}
 
+
             {current.footerNote && (
               <div className="special-footer-note">
                 <p>{current.footerNote}</p>
               </div>
             )}
           </div>
+
 
           {(current.type === "text" || visited.length === (current.content?.length || 0)) && (
             <button className="back-btn side-btn" onClick={handleBackToLaptop}>
