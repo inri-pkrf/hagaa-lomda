@@ -2,7 +2,9 @@ import './App.css';
 import { HashRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import React, { useState } from 'react';
 
+
 import Buttons from './components/Buttons';
+
 
 import QuestionsEnd from './units/Unit1/QuestionsEnd.jsx';
 import OpeningPage from './units/Unit0/OpeningPage';
@@ -27,18 +29,29 @@ import PopulationFolders from './units/Unit1/Population/PopulationFolder.jsx';
 import PopulationGame from './units/Unit1/Population/PopulationGame.jsx';
 import SummaryCheckList from './units/Unit1/SummaryCheckList.jsx';
 
+
 import Rockets from './units/Unit2/Rockets/Rockets.jsx';
 import InfoRockets from './units/Unit2/Rockets/Preparation/InfoRockets.jsx';
 import Preparation from './units/Unit2/Rockets/Preparation/Preparation.jsx';
+import ProtectedSpace from './units/Unit2/Rockets/Preparation/ProtectedSpace.jsx';
+import Alert from './units/Unit2/Rockets/Preparation/Alert.jsx';
+import Defense from './units/Unit2/Rockets/Preparation/Defense.jsx';
+import ChoosingSafeRoom from './units/Unit2/Rockets/Preparation/ChoosingSafeRoom.jsx';
+import Wait10mins from './units/Unit2/Rockets/Preparation/Wait10mins.jsx';
+import BuildingMaintenance from './units/Unit2/Rockets/Preparation/BuildingMaintenance.jsx';
+
+
 
 
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
+
   const [videoPlaying, setVideoPlaying] = useState(
     sessionStorage.getItem('VIDEO_IS_PLAYING') === 'true'
   );
+
 
   // פונקציית האיפוס
   const handleResetAll = () => {
@@ -50,6 +63,7 @@ function App() {
     }
   };
 
+
   return (
     <div className="App">
       {/* כפתור איפוס זמני לפיתוח - יופיע בפינה העליונה */}
@@ -57,14 +71,18 @@ function App() {
         איפוס לומדה 🔄
       </button>
 
+
       {!videoPlaying && location.pathname !== "/elevator" && <Header />}
       <Buttons></Buttons>
+
 
       <Routes>
         {/* דפים ללא סידבר */}
         <Route path="/" element={<OpeningPage />} />
         <Route path="/info-lomda" element={<InfoLomda />} />
         <Route path="/elevator" element={<Elevator />} />
+
+
 
 
         {/* --- התחלת יחידה 1 עם Layout --- */}
@@ -84,11 +102,19 @@ function App() {
         </Route>
         {/* --- סיום יחידה 1 --- */}
 
+
         {/* יחידות אחרות (בינתיים ללא Layout) */}
         <Route path="/intro-unit-two" element={<IntroUnitTwo />} />
         <Route path="/rockets" element={<Rockets />} />
         <Route path="/info-rockets" element={<InfoRockets />} />
         <Route path="/preparation" element={<Preparation />} />
+        <Route path="/ProtectedSpace" element={<ProtectedSpace />} />
+        <Route path="/Alert" element={<Alert />} />
+        <Route path="/Defense" element={<Defense />} />
+        <Route path="/ChoosingSafeRoom" element={<ChoosingSafeRoom />} />
+        <Route path="/Wait10mins" element={<Wait10mins />} />
+        <Route path="/BuildingMaintenance" element={<BuildingMaintenance />} />
+
 
         <Route path="/intro-unit-three" element={<IntroUnitThree />} />
         <Route path="/intro-unit-four" element={<IntroUnitFour />} />
@@ -97,6 +123,7 @@ function App() {
   );
 }
 
+
 export default function AppWrapper() {
   return (
     <Router>
@@ -104,3 +131,4 @@ export default function AppWrapper() {
     </Router>
   );
 }
+

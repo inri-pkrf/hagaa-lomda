@@ -1,2 +1,164 @@
 /* Styles for Unit2 Alert screens */
 
+#headline-icon{
+position: absolute;
+right: 10vw;
+top: 1vh;
+font-family: 'Karantina';
+font-style: normal;
+font-weight: 400;
+font-size: 12vh;
+text-align: center;
+color: #31B78E;
+}
+#alert-text{
+position: absolute;
+right: 10vw;
+top: 20vh;
+width: 80vw;
+font-family: 'Assistant';
+font-style: normal;
+font-weight: 550;
+font-size: 2.5vw;
+line-height: 1.5;
+direction: rtl;
+text-align: right;
+
+
+color: #472E1A;
+}
+
+
+#alert-sub-text{
+position: absolute;
+width: 949px;
+right: 10vw;
+top: 45%;
+
+
+font-family: 'Assistant';
+font-style: normal;
+font-weight: 700;
+font-size: 2vw;
+line-height: 1.5;
+text-align: right;
+direction: rtl;
+
+
+color: #472E1A;
+}
+
+
+#alert-list{
+
+
+position: absolute;
+width: 949px;
+right: 10vw;
+top: 53%;
+
+
+
+
+font-family: 'Assistant';
+font-style: normal;
+font-weight: 300;
+font-size: 1.8vw;
+line-height: 1.5;
+text-align: right;
+direction: rtl;
+
+
+color: #472E1A;
+}
+
+
+#alert-siren-icon{
+    background-color: #31B78E;
+    padding: 3vh;
+    margin: 2vh;
+    border-radius: 50%;
+    height: 9vh;
+    width: 9vh;
+    border: 1px solid #31B78E;
+    position: absolute;
+    right: 0vw;
+}
+
+
+#alert-next-button{
+    position: absolute;
+    right: 10vw;
+    top: 80vh;
+    background-color: #31B78E;
+    color: white;
+    border: none;
+    padding: 1vh 2vw;
+    font-size: 1.5vw;
+    cursor: pointer;
+}
+
+
+#alert-back-button{
+    position: absolute;
+    left: 10vw;
+    top: 80vh;
+    background-color: #E2787A;
+    color: white;
+    border: none;
+    padding: 1vh 2vw;
+    font-size: 1.5vw;
+    cursor: pointer;
+
+
+}
+
+
+#alert-text2{
+position: absolute;
+width: 1033px;
+left: 5VW;
+top: 15%;
+font-family: 'Karantina';
+font-style: normal;
+font-weight: 400;
+font-size: 4vw;
+line-height: 60px;
+text-align: right;
+color: #472E1A;
+}
+
+
+#alert-sub-text2{
+position: absolute;
+width: 776px;
+left: 18vw;
+top: 27%;
+font-family: 'Assistant';
+font-style: normal;
+font-weight: 600;
+font-size: 2.5vw;
+line-height: 60px;
+text-align: right;
+color: #472E1A;
+}
+
+
+#alert-list2{
+position: absolute;
+width: 949px;
+left: 4vw;
+top: 42%;
+font-family: 'Assistant';
+font-style: normal;
+font-weight: 300;
+font-size: 1.8vw;
+line-height: 2;
+text-align: right;
+direction: rtl;
+color: #472E1A;
+list-style-type: "✔ ";
+}
+
+
+

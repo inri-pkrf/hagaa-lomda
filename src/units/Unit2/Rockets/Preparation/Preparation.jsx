@@ -1,12 +1,14 @@
 import React from 'react';
 import TopicCircle from '../../../../components/TopicCircle.jsx';
 import '../../style/Preparation.css';
+import { useNavigate } from "react-router-dom";
 
 
 function Preparation() {
+  const navigate = useNavigate();
   const topicsData = [
     {
-      id: 1,
+      id: `ProtectedSpace`,
       title: "כיצד המרחב המוגן שומר עלינו?",
       bgColor: "#FFB356",
       icon: "shelter-man.png",
@@ -15,7 +17,7 @@ function Preparation() {
       isCompleted: false
     },
     {
-      id: 2,
+      id: `Alert`,
       title: "התרעה",
       bgColor: "#56C3A9",
       icon: "siren.png",
@@ -23,7 +25,7 @@ function Preparation() {
       hasPlay: true
     },
     {
-      id: 3,
+      id: `Defense`,
       title: "כיצד נתגונן?",
       bgColor: "#00ADEF",
       icon: "questionIcon.png",
@@ -31,7 +33,7 @@ function Preparation() {
       hasPlay: true
     },
     {
-      id: 4,
+      id: `ChoosingSafeRoom`,
       title: "בחירת מרחב מוגן",
       bgColor: "#E2787A",
       icon: "choose-space.png",
@@ -39,7 +41,7 @@ function Preparation() {
       hasPlay: false
     },
     {
-      id: 5,
+      id: `Wait10mins`,
       title: "למה חשוב להמתין 10 דקות?",
       bgColor: "#E67E22",
       icon: "timer10.png",
@@ -47,7 +49,7 @@ function Preparation() {
       hasPlay: true
     },
     {
-      id: 6,
+      id: `BuildingMaintenance`,
       title: "ציוד ואחזקת מרחב מוגן",
       bgColor: "#567691",
       icon: "equipment.png",
@@ -57,9 +59,10 @@ function Preparation() {
   ];
  
   const handleTopicClick = (id) => {
-    console.log("Navigating to topic:", id);
-    // כאן תבוא הלוגיקה של הניווט (navigate)
+    navigate(`/${id}`);
   };
+
+
 
 
   return (
@@ -69,6 +72,8 @@ function Preparation() {
         לפניך מספר עקרונות להיערכות והתנהגות בתרחיש ירי טילים.<br />
         <strong>יש ללחוץ על האייקונים להרחבה:</strong>
       </p>
+
+
 
 
       <div className="topics-grid">
@@ -84,8 +89,4 @@ function Preparation() {
   );
 }
 export default Preparation;
-
-
-
-
 
