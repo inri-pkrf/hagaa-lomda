@@ -16,6 +16,9 @@ function Population() {
   const [isFoldersDone, setIsFoldersDone] = useState(false);
   const [isGameDone, setIsGameDone] = useState(false);
 
+  // בדיקה האם כל שלושת השלבים הסתיימו
+  const allStepsFinished = isLaptopDone && isFoldersDone && isGameDone;
+
   useEffect(() => {
     sessionStorage.setItem('MainTitle', "אוכלוסיה");
 
@@ -27,6 +30,46 @@ function Population() {
     if (foldersStatus) setIsFoldersDone(true);
     if (gameStatus) setIsGameDone(true);
   }, [location]);
+
+  // --- לוגיקת החצים (קדימה מושבת, אחורה למסדרון) ---
+  useEffect(() => {
+    // השבתת החץ קדימה כל עוד לא סיימו הכל
+    if (!allStepsFinished) {
+      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: true }));
+    } else {
+      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
+    }
+
+    const handleNext = (e) => {
+      if (allStepsFinished) {
+        e.preventDefault();
+        handleFinalComplete();
+      }
+    };
+
+    const handlePrev = (e) => {
+      // חץ אחורה תמיד מחזיר למסדרון
+      e.preventDefault();
+      navigate('/intro-unit-one');
+    };
+
+    window.addEventListener('onNextNav', handleNext);
+    window.addEventListener('onPrevNav', handlePrev);
+
+    return () => {
+      window.removeEventListener('onNextNav', handleNext);
+      window.removeEventListener('onPrevNav', handlePrev);
+      // איפוס החסימה ביציאה
+      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
+    };
+  }, [allStepsFinished, navigate]);
+
+  const handleFinalComplete = () => {
+    sessionStorage.setItem('unitOne-fourth', 'finished');
+    sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'unitOne-fourth', state: 'finished' }));
+    window.dispatchEvent(new Event('updateNavbar'));
+    navigate("/intro-unit-one");
+  };
 
   const getBackgroundImage = () => {
     if (isGameDone) return finalBackground; 
@@ -50,7 +93,6 @@ function Population() {
         alt="Office Background"
       />
 
-      {/* --- אזורי לחיצה --- */}
       <div className="click-laptop" onClick={() => navigate('/PopulationInfo')}></div>
 
       {isLaptopDone && (
@@ -61,22 +103,14 @@ function Population() {
         <div className="click-light" onClick={() => navigate('/PopulationGame')}></div>
       )}
 
-      {/* --- סימני וי --- */}
       {isLaptopDone && <div className="population-laptop-check-static check-laptop-pos">✔</div>}
       {isFoldersDone && <div className="population-laptop-check-static check-folder-pos">✔</div>}
       {isGameDone && <div className="population-laptop-check-static check-light-pos">✔</div>}
 
-      {/* הכפתור המעודכן - עובר לשאלות */}
       {isGameDone && (
         <button 
           className="nextUnitButton" 
-          onClick={() => {
-            // 1. סימון שהפרק הסתיים עבור מסך הדלתות
-            sessionStorage.setItem('unitOne-fourth', 'finished');
-            
-            // 2. חזרה למסך הדלתות (ולא ישר לשאלון)
-            navigate("/intro-unit-one"); // ודאי שזה הנתיב הנכון למסך הדלתות ב-App.js
-          }}
+          onClick={handleFinalComplete}
         >
           חזרה למסך היחידה
         </button>

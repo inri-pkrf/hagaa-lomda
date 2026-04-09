@@ -260,3 +260,36 @@
 .ending-button-states {
   z-index: 300000;
 }
+
+.ending-button-states {
+  padding: 12px 30px;
+  font-size: 3vmin;
+  font-weight: 700;
+  font-family: 'Assistant', sans-serif;
+  color: #fff;
+  
+  /* שינוי ל-fixed כדי שיצוף מעל ה-Overlay */
+  position: fixed; 
+  left: 50%;
+  bottom: 10%; /* ממקם אותו בתחתית המסך */
+  transform: translateX(-50%); /* ממרכז אותו אופקית */
+  
+  background: linear-gradient(45deg, #ff6b6b, #f7d794, #63cdda, #ff6b6b);
+  background-size: 300% 300%;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: all 0.4s ease;
+  
+  /* z-index גבוה יותר מה-Overlay והלוח */
+  z-index: 100001; 
+  
+  /* אנימציית כניסה עדינה */
+  animation: fadeIn 0.5s ease-out;
+}
+
+.ending-button-states:hover {
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}

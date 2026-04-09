@@ -22,6 +22,7 @@ function Buttons() {
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [prevPath, setPrevPath] = useState(null);
   const [nextPath, setNextPath] = useState(null);
+  const [isNextDisabled, setIsNextDisabled] = useState(false);
 
   const currentPath = location.pathname;
   const color = getHeaderColor();
@@ -68,10 +69,21 @@ function Buttons() {
     navigate(targetPath);
   };
 
+  useEffect(() => {
+  // האזנה לאירוע השבתה/הפעלה
+  const handleToggleNext = (e) => setIsNextDisabled(e.detail);
+  
+  window.addEventListener('setNextBtnDisabled', handleToggleNext);
+  return () => {
+    window.removeEventListener('setNextBtnDisabled', handleToggleNext);
+    setIsNextDisabled(false); // איפוס ביציאה מהקומפוננטה
+  };
+}, [location.pathname]);
+
 
   return (
     <div className="buttons-page-corner" style={{ '--btn-color': color }}>
-      <button className="app-button app-button--next" onClick={() => goToPath(nextPath, true)} disabled={!nextPath}>
+      <button className="app-button app-button--next" onClick={() => goToPath(nextPath, true)} disabled={!nextPath || isNextDisabled} >
         <img src={`${process.env.PUBLIC_URL}/assets/Btns/NextBtnArrow.png`} alt="Next" className="app-button__icon next" />
       </button>
       <button className="app-button app-button--prev" onClick={() => goToPath(prevPath, false)} disabled={!prevPath}>

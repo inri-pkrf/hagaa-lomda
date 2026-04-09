@@ -7,31 +7,32 @@ function VideoThreats({ setVideoPlaying }) {
   const [canFinish, setCanFinish] = useState(false);
 
   useEffect(() => {
-    // טיימר המאפשר סיום רק אחרי 2 שניות
+    // 1. בכניסה - משביתים את החץ הכללי
+    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: true }));
+
     const showButtonTimer = setTimeout(() => {
       setCanFinish(true);
+      // 2. ברגע שמופיע כפתור הסיום - משחררים את החץ הכללי שיהיה לחיץ (Enabled)
+      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
       window.dispatchEvent(new Event('updateNavbar'));
     }, 2000);
 
+    // לוגיקה עבור החץ הכללי כשהוא לחיץ
     const handleNext = (e) => {
-      // אנחנו עוצרים את הניווט הכללי של Buttons.js בכל מקרה
-      // כדי שהקומפוננטה הזו תחליט לאן לנווט (למסדרון)
-      e.preventDefault(); 
-
       if (canFinish) {
-        // אם עברו 2 שניות, נבצע את לוגיקת הסיום והחזרה למסדרון
+        // אם המשתמש לוחץ על החץ הכללי כשהוא פעיל, נסיים את הפרק
+        e.preventDefault(); 
         handleVideoEnd();
-      } else {
-        // אם המשתמש לוחץ לפני הזמן, לא קורה כלום
-        console.log("הסרטון טרם הסתיים");
       }
     };
 
     window.addEventListener('onNextNav', handleNext);
-    
+
     return () => {
       clearTimeout(showButtonTimer);
       window.removeEventListener('onNextNav', handleNext);
+      // ליתר ביטחון, מוודאים שהחץ משוחרר כשיוצאים מהדף
+      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
     };
   }, [canFinish]);
 
@@ -42,14 +43,12 @@ function VideoThreats({ setVideoPlaying }) {
       sessionStorage.setItem('VIDEO IS PLAYING', 'false');
     }
     
-    // 1. עדכון סטטוס הפרק
     sessionStorage.setItem('unitOne-first', 'finished');
     sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'UnitOne-first', state: 'finished' }));
     
-    // 2. עדכון ה-Sidebar בזמן אמת (להופעת ה-V)
     window.dispatchEvent(new Event('updateNavbar'));
     
-    // 3. ניווט ידני למסדרון (בדיוק מה שהכפתור עשה)
+    // ניווט חזרה למסדרון
     navigate('/intro-unit-one');
   };
 
@@ -65,12 +64,12 @@ function VideoThreats({ setVideoPlaying }) {
           className='VideoThreats-video'
         ></iframe>
 
-        {/* הכפתור הישן בהערה */}
-        {/* {canFinish && (
+        {/* כפתור הסיום רק כאינדיקציה ויזואלית או לחיצה נוספת */}
+        {canFinish && (
           <button onClick={handleVideoEnd} className="video-threats-button">
             סיום
           </button>
-        )} */}
+        )}
       </div>
     </div>
   );

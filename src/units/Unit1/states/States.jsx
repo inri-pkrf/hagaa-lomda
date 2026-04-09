@@ -14,63 +14,51 @@ function States() {
   const [selectedId, setSelectedId] = useState(null);
   const [showCardPopup, setShowCardPopup] = useState(false);
 
+  const isAllOpened = openedCards.size === 4;
+
   useEffect(() => {
     const saved = sessionStorage.getItem('statesOpenedCards');
     if (saved) {
       setOpenedCards(new Set(JSON.parse(saved)));
     }
+
+    // השבתת החץ הכללי של הלומדה (Next)
+    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: true }));
+
+    return () => {
+      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
+    };
   }, []);
 
-  // --- לוגיקת החצים הכלליים ---
+  useEffect(() => {
+    if (isAllOpened) {
+      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
+    }
+  }, [isAllOpened]);
+
+  // --- לוגיקת החצים (קדימה ואחורה) ---
   useEffect(() => {
     const handleNext = (e) => {
-      if (!showCards) {
-        e.preventDefault();
-        handleBackgroundClick();
-        return;
-      }
-
-      if (showCardPopup) {
-        e.preventDefault();
-        closeStateCard();
-        return;
-      }
-
-      const allIds = [1, 2, 3, 4];
-      const nextId = allIds.find(id => !openedCards.has(id));
-
-      if (nextId) {
-        e.preventDefault();
-        handleCardClick(nextId);
-      } 
-      else {
+      if (isAllOpened) {
         e.preventDefault();
         handleComplete();
       }
     };
 
-    // --- הוספת מאזין לחץ אחורה ---
     const handlePrev = (e) => {
-      // אנחנו עוצרים את החזרה האוטומטית ל-Threats שמוגדרת ב-routeOrder
+      // חטיפת כפתור "חזור" - עוצר את הניווט האוטומטי ומחזיר למסדרון
       e.preventDefault();
-
-      if (showCardPopup) {
-        // אם יש כרטיס פתוח, לחיצה על אחורה פשוט תסגור אותו
-        closeStateCard();
-      } else {
-        // אם אנחנו בלוח (או בחדר), לחיצה על אחורה תחזיר למסדרון היחידה
-        navigate('/intro-unit-one');
-      }
+      navigate('/intro-unit-one');
     };
 
     window.addEventListener('onNextNav', handleNext);
-    window.addEventListener('onPrevNav', handlePrev); // רישום המאזין לאחורה
+    window.addEventListener('onPrevNav', handlePrev); // האזנה לחץ אחורה
 
     return () => {
       window.removeEventListener('onNextNav', handleNext);
-      window.removeEventListener('onPrevNav', handlePrev); // ניקוי המאזין
+      window.removeEventListener('onPrevNav', handlePrev);
     };
-  }, [showCards, showCardPopup, openedCards, navigate]); // הוספת תלויות מעודכנות
+  }, [isAllOpened, navigate]);
 
   const handleDevQuickOpen = (e) => {
     e.stopPropagation();
@@ -91,12 +79,8 @@ function States() {
     sessionStorage.setItem('unitOne-second', 'finished');
     sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'unitOne-second', state: 'finished' }));
     setCompleted(true);
-    
     window.dispatchEvent(new Event('updateNavbar'));
-
-    setTimeout(() => {
-      navigate('/intro-unit-one');
-    }, 1000);
+    navigate('/intro-unit-one');
   };
 
   const handleCardClick = (id) => {
@@ -119,26 +103,8 @@ function States() {
 
   return (
     <div className="threats-container">
-      {process.env.NODE_ENV === 'development' && showCards && (
-        <button
-          onClick={handleDevQuickOpen}
-          style={{
-            position: 'fixed',
-            top: '79px',
-            left: '230px',
-            zIndex: 10013,
-            padding: '10px',
-            background: 'red',
-            color: 'white',
-            borderRadius: '5px',
-            cursor: 'pointer',
-            fontSize: '12px',
-            border: '2px solid white',
-            fontFamily: "Assistant, sans-serif"
-          }}
-        >
-          DEV: פתח הכל
-        </button>
+      {process.env.NODE_ENV === 'development' && !isAllOpened && (
+        <button onClick={handleDevQuickOpen} className="dev-btn"> DEV: פתח הכל </button>
       )}
 
       <div className='subtext-threats'>
@@ -159,11 +125,7 @@ function States() {
         <>
           <div className="overlay-dark"></div>
           <div className="board-container-wrapper">
-            <img
-              className="Board-image-element"
-              src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/StatesArtBoard.png`}
-              alt="Board"
-            />
+            <img className="Board-image-element" src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/StatesArtBoard.png`} alt="Board" />
 
             <img className='pinState' id="states-pin1" src={image} alt="Pin" />
             <img className='pinState' id="states-pin2" src={image} alt="Pin" />
@@ -184,6 +146,12 @@ function States() {
             </div>
           </div>
         </>
+      )}
+
+      {isAllOpened && (
+        <button onClick={handleComplete} className="ending-button-states">
+          סיום וחזרה למסדרון
+        </button>
       )}
 
       {showCardPopup && selectedId != null && (

@@ -9,18 +9,16 @@ function Threats({ setVideoPlaying }) {
   useEffect(() => {
     sessionStorage.setItem('MainTitle', " היערכות לאיומים");
 
-    // --- הוספה עבור החצים ---
-    const handleNext = (e) => {
-      if (!showVideo) {
-        e.preventDefault(); // עוצר את הניווט הכללי של החץ
-        handleTvClick();    // מפעיל את פתיחת הטלוויזיה
-      }
-    };
+    // --- שינוי עבור החצים בלבד ---
+    // השבתת החץ הכללי של הלומדה בכניסה לפרק
+    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: true }));
 
-    window.addEventListener('onNextNav', handleNext);
-    return () => window.removeEventListener('onNextNav', handleNext);
-    // ------------------------
-  }, [showVideo]);
+    return () => {
+      // שחרור החסימה ביציאה מהפרק
+      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
+    };
+    // ----------------------------
+  }, []);
 
   const handleTvClick = () => {
     if (showVideo) return;
