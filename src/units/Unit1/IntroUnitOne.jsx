@@ -92,6 +92,10 @@ function IntroUnitOne() {
     <div className='IntroUnitOne'>
       <UnitOneSidebar />
 
+      <div className='subtext-IntroUnitOne'>
+      יחידה זו  בנויה מ - 4 תתי-נושאים, בלחיצה על כל דלת יפתח תת-נושא חדש
+      </div>
+
       <img className='first-background' src={doorImage} alt="Intro Unit 1" />
       
       <div className='door-signs-UnitOne'>

@@ -18,6 +18,43 @@ const QuizEngine = ({ data, unitNumber, onFinished }) => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [status, setStatus] = useState(null);
 
+  // --- הוספת לוגיקת החצים בלבד (בלי לשנות עיצוב) ---
+// --- לוגיקת החצים המעודכנת ---
+  useEffect(() => {
+    // שליטה על כפתור "הבא" הכללי - פעיל רק אם ענו נכון
+    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: status !== 'correct' }));
+
+    const handleNext = (e) => {
+      if (status === 'correct') {
+        e.preventDefault();
+        handleNextLogic();
+      }
+    };
+
+    const handlePrev = (e) => {
+      // עצירת הניווט האוטומטי של הלומדה בכל מקרה!
+      e.preventDefault();
+      
+      if (currentIndex === 0) {
+        // אם אנחנו בשאלה הראשונה (0) - חוזרים למסדרון
+        navigate('/intro-unit-one');
+      } else {
+        // אם אנחנו בשאלה 1 ומעלה - פשוט חוזרים שאלה אחת אחורה
+        setCurrentIndex(prev => prev - 1);
+      }
+    };
+
+    window.addEventListener('onNextNav', handleNext);
+    window.addEventListener('onPrevNav', handlePrev);
+
+    return () => {
+      window.removeEventListener('onNextNav', handleNext);
+      window.removeEventListener('onPrevNav', handlePrev);
+      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
+    };
+  }, [currentIndex, status, navigate]); 
+  // ----------------------------------------------
+
   // אפקט לטעינת תשובות שמורות בכל פעם שהאינדקס משתנה
   useEffect(() => {
     const savedAnswers = JSON.parse(sessionStorage.getItem(answersKey)) || {};
@@ -53,7 +90,7 @@ const QuizEngine = ({ data, unitNumber, onFinished }) => {
     }
   };
 
-  const handleNext = () => {
+  const handleNextLogic = () => {
     if (currentIndex < data.length - 1) {
       setCurrentIndex(prev => prev + 1);
     } else {
@@ -99,9 +136,9 @@ const QuizEngine = ({ data, unitNumber, onFinished }) => {
         </div>
       </main>
 
-      <footer className="quiz-engine-footer">
+      {/* הכפתורים המקוריים בהערה - הניווט עובר לחצים הכלליים */}
+      {/* <footer className="quiz-engine-footer">
         <div className="nav-controls">
-          {/* כפתור הקודם - אופציונלי אם את רוצה לאפשר חזרה אחורה */}
           {currentIndex > 0 && (
             <button className="quiz-nav-btn prev-btn" onClick={() => setCurrentIndex(prev => prev - 1)}>
               ⬅ שאלה קודמת
@@ -111,12 +148,13 @@ const QuizEngine = ({ data, unitNumber, onFinished }) => {
           <button 
             className="quiz-nav-btn next-btn" 
             disabled={status !== 'correct'}
-            onClick={handleNext}
+            onClick={handleNextLogic}
           >
             {currentIndex === data.length - 1 ? "סיום שאלון" : "לשאלה הבאה ↪"}
           </button>
         </div>
-      </footer>
+      </footer> 
+      */}
     </div>
   );
 };

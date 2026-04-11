@@ -127,11 +127,11 @@ function Interfaces() {
         );
       })}
 
-      {isAllVisited && !completed && (
+      {/* {isAllVisited && !completed && (
         <button className="complete-button-Interfaces" onClick={handleComplete}>
           סיים וחזור
         </button>
-      )}
+      )} */}
 
       {selectedItem && (
         <InterfacePopUp

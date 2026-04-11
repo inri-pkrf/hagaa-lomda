@@ -8,6 +8,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+        background-color: #e7e6d8;
+
 }
 
 
@@ -285,3 +287,20 @@
     padding: 0 !important;
 }
 
+
+.back-to-office-btn {
+  position: fixed;
+    top: 62px;
+    right: 20px;
+    z-index: 2000;
+    color: #472e1a;
+    font-family: 'Assistant', sans-serif;
+    font-size: 1.2vw;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-to-office-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}

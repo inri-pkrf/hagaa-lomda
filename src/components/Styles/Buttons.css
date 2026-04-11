@@ -1,13 +1,14 @@
 .buttons-page-corner {
-  position: fixed ;
-  bottom: -1vw ;
-  left: -1vw ;
+  position: fixed;
+  bottom: -1vw;
+  left: -1vw;
   display: flex;
-  align-items: center;
+  align-items: flex-end; 
   justify-content: center;
   padding: 0.8vw;
   z-index: 1000000000;
 }
+
 .app-button {
   --main-color: var(--btn-color, #3FC6F3);
   background: var(--main-color);
@@ -23,15 +24,51 @@
   box-shadow: 0 6px 2vw rgba(0,0,0,0.16);
   cursor: pointer;
   transition: transform .2s ease, filter .2s ease;
+  margin: 0; 
+  /* חשוב עבור שכבת ה-Overlay של כפתור ה-Next */
+  position: relative; 
+  overflow: hidden; /* שומר על הפינות המעוגלות */
+}
+
+/* כפתור הבא - רק גדול יותר */
+.app-button--next {
+  width: 6vw;  
+  height: 6vw; 
+  z-index: 2; 
+}
+
+/* הוספת שכבת כהות רק לרקע של כפתור הבא */
+.app-button--next::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.25); /* רמת כהות (25%) */
+  z-index: 1; /* מעל הרקע, מתחת לאייקון */
+  transition: background-color .2s ease;
+}
+
+/* התאמת האייקון בתוך הכפתור הגדול - וודא שהוא מעל שכבת הכהות */
+.app-button--next .app-button__icon {
+  width: 5.5vw;
+  height: 5.5vw;
+  z-index: 2; /* מעל הכהות */
 }
 
 .app-button:hover:not(:disabled) {
   transform: translateY(-2px);
+}
+
+
+
+.app-button--prev:hover:not(:disabled) {
   filter: brightness(1.05);
 }
 
 .app-button:active:not(:disabled) {
-  transform: translateY(1vw);
+  transform: translateY(0.5vw);
 }
 
 .app-button:disabled {
@@ -48,4 +85,3 @@
 .app-button__icon.back {
   transform: scaleX(-1);
 }
-

@@ -1,21 +1,18 @@
 .gamePage {
-
     direction: rtl;
-
     overflow: hidden;
-
-    background-color: #fdf9f4;
-
+    background-color: #e7e6d8;
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
-    padding: 2vh 20px;
-
+    padding: 14vh 20px;
     font-family: 'Assistant', sans-serif;
-
+ position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    overflow: hidden;
 }
 
 
@@ -266,7 +263,7 @@
 /* --- מצב סיכום (רק כש-isGameOver אמת) --- */
 /* השילוב של שני ה-classes מבטיח שהעיצוב יחול רק בסוף */
 .items-column.items-column-final {
-    position: static; 
+    position: static;
     transform: none;
     margin: 0;
 }
@@ -275,15 +272,18 @@
 .final-summary-list {
     display: flex;
     flex-direction: column;
-    padding-top: 55px; /* גובה ה-targets-header כדי להתחיל באותו קו */
+    padding-top: 55px;
+    /* גובה ה-targets-header כדי להתחיל באותו קו */
 }
 
 
 
 .summary-row-wrapper {
-    height: 100px;     /* חייב להיות זהה ל-height ב-category-group */
+    height: 100px;
+    /* חייב להיות זהה ל-height ב-category-group */
     display: flex;
-    align-items: center; /* ממרכז את הכרטיס הכחול מול תיבת המטרה */
+    align-items: center;
+    /* ממרכז את הכרטיס הכחול מול תיבת המטרה */
 }
 
 .summary-row-animate {
@@ -295,7 +295,8 @@
 }
 
 .summary-blue-card {
-    height: 60px;      /* גובה קבוע שדומה ל-target-box */
+    height: 60px;
+    /* גובה קבוע שדומה ל-target-box */
     display: flex;
     align-items: center;
     background-color: #cdf0fc;
@@ -304,6 +305,7 @@
     width: 30vw;
     flex: 1;
 }
+
 .summary-icon {
     width: 50px;
     height: auto;

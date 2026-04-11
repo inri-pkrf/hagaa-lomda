@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { populationDataLaptop } from '../../../Data/Unit1/PopulationDataLaptop';
 import './PopulationLaptop.css';
-
-
-
 
 function PopulationLaptop() {
   const navigate = useNavigate();
   const [current, setCurrent] = useState(null);
   const [openIndex, setOpenIndex] = useState(null);
   const [visited, setVisited] = useState([]);
-  const [completed, setCompleted] = useState([]);
-
-
-
+  
+  // טעינת הכרטיסים שהושלמו מה-sessionStorage בטעינה ראשונית
+  const [completed, setCompleted] = useState(() => {
+    const saved = sessionStorage.getItem('populationLaptopCompletedCards');
+    return saved ? JSON.parse(saved) : [];
+  });
 
   const handleAccordion = (index) => {
     if (openIndex === index) {
@@ -22,33 +21,23 @@ function PopulationLaptop() {
     } else {
       setOpenIndex(index);
     }
-
-
-
-
     if (!visited.includes(index)) {
       setVisited([...visited, index]);
     }
   };
-
-
-
 
   const handleCardClick = (item) => {
     setCurrent(item);
     setOpenIndex(null);
     setVisited([]);
 
-
-
-
     if (!completed.includes(item.id)) {
-      setCompleted([...completed, item.id]);
+      const newCompleted = [...completed, item.id];
+      setCompleted(newCompleted);
+      // שמירה מיידית של המערך המעודכן
+      sessionStorage.setItem('populationLaptopCompletedCards', JSON.stringify(newCompleted));
     }
   };
-
-
-
 
   const handleBackToLaptop = () => {
     if (completed.length === populationDataLaptop.length) {
@@ -59,23 +48,37 @@ function PopulationLaptop() {
     }
   };
 
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: true }));
+    window.dispatchEvent(new CustomEvent('setPrevBtnDisabled', { detail: true }));
 
+    const blockNav = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    };
 
+    window.addEventListener('onNextNav', blockNav);
+    window.addEventListener('onPrevNav', blockNav);
+
+    return () => {
+      window.removeEventListener('onNextNav', blockNav);
+      window.removeEventListener('onPrevNav', blockNav);
+      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
+      window.dispatchEvent(new CustomEvent('setPrevBtnDisabled', { detail: false }));
+    };
+  }, []);
 
   return (
     <div className="populationLaptop-container">
-
-
-
+      <button className="back-to-office-btn" onClick={() => navigate('/population')}>
+        חזרה למשרד 🏠
+      </button>
 
       <img
         src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/populationComp.png`}
         className="populationLaptop-background visible"
         alt="laptop-background"
       />
-
-
-
 
       {!current && (
         <div className="cards-container">
@@ -99,7 +102,6 @@ function PopulationLaptop() {
         </div>
       )}
 
-
       {current && (
         <>
           <div className="content-screen">
@@ -112,9 +114,7 @@ function PopulationLaptop() {
               <h2>{current.title}</h2>
             </div>
 
-
             {current.type === "text" && <p className="normal-text">{current.content}</p>}
-
 
             {current.type === "accordion" && (
               <div className="accordion-container">
@@ -138,14 +138,12 @@ function PopulationLaptop() {
               </div>
             )}
 
-
             {current.footerNote && (
               <div className="special-footer-note">
                 <p>{current.footerNote}</p>
               </div>
             )}
           </div>
-
 
           {(current.type === "text" || visited.length === (current.content?.length || 0)) && (
             <button className="back-btn side-btn" onClick={handleBackToLaptop}>
@@ -158,8 +156,4 @@ function PopulationLaptop() {
   );
 }
 
-
 export default PopulationLaptop;
-
-
-

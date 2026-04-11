@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./PopulationGame.css";
 import { useNavigate } from 'react-router-dom';
 
@@ -10,8 +10,17 @@ const itemsData = [
 
 export default function PopulationGame() {
   const navigate = useNavigate();
-  const [placed, setPlaced] = useState({});
-  const [availableItems, setAvailableItems] = useState(itemsData);
+
+  // טעינת מצב המשחק מה-sessionStorage
+  const [placed, setPlaced] = useState(() => {
+    const saved = sessionStorage.getItem("populationGamePlaced");
+    return saved ? JSON.parse(saved) : {};
+  });
+
+  const [availableItems, setAvailableItems] = useState(() => {
+    const saved = sessionStorage.getItem("populationGameAvailable");
+    return saved ? JSON.parse(saved) : itemsData;
+  });
 
   const handleDragStart = (e, id) => {
     e.dataTransfer.setData("itemId", id);
@@ -20,16 +29,43 @@ export default function PopulationGame() {
   const handleDrop = (e, category) => {
     const id = Number(e.dataTransfer.getData("itemId"));
     const item = itemsData.find(i => i.id === id);
+    
     if (item.correct === category) {
-      setPlaced(prev => ({ ...prev, [category]: id }));
-      setAvailableItems(prev => prev.filter(i => i.id !== id));
+      const newPlaced = { ...placed, [category]: id };
+      const newAvailable = availableItems.filter(i => i.id !== id);
+
+      setPlaced(newPlaced);
+      setAvailableItems(newAvailable);
+
+      // שמירת ההתקדמות בסטורג'
+      sessionStorage.setItem("populationGamePlaced", JSON.stringify(newPlaced));
+      sessionStorage.setItem("populationGameAvailable", JSON.stringify(newAvailable));
     }
   };
 
   const isGameOver = availableItems.length === 0;
 
+  useEffect(() => {
+    // השבתת חיצים כלליים
+    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: true }));
+    window.dispatchEvent(new CustomEvent('setPrevBtnDisabled', { detail: true }));
+
+    const blockNav = (e) => e.preventDefault();
+    window.addEventListener('onNextNav', blockNav);
+    window.addEventListener('onPrevNav', blockNav);
+
+    return () => {
+      window.removeEventListener('onNextNav', blockNav);
+      window.removeEventListener('onPrevNav', blockNav);
+    };
+  }, []);
+
   return (
     <div className="gamePage">
+      <button className="back-to-office-btn" onClick={() => navigate('/population')}>
+        חזרה למשרד 🏠
+      </button>
+      
       <h1 className="gameTitle">
         בשעת חירום, כפי שלמדת, לאוכלוסיית המפעל משתבשת שגרת החיים.
         באיזה אופן הדבר בא לידי ביטוי?
@@ -40,7 +76,6 @@ export default function PopulationGame() {
       </p>
 
       <div className="game-container">
-        {/* צד ימין - המטרות */}
         <div className="targets-wrapper">
           <div className="targets-header">סוגי צרכים</div>
           <div className="targets-body">
@@ -73,7 +108,6 @@ export default function PopulationGame() {
           </div>
         </div>
 
-        {/* צד שמאל - פריטים או סיכום */}
         <div className={`items-column ${isGameOver ? "items-column-final" : ""}`}>
           {!isGameOver ? (
             availableItems.map(item => (
@@ -85,9 +119,9 @@ export default function PopulationGame() {
           ) : (
             <div className="final-summary-list">
               {[
-                { id: 1, img: "BlueIconPopulation3.png" }, // פיזי
-                { id: 2, img: "BlueIconPopulation.png" },  // חברתי
-                { id: 3, img: "BlueIconPopulation2.png" }  // מידע
+                { id: 1, img: "BlueIconPopulation3.png" },
+                { id: 2, img: "BlueIconPopulation.png" },
+                { id: 3, img: "BlueIconPopulation2.png" }
               ].map((item, index) => (
                 <div key={item.id} className="summary-row-wrapper">
                   <div className="summary-row-animate" style={{ animationDelay: `${index * 0.4}s` }}>

@@ -293,3 +293,72 @@
   transform: translateX(-50%) scale(1.05);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
 }
+
+/* סימן הוי על הלוח במבט רחוק */
+.states-board-done-v {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3vw;
+  height: auto;
+  pointer-events: none;
+}
+
+/* קלאס לאזור לחיצה שכבר הושלם - ללא האנימציה המהבהבת */
+.click-div-states-done {
+  width: 27%;
+  height: 29%;
+  position: absolute;
+  top: 21%;
+  left: 36%;
+  z-index: 1000;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+  animation: none; /* מבטל את ה-fade-pulse */
+}
+
+.click-div-states-done:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* כפתור סגירה ללוח המרכזי */
+.close-board-btn {
+    position: absolute;
+     top: 4%;
+    left: 8%;
+    z-index: 10001; /* מעל הלוח */
+    background: white;
+    border: 2px solid #3fc6f3;
+    font-size: 2vw;
+    width: 3.5vw;
+    height: 3.5vw;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    color: #3fc6f3;
+    font-weight: bold;
+}
+
+.close-board-btn:hover {
+    transform: scale(1.1);
+    background-color: #3fc6f3;
+    color: white;
+}
+
+/* וודאי שהקונטיינר של הלוח מאפשר מיקום אבסולוטי */
+.board-container-wrapper {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 76vw;
+    height: 85vh;
+    z-index: 10000;
+}

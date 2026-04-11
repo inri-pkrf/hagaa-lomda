@@ -9,16 +9,21 @@ function QuestionsEnd() {
 
   useEffect(() => {
     sessionStorage.setItem('MainTitle', "שאלות סיכום יחידה 1");
+
+    // מוחקים מכאן את ה-handlePrev! 
+    // ה-QuizEngine שבתוך ה-return ינהל את זה בעצמו.
+    
+    return () => {
+      // מוודאים שביציאה מהדף הכפתור חוזר להיות פעיל
+      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
+    };
   }, []);
 
   const handleQuizCompletion = () => {
-    // 1. סימון שהשאלות הסתיימו (בשביל ה-V בסיידבר)
     sessionStorage.setItem('unitOne-questions', 'finished');
-    
-    // 2. עדכון ה-Sidebar בזמן אמת
     window.dispatchEvent(new Event('updateNavbar'));
     
-    // 3. ניווט ישיר לדף הסיכום (במקום להציג כפתור נוסף)
+    // ניווט לדף הסיכום
     navigate('/summary-checklist');
   };
 

@@ -132,3 +132,31 @@
     overflow: hidden;
     z-index: 21;
 }
+
+/* סימן הוי על הטלוויזיה */
+.threats-done-v {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3vw;
+  height: auto;
+  pointer-events: none; /* שלא יפריע ללחיצה חוזרת על הטלוויזיה */
+}
+
+/* קלאס חדש לאזור לחיצה שכבר נלחץ - למשל בלי אנימציה */
+.click-div-tv-done {
+  width: 27%; /* תתאימי למידות של ה-click-div-tv המקורי שלך */
+  height: 29%;
+  position: absolute;
+  top: 26%;
+  left: 36%;
+  z-index: 1000;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.click-div-tv-done:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}

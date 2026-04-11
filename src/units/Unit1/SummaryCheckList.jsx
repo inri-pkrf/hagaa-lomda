@@ -7,6 +7,29 @@ function SummaryCheckList() {
     const navigate = useNavigate();
     const image = `${process.env.PUBLIC_URL}/assets/UnitOneImgs/vector.png`;
 
+    // --- לוגיקת החצים הכלליים ---
+    useEffect(() => {
+        const handleNext = (e) => {
+            // חטיפת החץ קדימה לביצוע סיום היחידה
+            e.preventDefault();
+            handleFinishUnit();
+        };
+
+        const handlePrev = (e) => {
+            // חטיפת החץ אחורה לחזרה לשאלה האחרונה בשאלון
+            e.preventDefault();
+            navigate('/questions-end');
+        };
+
+        window.addEventListener('onNextNav', handleNext);
+        window.addEventListener('onPrevNav', handlePrev);
+
+        return () => {
+            window.removeEventListener('onNextNav', handleNext);
+            window.removeEventListener('onPrevNav', handlePrev);
+        };
+    }, [navigate]);
+    // ---------------------------
 
     const handleFinishUnit = () => {
         // סימון יחידה 1 כמי שהושלמה במלואה
@@ -17,31 +40,29 @@ function SummaryCheckList() {
     };
 
 
-
-
     return (
         // מעטפת ראשית עם הרקע
         <div className="OpeningPage">
  
-         
+          
             <img
                 className="check-list"
                 src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/CheckListEnd.png`}
                 alt="checklist"
             />
-           
+            
             <img
                 className="end-building"
                 src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Group 494.png`}
                 alt="building"
             />
-           
-            <div className="finish-unit-section">
+            
+            {/* <div className="finish-unit-section">
                 <p className="congrats-msg">כל הכבוד! סיימתם את היחידה הראשונה בהצלחה.</p>
                 <button className="finish-btn" onClick={handleFinishUnit}>
                     למעלית - עולים ליחידה 2 🛗
                 </button>
-            </div>
+            </div> */}
 
 
             <div>
@@ -64,4 +85,3 @@ function SummaryCheckList() {
 
 
 export default SummaryCheckList;
-

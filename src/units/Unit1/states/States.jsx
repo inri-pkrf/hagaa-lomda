@@ -8,13 +8,21 @@ function States() {
   const navigate = useNavigate();
   const [completed, setCompleted] = useState(false);
   const [openedCards, setOpenedCards] = useState(new Set());
-  const [bgImage, setBgImage] = useState(`${process.env.PUBLIC_URL}/assets/UnitOneImgs/חיווי לוח 1.png`);
-  const image = `${process.env.PUBLIC_URL}/assets/UnitOneImgs/StatesPin.png`;
+
+  // נתיבי התמונות
+  const initialBg = `${process.env.PUBLIC_URL}/assets/UnitOneImgs/חיווי לוח 1.png`;
+  const finalBg = `${process.env.PUBLIC_URL}/assets/UnitOneImgs/StatesBackground.png`;
+  const pinImage = `${process.env.PUBLIC_URL}/assets/UnitOneImgs/StatesPin.png`;
+
   const [showCards, setShowCards] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const [showCardPopup, setShowCardPopup] = useState(false);
 
   const isAllOpened = openedCards.size === 4;
+
+  const [isStatesDone, setIsStatesDone] = useState(
+    sessionStorage.getItem('unitOne-second') === 'finished'
+  );
 
   useEffect(() => {
     const saved = sessionStorage.getItem('statesOpenedCards');
@@ -22,56 +30,29 @@ function States() {
       setOpenedCards(new Set(JSON.parse(saved)));
     }
 
-    // השבתת החץ הכללי של הלומדה (Next)
-    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: true }));
-
-    return () => {
-      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
-    };
-  }, []);
-
-  useEffect(() => {
-    if (isAllOpened) {
-      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
-    }
-  }, [isAllOpened]);
-
-  // --- לוגיקת החצים (קדימה ואחורה) ---
-  useEffect(() => {
-    const handleNext = (e) => {
-      if (isAllOpened) {
-        e.preventDefault();
-        handleComplete();
-      }
-    };
+    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: !isStatesDone }));
 
     const handlePrev = (e) => {
-      // חטיפת כפתור "חזור" - עוצר את הניווט האוטומטי ומחזיר למסדרון
       e.preventDefault();
       navigate('/intro-unit-one');
     };
 
-    window.addEventListener('onNextNav', handleNext);
-    window.addEventListener('onPrevNav', handlePrev); // האזנה לחץ אחורה
-
+    window.addEventListener('onPrevNav', handlePrev);
     return () => {
-      window.removeEventListener('onNextNav', handleNext);
       window.removeEventListener('onPrevNav', handlePrev);
+      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
     };
-  }, [isAllOpened, navigate]);
+  }, [isStatesDone, navigate]);
 
-  const handleDevQuickOpen = (e) => {
-    e.stopPropagation();
-    const allIds = [1, 2, 3, 4];
-    const newOpened = new Set(allIds);
-    setOpenedCards(newOpened);
-    sessionStorage.setItem('statesOpenedCards', JSON.stringify(allIds));
-    setShowCards(true);
-  };
+  useEffect(() => {
+    if (isAllOpened && !isStatesDone) {
+      setIsStatesDone(true);
+      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
+    }
+  }, [isAllOpened, isStatesDone]);
 
   const handleBackgroundClick = () => {
     if (showCards) return;
-    setBgImage(`${process.env.PUBLIC_URL}/assets/UnitOneImgs/StatesArtBoard.png`);
     setShowCards(true);
   };
 
@@ -103,56 +84,72 @@ function States() {
 
   return (
     <div className="threats-container">
-      {process.env.NODE_ENV === 'development' && !isAllOpened && (
-        <button onClick={handleDevQuickOpen} className="dev-btn"> DEV: פתח הכל </button>
-      )}
-
       <div className='subtext-threats'>
-        לחצו על הלוח במשרד כדי ללמוד על המצבים השונים של העורף
+        {isStatesDone
+          ? "כבר למדת על מצבי העורף, ניתן לצפות שוב או לחזור למסדרון"
+          : "לחצו על הלוח במשרד כדי ללמוד על המצבים השונים של העורף"}
       </div>
 
       <img
         className="room-background-states"
-        src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/חיווי לוח 1.png`}
+        // החלפת הרקע באופן דינמי
+        src={isStatesDone ? finalBg : initialBg}
         alt="Background"
       />
 
       {!showCards && (
-        <div className='click-div-states' onClick={handleBackgroundClick}></div>
+        <div
+          className={isStatesDone ? 'click-div-states-done' : 'click-div-states'}
+          onClick={handleBackgroundClick}
+        >
+          {isStatesDone && (
+            <img
+              src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Interfences/doneSign.png`}
+              alt="completed"
+              className="states-board-done-v"
+            />
+          )}
+        </div>
       )}
 
       {showCards && (
         <>
           <div className="overlay-dark"></div>
           <div className="board-container-wrapper">
+            <button className="close-board-btn" onClick={() => setShowCards(false)}>
+              ✕
+            </button>
+
             <img className="Board-image-element" src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/StatesArtBoard.png`} alt="Board" />
 
-            <img className='pinState' id="states-pin1" src={image} alt="Pin" />
-            <img className='pinState' id="states-pin2" src={image} alt="Pin" />
-            <img className='pinState' id="states-pin3" src={image} alt="Pin" />
-            <img className='pinState' id="states-pin4" src={image} alt="Pin" />
+            <img className='pinState' id="states-pin1" src={pinImage} alt="Pin" />
+            <img className='pinState' id="states-pin2" src={pinImage} alt="Pin" />
+            <img className='pinState' id="states-pin3" src={pinImage} alt="Pin" />
+            <img className='pinState' id="states-pin4" src={pinImage} alt="Pin" />
 
-            <div className='card-div-states cardOneStates' onClick={(e) => { e.stopPropagation(); handleCardClick(1); }}>
-              שגרה{openedCards.has(1) && <span className="check-mark">✓</span>}
-            </div>
-            <div className='card-div-states cardTwoStates' onClick={(e) => { e.stopPropagation(); handleCardClick(2); }}>
-              מעבר משגרה לחירום{openedCards.has(2) && <span className="check-mark">✓</span>}
-            </div>
-            <div className='card-div-states cardThreeStates' onClick={(e) => { e.stopPropagation(); handleCardClick(3); }}>
-              שגרת חירום{openedCards.has(3) && <span className="check-mark">✓</span>}
-            </div>
-            <div className='card-div-states cardFourStates' onClick={(e) => { e.stopPropagation(); handleCardClick(4); }}>
-              אירוע חירום{openedCards.has(4) && <span className="check-mark">✓</span>}
-            </div>
+            {[
+              { id: 1, text: "שגרה", class: "cardOneStates" },
+              { id: 2, text: "מעבר משגרה לחירום", class: "cardTwoStates" },
+              { id: 3, text: "שגרת חירום", class: "cardThreeStates" },
+              { id: 4, text: "אירוע חירום", class: "cardFourStates" }
+            ].map(card => (
+              <div
+                key={card.id}
+                className={`card-div-states ${card.class}`}
+                onClick={(e) => { e.stopPropagation(); handleCardClick(card.id); }}
+              >
+                {card.text}{openedCards.has(card.id) && <span className="check-mark">✓</span>}
+              </div>
+            ))}
           </div>
         </>
       )}
 
-      {isAllOpened && (
+      {/* {isAllOpened && (
         <button onClick={handleComplete} className="ending-button-states">
           סיום וחזרה למסדרון
         </button>
-      )}
+      )} */}
 
       {showCardPopup && selectedId != null && (
         <StatesCard

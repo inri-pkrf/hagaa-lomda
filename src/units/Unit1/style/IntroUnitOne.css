@@ -15,6 +15,15 @@
     direction: rtl;
 }
 
+.subtext-IntroUnitOne{
+     font-size: 1.5rem;
+    text-align: center;
+    position: absolute;
+    bottom: 13vh;
+    width: 100%;
+    z-index: 1;
+}
+
 .first-background {
     /* width: 100vw;
     height: auto;

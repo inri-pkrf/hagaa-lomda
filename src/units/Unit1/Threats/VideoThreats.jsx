@@ -21,7 +21,7 @@ function VideoThreats({ setVideoPlaying }) {
     const handleNext = (e) => {
       if (canFinish) {
         // אם המשתמש לוחץ על החץ הכללי כשהוא פעיל, נסיים את הפרק
-        e.preventDefault(); 
+        e.preventDefault();
         handleVideoEnd();
       }
     };
@@ -42,18 +42,19 @@ function VideoThreats({ setVideoPlaying }) {
     } else {
       sessionStorage.setItem('VIDEO IS PLAYING', 'false');
     }
-    
+
     sessionStorage.setItem('unitOne-first', 'finished');
     sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'UnitOne-first', state: 'finished' }));
-    
+
     window.dispatchEvent(new Event('updateNavbar'));
-    
+
     // ניווט חזרה למסדרון
     navigate('/intro-unit-one');
   };
 
   return (
     <div className='VideoThreats'>
+
       <div className='VideoThreats-container'>
         <iframe
           src="https://drive.google.com/file/d/1z9bXz10salwgmR_ybhGs0Y-Fs-qAB1v6/preview"
