@@ -50,23 +50,29 @@ function PopulationLaptop() {
 
   useEffect(() => {
     window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: true }));
-    window.dispatchEvent(new CustomEvent('setPrevBtnDisabled', { detail: true }));
+    window.dispatchEvent(new CustomEvent('setPrevBtnDisabled', { detail: false })); // תמיד לאפשר חץ אחורה
 
     const blockNav = (e) => {
       e.preventDefault();
       e.stopPropagation();
     };
 
+    const handlePrev = (e) => {
+      e.preventDefault();
+      window.dispatchEvent(new CustomEvent('setPrevBtnDisabled', { detail: false })); // ודא שהחץ לא נחסם
+      navigate('/population');
+    };
+
     window.addEventListener('onNextNav', blockNav);
-    window.addEventListener('onPrevNav', blockNav);
+    window.addEventListener('onPrevNav', handlePrev);
 
     return () => {
       window.removeEventListener('onNextNav', blockNav);
-      window.removeEventListener('onPrevNav', blockNav);
+      window.removeEventListener('onPrevNav', handlePrev);
       window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
       window.dispatchEvent(new CustomEvent('setPrevBtnDisabled', { detail: false }));
     };
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="populationLaptop-container">

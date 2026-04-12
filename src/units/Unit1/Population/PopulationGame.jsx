@@ -46,19 +46,17 @@ export default function PopulationGame() {
   const isGameOver = availableItems.length === 0;
 
   useEffect(() => {
-    // השבתת חיצים כלליים
-    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: true }));
-    window.dispatchEvent(new CustomEvent('setPrevBtnDisabled', { detail: true }));
-
-    const blockNav = (e) => e.preventDefault();
-    window.addEventListener('onNextNav', blockNav);
-    window.addEventListener('onPrevNav', blockNav);
-
+    // הפעלת חץ קדימה רק כאשר המשחק נגמר, חץ אחורה תמיד פעיל
+    window.dispatchEvent(new CustomEvent('setPrevBtnDisabled', { detail: false }));
+    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: !isGameOver }));
+    if (isGameOver) {
+      sessionStorage.setItem("populationGameFinished", "true");
+    }
     return () => {
-      window.removeEventListener('onNextNav', blockNav);
-      window.removeEventListener('onPrevNav', blockNav);
+      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
+      window.dispatchEvent(new CustomEvent('setPrevBtnDisabled', { detail: false }));
     };
-  }, []);
+  }, [isGameOver]);
 
   return (
     <div className="gamePage">
@@ -137,15 +135,7 @@ export default function PopulationGame() {
                   </div>
                 </div>
               ))}
-              <button
-                className="finish-game-btn"
-                onClick={() => {
-                  sessionStorage.setItem("populationGameFinished", "true");
-                  navigate("/population");
-                }}
-              >
-                סיום תרגול
-              </button>
+              {/* אין כפתור סיום - החץ קדימה יופעל אוטומטית */}
             </div>
           )}
         </div>

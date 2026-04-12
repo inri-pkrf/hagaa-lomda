@@ -15,7 +15,7 @@ function VideoThreats({ setVideoPlaying }) {
       // 2. ברגע שמופיע כפתור הסיום - משחררים את החץ הכללי שיהיה לחיץ (Enabled)
       window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
       window.dispatchEvent(new Event('updateNavbar'));
-    }, 2000);
+    }, 1000);
 
     // לוגיקה עבור החץ הכללי כשהוא לחיץ
     const handleNext = (e) => {
@@ -66,11 +66,11 @@ function VideoThreats({ setVideoPlaying }) {
         ></iframe>
 
         {/* כפתור הסיום רק כאינדיקציה ויזואלית או לחיצה נוספת */}
-        {canFinish && (
-          <button onClick={handleVideoEnd} className="video-threats-button">
+        {/* {canFinish && (
+          <button onClick={handleVideoEnd} className="nextUnitButton">
             סיום
           </button>
-        )}
+        )} */}
       </div>
     </div>
   );

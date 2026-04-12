@@ -47,9 +47,8 @@ function Population() {
       }
     };
 
-    const handlePrev = (e) => {
+    const handlePrev = () => {
       // חץ אחורה תמיד מחזיר למסדרון
-      e.preventDefault();
       navigate('/intro-unit-one');
     };
 
@@ -107,14 +106,6 @@ function Population() {
       {isFoldersDone && <div className="population-laptop-check-static check-folder-pos">✔</div>}
       {isGameDone && <div className="population-laptop-check-static check-light-pos">✔</div>}
 
-      {isGameDone && (
-        <button 
-          className="nextUnitButton" 
-          onClick={handleFinalComplete}
-        >
-          חזרה למסך היחידה
-        </button>
-      )}
     </div>
   );
 }

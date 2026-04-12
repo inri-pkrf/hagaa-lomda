@@ -7,7 +7,7 @@ function IntroUnitOne() {
   const navigate = useNavigate();
   const [doorImage, setDoorImage] = useState(`${process.env.PUBLIC_URL}/assets/General/Doors/Doors.png`);
   const [openingSign, setOpeningSign] = useState(null);
-  
+
   const [finishedChapters, setFinishedChapters] = useState({
     unitOneFirst: false,
     unitOneSecond: false,
@@ -16,14 +16,31 @@ function IntroUnitOne() {
   });
 
   useEffect(() => {
+    // הפעלת חץ קדימה רק כאשר כל הדלתות גמורות, חץ אחורה תמיד פעיל
+    const allDone = Object.values(finishedChapters).every(val => val === true);
+    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: !allDone }));
+    window.dispatchEvent(new CustomEvent('setPrevBtnDisabled', { detail: false }));
+    // אין צורך להחזיר cleanup שמבטל את החצים, כדי שלא יגרום להבהוב/באגים
+  }, [finishedChapters]);
+
+  // עדכון סטטוס דלתות בכל הופעה/פוקוס של הדף
+  useEffect(() => {
     sessionStorage.setItem('MainTitle', "יחידה 1");
-    
-    setFinishedChapters({
-      unitOneFirst: sessionStorage.getItem('unitOne-first') === 'finished',
-      unitOneSecond: sessionStorage.getItem('unitOne-second') === 'finished',
-      unitOneThird: sessionStorage.getItem('unitOne-third') === 'finished',
-      unitOneFourth: sessionStorage.getItem('unitOne-fourth') === 'finished'
-    });
+    const updateFinished = () => {
+      setFinishedChapters({
+        unitOneFirst: sessionStorage.getItem('unitOne-first') === 'finished',
+        unitOneSecond: sessionStorage.getItem('unitOne-second') === 'finished',
+        unitOneThird: sessionStorage.getItem('unitOne-third') === 'finished',
+        unitOneFourth: sessionStorage.getItem('unitOne-fourth') === 'finished'
+      });
+    };
+    updateFinished();
+    window.addEventListener('focus', updateFinished);
+    document.addEventListener('visibilitychange', updateFinished);
+    return () => {
+      window.removeEventListener('focus', updateFinished);
+      document.removeEventListener('visibilitychange', updateFinished);
+    };
   }, []);
 
   // --- לוגיקת החצים הכלליים ---

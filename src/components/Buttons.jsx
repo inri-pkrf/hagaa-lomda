@@ -5,8 +5,8 @@ import './Styles/Buttons.css';
 
 const routeOrder = [
   '/', '/info-lomda', '/elevator', '/unit-opening/UnitOne', '/goals', 
-  '/intro-unit-one', '/threats', '/states', '/interfaces', '/population', 
-  '/populationInfo', '/population-parts', '/populationGame', '/intro-unit-one', 
+  '/intro-unit-one', '/threats', '/states', '/intro-unit-one', '/interfaces', '/population', 
+  '/PopulationInfo', '/population-parts', '/population', '/PopulationGame', '/population', '/intro-unit-one', 
   '/summary-checklist', '/questions-end', '/elevator', '/intro-unit-two', 
   '/rockets', '/info-rockets', '/intro-unit-three', '/intro-unit-four',
 ];

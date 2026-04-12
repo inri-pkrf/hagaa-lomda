@@ -25,21 +25,23 @@ function PopulationFolder() {
   };
 
   useEffect(() => {
-    // השבתת חיצים כלליים
-    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: true }));
+    // Disable prev always, next only if not finished
     window.dispatchEvent(new CustomEvent('setPrevBtnDisabled', { detail: true }));
+    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: visitedFolders.length !== 3 }));
+
+    // When all folders are visited, mark as finished
+    if (visitedFolders.length === 3) {
+      sessionStorage.setItem("populationFoldersFinished", "true");
+    }
 
     const blockNav = (e) => e.preventDefault();
-
-    window.addEventListener('onNextNav', blockNav);
     window.addEventListener('onPrevNav', blockNav);
-
     return () => {
-      window.removeEventListener('onNextNav', blockNav);
       window.removeEventListener('onPrevNav', blockNav);
-      // חשוב: לא תמיד נרצה לעשות Enable כאן, כי Population הראשי יחליט לפי הסטייט שלו
+      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
+      window.dispatchEvent(new CustomEvent('setPrevBtnDisabled', { detail: false }));
     };
-  }, []);
+  }, [visitedFolders]);
   return (
     <div className='populationFolder-container'>
 
@@ -105,18 +107,7 @@ function PopulationFolder() {
           close={() => setSelectedFolder(null)}
         />
       )}
-      {visitedFolders.length === 3 && (
-        <button
-          className="gameButton"
-          onClick={() => {
-            // 1. שמירה שסיימנו את הקלסרים
-            sessionStorage.setItem("populationFoldersFinished", "true");
-            // 2. חזרה לחדר הראשי עם סטייט מעודכן
-            navigate("/population", { state: { foldersFinished: true } });
-          }}
-        >
-          סיום משימה        </button>
-      )}
+      {/* אין כפתור סיום - החץ קדימה יופעל אוטומטית */}
 
     </div>
   );

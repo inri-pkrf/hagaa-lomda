@@ -30,7 +30,8 @@ function States() {
       setOpenedCards(new Set(JSON.parse(saved)));
     }
 
-    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: !isStatesDone }));
+    // Always control the next button by isAllOpened
+    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: !isAllOpened }));
 
     const handlePrev = (e) => {
       e.preventDefault();
@@ -42,12 +43,16 @@ function States() {
       window.removeEventListener('onPrevNav', handlePrev);
       window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
     };
-  }, [isStatesDone, navigate]);
+  }, [isAllOpened, navigate]);
 
   useEffect(() => {
     if (isAllOpened && !isStatesDone) {
       setIsStatesDone(true);
-      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
+      // Mark as finished, but do not navigate
+      sessionStorage.setItem('unitOne-second', 'finished');
+      sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'unitOne-second', state: 'finished' }));
+      setCompleted(true);
+      window.dispatchEvent(new Event('updateNavbar'));
     }
   }, [isAllOpened, isStatesDone]);
 
@@ -57,11 +62,7 @@ function States() {
   };
 
   const handleComplete = () => {
-    sessionStorage.setItem('unitOne-second', 'finished');
-    sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'unitOne-second', state: 'finished' }));
-    setCompleted(true);
-    window.dispatchEvent(new Event('updateNavbar'));
-    navigate('/intro-unit-one');
+    // פעולה זו כבר מתבצעת אוטומטית, כאן אפשר להוסיף לוגיקה נוספת אם תרצה בעתיד
   };
 
   const handleCardClick = (id) => {
@@ -144,12 +145,6 @@ function States() {
           </div>
         </>
       )}
-
-      {/* {isAllOpened && (
-        <button onClick={handleComplete} className="ending-button-states">
-          סיום וחזרה למסדרון
-        </button>
-      )} */}
 
       {showCardPopup && selectedId != null && (
         <StatesCard
