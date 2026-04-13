@@ -1,2 +1,102 @@
 /* Styles for Unit2 ChoosingSafeRoom screens */
 
+#choosingSafeRoom-headline{
+    position: absolute;
+    right: 10vw;
+    top: 1vh;
+    font-family: 'Karantina';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12vh;
+    text-align: center;
+    color: #FF5A5D;
+}
+
+
+#choosingSafeRoom-icon{
+    background-color: #FF5A5D;
+    padding: 3vh;
+    margin: 2vh;
+    border-radius: 50%;
+    height: 7vh;
+    width: 7vh;
+    position: absolute;
+    right: 0vw;
+}
+
+
+#choosingSafeRoom-text1{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    top: 20vh;
+    width: 70vw;
+    font-family: 'Assistant';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1.8vw;
+    color: #472E1A;
+}
+
+
+.flip-cards-container {
+    position: absolute;
+    top: 35vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+
+@media (max-width: 1024px) {
+    .flip-cards-container {
+        top: 33vh;
+        width: 95vw;
+        gap: 10px;
+    }
+   
+    #choosingSafeRoom-headline {
+        font-size: 8vh;
+        right: 5vw;
+    }
+   
+    #choosingSafeRoom-text1 {
+        top: 18vh;
+        font-size: 1.5vw;
+        width: 80vw;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .flip-cards-container {
+        top: 30vh;
+        width: 95vw;
+        gap: 8px;
+    }
+   
+    #choosingSafeRoom-headline {
+        font-size: 6vh;
+        right: 2vw;
+        top: 0.5vh;
+    }
+   
+    #choosingSafeRoom-text1 {
+        top: 15vh;
+        font-size: 1.2vw;
+        width: 90vw;
+    }
+   
+    #choosingSafeRoom-icon {
+        height: 5vh;
+        width: 5vh;
+        padding: 2vh;
+        right: 0;
+    }
+}
+

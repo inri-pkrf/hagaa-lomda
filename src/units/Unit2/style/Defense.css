@@ -1,5 +1,3 @@
-/* Styles for Unit2 Defense screens */
-
 #defense-headline{
     position: absolute;
     right: 10vw;
@@ -11,6 +9,8 @@
     text-align: center;
     color: #0CB0DE;
 }
+
+
 
 
 #alert-defense-icon{
@@ -25,6 +25,8 @@
 }
 
 
+
+
 #defense-text1{
     position: absolute;
     left: 50%;
@@ -37,6 +39,8 @@
     text-align: center;
     color: #472E1A;
 }  
+
+
 
 
 #defense-text2{
@@ -55,13 +59,20 @@
 }        
 
 
+
+
 #defense-text3{
     position: absolute;
-    top: 45vh;
-    font-size: 2.5vh;
+    top: 40vh;
+    font-size: 5vh;
+    font-weight: 400;
     direction: rtl;
     right: 30vw;
+    color: #472E1A;
+    font-family: 'Karantina';
 }
+
+
 
 
 #defense-text4{
@@ -70,8 +81,14 @@
     font-size: 2.5vh;
     direction: rtl;
     right: 42vw;
-   
+   color: #472E1A;
+    top: 40vh;
+    font-size: 5vh;
+    font-weight: 400;
+   font-family: 'Karantina';
 }
+
+
 
 
 #defense-text5{
@@ -81,7 +98,14 @@
     direction: rtl;
     right: 51vw;
     width: 12vw;
+    color: #472E1A;
+    top: 40vh;
+    font-size: 5vh;
+    font-weight: 400;
+    font-family: 'Karantina';
 }
+
+
 
 
 #defense-text6{
@@ -91,19 +115,66 @@
     direction: rtl;
     right: 65vw;
     width: 12vw;
- 
+    color: #472E1A;
+    top: 40vh;
+    font-size: 5vh;
+    font-weight: 400;
+    font-family: 'Karantina';
 }
+
+
 
 
 #defense-text7{
     position: absolute;
+    top: 55vh;
+    font-size: 5.5vh;
+    direction: rtl;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #472E1A;
+    font-family: 'Karantina';
+    letter-spacing: 1px;
+}
+
+
+#defense-text8{
+    position: absolute;
+    top: 65vh;
+    font-size: 3vh;
+    direction: rtl;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #472E1A;
+    width: 34vw;
+    line-height: 1.5;
+}
+
+
+#defense-text9{
+    position: absolute;
+    top: 48vh;
+    font-size: 2.2vh;
+    direction: rtl;
+    right: 29vw;
+    color: #472E1A;
+}
+
+
+#defense-text10{
+    position: absolute;
+    top: 48vh;
+    font-size: 2.2vh;
+    direction: rtl;
+    right: 41vw;
+    color: #472E1A;
 }
 
 
 #defense-numbers1{
 position: absolute;
-left: 6.5vw;
-top: -50px;
+left: 7vw;
+top: -18px;
 font-family: 'Karantina';
 font-style: normal;
 font-weight: 700;
@@ -111,12 +182,14 @@ font-size: 7vh;
 color: #0CB0DE;
 text-shadow: 5px 5px 2px rgba(0, 0, 0, 0.25);
 }
+
+
 
 
 #defense-numbers2{
 position: absolute;
 left: 4vw;
-top: -50px;
+top: -18px;
 font-family: 'Karantina';
 font-style: normal;
 font-weight: 700;
@@ -124,12 +197,14 @@ font-size: 7vh;
 color: #0CB0DE;
 text-shadow: 5px 5px 2px rgba(0, 0, 0, 0.25);
 }
+
+
 
 
 #defense-numbers3{
 position: absolute;
-left: 11.5vw;
-top: -50px;
+left: 12vw;
+top: -18px;
 font-family: 'Karantina';
 font-style: normal;
 font-weight: 700;
@@ -137,12 +212,14 @@ font-size: 7vh;
 color: #0CB0DE;
 text-shadow: 5px 5px 2px rgba(0, 0, 0, 0.25);
 }
+
+
 
 
 #defense-numbers4{
 position: absolute;
 left: 9.5vw;
-top: -50px;
+top: -18px;
 font-family: 'Karantina';
 font-style: normal;
 font-weight: 700;
@@ -150,6 +227,8 @@ font-size: 7vh;
 color: #0CB0DE;
 text-shadow: 5px 5px 2px rgba(0, 0, 0, 0.25);
 }
+
+
 
 
 #defense-list{
@@ -160,5 +239,9 @@ text-shadow: 5px 5px 2px rgba(0, 0, 0, 0.25);
     top: 0vh;
 
 
+
+
 }
+
+
 

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import '../../style/Wait10mins.css';
 
 
+
+
 function Wait10mins() {
   const [currentPage, setCurrentPage] = useState(1);
-
-
 
 
   const handleNextClick = () => {
@@ -13,17 +13,9 @@ function Wait10mins() {
   };
 
 
-
-
   const handleBackClick = () => {
     setCurrentPage(1);
   };
-
-
-
-
-
-
 
 
   return (
@@ -36,6 +28,7 @@ function Wait10mins() {
         <p id='wait10min-text2'>מטח הרקטות יכול להימשך</p>
         <p id='wait10min-text3'>שיפור ההגנה לאזרח</p>
         <button id='alert-next-button' onClick={handleNextClick}>next</button>
+        <img src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/image-removebg-preview (49) 1.png`} alt="Siren" id='wait10min-img1'/>
       </div>
     )}
     {currentPage === 2 && (
@@ -44,15 +37,12 @@ function Wait10mins() {
         <button id='alert-back-button' onClick={handleBackClick}>חזור</button>
       </div>
     )}
-
-
-   
     </>
   );
 }
 
 
+
+
 export default Wait10mins;
-
-
 

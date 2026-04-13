@@ -31,6 +31,7 @@ import PopulationGame from './units/Unit1/Population/PopulationGame.jsx';
 import SummaryCheckList from './units/Unit1/SummaryCheckList.jsx';
 
 
+import UnitTwoLayout from './units/Unit2/UnitTwoLayout';
 import Rockets from './units/Unit2/Rockets/Rockets.jsx';
 import InfoRockets from './units/Unit2/Rockets/Preparation/InfoRockets.jsx';
 import Preparation from './units/Unit2/Rockets/Preparation/Preparation.jsx';
@@ -105,17 +106,21 @@ function App() {
         {/* --- סיום יחידה 1 --- */}
 
 
-        {/* יחידות אחרות (בינתיים ללא Layout) */}
-        <Route path="/intro-unit-two" element={<IntroUnitTwo />} />
-        <Route path="/rockets" element={<Rockets />} />
-        <Route path="/info-rockets" element={<InfoRockets />} />
-        <Route path="/preparation" element={<Preparation />} />
-        <Route path="/ProtectedSpace" element={<ProtectedSpace />} />
-        <Route path="/Alert" element={<Alert />} />
-        <Route path="/Defense" element={<Defense />} />
-        <Route path="/ChoosingSafeRoom" element={<ChoosingSafeRoom />} />
-        <Route path="/Wait10mins" element={<Wait10mins />} />
-        <Route path="/BuildingMaintenance" element={<BuildingMaintenance />} />
+       {/* --- יחידה 2 עם Layout וסידבר משלה --- */}
+        <Route element={<UnitTwoLayout />}>
+          <Route path="/intro-unit-two" element={<IntroUnitTwo />} />
+          <Route path="/rockets" element={<Rockets />} />
+          <Route path="/info-rockets" element={<InfoRockets />} />
+          <Route path="/preparation" element={<Preparation />} />
+          <Route path="/ProtectedSpace" element={<ProtectedSpace />} />
+          <Route path="/Alert" element={<Alert />} />
+          <Route path="/Defense" element={<Defense />} />
+          <Route path="/ChoosingSafeRoom" element={<ChoosingSafeRoom />} />
+          <Route path="/Wait10mins" element={<Wait10mins />} />
+          <Route path="/BuildingMaintenance" element={<BuildingMaintenance />} />
+          
+          {/* כאן להוסיף בהמשך את שאר הנתיבים של יחידה 2 (רעידת אדמה, חומ"ס וכו') */}
+        </Route>
 
 
         <Route path="/intro-unit-three" element={<IntroUnitThree />} />

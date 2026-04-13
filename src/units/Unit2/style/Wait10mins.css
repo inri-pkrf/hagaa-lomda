@@ -1,5 +1,3 @@
-/* Styles for Unit2 Wait10mins screens */
-
 #wait10min-headline{
     position: absolute;
 right: 10vw;
@@ -11,6 +9,8 @@ font-size: 12vh;
 text-align: center;
 color: #E8742C;
 }
+
+
 
 
 #wait10min-icon{
@@ -25,20 +25,24 @@ color: #E8742C;
 }
 
 
+
+
 #wait10min-text1{
     position: absolute;
-    right: 25vw;
+    right: 28vw;
     top: 60vh;
     font-size: 3vh;
     width: 10vw;
     font-weight: 500;
     color: #472E1A;
 }
+
+
 
 
 #wait10min-text2{
     position: absolute;
-    right: 45vw;
+    right: 46vw;
     top: 60vh;
     font-size: 3vh;
     width: 10vw;
@@ -47,13 +51,26 @@ color: #E8742C;
 }
 
 
+
+
 #wait10min-text3{
     position: absolute;
-    right: 65vw;
+    right: 64.5vw;
     top: 60vh;
     font-size: 3vh;
     width: 10vw;
     font-weight: 500;
     color: #472E1A;
+}
+
+
+#wait10min-img1{
+    position: absolute;
+    right: 25vw;
+    top: 32vh;
+    height: 27vh;
+    width: 50vw;
+
+
 }
 

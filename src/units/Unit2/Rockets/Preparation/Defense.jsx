@@ -1,7 +1,3 @@
-import React from 'react';
-import '../../style/Defense.css';
-
-
 function Defense() {
   return (
     <>
@@ -28,10 +24,15 @@ function Defense() {
           חדר פנימי
         </p>
       </div>
-      <p id='defense-text7'></p>
-      <p id='defense-text8'></p>
-      <p id='defense-text9'></p>
-      <p id='defense-text10'></p>
+      <p id='defense-text7'>תכנון קיבולת אדם למבנה</p>
+      <p id='defense-text8'>
+        יש להקצות 1.25 מ”ר לאדם במרחב מוגן.
+        במוסדות חינוך יש להקצות 0.5 מ”ר למרחב מוגן.
+      </p>
+      <p id='defense-text9'>קומתי/דירתי</p>
+      <p id='defense-text10'>משותף/ציבורי</p>
+
+
     </div>
    
    
@@ -40,7 +41,7 @@ function Defense() {
 }
 
 
+
+
 export default Defense;
-
-
 
