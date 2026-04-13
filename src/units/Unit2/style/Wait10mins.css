@@ -1,2 +1,59 @@
 /* Styles for Unit2 Wait10mins screens */
 
+#wait10min-headline{
+    position: absolute;
+right: 10vw;
+top: 1vh;
+font-family: 'Karantina';
+font-style: normal;
+font-weight: 400;
+font-size: 12vh;
+text-align: center;
+color: #E8742C;
+}
+
+
+#wait10min-icon{
+    background-color: #E8742C;
+    padding: 2vh;
+    margin: 2vh;
+    border-radius: 50vw;
+    height: 9vh;
+    width: 9vh;
+    position: absolute;
+    right: 0vw;
+}
+
+
+#wait10min-text1{
+    position: absolute;
+    right: 25vw;
+    top: 60vh;
+    font-size: 3vh;
+    width: 10vw;
+    font-weight: 500;
+    color: #472E1A;
+}
+
+
+#wait10min-text2{
+    position: absolute;
+    right: 45vw;
+    top: 60vh;
+    font-size: 3vh;
+    width: 10vw;
+    font-weight: 500;
+    color: #472E1A;
+}
+
+
+#wait10min-text3{
+    position: absolute;
+    right: 65vw;
+    top: 60vh;
+    font-size: 3vh;
+    width: 10vw;
+    font-weight: 500;
+    color: #472E1A;
+}
+

@@ -19,6 +19,7 @@ import Goals from './components/Goals';
 import IntroUnitOne from './units/Unit1/IntroUnitOne.jsx';
 import States from './units/Unit1/states/States.jsx';
 import Interfaces from './units/Unit1/Interfences/Interfaces.jsx';
+import InterfacesGame from "./units/Unit1/Interfences/InterfacesGame.jsx";
 import Population from './units/Unit1/Population/Population.jsx';
 import IntroUnitTwo from './units/Unit2/IntroUnitTwo';
 import IntroUnitThree from './units/Unit3/IntroUnitThree';
@@ -93,6 +94,7 @@ function App() {
           <Route path="/threats" element={<Threats setVideoPlaying={setVideoPlaying} />} />
           <Route path="/states" element={<States />} />
           <Route path="/interfaces" element={<Interfaces />} />
+          <Route path="/interfaces-game" element={<InterfacesGame />} />
           <Route path="/population" element={<Population />} />
           <Route path="/populationInfo" element={<PopulationLaptop />} />
           <Route path="/population-parts" element={<PopulationFolders />} />

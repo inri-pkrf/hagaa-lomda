@@ -6,7 +6,6 @@ import InterfacePopUp from './InterfacePopUp';
 
 function Interfaces() {
   const navigate = useNavigate();
-  const [completed, setCompleted] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [visited, setVisited] = useState([]);
 
@@ -20,39 +19,24 @@ function Interfaces() {
     }
     sessionStorage.setItem('MainTitle', "ממשקים");
 
-    // 1. מיד בכניסה לדף - השבתת החץ הכללי של הלומדה (Next)
-    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: true }));
+    // שליטה בחצים של ה-Navbar
+    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: !isAllVisited }));
+    window.dispatchEvent(new CustomEvent('setPrevBtnDisabled', { detail: false }));
 
-    return () => {
-      // ניקוי ביציאה - שחרור החסימה
-      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
-    };
-  }, []);
-
-  // 2. מעקב אחרי סיום המשימה - שחרור החץ קדימה כשהכל נפתח
-  useEffect(() => {
-    if (isAllVisited) {
-      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
-    }
-  }, [isAllVisited]);
-
-  // 3. לוגיקת החצים (קדימה ואחורה)
-  useEffect(() => {
     const handleNext = (e) => {
       if (isAllVisited) {
         e.preventDefault();
-        handleComplete();
+        navigate('/interfaces-game');
       }
     };
 
     const handlePrev = (e) => {
-      // חטיפת כפתור "חזור" - מחזיר תמיד למסדרון היחידה
       e.preventDefault();
-      navigate('/intro-unit-one');
+      navigate('/intro-unit-one'); // חזרה למסדרון
     };
 
     window.addEventListener('onNextNav', handleNext);
-    window.addEventListener('onPrevNav', handlePrev); // האזנה לחץ אחורה
+    window.addEventListener('onPrevNav', handlePrev);
 
     return () => {
       window.removeEventListener('onNextNav', handleNext);
@@ -60,35 +44,26 @@ function Interfaces() {
     };
   }, [isAllVisited, navigate]);
 
-  const handleDevSkip = (e) => {
-    e.stopPropagation();
-    const allKeys = Object.keys(InterfencesData);
-    setVisited(allKeys);
-    sessionStorage.setItem('interfacesVisited', JSON.stringify(allKeys));
-  };
-
-  const handleComplete = () => {
-    sessionStorage.setItem('unitOne-third', 'finished');
-    sessionStorage.setItem(
-      'currentChapter',
-      JSON.stringify({ name: 'unitOne-third', state: 'finished' })
-    );
-    setCompleted(true);
-    
-    window.dispatchEvent(new Event('updateNavbar'));
-
-    setTimeout(() => {
-      navigate('/intro-unit-one');
-    }, 500);
-  };
-
   const handleTriangleClick = (key, item) => {
     setSelectedItem(item);
     if (!visited.includes(key)) {
       const newVisited = [...visited, key];
       setVisited(newVisited);
       sessionStorage.setItem('interfacesVisited', JSON.stringify(newVisited));
+      
+      // עדכון מיידי של החץ ב-Navbar אם סיימנו הכל
+      if (newVisited.length === totalItems) {
+        window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
+      }
     }
+  };
+
+  const handleDevSkip = (e) => {
+    e.stopPropagation();
+    const allKeys = Object.keys(InterfencesData);
+    setVisited(allKeys);
+    sessionStorage.setItem('interfacesVisited', JSON.stringify(allKeys));
+    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
   };
 
   const handleClosePopUp = () => {
@@ -98,7 +73,7 @@ function Interfaces() {
   return (
     <div className="interfaces-container">
       {!isAllVisited && (
-        <button onClick={handleDevSkip} className="dev-skip-button-style" 
+        <button onClick={handleDevSkip} className="dev-skip-button-style"
           style={{ position: 'fixed', top: '38%', left: '13%', zIndex: 9999 }}>
           דילוג למפתחות
         </button>
@@ -120,18 +95,17 @@ function Interfaces() {
             className={`tringle t${key} ${visited.includes(key) ? "visited" : ""}`}
             onClick={() => handleTriangleClick(key, item)}
           >
-            <p className="tringle-name" style={{ transform: `rotate(${rotationAngle}) ${needsFlip ? 'scaleX(-1)' : ''}`, display: 'inline-block', whiteSpace: 'nowrap', direction: 'rtl' }}>
+            <p className="tringle-name" style={{ 
+              transform: `rotate(${rotationAngle}) ${needsFlip ? 'scaleX(-1)' : ''}`, 
+              display: 'inline-block', 
+              whiteSpace: 'nowrap', 
+              direction: 'rtl' 
+            }}>
               {item.name}
             </p>
           </div>
         );
       })}
-
-      {/* {isAllVisited && !completed && (
-        <button className="complete-button-Interfaces" onClick={handleComplete}>
-          סיים וחזור
-        </button>
-      )} */}
 
       {selectedItem && (
         <InterfacePopUp

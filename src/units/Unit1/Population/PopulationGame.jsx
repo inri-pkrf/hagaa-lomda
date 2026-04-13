@@ -73,7 +73,7 @@ export default function PopulationGame() {
         המשפטים מטה מתארים סוגי צרכים שונים. יש לגרור את התיאור אל ההגדרה המתאימה.
       </p>
 
-      <div className="game-container">
+      <div className="game-containe-population">
         <div className="targets-wrapper">
           <div className="targets-header">סוגי צרכים</div>
           <div className="targets-body">
