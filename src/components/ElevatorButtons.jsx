@@ -8,26 +8,40 @@ function ElevatorButtons({ unit, onUnitSelect }) {
   // כותרת לפי היחידה
   const unitTitles = {
     1: "מבוא",
-    2: "יחידה 2",
-    3: "שגרה",
-    4: "חירום",
+    2: "שגרה",
+    3: "חירום",
+    4: "סיכום",
   };
   const title = unitTitles[currentUnit] || "";
 
-  // מיפוי קומות לשמות יחידות
-  const floorToUnit = {
+  // מיפוי קומות לשמות יחידות (בשביל ה-sessionStorage)
+  const floorToUnitName = {
     1: "UnitOne",
     2: "UnitTwo",
     3: "UnitThree",
     4: "UnitFour",
   };
 
+  // מיפוי קומות לנתיבי הפתיחה החדשים שהגדרת ב-App.js
+  const floorToPath = {
+    1: "/unit-one-opening",
+    2: "/unit-two-opening",
+    3: "/unit-three-opening",
+    4: "/unit-four-opening",
+  };
+
   const handleFloorClick = (floor) => {
+    // מאפשר לחיצה רק על קומות שהמשתמש כבר הגיע אליהן
     if (floor <= currentUnit) {
-      const unitName = floorToUnit[floor];
+      const unitName = floorToUnitName[floor];
+      const targetPath = floorToPath[floor];
+
+      // עדכון היחידה הנוכחית בזיכרון
       sessionStorage.setItem('currentUnit', unitName);
+      
+      // אם העברת פונקציית ניווט או לוגיקה מהעמוד האבא (Elevator.jsx)
       if (onUnitSelect) {
-        onUnitSelect(unitName);
+        onUnitSelect(unitName, targetPath); 
       }
     }
   };

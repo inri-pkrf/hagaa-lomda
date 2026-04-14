@@ -4,14 +4,14 @@ import NavBarData from '../../Data/NavBarData';
 
 const UnitOneSidebar = () => {
   const getProgress = () => ({
-    opening: sessionStorage.getItem('unitOne-opening') === 'finished',
-    goals: sessionStorage.getItem('unitOne-goals') === 'finished',
+    opening: sessionStorage.getItem('unitone-opening') === 'finished',
+    goals: sessionStorage.getItem('unitone-goals') === 'finished',
     threats: sessionStorage.getItem('unitOne-first') === 'finished',
     states: sessionStorage.getItem('unitOne-second') === 'finished',
     interfaces: sessionStorage.getItem('unitOne-third') === 'finished',
     population: sessionStorage.getItem('unitOne-fourth') === 'finished',
     questions: sessionStorage.getItem('unitOne-questions') === 'finished',
-    
+
     // תתי-שיעורים
     pop1: sessionStorage.getItem('populationLaptopFinished') === 'true',
     pop2: sessionStorage.getItem('populationFoldersFinished') === 'true',
@@ -32,7 +32,7 @@ const UnitOneSidebar = () => {
 
   const prepareData = () => {
     const base = NavBarData[0];
-    
+
     return {
       ...base,
       chapters: base.chapters.map((ch) => {
@@ -40,11 +40,11 @@ const UnitOneSidebar = () => {
         let isFinished = false;
 
         // --- לוגיקה לפי כותרת הפרק (הכי בטוח) ---
-        
+
         if (ch.title === "פתיחה") {
           isLocked = false; // תמיד פתוח
           isFinished = finished.opening;
-        } 
+        }
         else if (ch.title === "מטרות") {
           isLocked = !finished.opening; // נפתח כשפתיחה הסתיימה
           isFinished = finished.goals;
@@ -71,7 +71,7 @@ const UnitOneSidebar = () => {
         }
         else if (ch.title === "סיכום פרק") {
           isLocked = !finished.questions;
-          isFinished = false; 
+          isFinished = false;
         }
 
         // עדכון תתי-שיעורים (אוכלוסייה)

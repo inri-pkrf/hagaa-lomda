@@ -49,14 +49,11 @@ function Elevator() {
   }, []);
 
 
-  const handleUnitSelect = (unitName) => {
-    setSelectedUnit(unitName);
-    // הצג את התמונה הפתוחה בפנים עם אנימציה
-    setTimeout(() => setShowOpenInside(true), 500);
-    // לאחר האנימציה, נווט לעמוד הפתיחה של היחידה
-    setTimeout(() => navigate(`/unit-opening/${unitName}`), 2000);
-  };
-
+  const handleUnitSelect = (unitName, targetPath) => {
+  setSelectedUnit(unitName);
+  setTimeout(() => setShowOpenInside(true), 500);
+  setTimeout(() => navigate(targetPath), 2000);
+};
 
   return (
     <main className="Elevator">

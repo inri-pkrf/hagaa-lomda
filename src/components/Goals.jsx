@@ -6,13 +6,19 @@ import './Styles/Goals.css';
 
 function Goals() {
   const navigate = useNavigate();
+  
+  // שליפת היחידה הנוכחית מהזיכרון - זה הופך את הקומפוננטה לגנרית
   const currentUnit = sessionStorage.getItem('currentUnit') || 'UnitOne'; 
   const data = goalsData[currentUnit];
 
   const [visibleGoals, setVisibleGoals] = useState([]);
 
-  // עדכון כותרת ראשית
-  sessionStorage.setItem('MainTitle', data ? data.title : '');
+  // עדכון כותרת ראשית ב-Header לפי הנתונים של היחידה הנוכחית
+  useEffect(() => {
+    if (data) {
+      sessionStorage.setItem('MainTitle', data.title);
+    }
+  }, [data]);
 
   // אנימציה של המטרות בכניסה לדף
   useEffect(() => {
@@ -26,34 +32,37 @@ function Goals() {
     }
   }, [data]);
 
-  // --- לוגיקת החצים הכלליים: מחליפה את הכפתור המקורי ---
+  // --- לוגיקת החצים הכלליים (הבא / חזור) ---
   useEffect(() => {
     const handleNext = (e) => {
-      // 1. עצירת הניווט האוטומטי כדי לבצע את הפקודות של הכפתור הישן
+      // עצירת הניווט האוטומטי כדי לבצע לוגיקה מותאמת אישית
       e.preventDefault();
 
-      // 2. הפקודות שהיו בכפתור: עדכון ה-Session כדי שהסיידבר ידע שהפרק נגמר
-      sessionStorage.setItem('unitOne-goals', 'finished');
+      // עדכון ה-SessionStorage בצורה דינמית! 
+      // אם אנחנו ביחידה UnitOne, המפתח יהיה unitone-goals
+      const storageKey = `${currentUnit.toLowerCase()}-goals`;
+      sessionStorage.setItem(storageKey, 'finished');
       
-      // 3. שליחת האירוע שמעדכן את הסיידבר ויזואלית (מוסיף V)
+      // שליחת אירוע לעדכון הסיידבר (שיופיע V ליד המטרות)
       window.dispatchEvent(new Event('updateNavbar'));
       
-      // 4. ניווט לדף הבא כפי שמוגדר ב-Data
+      // ניווט לדף הבא כפי שמוגדר בקובץ הנתונים (למשל למסדרון הדלתות)
       if (data && data.navigateTo) {
         navigate(data.navigateTo);
       }
     };
 
-    // האזנה לחץ הבא
+    // האזנה לאירוע לחיצה על חץ "הבא" בכפתורים הכלליים
     window.addEventListener('onNextNav', handleNext);
     
     return () => {
       window.removeEventListener('onNextNav', handleNext);
     };
-  }, [data, navigate]);
+  }, [data, navigate, currentUnit]);
 
+  // הגנה למקרה שאין נתונים ליחידה הזו
   if (!data) {
-    return <div>Goals data not found for {currentUnit}</div>;
+    return <div style={{color: 'white', textAlign: 'center', marginTop: '50px'}}>Goals data not found for {currentUnit}</div>;
   }
 
   const { subtitle, goals, colors } = data;
@@ -86,19 +95,6 @@ function Goals() {
           </div>
         ))}
       </div>
-
-      {/* הכפתור המקורי נשאר בהערה - החץ מחליף אותו לחלוטין */}
-      {/* <button
-        className="goals-button"
-        onClick={() => {
-          sessionStorage.setItem('unitOne-goals', 'finished');
-          window.dispatchEvent(new Event('updateNavbar'));
-          navigate(navigateTo);
-        }}
-      >
-        {buttonText}
-      </button> 
-      */}
     </div>
   );
 }

@@ -4,12 +4,12 @@ import headerData from '../Data/HeaderData';
 import './Styles/Buttons.css';
 
 const routeOrder = [
-  '/', '/info-lomda', '/elevator', '/unit-opening/UnitOne', '/goals', 
-  '/intro-unit-one', '/threats', '/states', '/intro-unit-one', 
-  '/interfaces', '/interfaces-game', 
-  '/population', '/PopulationInfo', '/population-parts', '/population', 
-  '/PopulationGame', '/population', '/intro-unit-one', 
-  '/summary-checklist', '/questions-end', '/elevator', '/intro-unit-two', 
+  '/', '/info-lomda', '/elevator', '/unit-one-opening', '/goals-unit-one',
+  '/intro-unit-one', '/threats', '/states', '/intro-unit-one',
+  '/interfaces', '/interfaces-game',
+  '/population', '/PopulationInfo', '/population-parts', '/population',
+  '/PopulationGame', '/population', '/intro-unit-one',
+  '/summary-checklist', '/questions-end', '/elevator', '/intro-unit-two', '/goals-unit-two',
   '/rockets', '/info-rockets', '/intro-unit-three', '/intro-unit-four',
 ];
 
@@ -72,16 +72,20 @@ function Buttons() {
   };
 
   useEffect(() => {
-  // האזנה לאירוע השבתה/הפעלה
-  const handleToggleNext = (e) => setIsNextDisabled(e.detail);
-  
-  window.addEventListener('setNextBtnDisabled', handleToggleNext);
-  return () => {
-    window.removeEventListener('setNextBtnDisabled', handleToggleNext);
-    setIsNextDisabled(false); // איפוס ביציאה מהקומפוננטה
-  };
-}, [location.pathname]);
+    // האזנה לאירוע השבתה/הפעלה
+    const handleToggleNext = (e) => setIsNextDisabled(e.detail);
+    
+    window.addEventListener('setNextBtnDisabled', handleToggleNext);
+    return () => {
+      window.removeEventListener('setNextBtnDisabled', handleToggleNext);
+      setIsNextDisabled(false); // איפוס ביציאה מהקומפוננטה
+    };
+  }, [location.pathname]);
 
+  // בדיקה אם אנחנו במעלית - אם כן, לא מחזירים את ה-HTML של הכפתורים
+  if (location.pathname === '/elevator') {
+    return null;
+  }
 
   return (
     <div className="buttons-page-corner" style={{ '--btn-color': color }}>

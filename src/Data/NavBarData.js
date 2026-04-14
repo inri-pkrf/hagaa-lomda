@@ -3,8 +3,8 @@ const NavBarData = [
         title: "יחידה 1 - מבוא",
         color: "#40d4ff",
         chapters: [
-            { title: "פתיחה", path: "/unit-opening/UnitOne" },
-            { title: "מטרות", path: "/goals" },
+            { title: "פתיחה", path: "/unit-one-opening" },
+            { title: "מטרות", path: "/goals-unit-one" },
             { title: "היערכות לאיומים", path: "/threats" },
             { title: "מצבי תפקוד", path: "/states" },
             { title: "ממשקים", path: "/interfaces" },
@@ -24,8 +24,8 @@ const NavBarData = [
         title: "יחידה 2 - שגרה",
         color: "#56C3A9",
         chapters: [
-            { title: "פתיחה", path: "/unit-opening/UnitTwo" },
-            { title: "מטרות", path: "/goals" },
+            { title: "פתיחה", path: "/unit-two-opening" },
+            { title: "מטרות", path: "/goals-unit-two" },
              {
                 title: "ירי טילים", path: "/rockets",
                 subChapters: [
