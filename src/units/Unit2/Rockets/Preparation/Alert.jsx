@@ -4,17 +4,17 @@ import '../../style/Alert.css';
 
 
 
+
+
+
+
 function Alert() {
   const [currentPage, setCurrentPage] = useState(1);
-
-
 
 
   const handleNextClick = () => {
     setCurrentPage(2);
   };
-
-
 
 
   const handleNext2Click = () => {
@@ -32,8 +32,6 @@ function Alert() {
   };
 
 
-
-
   return (
     <>
       {currentPage === 1 && (
@@ -42,9 +40,20 @@ function Alert() {
           <h2 id='headline-icon'>התרעה</h2>
           <button id='alert-next-button' onClick={handleNextClick}>next</button>
           <img src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/alert-background.png`} alt="Siren" className='alert-background'/>
-          <h1>סרטון</h1>
+          <h1 id='alert-headline'>צפו בסרטון, בסיום הסרטון לחצו על המשך</h1>
+          <iframe
+            width="1025"
+            height="575"
+            src="https://www.youtube.com/embed/DXIS78vRaQ4"
+            title="YouTube video"
+            frameBorder="0"
+            allowFullScreen
+            id='video-alert'
+          ></iframe>
         </div>
       )}
+
+
 
 
       {currentPage === 2 && (
@@ -86,7 +95,9 @@ function Alert() {
 
 
 
+
+
+
+
 export default Alert;
-
-
 

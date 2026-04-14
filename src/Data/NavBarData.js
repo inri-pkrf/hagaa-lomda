@@ -33,14 +33,13 @@ const NavBarData = [
                     {
                      title: "היערכות והתגוננות", path: "/preparation",
                     subChapters: [
-                        { title: "כיצד המרחב המוגן שומר עלינו?", path: "/preparation-info" },
+                        { title: "כיצד המרחב המוגן שומר עלינו?", path: "/protected-space" },
                         { title: "התרעה", path: "/alert" },
                         { title: "כיצד נתגונן?", path: "/defense" },
                         { title: "בחירת מרחב מוגן", path: "/choosing-safe-room" },
                         { title: "למה חשוב להמתין 10 דקות?", path: "/wait-10-mins" },
-                        { title: "ציוד ואחזקת מרחב מוגן", path: "/equipment-outside-game" },
+                        { title: "ציוד ואחזקת מרחב מוגן", path: "/building-maintenance" },
                     ]},
-                    { title: "מרחבים מוגנים", path: "/protected-space" },
                     {
                          title: "מדיניות התגוננות", path: "/defense-policy" ,
                         subChapters:[
@@ -100,5 +99,13 @@ const NavBarData = [
 ];
 
 
+
+
 export default NavBarData;
+
+
+
+
+
+
 

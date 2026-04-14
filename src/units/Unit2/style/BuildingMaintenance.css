@@ -1,2 +1,149 @@
 /* Styles for Unit2 BuildingMaintenance screens */
 
+/* הגדרות קונטיינר וזום */
+.maintenance-game-container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-origin: 50% 55%; /* זום לכיוון הדלת */
+  transition: transform 1.2s cubic-bezier(0.45, 0.05, 0.55, 0.95), opacity 1s ease-in;
+}
+
+
+.zoom-active {
+  transform: scale(5);
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+.maintenance-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+
+/* שכבת האלמנטים */
+.hotspots-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none; /* מאפשר ללחוץ דרך השכבה על ה-hotspots עצמם */
+}
+
+
+.hotspot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  opacity: 1 !important; /* מבטיח שהם גלויים תמיד */
+  display: block !important;
+  transition: filter 0.3s ease;
+  pointer-events: auto; /* מחזיר את היכולת ללחוץ ל-hotspot */
+}
+
+
+.hotspot img {
+  width: 100%;
+  height: auto;
+}
+
+
+/* מצב רגיל - גלוי ב-100% אך לא מגיב ללחיצה */
+.normal-state {
+  pointer-events: none;
+  filter: brightness(0.9); /* מעט יותר כהה כשלא פעיל כדי להבליט את הזוהר */
+}
+
+
+/* מצב זוהר - הילה צהובה עוצמתית */
+.active-glow {
+  pointer-events: auto;
+  cursor: pointer;
+  filter: drop-shadow(0 0 10px #ffff00)
+          drop-shadow(0 0 20px #ffff00)
+          drop-shadow(0 0 35px #ffff00)
+          brightness(1.2);
+  z-index: 150 !important;
+}
+
+
+/* עיצוב הפופ-אפים */
+.maintenance-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+
+.maintenance-popup-content {
+  background: white;
+  padding: 40px;
+  border-radius: 25px;
+  width: 420px;
+  text-align: center;
+  position: relative;
+  direction: rtl;
+  border: 5px solid #56C3A9;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+
+.close-x {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  border: none;
+  background: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #aaa;
+}
+
+
+.popup-icon {
+  font-size: 55px;
+  margin-bottom: 20px;
+}
+
+
+.start-btn, .continue-btn {
+  margin-top: 25px;
+  padding: 12px 40px;
+  background: #56C3A9;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+/* וידוא שהשלט תמיד מעל הכל */
+.sign {
+    z-index: 999 !important;
+}
+
+
+.waterbottles{
+    width: 7vw;
+}
+

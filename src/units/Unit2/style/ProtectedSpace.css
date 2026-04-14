@@ -1,2 +1,53 @@
 /* Styles for Unit2 ProtectedSpace screens */
 
+#video-protectedSpace{
+    display: block;
+    position: absolute;
+    margin: 20px auto;
+    top: 29vh;
+    left: 50%;
+    transform: translate(-50%);
+    border-radius: 20px;
+}
+
+
+#protectedSpace-headline{
+    text-align: center;
+    position: absolute;
+    font-size: 2vw;
+    top: 22vh;
+    left: 50%;
+    transform: translateX(-50%);
+    direction: rtl;
+    font-family: 'assistant';
+    font-weight: 400;
+    color: #472E1A;
+}
+
+
+#headline-icons{
+    position: absolute;
+    right: 10vw;
+    top: 1vh;
+    font-family: 'Karantina';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12vh;
+    text-align: center;
+    color: #FDC940;
+    direction: rtl;
+}
+
+
+#protectedSpace-icon{
+    background-color: #FDC940;
+    padding: 3vh;
+    margin: 2vh;
+    border-radius: 50%;
+    height: 9vh;
+    width: 9vh;
+    border: 1px solid #FDC940;
+    position: absolute;
+    right: 0vw;
+}
+
