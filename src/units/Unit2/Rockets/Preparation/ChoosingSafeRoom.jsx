@@ -43,7 +43,7 @@ function ChoosingSafeRoom() {
   return (
     <div>
       <h2 id='choosingSafeRoom-headline'> בחירת מרחב מוגן </h2>
-      <img src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/choose-space.png`} alt="Siren" id='choosingSafeRoom-icon'/>
+      <img src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/chooseSafePlace-icon.png`} alt="Siren" id='choosingSafeRoom-icon'/>
       <p id='choosingSafeRoom-text1'>בעת קבלת התרעה על ירי רקטות וטילים, יש להיכנס למרחב מוגן בזמן ההתגוננות העומד לרשותנו, בהתאם לסדר העדיפויות הבא: (עברו עם העכבר על הכרטיסיה) </p>
       <p id='choosingSafeRoom-text2'>נתכנן לפי קיבולת אדם למבנה:יש להקצות 1.25 מ"ר לאדם במרחב מוגן</p>
       <div className="flip-cards-container">

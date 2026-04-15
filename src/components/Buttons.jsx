@@ -9,8 +9,8 @@ const routeOrder = [
   '/interfaces', '/interfaces-game',
   '/population', '/PopulationInfo', '/population-parts', '/population',
   '/PopulationGame', '/population', '/intro-unit-one',
-  '/summary-checklist', '/questions-end', '/elevator', '/intro-unit-two', '/goals-unit-two',
-  '/rockets', '/info-rockets', '/intro-unit-three', '/intro-unit-four',
+  '/summary-checklist', '/questions-end', '/elevator', '/unit-two-opening', '/goals-unit-two',
+  '/rockets', '/info-rockets', '/rockets', '/preparation', '/intro-unit-four',
 ];
 
 const getHeaderColor = () => {

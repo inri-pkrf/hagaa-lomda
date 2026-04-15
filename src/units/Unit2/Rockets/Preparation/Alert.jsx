@@ -36,7 +36,7 @@ function Alert() {
     <>
       {currentPage === 1 && (
         <div>
-          <img src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/siren.png`} alt="Siren" id='alert-siren-icon'/>
+          <img src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/alert-icon.png`} alt="Siren" id='alert-siren-icon'/>
           <h2 id='headline-icon'>התרעה</h2>
           <button id='alert-next-button' onClick={handleNextClick}>next</button>
           <img src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/alert-background.png`} alt="Siren" className='alert-background'/>

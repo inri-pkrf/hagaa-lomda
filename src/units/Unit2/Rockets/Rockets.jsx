@@ -6,6 +6,12 @@ import '../style/Rockets.css';
 function Rockets() {
   const navigate = useNavigate();
 
+  // סטייט: אילו מסגרות נלחצו
+  const [clickedFrames, setClickedFrames] = useState(() => {
+    const saved = sessionStorage.getItem('clickedFrames');
+    return saved ? JSON.parse(saved) : [];
+  });
+
 
   // 1. הגדרת הסטייט: בודקים *פעם אחת בלבד* בכניסה אם כבר הרצנו את האנימציה בעבר
   const [hasPlayedIntro] = useState(() => {
@@ -50,9 +56,27 @@ function Rockets() {
 
   const handleFrameClick = (frame) => {
     if (frame.id <= unlockedStep) {
+      // הוספת המסגרת לסטייט אם לא נלחצה
+      setClickedFrames((prev) => {
+        if (!prev.includes(frame.id)) {
+          const updated = [...prev, frame.id];
+          sessionStorage.setItem('clickedFrames', JSON.stringify(updated));
+          return updated;
+        }
+        return prev;
+      });
       navigate(frame.path);
     }
   };
+  // שליטה על כפתור "קדימה" (next) - חסום עד שכל המסגרות נלחצו
+  useEffect(() => {
+    const allClicked = rocketFramesData.every(f => clickedFrames.includes(f.id));
+    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: !allClicked }));
+    // איפוס בלצאת מהעמוד
+    return () => {
+      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
+    };
+  }, [clickedFrames]);
 
 
   // 4. בניית הקלאסים: 'sequence-active' מפעיל את האנימציה, 'no-animation' מבטל אותה בחזרה
@@ -79,21 +103,20 @@ function Rockets() {
       <div className="rockets-frames-container">
         {rocketFramesData.map((frame) => {
           const isLocked = frame.id > unlockedStep;
+          const isClicked = clickedFrames.includes(frame.id);
           return (
             <div
               key={frame.id}
-              className={`rocket-frame-item ${isLocked ? 'locked' : 'unlocked'}`}
+              className={`rocket-frame-item ${isLocked ? 'locked' : 'unlocked'}${isClicked ? ' clicked' : ''}`}
               onClick={() => handleFrameClick(frame)}
             >
               {isLocked && <div className={`rocket-frame-overlay ${hasPlayedIntro ? '' : 'fade-in-delayed'}`}></div>}
-
 
               <img
                 src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/frame${frame.id}.png`}
                 className="rocket-frame-img"
                 alt={`frame-${frame.id}`}
               />
-
 
               {showContent && (
                 <div className={`rocket-frame-content ${hasPlayedIntro ? '' : 'fade-in-delayed'}`}>
