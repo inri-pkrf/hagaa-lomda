@@ -10,9 +10,9 @@ const routeOrder = [
   '/population', '/PopulationInfo', '/population-parts', '/population',
   '/PopulationGame', '/population', '/intro-unit-one',
   '/summary-checklist', '/questions-end', '/elevator', '/unit-two-opening', '/goals-unit-two',
-  '/rockets', '/info-rockets', '/rockets', '/preparation', '/intro-unit-four',
+  '/rockets', '/info-rockets', '/rockets', '/preparation','/ProtectedSpace', '/Alert', '/Defense','/ChoosingSafeRoom','/Wait10mins', '/BuildingMaintenance', 
 ];
-
+// '',
 const getHeaderColor = () => {
   const currentUnit = sessionStorage.getItem('currentUnit') || 'UnitZero';
   return headerData[currentUnit]?.backgroundColor || '#3FC6F3';
@@ -56,6 +56,9 @@ function Buttons() {
     sessionStorage.setItem('routeIndex', String(index));
   }, [currentPath]);
 
+  // עמודי המעבר המיוחדים
+  const specialPages = ['/ProtectedSpace', '/Alert', '/Defense', '/ChoosingSafeRoom', '/Wait10mins', '/BuildingMaintenance'];
+
   const goToPath = (targetPath, isNext = true) => {
     if (!targetPath) return;
 
@@ -67,7 +70,20 @@ function Buttons() {
     // אם הקומפוננטה עשתה preventDefault(), אנחנו לא מנווטים
     if (isCanceled) return;
 
-    // ניווט רגיל אם האירוע לא נעצר
+
+    // אם אנחנו באחד מהעמודים המיוחדים או ב-/BuildingMaintenance ולוחצים "קדימה" -> תמיד חוזרים ל-preparation
+    if (isNext && (specialPages.includes(location.pathname) || location.pathname === '/BuildingMaintenance')) {
+      navigate('/preparation');
+      return;
+    }
+
+    // אם אנחנו ב-preparation ולוחצים "קדימה" -> תמיד ל-rockets
+    if (isNext && location.pathname === '/preparation') {
+      navigate('/rockets');
+      return;
+    }
+
+    // ניווט רגיל בכל שאר המצבים (כולל אחורה בכל העמודים)
     navigate(targetPath);
   };
 

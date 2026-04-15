@@ -46,11 +46,11 @@ function Rockets() {
 
 
   const rocketFramesData = [
-    { id: 1, text: "מאפייני האיום", path: "/info-rockets" },
-    { id: 2, text: "היערכות והתגוננות", path: "/preparation" },
-    { id: 3, text: "מרחבים מוגנים", path: "/protected-spaces" },
-    { id: 4, text: "מדיניות התגוננות", path: "/defense-policy" },
-    { id: 5, text: "סיכום", path: "/summary-rockets" },
+    { id: 1, text: <>מאפייני<br />האיום</>, path: "/info-rockets" },
+    { id: 2, text: <>היערכות<br />והתגוננות</>, path: "/preparation" },
+    { id: 3, text: <>מרחבים<br />מוגנים</>, path: "/protected-spaces" },
+    { id: 4, text: <>מדיניות<br />התגוננות</>, path: "/defense-policy" },
+    { id: 5, text: <>סיכום</>, path: "/summary-rockets" },
   ];
 
 
@@ -65,6 +65,11 @@ function Rockets() {
         }
         return prev;
       });
+      // עדכון unlockedStep: כל לחיצה פותחת את הבא
+      if (frame.id === unlockedStep && unlockedStep < rocketFramesData.length) {
+        setUnlockedStep(unlockedStep + 1);
+        sessionStorage.setItem('unlockedStep', String(unlockedStep + 1));
+      }
       navigate(frame.path);
     }
   };
@@ -76,7 +81,7 @@ function Rockets() {
     return () => {
       window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
     };
-  }, [clickedFrames]);
+  }, [clickedFrames, rocketFramesData]);
 
 
   // 4. בניית הקלאסים: 'sequence-active' מפעיל את האנימציה, 'no-animation' מבטל אותה בחזרה
@@ -109,8 +114,14 @@ function Rockets() {
               key={frame.id}
               className={`rocket-frame-item ${isLocked ? 'locked' : 'unlocked'}${isClicked ? ' clicked' : ''}`}
               onClick={() => handleFrameClick(frame)}
+              style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
             >
               {isLocked && <div className={`rocket-frame-overlay ${hasPlayedIntro ? '' : 'fade-in-delayed'}`}></div>}
+
+              {/* טקסט ממורכז תמיד */}
+              <div className="rocket-frame-center-text" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', zIndex: 5, textAlign: 'center', pointerEvents: 'none', fontWeight: 700, fontSize: '1vw', color: '#472E1A', lineHeight: 1.2 }}>
+                {frame.text}
+              </div>
 
               <img
                 src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/frame${frame.id}.png`}
@@ -118,9 +129,13 @@ function Rockets() {
                 alt={`frame-${frame.id}`}
               />
 
-              {showContent && (
-                <div className={`rocket-frame-content ${hasPlayedIntro ? '' : 'fade-in-delayed'}`}>
-                  <p>{frame.text}</p>
+              {/* סימן וי של הושלם */}
+              {isClicked && (
+                <div className="rocket-frame-v">
+                  <svg viewBox="0 0 24 24" width="32" height="32">
+                    <circle cx="12" cy="12" r="12" fill="#4CAF50" />
+                    <polyline points="20 6 9 17 4 12" fill="none" stroke="white" strokeWidth="4" />
+                  </svg>
                 </div>
               )}
             </div>

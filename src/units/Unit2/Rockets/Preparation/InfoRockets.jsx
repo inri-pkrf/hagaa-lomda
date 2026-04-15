@@ -19,7 +19,7 @@ function InfoRockets() {
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
-    }, 4000);
+    }, 2000);
     return () => clearInterval(timer);
   }, [currentIndex]);
 
@@ -62,12 +62,6 @@ function InfoRockets() {
               להימצא בו בזמן ירי טילים.
             </p>
           </div>
-
-
-          {/* הכפתור החדש פה למטה, תוכלי להלביש עליו איזה קלאס שתרצי לעיצוב */}
-          <button className="finish-part-rockets" onClick={handleBackAndUnlock}>
-            הבנתי, המשך
-          </button>
         </div>
 
 

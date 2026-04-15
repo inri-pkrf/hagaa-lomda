@@ -4,6 +4,8 @@ import '../../style/Preparation.css';
 import { useNavigate } from "react-router-dom";
 
 
+import { useState, useEffect } from 'react';
+
 function Preparation() {
   const navigate = useNavigate();
   const topicsData = [
@@ -58,9 +60,36 @@ function Preparation() {
     },
   ];
  
+  // סטייט: אילו נושאים נלחצו
+  const [clickedTopics, setClickedTopics] = useState(() => {
+    const saved = sessionStorage.getItem('clickedTopics');
+    return saved ? JSON.parse(saved) : [];
+  });
+
   const handleTopicClick = (id) => {
-    navigate(`/${id}`);
+    setClickedTopics((prev) => {
+      if (!prev.includes(id)) {
+        const updated = [...prev, id];
+        sessionStorage.setItem('clickedTopics', JSON.stringify(updated));
+        return updated;
+      }
+      return prev;
+    });
+    if (id === 'BuildingMaintenance') {
+      navigate('/BuildingMaintenance');
+    } else {
+      navigate(`/${id}`);
+    }
   };
+
+  // הפעלת/חסימת כפתור "המשך" לפי מצב הלחיצות
+  useEffect(() => {
+    const allClicked = topicsData.every(t => clickedTopics.includes(t.id));
+    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: !allClicked }));
+    return () => {
+      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
+    };
+  }, [clickedTopics, topicsData]);
 
 
 
@@ -81,6 +110,7 @@ function Preparation() {
           <TopicCircle
             key={topic.id}
             {...topic}
+            isCompleted={clickedTopics.includes(topic.id)}
             onClick={handleTopicClick}
           />
         ))}

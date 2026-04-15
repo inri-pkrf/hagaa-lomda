@@ -1,5 +1,6 @@
 /* Styles for Unit2 BuildingMaintenance screens */
 
+
 /* הגדרות קונטיינר וזום */
 .maintenance-game-container {
   width: 100vw;
@@ -12,7 +13,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transform-origin: 50% 55%; /* זום לכיוון הדלת */
+  transform-origin: 50% 55%;
   transition: transform 1.2s cubic-bezier(0.45, 0.05, 0.55, 0.95), opacity 1s ease-in;
 }
 
@@ -40,17 +41,17 @@
   width: 100%;
   height: 100%;
   z-index: 5;
-  pointer-events: none; /* מאפשר ללחוץ דרך השכבה על ה-hotspots עצמם */
+  pointer-events: none;
 }
 
 
 .hotspot {
   position: absolute;
   transform: translate(-50%, -50%);
-  opacity: 1 !important; /* מבטיח שהם גלויים תמיד */
+  opacity: 1 !important;
   display: block !important;
   transition: filter 0.3s ease;
-  pointer-events: auto; /* מחזיר את היכולת ללחוץ ל-hotspot */
+  pointer-events: auto;
 }
 
 
@@ -60,21 +61,16 @@
 }
 
 
-/* מצב רגיל - גלוי ב-100% אך לא מגיב ללחיצה */
 .normal-state {
   pointer-events: none;
-  filter: brightness(0.9); /* מעט יותר כהה כשלא פעיל כדי להבליט את הזוהר */
+  filter: brightness(0.9);
 }
 
 
-/* מצב זוהר - הילה צהובה עוצמתית */
 .active-glow {
   pointer-events: auto;
   cursor: pointer;
-  filter: drop-shadow(0 0 10px #ffff00)
-          drop-shadow(0 0 20px #ffff00)
-          drop-shadow(0 0 35px #ffff00)
-          brightness(1.2);
+  filter: drop-shadow(0 0 10px #ffff00) drop-shadow(0 0 20px #ffff00) brightness(1.2);
   z-index: 150 !important;
 }
 
@@ -91,59 +87,170 @@
   justify-content: center;
   align-items: center;
   z-index: 2000;
+  padding: 20px; /* מניעת הצמדה לקצוות במסכים קטנים */
 }
 
 
-.maintenance-popup-content {
-  background: white;
-  padding: 40px;
-  border-radius: 25px;
-  width: 420px;
-  text-align: center;
+/* עיצוב הפופ-אפ החדש - רחב ונמוך */
+.maintenance-popup-content.custom-design {
+  background: #FFFDF5;
+  border: 5px solid #56C3A9;
+  border-radius: 50px;
+  width: 80vw;         /* תופס 80% מרוחב המסך */
+  max-width: 900px;    /* אבל לא יותר מ-900 פיקסלים כדי שלא יראה מוזר במסכי ענק */
+  min-height: auto;    /* גובה גמיש לפי התוכן */
+  padding: 0;
+  display: flex;
+  flex-direction: column;
   position: relative;
   direction: rtl;
-  border: 5px solid #56C3A9;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
 }
 
 
-.close-x {
+.popup-text-container h3 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem); /* גודל טקסט רספונסיבי */
+  margin-bottom: 10px;
+}
+
+
+.popup-text-container p {
+  font-size: clamp(1rem, 2vw, 1.5rem); /* גודל טקסט רספונסיבי */
+  line-height: 1.4;
+}
+
+
+/* כפתור סגירה */
+.close-x-circle {
   position: absolute;
-  top: 15px;
-  left: 20px;
-  border: none;
-  background: none;
-  font-size: 24px;
+  top: 20px;
+  right: 25px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #56C3A9;
+  background: white;
+  color: #56C3A9;
+  font-size: 20px;
   cursor: pointer;
-  color: #aaa;
+  z-index: 10;
 }
 
 
-.popup-icon {
-  font-size: 55px;
-  margin-bottom: 20px;
+/* שורת כפתור ואייקון למטה */
+.popup-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 0; /* השורה עצמה לא תופסת מקום, הבנים שלה ימוקמו אבסולוטית */
 }
 
 
-.start-btn, .continue-btn {
-  margin-top: 25px;
-  padding: 12px 40px;
+/* כפתור המשך בפינה השמאלית */
+.continue-btn-new {
   background: #56C3A9;
   color: white;
   border: none;
-  border-radius: 12px;
+  padding: clamp(10px, 2vh, 20px) clamp(20px, 4vw, 50px);
+  font-size: clamp(1rem, 2vw, 1.4rem);
   font-weight: bold;
+  border-radius: 0 25px 0 45px; /* פינה אחת מעוגלת כלפי פנים */
   cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 
-/* וידוא שהשלט תמיד מעל הכל */
-.sign {
-    z-index: 999 !important;
+/* הקונטיינר של האייקון - משמש רק למיקום */
+.bottom-icon-circle {
+  width: 4vw;
+  height: 4vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 1.7vh;  
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;  
 }
 
 
-.waterbottles{
-    width: 7vw;
+/* התמונה עצמה (העיגול והסמל ביחד) */
+.bottom-icon-circle img {
+  width: 100%;       /* תופסת את כל רוחב הקונטיינר */
+  height: auto;
+  object-fit: contain;
+}
+
+
+/* התאמת הפופ-אפ כדי שהטקסט לא יתנגש באייקון */
+.popup-text-container {
+  padding: 40px 60px 60px 60px;
+  text-align: center;
+}
+.waterbottles {
+    width: 4vw;
+}
+
+
+.tin{
+  scale: 70%;
+}
+
+
+.waterTank{
+    width: 4vw;
+}
+
+
+.television,
+.fireExtinguisher{
+  scale: 50%;
+}
+
+
+.final-checks-container {
+  padding: 30px 50px 70px 50px;
+  text-align: right;
+  direction: rtl;
+}
+
+
+.final-checks-container h3 {
+  color: #4A3A2A;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #56C3A9;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+
+.checks-list {
+  list-style: none;
+  padding: 0;
+}
+
+
+.checks-list li {
+    gap: 2vw;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    color: #555;
+    border-bottom: 1px dashed #ddd;
+    padding-bottom: 5px;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+
+.checks-list li span {
+  color: #56C3A9;
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
