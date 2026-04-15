@@ -6,10 +6,10 @@ function InfoRockets() {
   const navigate = useNavigate();
  
   const sliderImages = [
-    `${process.env.PUBLIC_URL}/assets/unitTwoImgs/gallery1.png`,
-    `${process.env.PUBLIC_URL}/assets/unitTwoImgs/gallery2.jpg`,
-    `${process.env.PUBLIC_URL}/assets/unitTwoImgs/gallery3.png`,
-    `${process.env.PUBLIC_URL}/assets/unitTwoImgs/gallery4.jpg`,
+    `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/gallery1.png`,
+    `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/gallery2.jpg`,
+    `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/gallery3.png`,
+    `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/gallery4.jpg`,
   ];
 
 

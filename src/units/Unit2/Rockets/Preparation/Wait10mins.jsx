@@ -33,19 +33,19 @@ function Wait10mins() {
     {currentPage === 1 && (
       <div>
         <h2 id='wait10min-headline'> למה חשוב להמתין 10 דקות </h2>
-        <img src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/wait10min-icon.png`} alt="Siren" id='wait10min-icon'/>
+        <img src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/wait10min-icon.png`} alt="Siren" id='wait10min-icon'/>
         <p id='wait10min-text1'>סכנה לנפילת שברי יירוט</p>
         <p id='wait10min-text2'>מטח הרקטות יכול להימשך</p>
         <p id='wait10min-text3'>שיפור ההגנה לאזרח</p>
         <button id='alert-next-button' onClick={handleNextClick}>next</button>
-        <img src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/image-removebg-preview (49) 1.png`} alt="Siren" id='wait10min-img1'/>
+        <img src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/image-removebg-preview (49) 1.png`} alt="Siren" id='wait10min-img1'/>
    
       </div>
     )}
     {currentPage === 2 && (
       <div>
         <h2 id='wait10min-headline'> למה חשוב להמתין 10 דקות </h2>
-        <img src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/timer10.png`} alt="Siren" id='wait10min-icon'/>
+        <img src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/timer10.png`} alt="Siren" id='wait10min-icon'/>
         <h2 id='wait10min-dircations'>צפו בסרטון, בסיום לחצו על החץ להמשך</h2>
           <iframe
           width="1025"

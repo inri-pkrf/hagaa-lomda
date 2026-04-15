@@ -27,9 +27,9 @@ const TopicCircle = ({
           </div>
         )}
        
-        {/* שימי לב לנתיב כאן: assets/unitTwoImgs/ */}
+        {/* שימי לב לנתיב כאן: assets/UnitTwoImgs/ */}
         <img
-          src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/${icon}`}
+          src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/${icon}`}
           alt={title}
           className="main-topic-icon"
         />

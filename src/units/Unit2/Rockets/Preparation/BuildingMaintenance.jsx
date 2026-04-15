@@ -157,7 +157,7 @@ function BuildingMaintenance() {
         alt="bg"
       />
 
-      <img src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/equipment-icon.png`} alt="icon" id='equipment-icon'/>
+      <img src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/equipment-icon.png`} alt="icon" id='equipment-icon'/>
       <div className="hotspots-layer">
         {currentSteps.map((step, index) => {
           const isClicked = clickedSteps.includes(index);

@@ -33,7 +33,7 @@ function Defense() {
      {currentPage === 1 && (
     <div>
       <h2 id='defense-headline'>כיצד נתגונן</h2>
-      <img src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/defense-icon.png`} alt="Siren" id='alert-defense-icon'/>
+      <img src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/defense-icon.png`} alt="Siren" id='alert-defense-icon'/>
       <p id='defense-text1'>סדר העדיפויות בכניסה למרחב מוגן</p>
       <p id='defense-text2'>נפעל בהתאם לזמן העומד לרשותנו ולפי סדר העדיפויות:</p>
       <div id='defense-list'>
@@ -71,7 +71,7 @@ function Defense() {
       {currentPage === 2 && (
         <div>
           <h2 id='defense-headline'>כיצד נתגונן</h2>
-          <img src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/questionIcon.png`} alt="Siren" id='alert-defense-icon'/>
+          <img src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/questionIcon.png`} alt="Siren" id='alert-defense-icon'/>
           <h2 id='defense-dircations'>צפו בסרטון, בסיום לחצו על החץ להמשך</h2>
             <iframe
             width="1025"

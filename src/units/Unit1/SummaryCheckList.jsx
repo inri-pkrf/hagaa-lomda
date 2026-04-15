@@ -5,7 +5,7 @@ import './style/SummaryCheckList.css';
 
 function SummaryCheckList() {
     const navigate = useNavigate();
-    const image = `${process.env.PUBLIC_URL}/assets/UnitOneImgs/vector.png`;
+    const image = `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Vector.png`;
 
     // --- לוגיקת החצים הכלליים ---
     useEffect(() => {

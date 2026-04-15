@@ -5,7 +5,7 @@ import '../../style/ProtectedSpace.css';
 function ProtectedSpace() {
   return (
     <div>
-      <img src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/protectedSpace-icon.png`} alt="icon" id='protectedSpace-icon'/>
+      <img src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/protectedSpace-icon.png`} alt="icon" id='protectedSpace-icon'/>
       <h2 id='headline-icon-protectedSpace'>כיצד המרחב המוגן שומר עלינו?</h2>
       <h2 id='protectedSpace-headline'>צפו בסרטון, בסיום לחצו על החץ להמשך</h2>
      

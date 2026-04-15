@@ -36,10 +36,10 @@ function Alert() {
     <>
       {currentPage === 1 && (
         <div>
-          <img src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/alert-icon.png`} alt="Siren" id='alert-siren-icon'/>
+          <img src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/alert-icon.png`} alt="Siren" id='alert-siren-icon'/>
           <h2 id='headline-icon'>התרעה</h2>
           <button id='alert-next-button' onClick={handleNextClick}>next</button>
-          <img src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/alert-background.png`} alt="Siren" className='alert-background'/>
+          <img src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/alert-background.png`} alt="Siren" className='alert-background'/>
           <h1 id='alert-headline'>צפו בסרטון, בסיום הסרטון לחצו על המשך</h1>
           <iframe
             width="1025"
@@ -58,7 +58,7 @@ function Alert() {
 
       {currentPage === 2 && (
         <div id='alert-page1'>
-          <img src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/siren.png`} alt="Siren" id='alert-siren-icon'/>
+          <img src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/siren.png`} alt="Siren" id='alert-siren-icon'/>
           <h2 id='headline-icon'>התרעה</h2>
           <p id='alert-text'>כממונה הג"א עליך לוודא שמותקן צופר במפעל / קבוצת מפעלים, אשר ישמש כאמצעי התרעה לעובדים.</p>
           <p id='alert-sub-text'>החברות בהסכם עם משרד הביטחון להתקנת צופר:</p>
@@ -69,12 +69,12 @@ function Alert() {
           </ul>
           <button id='alert-next-button' onClick={handleNext2Click}>next</button>
           <button id='alert-back-button' onClick={handleBackClick}>חזור</button>
-          <img src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/alert-background.png`} alt="Siren" className='alert-background'/>
+          <img src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/alert-background.png`} alt="Siren" className='alert-background'/>
         </div>
       )}
       {currentPage === 3 && (
         <div id='alert-page2'>
-          <img src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/siren.png`} alt="Siren" id='alert-siren-icon'/>
+          <img src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/siren.png`} alt="Siren" id='alert-siren-icon'/>
           <h2 id='headline-icon'>התרעה</h2>
           <h2 id='alert-text2'>עליך לוודא כי ההתרעה נשמעת בכל שטח המפעל</h2>
           <p id='alert-sub-text2'>משימתך כממונה הג"א - בדיקת כיסוי</p>
@@ -85,7 +85,7 @@ function Alert() {
             <li>באזורי רעש גבוה יש לסכם כיצד מועברת ההתרעה</li>
           </ol>
           <button id='alert-back-button' onClick={handleBack2Click}>חזור</button>
-          <img src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/alert-background.png`} alt="Siren" className='alert-background'/>
+          <img src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/alert-background.png`} alt="Siren" className='alert-background'/>
         </div>
       )}
     </>

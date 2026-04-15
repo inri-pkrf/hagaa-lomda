@@ -94,7 +94,7 @@ function Rockets() {
     <div className={containerClass}>
       {/* הרקע נעלם רק אם אנחנו בתהליך האנימציה, לא אם חזרנו מהנושא */}
       {!hasPlayedIntro && (
-        <div className="rockets-background-layer" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/assets/unitTwoImgs/rocketsOpeningBg.png)` }} />
+        <div className="rockets-background-layer" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitTwoImgs/rocketsOpeningBg.png)` }} />
       )}
 
 
@@ -128,7 +128,7 @@ function Rockets() {
               </div>
 
               <img
-                src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/frame${frame.id}.png`}
+                src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/frame${frame.id}.png`}
                 className={`rocket-frame-img${isLocked ? ' blurred' : ''}`}
                 alt={`frame-${frame.id}`}
               />
