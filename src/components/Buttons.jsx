@@ -103,12 +103,23 @@ function Buttons() {
     return null;
   }
 
+  // Disable both buttons on /BuildingMaintenance
+  const isBuildingMaintenance = location.pathname === '/BuildingMaintenance';
+
   return (
     <div className="buttons-page-corner" style={{ '--btn-color': color }}>
-      <button className="app-button app-button--next" onClick={() => goToPath(nextPath, true)} disabled={!nextPath || isNextDisabled} >
+      <button
+        className="app-button app-button--next"
+        onClick={() => goToPath(nextPath, true)}
+        disabled={!nextPath || isNextDisabled || isBuildingMaintenance}
+      >
         <img src={`${process.env.PUBLIC_URL}/assets/Btns/NextBtnArrow.png`} alt="Next" className="app-button__icon next" />
       </button>
-      <button className="app-button app-button--prev" onClick={() => goToPath(prevPath, false)} disabled={!prevPath}>
+      <button
+        className="app-button app-button--prev"
+        onClick={() => goToPath(prevPath, false)}
+        disabled={!prevPath || isBuildingMaintenance}
+      >
         <img src={`${process.env.PUBLIC_URL}/assets/Btns/NextBtnArrow.png`} alt="Back" className="app-button__icon back" />
       </button>
     </div>

@@ -5,39 +5,41 @@ import FlipCard from "../flipCard";
 
 
 
+
+
+
+
 function ChoosingSafeRoom() {
   const safeRoomPriorities = [
     {
       id: 1,
-      priority: "4",
+      priority: "1",
       title: "ממ״ד",
       description: `ממ"ד, ממ"ק או ממ"מ`,
-      image: `${process.env.PUBLIC_URL}/assets/unitTwoImgs/flipcard4.png`
+      image: `${process.env.PUBLIC_URL}/assets/unitTwoImgs/flipcard1.png`
     },
     {
       id: 2,
-      priority: "3",
+      priority: "2",
       title: "מקלט",
       description: `מקלט (משותף או ציבורי)`,
-      image: `${process.env.PUBLIC_URL}/assets/unitTwoImgs/flipcard3.png`
-    },
-    {
-      id: 3,
-      priority: "2",
-      title: "חדר מדרגות",
-      description: `חדר מדרגות פנימי`,
       image: `${process.env.PUBLIC_URL}/assets/unitTwoImgs/flipcard2.png`
     },
     {
+      id: 3,
+      priority: "3",
+      title: "חדר מדרגות",
+      description: `חדר מדרגות פנימי`,
+      image: `${process.env.PUBLIC_URL}/assets/unitTwoImgs/flipcard3.png`
+    },
+    {
       id: 4,
-      priority: "1",
+      priority: "4",
       title: "חדר פנימי",
       description: `חדר פנימי`,
-      image: `${process.env.PUBLIC_URL}/assets/unitTwoImgs/flipcard1.png`
+      image: `${process.env.PUBLIC_URL}/assets/unitTwoImgs/flipcard4.png`
     },
   ];
-
-
 
 
   return (
@@ -64,5 +66,13 @@ function ChoosingSafeRoom() {
 
 
 
+
+
+
+
 export default ChoosingSafeRoom;
+
+
+
+
 

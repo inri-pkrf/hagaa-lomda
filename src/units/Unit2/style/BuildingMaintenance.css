@@ -1,5 +1,18 @@
-/* Styles for Unit2 BuildingMaintenance screens */
+.hotspot-overlay {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
+  width: 3vw;
+  height: 3vw;
+
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+
+  z-index: 5;
+  pointer-events: none;
+}
 
 /* הגדרות קונטיינר וזום */
 .maintenance-game-container {
@@ -254,3 +267,24 @@
   font-size: 1.5rem;
 }
 
+.building-check-v {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+}
+
+#equipment-icon{
+    background-color: rgb(86, 118, 145);
+    border: 1px solid rgb(86, 118, 145);
+    z-index: 20;
+    top: 5vw;
+    padding: 2vh;
+    margin: 2vh;
+    border-radius: 50vw;
+    height: 9vh;
+    width: 9vh;
+    position: absolute;
+    right: 0vw;
+}

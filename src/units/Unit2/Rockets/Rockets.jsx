@@ -116,16 +116,20 @@ function Rockets() {
               onClick={() => handleFrameClick(frame)}
               style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
             >
-              {isLocked && <div className={`rocket-frame-overlay ${hasPlayedIntro ? '' : 'fade-in-delayed'}`}></div>}
+
 
               {/* טקסט ממורכז תמיד */}
-              <div className="rocket-frame-center-text" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', zIndex: 5, textAlign: 'center', pointerEvents: 'none', fontWeight: 700, fontSize: '1vw', color: '#472E1A', lineHeight: 1.2 }}>
+
+              <div
+                className={`rocket-frame-center-text${isLocked ? ' blurred' : ''}`}
+                style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', zIndex: 5, textAlign: 'center', pointerEvents: 'none', fontWeight: 700, fontSize: '1vw', color: '#472E1A', lineHeight: 1.2 }}
+              >
                 {frame.text}
               </div>
 
               <img
                 src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/frame${frame.id}.png`}
-                className="rocket-frame-img"
+                className={`rocket-frame-img${isLocked ? ' blurred' : ''}`}
                 alt={`frame-${frame.id}`}
               />
 

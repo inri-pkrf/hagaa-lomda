@@ -11,8 +11,6 @@
 }
 
 
-
-
 #choosingSafeRoom-icon{
     background-color: #FF5A5D;
     padding: 3vh;
@@ -23,8 +21,6 @@
     position: absolute;
     right: 0vw;
 }
-
-
 
 
 #choosingSafeRoom-text1{
@@ -41,8 +37,6 @@
 }
 
 
-
-
 .flip-cards-container {
     position: absolute;
     top: 35vh;
@@ -50,13 +44,12 @@
     transform: translateX(-50%);
     width: 90vw;
     display: flex;
+    flex-direction: row-reverse;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 15px;
 }
-
-
 
 
 @media (max-width: 1024px) {
@@ -77,8 +70,6 @@
         width: 80vw;
     }
 }
-
-
 
 
 @media (max-width: 768px) {

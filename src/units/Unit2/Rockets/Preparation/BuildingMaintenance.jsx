@@ -93,6 +93,7 @@ const insideSteps = [
 ];
 
 
+
 function BuildingMaintenance() {
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
@@ -101,23 +102,23 @@ function BuildingMaintenance() {
   const [isIntro, setIsIntro] = useState(true);
   const [showFinalChecks, setShowFinalChecks] = useState(false); // מצב חדש לצ'ק ליסט הסופי
   const [isTransitioning, setIsTransitioning] = useState(false);
-
+  // סטייט חדש: מערך של אינדקסים שנלחצו
+  const [clickedSteps, setClickedSteps] = useState([]);
 
   const currentSteps = isInside ? insideSteps : outsideSteps;
   const currentBg = isInside ? "insideSafeRoomBg.png" : "outsideSafeRoomBg.png";
-
 
   const handleElementClick = (index) => {
     if (index === activeStep) {
       setIsIntro(false);
       setShowPopup(true);
+      // הוסף את האינדקס למערך הנלחצים אם לא קיים
+      setClickedSteps((prev) => (prev.includes(index) ? prev : [...prev, index]));
     }
   };
 
-
   const handleClose = () => {
     setShowPopup(false);
-
 
     if (!isIntro) {
       if (activeStep < currentSteps.length - 1) {
@@ -127,6 +128,7 @@ function BuildingMaintenance() {
         setTimeout(() => {
           setIsInside(true);
           setActiveStep(0);
+          setClickedSteps([]); // אפס את הנלחצים כשעוברים פנימה
           setIsTransitioning(false);
         }, 1200);
       } else {
@@ -155,21 +157,37 @@ function BuildingMaintenance() {
         alt="bg"
       />
 
-
+      <img src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/equipment-icon.png`} alt="icon" id='equipment-icon'/>
       <div className="hotspots-layer">
-        {currentSteps.map((step, index) => (
-          <div
-            key={step.id}
-            className={`hotspot ${step.id} ${index === activeStep ? "active-glow" : "normal-state"}`}
-            style={{ top: step.top, left: step.left, zIndex: step.zIndex }}
-            onClick={() => handleElementClick(index)}
-          >
-            <img
-              src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/${step.id}.png`}
-              alt={step.id}
-            />
-          </div>
-        ))}
+        {currentSteps.map((step, index) => {
+          const isClicked = clickedSteps.includes(index);
+          return (
+            <div
+              key={step.id}
+              className={`hotspot ${step.id} ${
+                index === activeStep ? "active-glow" : "normal-state"
+              } ${isClicked ? "clicked-hotspot" : ""}`}
+              style={{ top: step.top, left: step.left, zIndex: step.zIndex }}
+              onClick={() => handleElementClick(index)}
+            >
+              <img
+                src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/${step.id}.png`}
+                alt={step.id}
+              />
+              {isClicked && (
+                <>
+                  <span className="hotspot-overlay"></span>
+                  <div className="rocket-frame-v building-check-v">
+                    <svg viewBox="0 0 24 24" width="40" height="40">
+                      <circle cx="12" cy="12" r="12" fill="#4CAF50" />
+                      <polyline points="20 6 9 17 4 12" fill="none" stroke="white" strokeWidth="4" />
+                    </svg>
+                  </div>
+                </>
+              )}
+            </div>
+          );
+        })}
       </div>
 
 
@@ -188,10 +206,6 @@ function BuildingMaintenance() {
                 {popupContent.btn}
               </button>
               <div className="bottom-icon-circle">
-                <img
-                  src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/equipment-icon.png`}
-                  alt="icon"
-                />
               </div>
             </div>
           </div>
@@ -235,16 +249,13 @@ function BuildingMaintenance() {
 
 
             <div className="popup-footer">
-              <button
-                className="continue-btn-new"
-              >
-                סיום
-              </button>
+            <button
+              className="continue-btn-new"
+              onClick={() => navigate("/preparation")}
+            >
+              סיום
+            </button>
               <div className="bottom-icon-circle">
-                <img
-                  src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/equipment-icon.png`}
-                  alt="icon"
-                />
               </div>
             </div>
           </div>
