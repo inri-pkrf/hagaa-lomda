@@ -189,7 +189,7 @@ function BuildingMaintenance() {
               </button>
               <div className="bottom-icon-circle">
                 <img
-                  src={`${process.env.PUBLIC_URL}/assets/unitTwoImgs/equipment-icon.png`}
+                  src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/equipment-icon.png`}
                   alt="icon"
                 />
               </div>
