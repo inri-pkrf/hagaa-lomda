@@ -2,33 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/Rockets.css';
 
-
 function Rockets() {
   const navigate = useNavigate();
-
   // סטייט: אילו מסגרות נלחצו
   const [clickedFrames, setClickedFrames] = useState(() => {
     const saved = sessionStorage.getItem('clickedFrames');
     return saved ? JSON.parse(saved) : [];
   });
 
-
   // 1. הגדרת הסטייט: בודקים *פעם אחת בלבד* בכניסה אם כבר הרצנו את האנימציה בעבר
   const [hasPlayedIntro] = useState(() => {
     return sessionStorage.getItem('introPlayed') === 'true';
   });
 
-
   // 2. סטייט לניהול תחילת הרצף (האנימציה עצמה)
   // אם כבר שיחקנו את האינטרו, הוא מתחיל כ-true מיד. אם לא, הוא מתחיל כ-false.
   const [startSequence, setStartSequence] = useState(hasPlayedIntro);
-
 
   const [unlockedStep, setUnlockedStep] = useState(() => {
     const savedStep = sessionStorage.getItem('unlockedStep');
     return savedStep ? parseInt(savedStep, 10) : 1;
   });
-
 
   useEffect(() => {
     sessionStorage.setItem('MainTitle', "ירי טילים");
@@ -48,11 +42,10 @@ function Rockets() {
   const rocketFramesData = [
     { id: 1, text: <>מאפייני<br />האיום</>, path: "/info-rockets" },
     { id: 2, text: <>היערכות<br />והתגוננות</>, path: "/preparation" },
-    { id: 3, text: <>מרחבים<br />מוגנים</>, path: "/protected-spaces" },
-    { id: 4, text: <>מדיניות<br />התגוננות</>, path: "/defense-policy" },
+    { id: 3, text: <>מרחבים<br />מוגנים</>, path: "/frame3" },
+    { id: 4, text: <>מדיניות<br />התגוננות</>, path: "/defense-policy/sub-one" },
     { id: 5, text: <>סיכום</>, path: "/summary-rockets" },
   ];
-
 
   const handleFrameClick = (frame) => {
     if (frame.id <= unlockedStep) {
@@ -89,7 +82,6 @@ function Rockets() {
   const containerClass = `rockets-container ${startSequence ? 'sequence-active' : ''} ${hasPlayedIntro ? 'no-animation' : ''}`;
   const showContent = startSequence;
 
-
   return (
     <div className={containerClass}>
       {/* הרקע נעלם רק אם אנחנו בתהליך האנימציה, לא אם חזרנו מהנושא */}
@@ -97,13 +89,11 @@ function Rockets() {
         <div className="rockets-background-layer" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitTwoImgs/rocketsOpeningBg.png)` }} />
       )}
 
-
       {showContent && (
         <div className={`rockets-sub-header ${hasPlayedIntro ? '' : 'fade-in-delayed'}`}>
           <h3>בפרק זה נלמד על:</h3>
         </div>
       )}
-
 
       <div className="rockets-frames-container">
         {rocketFramesData.map((frame) => {
@@ -116,10 +106,7 @@ function Rockets() {
               onClick={() => handleFrameClick(frame)}
               style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
             >
-
-
               {/* טקסט ממורכז תמיד */}
-
               <div
                 className={`rocket-frame-center-text${isLocked ? ' blurred' : ''}`}
                 style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', zIndex: 5, textAlign: 'center', pointerEvents: 'none', fontWeight: 700, fontSize: '1vw', color: '#472E1A', lineHeight: 1.2 }}
@@ -147,7 +134,6 @@ function Rockets() {
         })}
       </div>
 
-
       {showContent && (
         <div className={`rockets-footer-hint ${hasPlayedIntro ? '' : 'fade-in-delayed'}`}>
           <p>יש ללחוץ על המסגרת כדי להמשיך</p>
@@ -157,8 +143,5 @@ function Rockets() {
   );
 }
 
-
 export default Rockets;
-
-
 

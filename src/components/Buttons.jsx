@@ -71,6 +71,23 @@ function Buttons() {
     if (isCanceled) return;
 
 
+    // מעבר ל-intro-unit-two אם כל המסגרות ברקטות הושלמו, וסימון הדלת הראשונה כבוצעה
+    if (isNext && location.pathname === '/rockets') {
+      try {
+        const clickedFrames = JSON.parse(sessionStorage.getItem('clickedFrames') || '[]');
+        const allFrames = [1,2,3,4,5];
+        const allClicked = allFrames.every(id => clickedFrames.includes(id));
+        if (allClicked) {
+          // סימון פתיחה של יחידה 2 כבוצעה
+          sessionStorage.setItem('unitTwo-opening', 'finished');
+          sessionStorage.setItem('unitTwo-first', 'finished'); // סימון הדלת הראשונה
+          window.dispatchEvent(new Event('updateNavbar'));
+          navigate('/intro-unit-two');
+          return;
+        }
+      } catch (e) {}
+    }
+
     // אם אנחנו באחד מהעמודים המיוחדים או ב-/BuildingMaintenance ולוחצים "קדימה" -> תמיד חוזרים ל-preparation
     if (isNext && (specialPages.includes(location.pathname) || location.pathname === '/BuildingMaintenance')) {
       navigate('/preparation');

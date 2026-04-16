@@ -46,6 +46,8 @@ import Defense from './units/Unit2/Rockets/Preparation/Defense.jsx';
 import ChoosingSafeRoom from './units/Unit2/Rockets/Preparation/ChoosingSafeRoom.jsx';
 import Wait10mins from './units/Unit2/Rockets/Preparation/Wait10mins.jsx';
 import BuildingMaintenance from './units/Unit2/Rockets/Preparation/BuildingMaintenance.jsx';
+import SubOneDefensePolicy from './units/Unit2/DefensePolicy/SubOneDefensePolicy';
+import SubTwoDefensePolicy from "./units/Unit2/DefensePolicy/SubTwoDefensePolicy";
 
 // קומפוננטות של יחידה 3
 import IntroUnitThree from './units/Unit3/IntroUnitThree';
@@ -108,7 +110,9 @@ function App() {
           <Route path="/population-parts" element={<PopulationFolders />} />
           <Route path="/populationGame" element={<PopulationGame />} />
           <Route path="/questions-end" element={<QuestionsEnd />} />
-          <Route path="/summary-checklist" element={<SummaryCheckList />} />
+          <Route path="/summary-checklist" element={
+            <SummaryCheckList checklist={require('./Data/ChecklistData').unitOneChecklist} />
+          } />
         </Route>
         {/* --- סיום יחידה 1 --- */}
 
@@ -127,6 +131,8 @@ function App() {
           <Route path="/ChoosingSafeRoom" element={<ChoosingSafeRoom />} />
           <Route path="/Wait10mins" element={<Wait10mins />} />
           <Route path="/BuildingMaintenance" element={<BuildingMaintenance />} />
+          <Route path="/defense-policy/sub-one" element={<SubOneDefensePolicy />} />
+          <Route path="/defense-policy/sub-two" element={<SubTwoDefensePolicy />}/>
           {/* כאן להוסיף בהמשך את שאר הנתיבים של יחידה 2 (רעידת אדמה, חומ"ס וכו') */}
         </Route>
 
