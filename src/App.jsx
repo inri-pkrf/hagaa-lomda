@@ -49,7 +49,7 @@ import Wait10mins from './units/Unit2/Rockets/Preparation/Wait10mins.jsx';
 import BuildingMaintenance from './units/Unit2/Rockets/Preparation/BuildingMaintenance.jsx';
 import SubOneDefensePolicy from './units/Unit2/DefensePolicy/SubOneDefensePolicy';
 import SubTwoDefensePolicy from "./units/Unit2/DefensePolicy/SubTwoDefensePolicy";
-import Frame3 from './units/Unit2/Rockets/frame3.jsx';
+import TimeToEnterMamad from './units/Unit2/Rockets/TimeToEnterMamad.jsx';
 import Earthquake from './units/Unit2/Earthquake/Earthquake.jsx';
 import InfoEarthquake from './units/Unit2/Earthquake/InfoEarthquake.jsx';
 
@@ -134,7 +134,7 @@ function App() {
           <Route path="/BuildingMaintenance" element={<BuildingMaintenance />} />
           <Route path="/defense-policy/sub-one" element={<SubOneDefensePolicy />} />
           <Route path="/defense-policy/sub-two" element={<SubTwoDefensePolicy />}/>
-          <Route path="/frame3" element={<Frame3 />} />
+          <Route path="/TimeToEnterMamad" element={<TimeToEnterMamad />} />
           <Route path="/summary-checklist-unit2" element={<SummaryCheckList checklist={unitTwoChecklist} />} />
             {/* סיכומי תתי-יחידות יחידה 2 */}
             <Route path="/summary-checklist-unit2-sub1" element={<SummaryCheckList checklist={unitTwoSub1Checklist} />} />

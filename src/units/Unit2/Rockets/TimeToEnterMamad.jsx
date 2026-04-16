@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "../../Unit2/style/frame3.css";
+import "../../Unit2/style/TimeToEnterMamad.css";
 
 
 function Frame3() {

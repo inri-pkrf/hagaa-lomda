@@ -10,7 +10,33 @@ const routeOrder = [
   '/population', '/PopulationInfo', '/population-parts', '/population',
   '/PopulationGame', '/population', '/intro-unit-one',
   '/questions-end', '/summary-checklist-unit1', '/elevator', '/unit-two-opening', '/goals-unit-two',
-  '/rockets', '/info-rockets', '/rockets', '/preparation', '/frame3', '/summary-checklist-unit2-sub1',
+  // יחידה 2 - סדר ניווט מותאם
+  '/rockets',
+  '/info-rockets',
+  '/rockets',
+  '/preparation',
+  '/ProtectedSpace',
+  '/preparation',
+  '/Alert',
+  '/preparation',
+  '/Defense',
+  '/preparation',
+  '/ChoosingSafeRoom',
+  '/preparation',
+  '/Wait10mins',
+  '/preparation',
+  '/BuildingMaintenance', // כאן יש כפתור מיוחד שמעביר ל-preparation
+  '/preparation',
+  '/rockets',
+  '/TimeToEnterMamad', // עמוד 1
+  '/TimeToEnterMamad/2', // עמוד 2
+  '/TimeToEnterMamad/3', // עמוד 3
+  '/rockets',
+  '/defense-policy/sub-one',
+  '/defense-policy/sub-two',
+  '/rockets',
+  '/summary-checklist-unit2-sub1',
+
 ];
 // '',
 const getHeaderColor = () => {

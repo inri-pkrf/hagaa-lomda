@@ -42,7 +42,7 @@ function Rockets() {
   const rocketFramesData = [
     { id: 1, text: <>מאפייני<br />האיום</>, path: "/info-rockets" },
     { id: 2, text: <>היערכות<br />והתגוננות</>, path: "/preparation" },
-    { id: 3, text: <>מרחבים<br />מוגנים</>, path: "/frame3" },
+    { id: 3, text: <>מרחבים<br />מוגנים</>, path: "/TimeToEnterMamad" },
     { id: 4, text: <>מדיניות<br />התגוננות</>, path: "/defense-policy/sub-one" },
     { id: 5, text: <>סיכום</>, path: "/summary-checklist-unit2-sub1" },
   ];
