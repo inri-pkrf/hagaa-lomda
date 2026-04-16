@@ -64,7 +64,7 @@ function IntroUnitTwo() {
     setOpeningSign(2);
     sessionStorage.setItem('currentChapter', JSON.stringify({ name: 'unitTwo-second', state: 'not started' }));
     setTimeout(() => {
-      navigate('/earthquakes');
+      navigate('/earthquake');
     }, 2000);
   };
 

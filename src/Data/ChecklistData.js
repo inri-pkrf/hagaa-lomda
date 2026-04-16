@@ -9,9 +9,36 @@ export const unitOneChecklist = [
 ];
 
 export const unitTwoChecklist = [
-    'דוגמה לסעיף ראשון ביחידה 2',
-    'דוגמה לסעיף שני ביחידה 2',
-    'דוגמה לסעיף שלישי ביחידה 2',
+    '',
+    '',
+    '',
+    '',
+];
+
+// צ'קליסטים לתתי-יחידות של יחידה 2
+export const unitTwoSub1Checklist = [
+    '',
+    '',
+    '',
+    ''
+];
+export const unitTwoSub2Checklist = [
+    '',
+    '',
+    '',
+    '',
+];
+export const unitTwoSub3Checklist = [
+    '',
+    '',
+    '',
+    '',
+];
+export const unitTwoSub4Checklist = [
+    '',
+    '',
+    '',
+    '',
 ];
 
 // אפשר להוסיף עוד רשימות לפי הצורך

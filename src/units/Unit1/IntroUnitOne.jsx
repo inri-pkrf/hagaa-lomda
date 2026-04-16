@@ -148,10 +148,6 @@ function IntroUnitOne() {
       {finishedChapters.unitOneThird && <img className='doorThreeDone' src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorThreeDone.png`} alt="3" />}
       {finishedChapters.unitOneFourth && <img className='doorFourDone' src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsDone/DoorFourDone.png`} alt="4" />}
 
-      {/* הכפתור הישן בהערה - החץ ינווט לכאן אוטומטית כשהכל ייגמר */}
-      {/* {allDoorsFinished && (
-        <button className="goToQuizButton" onClick={() => navigate('/questions-end')}>לשאלות סיכום יחידה 1</button>
-      )} */}
     </div>
   );
 }

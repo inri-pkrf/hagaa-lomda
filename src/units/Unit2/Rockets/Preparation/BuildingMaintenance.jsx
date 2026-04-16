@@ -34,7 +34,7 @@ const outsideSteps = [
 const insideSteps = [
   {
     id: "toilet",
-    text: "טקסט הסבר על מערכת האוורור והסינון...",
+    text: "פתרון תברואתי - שירותים",
     top: "49.5%",
     left: "40%",
     zIndex: 5,

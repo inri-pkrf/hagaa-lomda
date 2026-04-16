@@ -44,7 +44,7 @@ function Rockets() {
     { id: 2, text: <>היערכות<br />והתגוננות</>, path: "/preparation" },
     { id: 3, text: <>מרחבים<br />מוגנים</>, path: "/frame3" },
     { id: 4, text: <>מדיניות<br />התגוננות</>, path: "/defense-policy/sub-one" },
-    { id: 5, text: <>סיכום</>, path: "/summary-rockets" },
+    { id: 5, text: <>סיכום</>, path: "/summary-checklist-unit2-sub1" },
   ];
 
   const handleFrameClick = (frame) => {

@@ -24,7 +24,7 @@ function QuestionsEnd() {
     window.dispatchEvent(new Event('updateNavbar'));
     
     // ניווט לדף הסיכום
-    navigate('/summary-checklist');
+        navigate('/summary-checklist-unit1');
   };
 
   return (

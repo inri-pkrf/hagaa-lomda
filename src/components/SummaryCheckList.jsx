@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './style/SummaryCheckList.css';
+import './Styles/SummaryCheckList.css';
 
 
 
