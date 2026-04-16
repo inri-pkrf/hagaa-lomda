@@ -10,7 +10,7 @@ const routeOrder = [
   '/population', '/PopulationInfo', '/population-parts', '/population',
   '/PopulationGame', '/population', '/intro-unit-one',
   '/questions-end', '/summary-checklist-unit1', '/elevator', '/unit-two-opening', '/goals-unit-two',
-  '/rockets', '/info-rockets', '/rockets', '/preparation','/ProtectedSpace', '/Alert', '/Defense','/ChoosingSafeRoom','/Wait10mins', '/BuildingMaintenance', 
+  '/rockets', '/info-rockets', '/rockets', '/preparation', '/frame3', '/summary-checklist-unit2-sub1',
 ];
 // '',
 const getHeaderColor = () => {

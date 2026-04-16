@@ -4,9 +4,12 @@ import './Styles/SummaryCheckList.css';
 
 
 
-function SummaryCheckList({ checklist = [], onFinish, checklistImg, buildingImg, pinImg }) {
+function SummaryCheckList({ checklist = {}, onFinish, pinImg }) {
     const navigate = useNavigate();
     const image = pinImg || `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Vector.png`;
+    const items = checklist.items || [];
+    const buildingImg = checklist.image || `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Group 494.png`;
+    const checklistImg = checklist.checklistImg || `${process.env.PUBLIC_URL}/assets/UnitOneImgs/CheckListEnd.png`;
 
     // --- לוגיקת החצים הכלליים ---
     useEffect(() => {
@@ -50,27 +53,29 @@ function SummaryCheckList({ checklist = [], onFinish, checklistImg, buildingImg,
     };
 
     return (
-        <div className="OpeningPage">
+        <div className="OpeningPage summary-checklist-flex">
             <img
-                className="check-list"
-                src={checklistImg || `${process.env.PUBLIC_URL}/assets/UnitOneImgs/CheckListEnd.png`}
-                alt="checklist"
+                className="check-list check-list-right"
+                src={checklistImg}
+                alt="checklist-right"
             />
+            <div className="checklist-center-content">
+                <div>
+                    {items.map((item, idx) => (
+                        <h2 className="checklist-text" id={`checklist-text${idx+1}`} key={idx}>{item}</h2>
+                    ))}
+                </div>
+                <div>
+                    {items.map((_, idx) => (
+                        <img className='checklist-pin' id={`checklist-pin${idx+1}`} src={image} alt="checklist pin" key={idx} />
+                    ))}
+                </div>
+            </div>
             <img
-                className="end-building"
-                src={buildingImg || `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Group 494.png`}
-                alt="building"
+                className="end-building check-list-left"
+                src={buildingImg}
+                alt="checklist-left"
             />
-            <div>
-                {checklist.map((item, idx) => (
-                    <h2 className="checklist-text" id={`checklist-text${idx+1}`} key={idx}>{item}</h2>
-                ))}
-            </div>
-            <div>
-                {checklist.map((_, idx) => (
-                    <img className='checklist-pin' id={`checklist-pin${idx+1}`} src={image} alt="checklist pin" key={idx} />
-                ))}
-            </div>
         </div>
     );
 }
