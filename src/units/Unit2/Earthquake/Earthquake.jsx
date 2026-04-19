@@ -3,8 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import '../style/Rockets.css';
 
 
+
+
 function Earthquake() {
   const navigate = useNavigate();
+
+
 
 
   // סטייט נפרד לרעידת אדמה כדי לא לדרוס את ההתקדמות של הטילים
@@ -14,12 +18,18 @@ function Earthquake() {
   });
 
 
+
+
   const [hasPlayedIntro] = useState(() => {
     return sessionStorage.getItem('earthquake_introPlayed') === 'true';
   });
 
 
+
+
   const [startSequence, setStartSequence] = useState(hasPlayedIntro);
+
+
 
 
   const [unlockedStep, setUnlockedStep] = useState(() => {
@@ -28,8 +38,12 @@ function Earthquake() {
   });
 
 
+
+
   useEffect(() => {
     sessionStorage.setItem('MainTitle', "רעידת אדמה");
+
+
 
 
     if (!hasPlayedIntro) {
@@ -42,13 +56,17 @@ function Earthquake() {
   }, [hasPlayedIntro]);
 
 
+
+
   // 4 מסגרות בלבד - משתמש בנתיבי התמונות המקוריים שלך
   const earthquakeFramesData = [
     { id: 1, text: <>מאפייני<br />האיום</>, path: "/earthquake/info-earthquake" },
-    { id: 2, text: <>היערכות<br />והתגוננות</>, path: "/earthquake/safe-zone" },
+    { id: 2, text: <>היערכות<br />והתגוננות</>, path: "/preparation-earth" },
     { id: 3, text: <>תרגיל אירוע -<br />רעידת אדמה</>, path: "/earthquake/equipment" },
     { id: 4, text: <>סיכום</>, path: "/earthquake/summary" },
   ];
+
+
 
 
   const handleFrameClick = (frame) => {
@@ -63,6 +81,8 @@ function Earthquake() {
       });
 
 
+
+
       if (frame.id === unlockedStep && unlockedStep < earthquakeFramesData.length) {
         setUnlockedStep(unlockedStep + 1);
         sessionStorage.setItem('earthquake_unlockedStep', String(unlockedStep + 1));
@@ -70,6 +90,8 @@ function Earthquake() {
       navigate(frame.path);
     }
   };
+
+
 
 
   useEffect(() => {
@@ -81,8 +103,12 @@ function Earthquake() {
   }, [clickedFrames]);
 
 
+
+
   const containerClass = `rockets-container ${startSequence ? 'sequence-active' : ''} ${hasPlayedIntro ? 'no-animation' : ''}`;
   const showContent = startSequence;
+
+
 
 
   return (
@@ -93,11 +119,15 @@ function Earthquake() {
       )}
 
 
+
+
       {showContent && (
         <div className={`rockets-sub-header ${hasPlayedIntro ? '' : 'fade-in-delayed'}`}>
           <h3>בפרק זה נלמד על:</h3>
         </div>
       )}
+
+
 
 
       <div className="rockets-frames-container">
@@ -119,12 +149,16 @@ function Earthquake() {
               </div>
 
 
+
+
               {/* משתמש בדיוק באותן תמונות frame1-4 */}
               <img
                 src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/frame${frame.id}.png`}
                 className={`rocket-frame-img${isLocked ? ' blurred' : ''}`}
                 alt={`frame-${frame.id}`}
               />
+
+
 
 
               {isClicked && (
@@ -141,6 +175,8 @@ function Earthquake() {
       </div>
 
 
+
+
       {showContent && (
         <div className={`rockets-footer-hint ${hasPlayedIntro ? '' : 'fade-in-delayed'}`}>
           <p>יש ללחוץ על המסגרת כדי להמשיך</p>
@@ -151,5 +187,11 @@ function Earthquake() {
 }
 
 
+
+
 export default Earthquake;
+
+
+
+
 

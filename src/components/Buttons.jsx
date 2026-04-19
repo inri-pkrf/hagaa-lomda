@@ -28,14 +28,20 @@ const routeOrder = [
   '/BuildingMaintenance', // כאן יש כפתור מיוחד שמעביר ל-preparation
   '/preparation',
   '/rockets',
-  '/TimeToEnterMamad', // עמוד 1
-  '/TimeToEnterMamad/2', // עמוד 2
-  '/TimeToEnterMamad/3', // עמוד 3
+  '/TimeToEnterMamad1', // עמוד 1
+  '/TimeToEnterMamad2', // עמוד 2
+  '/TimeToEnterMamad3', // עמוד 3
   '/rockets',
   '/defense-policy/sub-one',
   '/defense-policy/sub-two',
   '/rockets',
   '/summary-checklist-unit2-sub1',
+  '/rockets',
+  '/earthquake',
+  '/earthquake/info-earthquake',
+  '/earthquake/safe-zone',
+  '/earthquake/equipment',
+  '/earthquake/summary',
 
 ];
 // '',

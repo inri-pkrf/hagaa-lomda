@@ -8,7 +8,7 @@ const outsideSteps = [
   {
     id: "entranceDoor",
     text: "וידוא תקינותם של הדלתות והחלונות, וידוא הימצאות גומי אטימה סביב המשקופים וכן, שלא קיימת חלודה במסגרת",
-    top: "54.5%",
+    top: "53%",
     left: "50%",
     zIndex: 1,
   },
@@ -35,11 +35,11 @@ const insideSteps = [
   {
     id: "toilet",
     text: "פתרון תברואתי - שירותים",
-    top: "49.5%",
+    top: "48.6%",
     left: "40%",
     zIndex: 5,
   },
-  { id: "tin", text: "שקים לאיסוף אשפה", top: "60%", left: "30%", zIndex: 5 },
+  { id: "tin", text: "שקים לאיסוף אשפה", top: "64%", left: "31%", zIndex: 5 },
   {
     id: "waterbottles",
     text: "בקבוקי מים",
@@ -64,18 +64,18 @@ const insideSteps = [
   {
     id: "fireExtinguisher",
     text: "מטפה לכיבוי אש",
-    top: "36%",
-    left: "62%",
+    top: "41.5%",
+    left: "63.5%",
     zIndex: 5,
   },
   {
     id: "ventilationSystem",
     text: "מערכת אוורור וסינון- אחזקה בהתאם להוראות יצרן. לוודא שלט עם הנחיות הפעלה",
-    top: "36%",
-    left: "6%",
+    top: "25%",
+    left: "20%",
     zIndex: 5,
   },
-  { id: "television", text: "דרכי תקשורת", top: "38%", left: "55%", zIndex: 5 },
+  { id: "television", text: "דרכי תקשורת", top: "43%", left: "58%", zIndex: 5 },
   {
     id: "emergencyLighting",
     text: "תאורת חירום",
@@ -87,11 +87,10 @@ const insideSteps = [
     id: "light",
     text: "פנסים וסוללות רזרביות",
     top: "87%",
-    left: "7%",
+    left: "6%",
     zIndex: 6,
   },
 ];
-
 
 
 function BuildingMaintenance() {
@@ -105,20 +104,26 @@ function BuildingMaintenance() {
   // סטייט חדש: מערך של אינדקסים שנלחצו
   const [clickedSteps, setClickedSteps] = useState([]);
 
+
   const currentSteps = isInside ? insideSteps : outsideSteps;
   const currentBg = isInside ? "insideSafeRoomBg.png" : "outsideSafeRoomBg.png";
+
 
   const handleElementClick = (index) => {
     if (index === activeStep) {
       setIsIntro(false);
       setShowPopup(true);
       // הוסף את האינדקס למערך הנלחצים אם לא קיים
-      setClickedSteps((prev) => (prev.includes(index) ? prev : [...prev, index]));
+      setClickedSteps((prev) =>
+        prev.includes(index) ? prev : [...prev, index],
+      );
     }
   };
 
+
   const handleClose = () => {
     setShowPopup(false);
+
 
     if (!isIntro) {
       if (activeStep < currentSteps.length - 1) {
@@ -157,8 +162,14 @@ function BuildingMaintenance() {
         alt="bg"
       />
 
-      <img src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/equipment-icon.png`} alt="icon" id='equipment-icon'/>
+
+      <img
+        src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/equipment-icon.png`}
+        alt="icon"
+        id="equipment-icon"
+      />
       <div className="hotspots-layer">
+        {/* רינדור ה-Hotspots כפי שהם */}
         {currentSteps.map((step, index) => {
           const isClicked = clickedSteps.includes(index);
           return (
@@ -174,19 +185,36 @@ function BuildingMaintenance() {
                 src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/${step.id}.png`}
                 alt={step.id}
               />
-              {isClicked && (
-                <>
-                  <span className="hotspot-overlay"></span>
-                  <div className="rocket-frame-v building-check-v">
-                    <svg viewBox="0 0 24 24" width="40" height="40">
-                      <circle cx="12" cy="12" r="12" fill="#4CAF50" />
-                      <polyline points="20 6 9 17 4 12" fill="none" stroke="white" strokeWidth="4" />
-                    </svg>
-                  </div>
-                </>
-              )}
             </div>
           );
+        })}
+
+
+        {currentSteps.map((step, index) => {
+          if (clickedSteps.includes(index)) {
+            return (
+              <div
+                key={`v-${step.id}`}
+                className={`v-container-fixed ${step.id === "ventilationSystem" ? "ventilationSystem-v" : ""}`}
+                style={{
+                  // השאירי את המיקום המקורי, ה-margin ב-CSS יבצע את הדיוק
+                  top: step.top,
+                  left: step.left,
+                }}
+              >
+                <svg viewBox="0 0 24 24" width="40" height="40">
+                  <circle cx="12" cy="12" r="12" fill="#4CAF50" />
+                  <polyline
+                    points="20 6 9 17 4 12"
+                    fill="none"
+                    stroke="white"
+                    strokeWidth="4"
+                  />
+                </svg>
+              </div>
+            );
+          }
+          return null;
         })}
       </div>
 
@@ -205,8 +233,7 @@ function BuildingMaintenance() {
               <button className="continue-btn-new" onClick={handleClose}>
                 {popupContent.btn}
               </button>
-              <div className="bottom-icon-circle">
-              </div>
+              <div className="bottom-icon-circle"></div>
             </div>
           </div>
         </div>
@@ -249,14 +276,13 @@ function BuildingMaintenance() {
 
 
             <div className="popup-footer">
-            <button
-              className="continue-btn-new"
-              onClick={() => navigate("/preparation")}
-            >
-              סיום
-            </button>
-              <div className="bottom-icon-circle">
-              </div>
+              <button
+                className="continue-btn-new"
+                onClick={() => navigate("/preparation")}
+              >
+                סיום
+              </button>
+              <div className="bottom-icon-circle"></div>
             </div>
           </div>
         </div>
@@ -267,4 +293,8 @@ function BuildingMaintenance() {
 
 
 export default BuildingMaintenance;
+
+
+
+
 

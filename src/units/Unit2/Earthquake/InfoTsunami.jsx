@@ -3,18 +3,15 @@ import { useNavigate } from "react-router-dom";
 import "../style/Rockets.css";
 
 
-function InfoEarthquake() {
-  sessionStorage.setItem("MainTitle", "רעידת אדמה וצונאמי");
-
-
+function InfoTsunami() {
   const navigate = useNavigate();
 
 
   const sliderImages = [
-    `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/earthquake/earthquake1.png`,
-    `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/earthquake/earthquake2.jpg`,
-    `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/earthquake/earthquake3.jpg`,
-    `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/earthquake/earthquake4.jpg`,
+    `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/tsunami/tsunami1.jpg`,
+    `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/tsunami/tsunami2.jpg`,
+    `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/tsunami/tsunami3.webp`,
+    `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/tsunami/tsunami4.jpg`,
   ];
 
 
@@ -23,10 +20,14 @@ function InfoEarthquake() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      nextSlide();
+      setCurrentIndex((prev) =>
+        prev === sliderImages.length - 1 ? 0 : prev + 1,
+      );
     }, 3000);
+
+
     return () => clearInterval(timer);
-  }, [currentIndex]);
+  }, []);
 
 
   const nextSlide = () => {
@@ -43,10 +44,10 @@ function InfoEarthquake() {
   };
 
 
-  const handleBackAndUnlock = () => {
-    sessionStorage.setItem("earthquake_unlockedStep", "2");
-    navigate("/earthquake/info-tsunami");
-  };
+  // const handleBackAndUnlock = () => {
+  //   sessionStorage.setItem("earthquake_unlockedStep", "2");
+  //   navigate("/preparation-earth");
+  // };
 
 
   return (
@@ -60,10 +61,9 @@ function InfoEarthquake() {
             <div className="text-decorator"></div>
             {/* כאן אני דורס רק את ה-max-width כדי שהטקסט יתרחב */}
             <p style={{ maxWidth: "800px" }}>
-              <strong>רעידת אדמה</strong> היא תופעת טבע שכיחה בכדור הארץ.
-              באזורים מיושבים ובנויים גורמת רעידת אדמה לרוב לנזק רב בנפש וברכוש,
-              בהתאם לעוצמת הרעש, המרחק ממוקד הרעש, איכות הבנייה וסוג הסלע עליו
-              המבנה ניצב.
+              <strong>צונאמי</strong>(נחשול רעש) הוא תופעה של גלי ים גדולים
+              המתפרצים בעוצמה רבה אל תוך חופי הים. בישראל יתכן צונמי הנגרם
+              כתוצאה מרעידת אדמה בלב-ים או כתוצאה מרעידת אדמה בארץ.
             </p>
           </div>
 
@@ -71,9 +71,8 @@ function InfoEarthquake() {
           <div className="text-item">
             <div className="text-decorator"></div>
             <p style={{ maxWidth: "800px" }}>
-              <strong>נזק ישיר:</strong> קריסת מבנים, פגיעות בתשתיות (כבישים,
-              גשרים, חשמל, מים, תקשורת) ופגיעות בנפש (הרוגים, פצועים, לכודים,
-              נעדרים, חסרי קורת גג).
+              <strong>נזק ישיר:</strong> הצפות הרסניות, סחיפת מבנים, כלי רכב
+              ותשתיות, פגיעות בנפש ובסביבה.
             </p>
           </div>
 
@@ -81,16 +80,10 @@ function InfoEarthquake() {
           <div className="text-item">
             <div className="text-decorator"></div>
             <p style={{ maxWidth: "800px" }}>
-              <strong>נזקי משנה:</strong> שריפות, דליפות גז או חומרים מסוכנים,
-              הצפות מצינורות שהתבקעו, מפולות וסחף קרקע, פגיעה בשרשרת אספקה
-              ושיבוש שגרת החיים.
+              <strong>נזקי משנה:</strong>זיהום מקורות מים, פגיעה במערכות חשמל
+              ותקשורת, דליפות חומרים מסוכנים והתפרצות שרפות.
             </p>
           </div>
-
-
-          <button className="finish-part-rockets" onClick={handleBackAndUnlock}>
-            הבנתי, המשך
-          </button>
         </div>
 
 
@@ -106,7 +99,7 @@ function InfoEarthquake() {
                 <img
                   key={index}
                   src={imgUrl}
-                  alt={`earthquake-gallery-${index + 1}`}
+                  alt={`tsunami-gallery-${index + 1}`}
                   className={`main-sub-img ${index === currentIndex ? "active" : ""}`}
                 />
               ))}
@@ -135,7 +128,9 @@ function InfoEarthquake() {
 }
 
 
-export default InfoEarthquake;
+export default InfoTsunami;
+
+
 
 
 

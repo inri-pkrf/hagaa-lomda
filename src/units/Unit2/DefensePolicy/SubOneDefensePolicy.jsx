@@ -43,10 +43,7 @@ function SubOneDefensePolicy() {
         </div>
 
 
-        {/* הכפתור החדש */}
-        <button className="policy-next-button" onClick={handleNext}>
-          הבנתי, המשך
-        </button>
+
       </div>
     </div>
   );

@@ -49,9 +49,13 @@ import Wait10mins from './units/Unit2/Rockets/Preparation/Wait10mins.jsx';
 import BuildingMaintenance from './units/Unit2/Rockets/Preparation/BuildingMaintenance.jsx';
 import SubOneDefensePolicy from './units/Unit2/DefensePolicy/SubOneDefensePolicy';
 import SubTwoDefensePolicy from "./units/Unit2/DefensePolicy/SubTwoDefensePolicy";
-import TimeToEnterMamad from './units/Unit2/Rockets/TimeToEnterMamad.jsx';
+import TimeToEnterMamad1 from './units/Unit2/Rockets/TimeToEnterMamad1.jsx';
+import TimeToEnterMamad2 from './units/Unit2/Rockets/TimeToEnterMamad2.jsx';
+import TimeToEnterMamad3 from './units/Unit2/Rockets/TimeToEnterMamad3.jsx';
 import Earthquake from './units/Unit2/Earthquake/Earthquake.jsx';
 import InfoEarthquake from './units/Unit2/Earthquake/InfoEarthquake.jsx';
+import InfoTsunami from './units/Unit2/Earthquake/InfoTsunami.jsx';
+import PreparationEarth from './units/Unit2/PreparationEarth.jsx';
 
 // קומפוננטות של יחידה 3
 import IntroUnitThree from './units/Unit3/IntroUnitThree';
@@ -113,7 +117,7 @@ function App() {
           <Route path="/population-parts" element={<PopulationFolders />} />
           <Route path="/populationGame" element={<PopulationGame />} />
           <Route path="/questions-end" element={<QuestionsEnd />} />
-          <Route path="/summary-checklist-unit1" element={<SummaryCheckList checklist={unitOneChecklist} />} />
+          <Route path="/summary-checklist-unit1" element={<SummaryCheckList checklist={unitOneChecklist} isFinalUnit={true} />} />
         </Route>
         {/* --- סיום יחידה 1 --- */}
 
@@ -134,8 +138,10 @@ function App() {
           <Route path="/BuildingMaintenance" element={<BuildingMaintenance />} />
           <Route path="/defense-policy/sub-one" element={<SubOneDefensePolicy />} />
           <Route path="/defense-policy/sub-two" element={<SubTwoDefensePolicy />}/>
-          <Route path="/TimeToEnterMamad" element={<TimeToEnterMamad />} />
-          <Route path="/summary-checklist-unit2" element={<SummaryCheckList checklist={unitTwoChecklist} />} />
+          <Route path="/TimeToEnterMamad1" element={<TimeToEnterMamad1 />} />
+          <Route path="/TimeToEnterMamad2" element={<TimeToEnterMamad2 />} />
+          <Route path="/TimeToEnterMamad3" element={<TimeToEnterMamad3 />} />
+          <Route path="/summary-checklist-unit2" element={<SummaryCheckList checklist={unitTwoChecklist} isFinalUnit={true} />} />
             {/* סיכומי תתי-יחידות יחידה 2 */}
             <Route path="/summary-checklist-unit2-sub1" element={<SummaryCheckList checklist={unitTwoSub1Checklist} />} />
             <Route path="/summary-checklist-unit2-sub2" element={<SummaryCheckList checklist={unitTwoSub2Checklist} />} />
@@ -144,6 +150,8 @@ function App() {
 
           <Route path="/earthquake" element={<Earthquake />}/>
           <Route path="/earthquake/info-earthquake" element={<InfoEarthquake />}/>
+           <Route path="/earthquake/info-tsunami" element={<InfoTsunami />}/>
+          <Route path="/preparation-earth" element={<PreparationEarth />}/>
           
           {/* כאן להוסיף בהמשך את שאר הנתיבים של יחידה 2 (רעידת אדמה, חומ"ס וכו') */}
         </Route>
