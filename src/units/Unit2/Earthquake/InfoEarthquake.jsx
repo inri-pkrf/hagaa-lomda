@@ -88,9 +88,6 @@ function InfoEarthquake() {
           </div>
 
 
-          <button className="finish-part-rockets" onClick={handleBackAndUnlock}>
-            הבנתי, המשך
-          </button>
         </div>
 
 

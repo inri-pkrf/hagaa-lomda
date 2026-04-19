@@ -335,3 +335,23 @@ html, body {
     border-radius: 8px;
 }
 
+#video-time-to-enter-mamad {
+    width: 18vw;
+    height: auto;
+    margin-top: 3vh;
+    margin-top: 5vw;
+    background-color: #636363;
+    padding: 1vh;
+    border-radius: 2vw;
+}
+
+#win {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4vw;
+    color: #083C30;
+    font-family: 'karantina';
+    direction: rtl;
+}

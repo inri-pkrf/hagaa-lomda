@@ -26,10 +26,12 @@ function TimeToEnterMamad2() {
     return(
     <div>
         <img src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/background-timer.png`} alt="timer" id='background-timer'/>
-        <button id='alert-next-button' onClick={handleNext2Click}>next</button>
-        <button id='alert-back-button' onClick={handleBackClick}>חזור</button>
         <p id='frame3-text1'>זמן כניסה למרחב המוגן-סרטון </p>
         <p id='frame3-text5'>צפו בסרטון ולאחר מכן תרגלו </p>
+        <video width="20%" controls id='video-time-to-enter-mamad'>
+            <source src={`${process.env.PUBLIC_URL}/assets/videos/TimeToEnterMamad.mp4`} type="video/mp4" />
+            הדפדפן שלך לא תומך בסרטון
+        </video>
     </div>
     );
 }

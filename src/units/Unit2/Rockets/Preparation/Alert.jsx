@@ -1,44 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../../style/Alert.css';
 
-
-
-
-
-
-
+import { useLocation } from 'react-router-dom';
 
 function Alert() {
-  const [currentPage, setCurrentPage] = useState(1);
-
-
-  const handleNextClick = () => {
-    setCurrentPage(2);
-  };
-
-
-  const handleNext2Click = () => {
-    setCurrentPage(3);
-  };
-
-
-    const handleBackClick = () => {
-    setCurrentPage(1);
-  };
-
-
-      const handleBack2Click = () => {
-    setCurrentPage(2);
-  };
-
+  const location = useLocation();
+  // קביעת שלב לפי הנתיב
+  let page = 1;
+  if (location.pathname === '/Alert/2') page = 2;
+  if (location.pathname === '/Alert/3') page = 3;
 
   return (
     <>
-      {currentPage === 1 && (
+      {page === 1 && (
         <div>
           <img src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/alert-icon.png`} alt="Siren" id='alert-siren-icon'/>
           <h2 id='headline-icon'>התרעה</h2>
-          <button id='alert-next-button' onClick={handleNextClick}>next</button>
           <img src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/alert-background.png`} alt="Siren" className='alert-background'/>
           <h1 id='alert-headline'>צפו בסרטון, בסיום הסרטון לחצו על המשך</h1>
           <iframe
@@ -52,11 +29,7 @@ function Alert() {
           ></iframe>
         </div>
       )}
-
-
-
-
-      {currentPage === 2 && (
+      {page === 2 && (
         <div id='alert-page1'>
           <img src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/siren.png`} alt="Siren" id='alert-siren-icon'/>
           <h2 id='headline-icon'>התרעה</h2>
@@ -67,12 +40,10 @@ function Alert() {
             <li>שמרד</li>
             <li>מוטורלה - התקנת מערכת ״נופרית״ לצופר הקיים</li>
           </ul>
-          <button id='alert-next-button' onClick={handleNext2Click}>next</button>
-          <button id='alert-back-button' onClick={handleBackClick}>חזור</button>
           <img src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/alert-background.png`} alt="Siren" className='alert-background'/>
         </div>
       )}
-      {currentPage === 3 && (
+      {page === 3 && (
         <div id='alert-page2'>
           <img src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/siren.png`} alt="Siren" id='alert-siren-icon'/>
           <h2 id='headline-icon'>התרעה</h2>
@@ -84,7 +55,6 @@ function Alert() {
             <li>בעת הפעלת ההתרעה / צפירה – יש לבחון כיסוי מלא</li>
             <li>באזורי רעש גבוה יש לסכם כיצד מועברת ההתרעה</li>
           </ol>
-          <button id='alert-back-button' onClick={handleBack2Click}>חזור</button>
           <img src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/alert-background.png`} alt="Siren" className='alert-background'/>
         </div>
       )}

@@ -99,9 +99,8 @@ function TimeToEnterMamad3() {
       <div className="frame3-progress">
         <p>עיר {currentCityIndex + 1} מתוך {cities.length}</p>
       </div>
+      <p id='win'>כל הכבוד!</p>
     </div>
-        <button id='alert-next-button' onClick={handlePlayAgain}>שחק שוב</button>
-        <button id='alert-back-button' onClick={handleBack2Click}>חזור</button>
       </div>
     );
   }
@@ -146,8 +145,6 @@ function TimeToEnterMamad3() {
       <div className="frame3-progress">
         <p>עיר {currentCityIndex + 1} מתוך {cities.length}</p>
       </div>
-      <button id='alert-back-button' onClick={handleBack2Click}>חזור</button>
-       <button id='alert-game-button' onClick={handleToGameClick}>next</button>
     </div>
   );
 }

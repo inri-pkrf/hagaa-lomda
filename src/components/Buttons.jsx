@@ -18,12 +18,16 @@ const routeOrder = [
   '/ProtectedSpace',
   '/preparation',
   '/Alert',
+  '/Alert/2',
+  '/Alert/3',
   '/preparation',
   '/Defense',
+  '/Defense/2',
   '/preparation',
   '/ChoosingSafeRoom',
   '/preparation',
   '/Wait10mins',
+  '/Wait10mins/2',
   '/preparation',
   '/BuildingMaintenance', // כאן יש כפתור מיוחד שמעביר ל-preparation
   '/preparation',
@@ -39,9 +43,14 @@ const routeOrder = [
   '/rockets',
   '/earthquake',
   '/earthquake/info-earthquake',
-  '/earthquake/safe-zone',
+  '/earthquake/info-tsunami',
+  '/earthquake',
+  '/preparation-earth',
+  '/earthquake',
   '/earthquake/equipment',
+  '/earthquake',
   '/earthquake/summary',
+  '/earthquake',
 
 ];
 // '',
@@ -89,7 +98,12 @@ function Buttons() {
   }, [currentPath]);
 
   // עמודי המעבר המיוחדים
-  const specialPages = ['/ProtectedSpace', '/Alert', '/Defense', '/ChoosingSafeRoom', '/Wait10mins', '/BuildingMaintenance'];
+  // עמודי שלבים פנימיים
+  const multiStepPages = {
+    '/Alert': ['/Alert', '/Alert/2', '/Alert/3'],
+    '/Defense': ['/Defense', '/Defense/2'],
+    '/Wait10mins': ['/Wait10mins', '/Wait10mins/2']
+  };
 
   const goToPath = (targetPath, isNext = true) => {
     if (!targetPath) return;
@@ -98,10 +112,23 @@ function Buttons() {
     const eventName = isNext ? 'onNextNav' : 'onPrevNav';
     const navEvent = new CustomEvent(eventName, { cancelable: true });
     const isCanceled = !window.dispatchEvent(navEvent);
-
-    // אם הקומפוננטה עשתה preventDefault(), אנחנו לא מנווטים
     if (isCanceled) return;
 
+    // ניווט בין שלבים פנימיים של Alert/Defense/Wait10mins
+    for (const [base, steps] of Object.entries(multiStepPages)) {
+      const idx = steps.indexOf(location.pathname);
+      if (idx !== -1) {
+        if (isNext && idx < steps.length - 1) {
+          navigate(steps[idx + 1]);
+          return;
+        }
+        if (!isNext && idx > 0) {
+          navigate(steps[idx - 1]);
+          return;
+        }
+        // אם זה השלב האחרון/ראשון - ממשיכים לניווט הרגיל
+      }
+    }
 
     // מעבר ל-intro-unit-two אם כל המסגרות ברקטות הושלמו, וסימון הדלת הראשונה כבוצעה
     if (isNext && location.pathname === '/rockets') {
@@ -110,9 +137,8 @@ function Buttons() {
         const allFrames = [1,2,3,4,5];
         const allClicked = allFrames.every(id => clickedFrames.includes(id));
         if (allClicked) {
-          // סימון פתיחה של יחידה 2 כבוצעה
           sessionStorage.setItem('unitTwo-opening', 'finished');
-          sessionStorage.setItem('unitTwo-first', 'finished'); // סימון הדלת הראשונה
+          sessionStorage.setItem('unitTwo-first', 'finished');
           window.dispatchEvent(new Event('updateNavbar'));
           navigate('/intro-unit-two');
           return;
@@ -120,8 +146,25 @@ function Buttons() {
       } catch (e) {}
     }
 
-    // אם אנחנו באחד מהעמודים המיוחדים או ב-/BuildingMaintenance ולוחצים "קדימה" -> תמיד חוזרים ל-preparation
-    if (isNext && (specialPages.includes(location.pathname) || location.pathname === '/BuildingMaintenance')) {
+    // מעבר ל-intro-unit-two אם כל המסגרות ברקטות הושלמו, וסימון הדלת הראשונה כבוצעה
+    if (isNext && location.pathname === '/earthquake') {
+      try {
+        const clickedFrames = JSON.parse(sessionStorage.getItem('clickedFrames') || '[]');
+        const allFrames = [1,2,3,4];
+        const allClicked = allFrames.every(id => clickedFrames.includes(id));
+        if (allClicked) {
+          sessionStorage.setItem('unitTwo-opening', 'finished');
+          sessionStorage.setItem('unitTwo-first', 'finished');
+          sessionStorage.setItem('unitTwo-second', 'finished');
+          window.dispatchEvent(new Event('updateNavbar'));
+          navigate('/intro-unit-two');
+          return;
+        }
+      } catch (e) {}
+    }
+
+    // אם אנחנו ב-/BuildingMaintenance ולוחצים "קדימה" -> תמיד חוזרים ל-preparation
+    if (isNext && location.pathname === '/BuildingMaintenance') {
       navigate('/preparation');
       return;
     }
@@ -132,7 +175,7 @@ function Buttons() {
       return;
     }
 
-    // ניווט רגיל בכל שאר המצבים (כולל אחורה בכל העמודים)
+    // ניווט רגיל בכל שאר המצבים
     navigate(targetPath);
   };
 

@@ -56,6 +56,9 @@ import Earthquake from './units/Unit2/Earthquake/Earthquake.jsx';
 import InfoEarthquake from './units/Unit2/Earthquake/InfoEarthquake.jsx';
 import InfoTsunami from './units/Unit2/Earthquake/InfoTsunami.jsx';
 import PreparationEarth from './units/Unit2/PreparationEarth.jsx';
+import HowPreper from './units/Unit2/HowPreper.jsx';
+import RightBehavior from './units/Unit2/RightBehavior.jsx';
+import PostEarthquake from './units/Unit2/PostEarthquake.jsx';
 
 // קומפוננטות של יחידה 3
 import IntroUnitThree from './units/Unit3/IntroUnitThree';
@@ -132,9 +135,13 @@ function App() {
           <Route path="/preparation" element={<Preparation />} />
           <Route path="/ProtectedSpace" element={<ProtectedSpace />} />
           <Route path="/Alert" element={<Alert />} />
+          <Route path="/Alert/2" element={<Alert />} />
+          <Route path="/Alert/3" element={<Alert />} />
           <Route path="/Defense" element={<Defense />} />
+          <Route path="/Defense/2" element={<Defense />} />
           <Route path="/ChoosingSafeRoom" element={<ChoosingSafeRoom />} />
           <Route path="/Wait10mins" element={<Wait10mins />} />
+          <Route path="/Wait10mins/2" element={<Wait10mins />} />
           <Route path="/BuildingMaintenance" element={<BuildingMaintenance />} />
           <Route path="/defense-policy/sub-one" element={<SubOneDefensePolicy />} />
           <Route path="/defense-policy/sub-two" element={<SubTwoDefensePolicy />}/>
@@ -150,10 +157,12 @@ function App() {
 
           <Route path="/earthquake" element={<Earthquake />}/>
           <Route path="/earthquake/info-earthquake" element={<InfoEarthquake />}/>
-           <Route path="/earthquake/info-tsunami" element={<InfoTsunami />}/>
+          <Route path="/earthquake/info-tsunami" element={<InfoTsunami />}/>
           <Route path="/preparation-earth" element={<PreparationEarth />}/>
+          <Route path="/HowPreper" element={<HowPreper />}/>
+          <Route path="/RightBehavior" element={<RightBehavior />}/>
+          <Route path="/PostEarthquake" element={<PostEarthquake />}/>
           
-          {/* כאן להוסיף בהמשך את שאר הנתיבים של יחידה 2 (רעידת אדמה, חומ"ס וכו') */}
         </Route>
 
         {/* --- התחלת יחידה 3 עם Layout --- */}

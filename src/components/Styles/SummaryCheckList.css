@@ -11,15 +11,15 @@
     overflow: hidden;
 }
 
-/* שורה מרכזית */
+/* שורה מרכזית - מיושר למעלה */
 .summary-row {
     position: absolute;
-    top: 50%;
+    top: 8vw;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
 
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     gap: 18vw;
 }
@@ -40,13 +40,13 @@
 /* תוכן בתוך התמונה */
 .checklist-center-content {
     position: absolute;
-    top: 60%;
+    top: 25%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
 
     display: flex;
     flex-direction: column;
-    gap: 0.5vw;
+    gap: 0.6vw;
     width: 75%;
     direction: rtl;
 }
@@ -54,11 +54,11 @@
 /* שורה */
 .checklist-row {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.8vw;
 }
 
-/* טקסט */
+/* טקסט רגיל */
 .checklist-text {
     font-size: 1.1vw;
     text-align: right;
@@ -72,11 +72,22 @@
     color: #2f9ae7;
 }
 
-/* פין */
+/* 🔥 טקסט גדול (פריט אחד) */
+.checklist-text.single {
+    font-size: 1.5vw;
+    line-height: 3vw;
+}
+
+/* פין רגיל */
 .checklist-pin {
     width: 1.2vw;
     cursor: pointer;
     transition: transform 0.2s;
+}
+
+/* 🔥 פין גדול */
+.checklist-pin.single {
+    width: 2vw;
 }
 
 .checklist-pin:hover {
@@ -87,4 +98,9 @@
 .end-building {
     width: 30vw;
     height: auto;
+}
+
+.checklist-pin {
+    width: 1.2vw;
+    margin-top: 1.2vw; /* 👈 זה הקסם */
 }

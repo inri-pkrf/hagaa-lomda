@@ -33,7 +33,6 @@ function TimeToEnterMamad1() {
           הזינו את שם היישוב (ובעיר מפוצלת – גם את הכתובת המדויקת).
         </div>
       </p>
-      <button id='alert-next-button' onClick={handleNextClick}>next</button>
     </div>
   );
 }

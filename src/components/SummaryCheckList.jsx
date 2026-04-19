@@ -12,6 +12,8 @@ function SummaryCheckList({ checklist = {}, onFinish, pinImg }) {
     const buildingImg = checklist.image || `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Group 494.png`;
     const checklistImg = checklist.checklistImg || `${process.env.PUBLIC_URL}/assets/UnitOneImgs/CheckListEnd.png`;
 
+    const isSingleItem = items.length === 1;
+
     useEffect(() => {
         const handleNext = (e) => {
             e.preventDefault();
@@ -40,9 +42,7 @@ function SummaryCheckList({ checklist = {}, onFinish, pinImg }) {
 
         const path = location.pathname;
 
-        // =========================
-        // ✅ סוף יחידה 1 בלבד
-        // =========================
+        // ✅ סוף יחידה 1
         if (path === '/summary-checklist-unit1') {
             sessionStorage.setItem('unitOneStatus', 'completed');
             sessionStorage.setItem('currentUnit', 'UnitTwo');
@@ -50,23 +50,18 @@ function SummaryCheckList({ checklist = {}, onFinish, pinImg }) {
             return;
         }
 
-        // =========================
         // ✅ תתי יחידה 2
-        // =========================
         if (path.startsWith('/summary-checklist-unit2-sub')) {
             navigate('/rockets');
             return;
         }
-
-
     };
 
     return (
         <div className="OpeningPage">
-
             <div className="summary-row">
 
-                {/* צד ימין - checklist */}
+                {/* checklist */}
                 <div className="checklist-wrapper">
                     <img
                         className="check-list"
@@ -77,14 +72,20 @@ function SummaryCheckList({ checklist = {}, onFinish, pinImg }) {
                     <div className="checklist-center-content">
                         {items.map((item, idx) => (
                             <div className="checklist-row" key={idx}>
-                                <img className="checklist-pin" src={image} alt="pin" />
-                                <h2 className="checklist-text">{item}</h2>
+                                <img
+                                    className={`checklist-pin ${isSingleItem ? 'single' : ''}`}
+                                    src={image}
+                                    alt="pin"
+                                />
+                                <h2 className={`checklist-text ${isSingleItem ? 'single' : ''}`}>
+                                    {item}
+                                </h2>
                             </div>
                         ))}
                     </div>
                 </div>
 
-                {/* צד שמאל - building */}
+                {/* building */}
                 <img
                     className="end-building"
                     src={buildingImg}
