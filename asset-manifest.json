@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/hagaa-lomda/static/css/main.1f87842a.css",
-    "main.js": "/hagaa-lomda/static/js/main.29eec7f0.js",
+    "main.css": "/hagaa-lomda/static/css/main.5fb19989.css",
+    "main.js": "/hagaa-lomda/static/js/main.d6af5f22.js",
     "static/js/453.162221fa.chunk.js": "/hagaa-lomda/static/js/453.162221fa.chunk.js",
     "static/media/fire-bg2.webp": "/hagaa-lomda/static/media/fire-bg2.4d07c9688e255a454abd.webp",
     "static/media/legalSituation-bg.jpg": "/hagaa-lomda/static/media/legalSituation-bg.c51f4a1659ab6a2a311a.jpg",
@@ -9,12 +9,12 @@
     "static/media/fire-bg1.webp": "/hagaa-lomda/static/media/fire-bg1.96288261f2c6b2e1733b.webp",
     "static/media/mainBackground.jpg": "/hagaa-lomda/static/media/mainBackground.ddf52942952357e4936e.jpg",
     "index.html": "/hagaa-lomda/index.html",
-    "main.1f87842a.css.map": "/hagaa-lomda/static/css/main.1f87842a.css.map",
-    "main.29eec7f0.js.map": "/hagaa-lomda/static/js/main.29eec7f0.js.map",
+    "main.5fb19989.css.map": "/hagaa-lomda/static/css/main.5fb19989.css.map",
+    "main.d6af5f22.js.map": "/hagaa-lomda/static/js/main.d6af5f22.js.map",
     "453.162221fa.chunk.js.map": "/hagaa-lomda/static/js/453.162221fa.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1f87842a.css",
-    "static/js/main.29eec7f0.js"
+    "static/css/main.5fb19989.css",
+    "static/js/main.d6af5f22.js"
   ]
 }
