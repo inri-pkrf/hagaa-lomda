@@ -37,7 +37,6 @@ function InfoQuiz() {
           alt="man"
           className="person"
         />
-        
         <img
           src={`${process.env.PUBLIC_URL}/assets/General/Quiz/woman.webp`}
           alt="woman"
