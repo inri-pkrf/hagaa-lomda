@@ -1,0 +1,629 @@
+/* ══ HowPreper.css - מאוחד ומלא ══ */
+
+
+.how-preper-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background-color: #fdf9f4;
+  direction: rtl;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+
+/* ══ כותרת ══ */
+.header-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5vw;
+  margin-bottom: -11vh;
+  position: absolute;
+  right: 14%;
+  top: 8vh;
+  z-index: 10;
+}
+
+
+.page-icon {
+  width: 5vw;
+  height: 8vh;
+}
+
+
+.prep-title {
+  font-size: 4.5vmin;
+  margin-bottom: 1.5vh;
+}
+
+
+.prep-subtitle {
+  font-size: 1.8vw;
+  margin-bottom: 4vh;
+}
+
+
+/* ══ לוח ══ */
+.whiteboard-wrapper {
+  position: relative;
+  width: 75%;
+  margin: 25vh auto 0 auto;
+}
+
+
+.whiteboard-image {
+  width: 100%;
+  height: 70vh;
+  display: block;
+  position: relative;
+  top: -10vh;
+  object-fit: fill;
+}
+
+
+.whiteboard-image.bottom {
+  top: -5vh;
+}
+
+
+/* ══ מגנטים (HowPreper) ══ */
+.magnet-button {
+  position: absolute;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+  width: 10vw;
+  height: 25vh;
+  text-align: center;
+}
+
+
+.magnet-button:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  filter: drop-shadow(0 1vh 1vh rgba(0, 0, 0, 0.4));
+}
+
+
+.magnet-icon {
+  width: 10vw;
+  height: 15vh;
+  margin-bottom: 1.5vh;
+  object-fit: contain;
+}
+
+
+.magnet-title {
+  font-weight: 700;
+  font-size: 2vmin;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 0.8vh 1.2vw;
+  border-radius: 0.8vw;
+  box-shadow: 0 0.4vh 0.6vh rgba(0, 0, 0, 0.15);
+}
+
+
+/* ══ V הושלם (HowPreper) ══ */
+.completion-v {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2.5vw;
+  height: 2.5vw;
+  background-color: #4caf50;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.completion-v svg {
+  width: 60%;
+  height: 60%;
+}
+
+
+/* ══ גריד אייקונים (Securing / Reinforcement) ══ */
+.icons-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5vmin;
+  position: absolute;
+  top: 15%;
+  left: 7%;
+  right: 10%;
+  padding: 1vh 1vw;
+  max-width: 70vw;
+  margin: 0 auto;
+}
+
+
+.icon-wrapper {
+  position: relative;
+  background-color: white;
+  border: 0.2vw solid #a3d7c5;
+  border-radius: 1.2vw;
+  padding: 1.5vh 1vw;
+  cursor: pointer;
+  height: 20vh;
+  width: 10vw;
+  box-shadow: 0 0.4vh 0.8vh rgba(66, 99, 60, 0.1);
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.icon-securing {
+  width: 4vw;
+  height: 8vh;
+}
+
+
+.icon-wrapper:hover {
+  background-color: #a3d7c5;
+  transform: translateY(-0.5vh);
+  box-shadow: 0 0.8vh 1.6vh rgba(66, 99, 60, 0.2);
+}
+
+
+/* Red variants */
+.icon-wrapper-red {
+  border: 0.2vw solid #bd7171;
+}
+
+
+.icon-wrapper-red img {
+  width: 6vw;
+  height: 10vh;
+}
+
+
+.icon-wrapper-red:hover {
+  background-color: #e0b1b1;
+}
+
+
+.icons-grid-red {
+  top: 30%;
+}
+
+
+/* ══ V הושלם (Securing) ══ */
+.checkmark {
+  position: absolute;
+  top: -1vh;
+  left: -0.5vw;
+  width: 2.2vw;
+  height: 2.2vw;
+  background-color: #38a169;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1vw;
+  font-weight: bold;
+  box-shadow: 0 0.2vh 0.8vh rgba(0, 0, 0, 0.2);
+  z-index: 5;
+}
+
+
+/* ══ כותרת הוראה על הגריד ══ */
+.grid-instruction-title {
+  position: absolute;
+  top: 9%;
+  left: 10%;
+  right: 10%;
+  text-align: center;
+  font-size: 2vmin;
+  margin: 0;
+  padding: 0 2vw;
+}
+
+
+/* ══ פופ-אפ (Securing / Reinforcement) ══ */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+
+.popup-box-securing {
+  background: white;
+  width: 40vw;
+  height: auto;
+  padding: 3vh 2vw;
+  border-radius: 2vw;
+  box-shadow: 0 1vh 3vh rgba(0, 0, 0, 0.5);
+  text-align: center;
+  direction: rtl;
+  border: 0.4vw solid #a1b3ad;
+}
+
+
+.popup-box-securing h3 {
+  margin-top: 0;
+  font-size: 1.5vw;
+}
+
+
+.popup-box-securing p {
+  font-size: 1.4vw;
+  margin: 2vh 0;
+}
+
+
+.popup-box-red {
+  border: 0.4vw solid #bd7171;
+}
+
+
+.popup-close-x-securing {
+  position: absolute;
+  top: 3vh;
+  left: 2vw;
+  background: none;
+  border: none;
+  font-size: 3vmin;
+  font-weight: bold;
+  color: #388629;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+  line-height: 1;
+  z-index: 10;
+}
+
+
+#red-x {
+  color: #bd7171;
+}
+
+
+.popup-text-container {
+  padding-top: 1vh;
+}
+
+
+.popup-icon-securing {
+  width: 3vw;
+  height: 3vw;
+  padding: 0.3vw;
+}
+
+
+.popup-header-row-securing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2vmin;
+  width: 100%;
+  margin-bottom: 3vh;
+}
+
+
+.continue-btn-new-securing,
+.maintenance-popup-content-securing.custom-design {
+  border: 0.4vmin solid #388629;
+}
+
+
+.continue-btn-new-securing {
+  background-color: #388629;
+}
+
+
+.continue-btn-new-securing-red {
+  background-color: #bd7171;
+}
+
+
+.continue-btn-new-securing-red,
+.maintenance-popup-content-securing-red.custom-design {
+  border: 0.4vmin solid #bd7171;
+}
+
+
+/* ══ Progress bar ══ */
+.progress-section-custom {
+  width: 40%;
+  margin: 2.5vh auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
+}
+
+
+.progress-bar-wrapper {
+  width: 100%;
+  height: 0.8vh;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 2vw;
+  position: relative;
+  box-shadow: inset 0 0.1vh 0.3vh rgba(0, 0, 0, 0.1);
+}
+
+
+.progress-bar-fill-custom {
+  height: 100%;
+  background: linear-gradient(90deg, #99be92, #388629);
+  border-radius: 2vw;
+  position: relative;
+  transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 0.2vh 0.4vh rgba(233, 165, 114, 0.3);
+}
+
+
+#red-progress-bar {
+  background: linear-gradient(90deg, #ebbcbc, #bd7171);
+}
+
+
+.progress-number-tooltip {
+  position: absolute;
+  right: 0;
+  top: -2vw;
+  font-size: 1vw;
+  font-weight: bold;
+  color: #388629;
+  background: white;
+  padding: 0.2vh 0.6vw;
+  border-radius: 0.8vw;
+  box-shadow: 0 0.2vh 0.5vh rgba(0, 0, 0, 0.1);
+}
+
+
+#red-progress-number {
+  color: #bd7171;
+}
+
+
+.progress-label-custom {
+  font-size: 0.8vw;
+  letter-spacing: 0.05vw;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+
+/* ══ Escape ══ */
+.escape-items-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3vw;
+}
+
+
+.escape-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+}
+
+
+.escape-icon {
+  width: 10vw;
+  max-width: 15vw;
+  min-width: 5vw;
+  height: 16vh;
+  margin-bottom: 1vh;
+  position: absolute;
+  top: 15vh;
+}
+
+
+.escape-text {
+  position: relative;
+  top: 5vh;
+  font-weight: 600;
+  font-size: 2.5vmin;
+  padding: 0.5vh 0.8vw;
+  border-radius: 0.6vw;
+  text-align: center;
+}
+
+
+.escape-bold-text-top {
+  position: absolute;
+  top: 10%;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.25vw;
+  padding: 0 3vw;
+  box-sizing: border-box;
+}
+
+
+.escape-bold-text-bottom {
+  position: absolute;
+  bottom: 14vh;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.25vw;
+  padding: 0 3vw;
+  box-sizing: border-box;
+}
+
+
+/* ══ Tsunami ══ */
+.simple-content-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  display: flex;
+  justify-content: center;
+}
+
+
+.highlighted-paragraph {
+  background-color: #d1aed3;
+  border: 0.3vw solid #6b2a6c;
+  border-radius: 1.2vw;
+  padding: 4vmin;
+  font-size: 3vmin;
+  text-align: center;
+  font-weight: 500;
+  line-height: 1.6;
+  box-shadow: 0.5vw 0.5vw 1.5vw rgba(0, 0, 0, 0.1);
+}
+
+
+.tsunami {
+  background-color: #b8e4e7;
+  border: 0.3vw solid #102e70;
+  position: absolute;
+  top: -10vh;
+  width: 60vw;
+}
+
+
+.tsunami-text-bottom {
+  font-size: 3vmin;
+  text-align: right;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-top: 18vh;
+  width: 90vw;
+}
+
+
+/* ══ Training ══ */
+.training-content {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.training-paragraph {
+  font-size: 3vmin;
+  text-align: center;
+  margin-bottom: 4vmin;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+
+.training-images-row {
+  display: flex;
+  justify-content: center;
+  gap: 7vw;
+  width: 100%;
+  align-items: center;
+}
+
+
+.training-card {
+  position: relative;
+  width: 15vw;
+  height: 20vh;
+  border-radius: 1vw;
+  overflow: hidden;
+}
+
+
+.card-bg {
+  width: 100%;
+  height: 100%;
+}
+
+
+.card-overlay-text {
+  position: absolute;
+  top: 20%;
+  left: 2%;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2vmin;
+  padding: 1vw 1vh;
+  box-sizing: border-box;
+}
+
+
+/* ══ Risk ══ */
+.risk-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  text-align: center;
+}
+
+
+.risk-title {
+  width: 100%;
+  font-size: 3vmin;
+  text-align: center;
+  font-weight: bold;
+  position: absolute;
+  top: -10vh;
+}
+
+
+.risk-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10vh;
+  background-color: #f1a395;
+  border: 0.3vw solid #9c3830;
+  border-radius: 1.2vw;
+  text-align: right;
+}
+
+
+.risk-list li {
+  position: relative;
+  font-size: 2.5vmin;
+  margin-bottom: 2vh;
+  padding-right: 2.5vw;
+  font-weight: 600;
+}
+
+
+

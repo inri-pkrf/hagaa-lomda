@@ -1,0 +1,134 @@
+#defense-headline {
+  position: absolute;
+  right: 11vw;
+  top: 6vh;
+  font-family: "Karantina";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 8vmin;
+  text-align: center;
+  z-index: 10;
+  color: #0cb0de;
+}
+
+
+.shrinked-defense {
+  position: absolute;
+  width: 15vw !important;
+  height: 30vh;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  border: 4px solid #e9a572;
+  transform: translateX(-50%);
+  z-index: 5;
+  top: 15vh;
+}
+
+
+#defense-icon {
+  margin: 2vh;
+  margin-top: 10.5vh;
+  border-radius: 50vw;
+  height: 14vh;
+  width: 14vh;
+  position: absolute;
+  right: 0vw;
+  z-index: 10;
+}
+
+
+#video-defense {
+  display: block;
+  position: absolute;
+  top: 50vh;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 20px;
+}
+
+
+#yt-player-defense {
+  display: block;
+  position: absolute;
+  top: 32vh;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 20px;
+  width: 60vw;
+  max-width: 95vh;
+  height: 54vh;
+}
+
+
+#yt-player-defense iframe {
+  border-radius: 20px;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+
+.defense-wrapper {
+  background-color: #fdf9f4;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+
+#defense-dircations {
+  position: absolute;
+  right: 50%;
+  transform: translateX(50%);
+  top: 20vh;
+  font-family: "Assistant";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 3.5vh;
+  text-align: center;
+  z-index: 10;
+}
+
+
+#defense-pictures-text {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 20vh;
+  direction: rtl;
+}
+
+
+/* מיקומי ברירת מחדל בשורה אחת */
+.img-pos-1-defense {
+  top: 40vh;
+  left: 20%;
+}
+.img-pos-2-defense {
+  top: 40vh;
+  left: 40%;
+}
+.img-pos-3-defense {
+  top: 40vh;
+  left: 60%;
+}
+.img-pos-4-defense {
+  top: 40vh;
+  left: 80%;
+}
+
+
+/* המחלקה enlarged נשארת זהה כדי שההגדלה תמשיך לעבוד למרכז המסך */
+.enlarged {
+  position: fixed !important;
+  width: 45vw !important;
+  height: 85vh;
+  z-index: 1000 !important;
+  top: 55% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  border: 4px solid #e9a572;
+  cursor: pointer;
+}
+
+
+

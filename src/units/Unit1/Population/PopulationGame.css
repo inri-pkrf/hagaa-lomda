@@ -1,0 +1,253 @@
+.gamePage {
+    direction: rtl;
+    background: #FDF9F4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4vh 2vw;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Assistant';
+    margin-top: 8vh;
+}
+
+.wrong-popup-bottom {
+    position: fixed;
+    bottom: 4vh;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1.2vh 2.2vw;
+    border-radius: 1.2vw;
+    font-size: 2vmin;
+    z-index: 9999;
+    box-shadow: 0 0.8vw 2vw rgba(0,0,0,0.2);
+    color: white;
+    background: #ff3b3b;
+}
+
+.gameTitle {
+    font-size: 2vmin;
+    text-align: center;
+    margin-bottom: 0.5vh;
+    font-weight: 500;
+}
+
+.gameSub {
+    font-size: 2.5vmin;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 2vh;
+    opacity: 0.9;
+}
+
+.targets-wrapper {
+    width: 85vw;
+    background: #f6faff;
+    border-radius: 1.2vw;
+    overflow: hidden;
+    box-shadow: 0 1vw 2.5vw rgba(0, 14, 61, 0.22);
+}
+
+.targets-body {
+    display: flex;
+    flex-direction: row;
+    height: 62vh;
+    align-items: stretch;
+}
+
+/* צד שמאל */
+.drag-items-row {
+    width: 38%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    padding: 2vw;
+    justify-content: center;
+    align-items: stretch;
+}
+
+/* עמודת חצים */
+.arrows-col {
+    width: 6%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5vh;
+    padding: 2vw 0;
+}
+
+.game-arrow {
+    font-size: 3vmin;
+    color: #40d4ff;
+    opacity: 0;
+    animation: fadeArrow 0.4s forwards;
+    height: 14vh;
+    display: flex;
+    align-items: flex-end;
+    animation: pulse-arrow 1.2s ease-in-out infinite, fadeArrow 0.4s forwards;
+}
+
+@keyframes fadeArrow {
+    from { opacity: 0; transform: translateX(0.5vw); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse-arrow {
+    0%, 100% { transform: translateX(0); }
+    50%       { transform: translateX(-0.4vw); }
+}
+
+/* צד ימין */
+.categories-side {
+    width: 56%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    padding: 2vw;
+    justify-content: center;
+    border-right: 2px solid #b6dff2;
+}
+
+.side-header {
+    font-size: 2vmin;
+    font-weight: 700;
+    text-align: center;
+    padding-bottom: 1vh;
+    border-bottom: 2px solid #b6dff2;
+    margin-bottom: 0.5vh;
+}
+
+/* כרטיסי גרירה */
+.drag-item-card {
+    background: linear-gradient(135deg, #1e3a5f, #2c5d8a);
+    color: white;
+    padding: 1vw;
+    border-radius: 1vw;
+    cursor: grab;
+    font-size: 2vmin;
+    text-align: center;
+    box-shadow: 0 0.6vw 1.2vw rgba(0,0,0,0.15);
+    transition: transform 0.2s ease;
+    height: 14vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.drag-item-card:hover {
+    transform: translateY(-0.3vw);
+}
+
+/* summary צד שמאל */
+.summary-left-card {
+    height: 14vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1vw;
+    background: #cfefff;
+    border-radius: 1vw;
+    padding: 1vw 1.5vw;
+    box-shadow: 0 0.4vw 1vw rgba(0,0,0,0.1);
+    opacity: 0;
+    animation: slideInLeft 0.5s forwards;
+    direction: rtl;
+}
+
+.summary-left-text {
+    font-size: 1.5vmin;
+    font-weight: 600;
+    flex: 1;
+    text-align: center;
+}
+
+.summary-left-icon img {
+    width: 3.5vw;
+    height: 3.5vw;
+    flex-shrink: 0;
+}
+
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-1vw); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+/* קבוצת קטגוריה */
+.category-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
+    height: 14vh;
+    border: 0.2vw solid #1a3a5f;
+    border-radius: 1vw;
+    box-shadow: 0 0.2vw 0.5vw rgba(0, 15, 83, 0.3);
+}
+
+.category-label {
+    font-size: 1.8vmin;
+    font-weight: 700;
+    margin: 0;
+    padding: 0.5vh 0;
+}
+
+/* תיבות drop */
+.target-box {
+    height: 12vh;
+    border-radius: 0vw 0vw 0.9vw 0.9vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 0.2vw solid #1a3a5f;
+    background: #f6faff;
+    transition: all 0.3s ease;
+
+}
+
+.target-box.filled {
+    border-color: #4caf50;
+    background: #deffe5;
+}
+
+.target-box.wrong-flash {
+    animation: flashRed 0.6s;
+}
+
+@keyframes flashRed {
+    0%   { background: #ff4d4d20; }
+    50%  { background: #ff4d4d50; }
+    100% { background: #f8fcff; }
+}
+
+.target-box p {
+    margin: 0;
+    font-size: 1.5vmin;
+    text-align: center;
+}
+
+/* תוכן צד ימין אחרי סיום */
+.target-box.game-over-box {
+    border-color: #4caf50;
+    background: #f1fff4;
+}
+
+.summary-right-content {
+    width: 100%;
+    opacity: 0;
+    animation: slideInRight 0.5s forwards;
+}
+
+.summary-right-content p {
+    margin: 0;
+    font-size: 1.5vmin;
+    text-align: center;
+    font-weight: 500;
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(1vw); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+* { box-sizing: border-box; }

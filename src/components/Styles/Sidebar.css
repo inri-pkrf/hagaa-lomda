@@ -1,0 +1,328 @@
+/* Sidebar.css */
+
+
+/* האוברליי השחור על כל המסך */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 9998;
+
+
+}
+
+
+.sidebar-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+/* הקונטיינר הראשי */
+.sidebar-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  z-index: 9999;
+  transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+ 
+}
+
+
+.sidebar-container.closed {
+  transform: translateX(16.64vw);
+}
+
+
+/* לשונית */
+.toggle-tab {
+  width: 2.2vw;
+  height: 5.2vw;
+  border: none;
+  border-radius: 0.68vw 0 0 0.68vw;
+  cursor: pointer;
+  color: #FFF6EC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: -0.26vw 0 0.78vw rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: absolute;
+  left: -2.2vw;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+.toggle-tab:hover {
+  width: 3vw;
+  left: -3vw;
+}
+
+
+/* תוכן */
+.sidebar-content {
+  width: 16.64vw;
+  background: #FFF6EC;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: -0.52vw 0 1.56vw rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  overflow-x: hidden;
+  direction: rtl;
+  box-sizing: border-box;
+}
+
+
+/* כותרת */
+.sidebar-header {
+  width: 100%;
+  padding-top: 0.52vw;
+  padding-bottom: 1.04vw;
+  display: flex;
+  flex-direction: column;
+  gap: 0.78vw;
+  align-items: center;
+ 
+}
+
+
+.lucide-chevron-right path{
+  color: #FDF9F4;
+}
+
+
+.lucide-chevron-left path{
+  color: #FDF9F4;
+}
+
+
+.unit-banner {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.62vw 1.04vw;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 0.21vw 0.31vw rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+
+.logo-container-sidebar {
+  display: flex;
+  justify-content: center;
+  gap: 1.04vw;
+  width: 100%;
+}
+
+
+.unit-title {
+  color: #FDF9F4;
+  font-size: 2.5vw;
+  font-family: 'Karantina';
+  font-weight: 400;
+  text-align: center;
+}
+
+
+/* רשימת פרקים */
+.chapters-wrapper {
+  padding: 0.52vw 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.62vw;
+  width: 80%;
+  max-width: 14.56vw;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+
+.chapter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.42vw;
+  align-items: center;
+}
+
+
+.chapter-card {
+  width: 100%;
+  padding: 0.73vw 0.94vw;
+  border-radius: 0.62vw;
+  color: white ;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  font-weight: 700;
+  box-shadow: 0 0.16vw 0.42vw rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  box-sizing: border-box;
+  font-size: 1vw;
+}
+
+
+.chapter-card.is-locked {
+  background-color: #d1d1d1;
+  color: #888;
+}
+
+
+.sub-chapter-item {
+  width: 12vw;
+  height: 8vh;
+  background: #bdefff;
+  padding: 0.52vw 0.78vw;
+  border-radius: 0.52vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2vh;
+  color: #2c3e50;
+  box-sizing: border-box;
+  box-shadow: 0 0.1vw 0.21vw rgba(0, 0, 0, 0.05);
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+
+
+
+.check-badge-main, .check-badge-sub {
+  width: 1.04vw;
+  height: 1.04vw;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0.1vw 0.21vw rgba(0, 0, 0, 0.1);
+}
+
+
+.lock-icon-style {
+  opacity: 0.6;
+}
+
+
+/* hover */
+.chapter-card.clickable:hover {
+  filter: brightness(0.95);
+  transform: scale(1.02);
+}
+
+
+.sub-chapter-item.clickable:hover {
+  background-color: #a5e6ff !important;
+}
+
+
+/* scrollbar */
+.sidebar-content {
+  scrollbar-color: #a0a0a0 #e8e8e8;
+  scrollbar-width: thin;
+}
+
+
+::-webkit-scrollbar {
+  width: 0.52vw;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background-color: #a0a0a0;
+  border-radius: 0.52vw;
+}
+
+
+::-webkit-scrollbar-track {
+  background-color: #e8e8e8;
+}
+
+
+/* תוכן פרק */
+.chapter-main-content {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+
+.chapter-label {
+  color: #FDF9F4;
+  white-space: nowrap;
+}
+
+
+.is-locked .chapter-label {
+  color: #888;
+}
+
+
+.arrow-icon-sidebar path {
+  color: #888;
+}
+
+
+.arrow-icon-sidebar {
+  transition: transform 0.3s ease;
+  transform: rotate(90deg);
+}
+
+
+.arrow-icon-sidebar.rotated {
+  transform: rotate(0deg);
+}
+
+
+.lock-icon path , .lock-icon rect{
+  color: #888;  
+}
+
+
+.clickable .arrow-icon-sidebar path {
+  color: #FDF9F4;
+}
+
+
+.sidebar-footer {
+  padding: 2vmin 1vmin;
+  margin-top: auto; /* דוחף את הכפתור הכי למטה שאפשר בתוך ה-content */
+  border-top: 0.1vmin solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  gap: 1vw;
+  width: 80%;
+}
+
+
+.about-us-btn {
+  width: 100%;
+  padding: 0.8vmin;
+  background-color: transparent;
+  border: 0.2vmin solid #333; /* או צבע אחר שמתאים לקו העיצובי */
+  color: #333;
+  font-weight: bold;
+  border-radius: 1vmin;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.5vmin;
+}
+
+
+.about-us-btn:hover {
+  background-color: #333;
+  color: #fff;
+}
+

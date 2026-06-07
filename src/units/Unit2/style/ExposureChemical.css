@@ -1,0 +1,98 @@
+.exposure-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 100vh;
+  padding: 5vh;
+  background-color: #fdf9f4;
+}
+
+.exposure-grid {
+  display: flex;
+  gap: 2vw;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.exposure-card {
+  width: 16vw;
+  height: 30vh;
+  background-color: #b2e4d5;
+  border-radius: 2vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  box-shadow: 0 1.5vw 1vw rgba(0, 0, 0, 0.1);
+}
+
+.exposure-card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vw;
+}
+
+.exposure-icon {
+  width: 6vw;
+  height: 10vh;
+  transition: all 0.3s ease;
+}
+
+.exposure-title {
+  opacity: 0;
+  font-size: 1.5vw;
+  font-weight: bold;
+  margin: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* אפקט ה-Hover */
+.exposure-card:hover {
+  transform: translateY(-1vw);
+  background-color: #9cd5c4;
+}
+
+.exposure-card:hover .exposure-title {
+  opacity: 1;
+}
+
+/* סקשן הטקסט */
+.exposure-header-section {
+  direction: rtl;
+  width: 62vw;
+  text-align: right;
+  margin-bottom: 3vw;
+  position: absolute;
+  top: 3vw;
+  font-size: 9vh;
+  right: 5vw; /*אם נמחק את זה אז זה יהיה בימין של המסך ולא עם תחילת הכרטיסיות- זוהי אופציה*/
+}
+
+.exposure-header-section h1 {
+  font-size: 9vmin;
+  margin-bottom: 0.5vw;
+  font-family: "Karantina";
+  font-weight: 400;
+}
+
+.exposure-header-section p {
+  font-size: 3vmin;
+  margin: 0.2vw 0;
+  width: 75vw;
+  font-family: "Assistant";
+}
+
+.exposure-card {
+  position: relative;
+}
+
+.exposure-done-check {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+}

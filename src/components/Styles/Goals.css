@@ -1,0 +1,137 @@
+/* קונטיינר ראשי */
+.Goals {
+  position: fixed;
+  inset: 0;
+
+  background-color: #e9f3f8;
+  background-image: url("/public/assets/General/mainBackground.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* כותרת משנה */
+.subtitles.goals-subtitle {
+  font-size: 2.5vmin;
+  margin-top: 4vh;
+  width: 80%;
+}
+
+/* קונטיינר של כל השורות */
+.goals-list-custom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6vh; /* 🔥 רווח קבוע בין שורות */
+  margin-top: 20vh;
+  width: 100%;
+}
+
+/* שורה */
+.goals-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6vw; /* 🔥 רווח קבוע בין פריטים */
+  width: 100%;
+}
+
+/* התאמות לפי כמות */
+.goals-row-1 {
+  gap: 0;
+}
+
+.goals-row-2 {
+  gap: 10vw;
+}
+
+.goals-row-3 {
+  gap: 6vw;
+}
+
+/* כל פריט */
+.goal-item {
+  position: relative; /* חשוב מאוד */
+  width: 18vw;
+  height: 20vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  transform: translateY(1vw) scale(0.8);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.goal-item.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* הענן */
+.goal-cloud {
+  position: absolute;
+  inset: 0; /* 🔥 במקום width/height */
+  background-color: rgba(240, 248, 255, 0.47);
+  border: 0.26vw outset;
+  border-radius: 1.8vw;
+  z-index: 0;
+  animation: float 3s ease-in-out infinite;
+  
+}
+
+/* טקסט */
+.goal-text {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2vh 2vw;
+
+  font-size: 2vmin;
+  color: var(--text-color);
+  font-weight: 500;
+
+  max-width: 90%;
+}
+
+/* אנימציה */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.3vw);
+  }
+}
+
+/* כפתור */
+.goals-button {
+  position: absolute;
+  bottom: 8vh;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background-color: var(--layer1-color);
+  color: var(--text-color);
+
+  border: 0.1vw solid var(--layer2-color);
+  padding: 0.6vw 1.3vw;
+
+  cursor: pointer;
+  font-size: 1.1vw;
+  border-radius: 0.4vw;
+
+  transition: all 0.3s ease;
+}
+
+.goals-button:hover {
+  background-color: var(--layer2-color);
+  transform: translateX(-50%) scale(1.05);
+}

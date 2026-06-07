@@ -1,0 +1,205 @@
+.behavior-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 50vh);
+  width: 100%;
+  height: 100vh;
+  gap: 0;
+}
+
+.grid-item-chemical {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.grid-item-chemical img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+/* 1. התמונה הראשונה - למטה משמאל */
+.grid-item-chemical:nth-child(1) {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+/* 2. התמונה השנייה - למטה מימין */
+.grid-item-chemical:nth-child(3) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+/* 3. התמונה השלישית - למעלה משמאל */
+.grid-item-chemical:nth-child(2) {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+/* הטקסט במקום הריק - למעלה מימין */
+.text-container {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: right;
+  padding: 4vh 4vw;
+  direction: rtl;
+}
+
+.text-container h2 {
+  font-size: 2vw;
+  margin-bottom: 2vh;
+}
+
+.text-container p {
+  font-size: 1.5vw;
+  line-height: 1.6;
+}
+
+/* hover overlay — זהה ל-RightBehavior */
+.hover-overlay-chemical {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(1.2vw);
+  -webkit-backdrop-filter: blur(1.2vw);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.grid-item-chemical:hover .hover-overlay-chemical {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.grid-item-chemical.text-container p{
+  font-size: 2.5vmin;
+}
+
+.hover-text-box-chemical {
+  white-space: pre-line;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 1.5vh 3vw;
+  border-radius: 0.8vw;
+  font-size: 1.2vw;
+  font-weight: bold;
+  text-align: center;
+  direction: rtl;
+  box-shadow: 0 0.4vh 1vw rgba(0,0,0,0.1);
+  max-width: 80%;
+}
+
+/* V הושלם */
+.completion-v-chemical {
+  position: absolute;
+  top: 3vw;
+  right: 1vw;
+  background-color: #2ecc71;
+  color: white;
+  width: 2.5vw;
+  height: 2.5vw;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.3vw solid #f9f7f2;
+  z-index: 10;
+}
+
+.completion-v-chemical svg {
+  width: 60%;
+  height: 60%;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* פופ-אפ overlay */
+.chemical-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 23, 42, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(0.5vw);
+}
+
+/* תיבת פופ-אפ */
+.chemical-popup-content {
+  background-color: #fcfaf8;
+  padding: 3vh 3vw;
+  border-radius: 4vh;
+  border: 0.7vh solid #56C3A9;
+  text-align: center;
+  direction: rtl;
+  width: 40vw;
+  box-shadow: 0 1vh 3vw rgba(0, 0, 0, 0.5);
+  font-family: 'Assistant';
+  position: relative;
+  animation: chemicalPopupEntrance 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.chemical-popup-content h2 {
+  color: #257b67;
+  position: relative;
+  top: -3vh;
+  font-size: 5vh;
+  margin-bottom: 2vh;
+  font-family: 'Karantina';
+}
+
+.chemical-popup-content p {
+  position: relative;
+  top: -3vh;
+  font-size: 3vh;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 3vh;
+}
+
+/* כפתור סגירה */
+.chemical-popup-btn {
+  background-color: #56C3A9;
+  position: absolute;
+  left: -0.7vh;
+  bottom: -0.7vh;
+  color: white;
+  border: 0.5vh solid #56C3A9;
+  padding: 1vh 3vw;
+  font-size: 2vh;
+  cursor: pointer;
+  border-radius: 0 3vh 0 4vh;
+  transition: 0.3s;
+  animation: chemicalPopupEntrance 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.chemical-popup-btn:hover {
+  scale: 1.05;
+}
+
+@keyframes chemicalPopupEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(1vh);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

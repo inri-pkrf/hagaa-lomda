@@ -1,0 +1,129 @@
+#FireBehaviorIn-bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  z-index: -2;
+}
+
+
+/* כותרת */
+#FireBehaviorIn-headline {
+  font-family: "Karantina";
+  font-size: 6vh;
+  position: absolute;
+  top: 25vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 65%;
+  text-align: center;
+  font-weight: 200;
+}
+
+
+#FireBehaviorIn-bold {
+  color: #297434;
+  font-weight: 400;
+  font-family: "Karantina";
+}
+
+
+#FireBehaviorIn-subheadline {
+  font-size: 2.6vh;
+  position: absolute;
+  top: 30vh;
+  left: 49%;
+  transform: translateX(-50%);
+  width: 65%;
+  text-align: center;
+  font-weight: 600;
+  direction: rtl;
+}
+
+
+/* רשימה ממורכזת */
+#FireBehaviorIn-list {
+  position: absolute;
+  top: 42vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.2vh;
+  align-items: flex-end;
+}
+
+
+/* שורה */
+.FireBehaviorIn-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.5vw;
+  direction: rtl;
+}
+
+
+/* אייקון */
+.FireBehaviorIn-icon {
+  width: 2.6vw;
+  height: 4vh;
+  border: 0.2vw solid #8b0000;
+  border-radius: 0.4vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2vh;
+  font-weight: bold;
+  color: black;
+  flex-shrink: 0;
+}
+
+
+/* טקסט */
+.FireBehaviorIn-row p {
+  margin: 0;
+  font-family: "Assistant";
+  font-size: 2.5vh;
+  line-height: 1.5;
+  text-align: right;
+}
+
+
+/* כפתור */
+#FireBehaviorIn-btn {
+  position: absolute;
+  bottom: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1.5vh 3vw;
+  font-size: 2.2vh;
+  cursor: pointer;
+}
+
+
+#FirePoster-img {
+  position: absolute;
+  top: 38vh;
+  left: 50%;
+  width: 40vw;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+
+.strinked-fire-poster {
+  position: absolute;
+  width: 35vw !important;
+  height: 60vh;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  border: 4px solid #e9a572;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+
+
+

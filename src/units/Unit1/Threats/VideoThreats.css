@@ -1,0 +1,47 @@
+.VideoThreats-background {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    background-color: #fff8e8;
+    z-index: -1000;
+}
+
+
+.VideoThreats-container {
+    width: 78vw;
+    height: 75vh;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.VideoThreats-video {
+    width: 78vw;
+    height: 75vh;
+    border: none;
+    cursor: pointer;
+}
+
+.video-threats-button {
+    padding: 12px 30px;
+    font-size: 3vmin;
+    font-weight: 700;
+    font-family: 'Assistant';
+    color: #fff;
+    position: absolute;
+    left: 8%;
+    top: 88%;
+    background: linear-gradient(45deg, #ff6b6b, #f7d794, #63cdda, #ff6b6b);
+    background-size: 300% 300%;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.4s ease;
+}

@@ -1,0 +1,739 @@
+/* ודא שהמשטח הראשי מכסה את כל המסך כדי למנוע איקס אדום בגרירה */
+.game-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+}
+/* Styles for Unit2 SafeRoomExercise screens */
+
+
+
+
+
+
+
+
+#SafeRoom-background{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2; /* Ensure the background is behind other content */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pop-up-SafeRoomExercise{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    font-size: 24px;
+    padding: 1vh 2vw;
+    border-radius: 5vh;
+    z-index: 1; /* Ensure the text is above the background */
+    border-color: #56C3A9;
+    border-width: 1vh;
+    border-style: solid;
+    text-align: center;
+    animation: popupEnter 0.5s ease-out;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@keyframes popupEnter {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5) rotate(-10deg);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1.1) rotate(5deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.popup-exit {
+    animation: popupExit 0.5s ease-in forwards;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@keyframes popupExit {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1.1) rotate(-5deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5) rotate(10deg);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#close-SafeRoomExercise-pop-up{
+    position: absolute;
+    top: -5%;
+    right: 4%;
+    font-size: 4vh;
+    border-radius: 1vh;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#headline-SafeRoomExercise{
+    font-family: 'Karantina';
+    font-size: 6vh;
+    margin-top: 3vh;
+    margin-bottom: 2vh;
+    text-align: center;
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+.shelter-bold-text {
+    font-weight: 900 !important;
+}
+
+
+
+
+
+
+
+
+#text-SafeRoomExercise{
+    font-family: 'Assistant';
+    font-size: 3vmin;
+    margin-bottom: 2vh;
+    width: 100%;
+    text-align: right;
+    direction: rtl;
+    padding: 4vh 4vw 4vh 4vw;
+}
+
+
+
+
+#RocketsExercise-start-btn{
+    background-color: #56C3A9;
+    color: white;
+    padding: 2vh 3vw;
+    border-radius: 0 1vh 0 5vh;
+    font-size: 3.5vh;
+    cursor: pointer;
+    direction: rtl;
+    font-weight: 700;
+    font-family: 'Assistant';
+    position: absolute;
+    bottom: -3.5vh;
+    left: 0vw;
+}
+
+
+
+
+
+
+
+
+#text2-SafeRoomExercise{
+    font-family: 'Assistant';
+    font-size: 3vh;
+    width: 100%;
+    text-align: center;
+    direction: rtl;
+}
+
+
+.text2-SafeRoomExercise-bold{
+    font-weight: 900;
+}
+
+
+#text3-SafeRoomExercise{
+    font-family: 'Assistant';
+    font-size: 3vh;
+    right: 2vh;
+    width: 100%;
+    direction: rtl;
+}
+
+
+.workers{
+    background-color: rgba(248, 248, 248, 0.61);  
+    border-color: rgb(255, 255, 255);
+    border-width: 0.5vh;
+    border-style: solid;
+    height: 12vh;
+    width: 8vw;
+    padding: 1vh;
+    border-radius: 2vh;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    position: relative;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.shelters{
+    background-color: rgb(255, 255, 255);
+    border-color: #56C3A9;
+    border-width: 0.3vh;
+    border-style: solid;
+    width: 8vw;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    text-align: center;
+    padding-left: 2vh;
+    padding-right: 2vh;
+    border-radius: 1.5vh;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 1.7vh;
+    font-weight: 500;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#shelter1{
+    position: absolute;
+    top: 25vh;
+    left: 65vw;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#shelter2{
+    position: absolute;
+    top: 75vh;
+    left: 23vw;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#shelter3{
+    position: absolute;
+    top: 68vh;
+    left: 2vw;
+    width: 9vw;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#shelter4{
+    position: absolute;
+    top: 25vh;
+    left: 16vw;
+    width: 9vw;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#shelter5{
+    position: absolute;
+    top: 15vh;
+    left: 90vw;
+    width: 7vw;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#shelter6{
+    position: absolute;
+    top: 75vh;
+    left: 71vw;
+    width: 8vw;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.shake {
+  animation: shake 0.4s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-6px); }
+  100% { transform: translateX(0); }
+}
+
+
+
+
+
+
+
+
+.shelters.correct {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+
+
+
+
+
+
+.shelters.wrong {
+    background-color: #f44336;
+    color: white;
+}
+
+
+
+
+
+
+
+
+.shelters.correct::after {
+    content: "✔";
+    display: block;
+    font-size: 2vh;
+}
+
+
+
+
+
+
+
+
+.shelters.wrong::after {
+    content: "✖";
+    display: block;
+    font-size: 2vh;
+}
+
+
+
+
+
+
+
+
+.character{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: grab;
+}
+
+
+
+
+
+
+
+
+/* מיקומים */
+#character1{
+    top: 68vh;
+    left: 45vw;
+}
+
+
+
+
+
+
+
+
+#character2{
+    top: 45vh;
+    left: 8vw;
+}
+
+
+
+
+
+
+
+
+#character3{
+    top: 40vh;
+    left: 60vw;
+}
+
+
+
+
+
+
+
+
+#character4{
+    top: 40vh;
+    left: 24vw;
+}
+
+
+
+
+
+
+
+
+.workers-text{
+    position: static;
+    margin-top: 0.5vh;
+    font-family: 'Assistant';
+    font-size: 1.5vh;
+    text-align: center;
+    color: white;
+    font-weight: 700;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+
+
+
+
+
+
+
+.shelters.correct {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+
+
+
+
+
+
+.shelters.wrong {
+    background-color: #f44336;
+    color: white;
+}
+
+
+
+
+
+
+
+
+.shelters.correct::after {
+    content: "✔";
+    display: block;
+}
+
+
+
+
+
+
+
+
+.shelters.wrong::after {
+    content: "✖";
+    display: block;
+}
+
+
+
+
+
+
+
+
+.character {
+  cursor: grab;
+}
+
+
+
+
+
+
+
+
+.character:active {
+  cursor: grabbing;
+}
+
+
+
+
+
+
+
+
+#completed-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    font-size: 2vh;
+    padding: 2vh 4vw;
+    border-radius: 5vh;
+    z-index: 10; /* Ensure the popup is above all other content */
+    border-color: #56C3A9;
+    border-width: 1vh;
+    border-style: solid;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    direction: rtl;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

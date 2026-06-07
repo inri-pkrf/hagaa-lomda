@@ -1,0 +1,73 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "../../Unit2/style/TimeToEnterMamad.css";
+
+
+function TimeToEnterMamad1() {
+  const navigate = useNavigate();
+
+
+  const handleNextClick = () => {
+    navigate("/TimeToEnterMamad2");
+  };
+
+
+  const openOrefPopup = () => {
+    window.open(
+      "https://www.oref.org.il/heb",
+      "popupWindow",
+      "width=1200,height=800,top=100,left=200,resizable=yes,scrollbars=yes",
+    );
+  };
+
+
+  return (
+    <div className="time-to-enter-mamad-wrapper">
+      <img
+        src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/background-timer.png`}
+        alt="timer"
+        id="background-timer"
+      />
+
+
+      <p id="frame3-text1">זמן כניסה למרחב מוגן</p>
+
+
+      <p id="frame3-text2">
+        עליכם להכיר את{" "}
+        <span id="frame3-text2-bold">זמן ההגעה למרחב המוגן במפעל</span>, ולהיערך
+        בהתאם כדי לוודא שכל העובדים מגיעים בזמן למרחב מוגן שניתן להגיע אליו בפרק
+        זמן זה.
+      </p>
+
+
+      <p id="frame3-text3">
+        לכל יישוב בישראל מוגדר זמן התגוננות – הזמן העומד לרשות השוהים לפעול
+        ולהיכנס למרחב המוגן מרגע ההתרעה.
+      </p>
+
+
+      <div id="frame3-text4">
+        זמן התגוננות זה משתנה בין יישוב ליישוב, בהתאם למרחק שלו מהגבול, ומוגדר
+        על ידי פיקוד העורף. <br></br>כדי לדעת את זמן ההתגוננות בארגון שלכם:
+        <div>
+          היכנסו{" "}
+          <span
+            id="website-link-frame3"
+            onClick={openOrefPopup}
+            style={{ cursor: "pointer" }}
+          >
+            ליישומון פיקוד העורף או אתר פיקוד העורף
+          </span>
+        </div>
+        <div>הזינו את שם היישוב (ובעיר מפוצלת – גם את הכתובת המדויקת).</div>
+      </div>
+    </div>
+  );
+}
+
+
+export default TimeToEnterMamad1;
+
+
+

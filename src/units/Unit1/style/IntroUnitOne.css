@@ -1,0 +1,289 @@
+.IntroUnitOne {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-size: 100% 100%;   /* ימרח על כל המסך בלי חיתוך */
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    direction: rtl;
+}
+
+
+
+.subtitles.subtext-IntroUnitOne{
+    top: 85vh;
+}
+
+.first-background {
+    width: 100vw;
+    height: 100vh;
+    object-fit: fill;
+    position: fixed;
+    left: 0;
+    top: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.door-signs-UnitOne {
+    position: absolute;
+    top: 18vh;
+    width: 100vw;
+    height: 40vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5vw;
+
+}
+
+.door-sign-UnitOne-first,
+.door-sign-UnitOne-second,
+.door-sign-UnitOne-third,
+.door-sign-UnitOne-fourth {
+    width: 16vw;
+    height: 48vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 2vw;
+    border-radius: 0.52vw; /* 10px */
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.door-sign-UnitOne-first {
+    position: absolute;
+    right: -1vw;
+}
+
+.door-sign-UnitOne-second {
+    position: absolute;
+    right: 25vw;
+}
+
+.door-sign-UnitOne-third {
+    position: absolute;
+    right: 54vw;
+}
+
+.door-sign-UnitOne-fourth {
+    position: absolute;
+    left: -3vw;
+}
+
+.door-sign-UnitOne-first:hover,
+.door-sign-UnitOne-second:hover,
+.door-sign-UnitOne-third:hover,
+.door-sign-UnitOne-fourth:hover {
+    transform: scale(1.05);
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.door-sign-UnitOne-title-first,
+.door-sign-UnitOne-title-second,
+.door-sign-UnitOne-title-third,
+.door-sign-UnitOne-title-fourth {
+    font-size: 2.25vw;
+    font-weight: 400;
+    font-family: "Karantina";
+    text-align: center;
+    top: 5vw;
+    position: relative;
+    z-index: 1;
+}
+
+.door-sign-UnitOne-title-first {
+    transform: rotate(5deg);
+}
+
+.door-sign-UnitOne-title-fourth {
+    transform: rotate(355deg);
+}
+
+.door-sign-UnitOne-first img,
+.door-sign-UnitOne-second img,
+.door-sign-UnitOne-third img,
+.door-sign-UnitOne-fourth img {
+    width: 100%;
+    height: auto;
+    max-height: 13vw;
+    object-fit: contain;
+}
+
+.doorOneDone.UnitOneDoors {
+    z-index: 10;
+    width: 15vw;
+    height: 60vh;
+    position: absolute;
+    top: 40vh;
+    transform: translateY(-50%);
+    right: 1vw;
+    pointer-events: none;
+}
+
+.doorTwoDone.UnitOneDoors {
+    z-index: 10;
+    width: 18vw;
+    height: 54vh;
+    position: absolute;
+    top: 37vh;
+    transform: translateY(-50%);
+    right: 26vw;
+}
+
+.doorThreeDone.UnitOneDoors {
+    z-index: 10;
+    width: 18vw;
+    height: 53vh;
+    position: absolute;
+    top: 37vh;
+    transform: translateY(-50%);
+    right: 55vw;
+}
+
+.doorFourDone.UnitOneDoors {
+    z-index: 10;
+    width: 18vw;
+    height: 62vh;
+    position: absolute;
+    top: 40vh;
+    transform: translateY(-50%);
+    right: 83vw;
+}
+
+.doorOneDone.UnitOneDoors,
+.doorTwoDone.UnitOneDoors,
+.doorThreeDone.UnitOneDoors,
+.doorFourDone.UnitOneDoors {
+    pointer-events: none;
+}
+
+
+.goToQuizButton:hover {
+    background-color: #3d8c81;
+    transform: translateX(-50%) scale(1.05);
+}
+
+.ShortcutButton {
+  position: absolute;
+  padding: 1vw 2vw;
+  font-size: 1vw;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 0.5vw;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.ShortcutButton:hover {
+  background-color: darkred;
+}
+
+#ShortcutButton1-one {
+    top: 78vh;
+    right: 4vw;
+}
+
+#ShortcutButton2-one {
+    top: 73vh;
+    right: 28vw;
+}
+
+#ShortcutButton3-one {
+    top: 73vh;
+    right: 60vw;
+}
+
+#ShortcutButton4-one {
+    top: 78vh;
+    right: 84vw;
+}
+
+/* מודל סיום */
+.questions-end-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000000;
+  padding: 2vh;
+}
+
+.questions-end-modal {
+  width: 28vw;
+  padding: 2vh 1.75vw;
+  background: #fff;
+  border: 0.7vh solid #40d4ff;
+  border-radius: 2.5vh;
+  box-shadow: 0 24px 52px rgba(0, 0, 0, 0.24);
+  text-align: center;
+  direction: rtl;
+    position: relative;
+  display: inline-block;
+}
+
+#questions-end-page-headline {
+  margin: 0 ;
+  font-family: 'karantina', sans-serif;
+  font-size: 4.4vh;
+  line-height: 1.3;
+}
+
+.sticker {
+  position: absolute;
+  font-size: 5vmin;
+  animation: floatSticker 3s ease-in-out infinite;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* מיקומים */
+.s1 { top: -4vh; left:  22vw;  animation-delay: 0s;    }
+.s2 { top: -3vh; left:  25vw; animation-delay: 0.5s;  }
+.s3 { top: -4vh; right: 22vw;  animation-delay: 1s;    }
+.s4 { top: -3vh; right: 25vw; animation-delay: 1.5s;  }
+
+/* אנימציית ריחוף */
+@keyframes floatSticker {
+  0%   { transform: translateY(0)    rotate(0deg);   opacity: 1;   }
+  50%  { transform: translateY(-1vh) rotate(15deg);  opacity: 0.8; }
+  100% { transform: translateY(0)    rotate(0deg);   opacity: 1;   }
+}
+
+.title-img {
+    top: -6vw;
+    position: relative;
+
+}
+
+.subtext-IntroUnit {
+    position: absolute;
+    font-family: 'karantina';
+    font-size: 5vh;
+    bottom: 0vh;
+    left: 50%;
+    width: 60%;
+    transform: translateX(-50%);
+    z-index: 1;
+    color: #472E1A;
+    background-color: #FDF9F4;
+    padding: 2vh 2vw 2vh 2vw;
+    border-radius: 2vh 2vh 0vh 0vh;
+    box-shadow: 0 1vw 2vw rgba(99, 64, 31, 0.3);
+}

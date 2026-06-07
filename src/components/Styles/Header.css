@@ -1,0 +1,55 @@
+/* Header.css */
+.app-header-0{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0vw 1vw;
+  background: var(--bg-color);
+  color: var(--text-color);
+  direction: rtl;
+  height: 8vh;
+  border-radius: 0 0 2vw 2vw;
+  top: 0vh;
+  position: fixed;
+  z-index: 1000;
+  box-shadow: 0 1vw 1vw -1vw rgba(0, 0, 0, 0.2);
+  background-color: #FDF9F4;
+  width: 100vw;
+}
+
+
+
+
+.logo-container {
+  display: flex;
+  gap: 1vw;
+  justify-content: flex-end; /* מיישר את הלוגואים לימין */
+  align-items: center;       /* אם רוצים ליישר אנכית במרכז */
+}
+
+
+.logo {
+  height: 6vh;
+}
+
+
+.header-title {
+/* כותרת */
+position: absolute;
+right:50%;
+transform: translateX(50%);
+font-family: 'Karantina';
+font-style: normal;
+font-weight: 700;
+font-size: 5vmin;
+text-align: center;
+color: var(--text-color);
+width: 100%;
+}
+
+
+.app-header-0 .pg-container {
+    max-height: 4vh;
+    min-width: fit-content;
+}
+

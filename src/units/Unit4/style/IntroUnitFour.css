@@ -1,0 +1,178 @@
+.IntroUnitFour {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    direction: rtl;
+}
+
+.first-background {
+    width: 100vw;
+    height: 100vh;
+    object-fit: fill;
+    position: fixed;
+    left: 0;
+    top: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.door-signs-UnitFour {
+    position: absolute;
+    top: 22vh;
+    width: 100vw;
+    height: 40vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5vw;
+}
+
+.door-sign-UnitFour-first,
+.door-sign-UnitFour-second,
+.door-sign-UnitFour-third {
+    width: 14vw;
+    height: 44vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 2vw;
+    border-radius: 0.52vw;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.door-sign-UnitFour-first {
+    position: absolute;
+    right: 19vw;
+}
+
+.door-sign-UnitFour-second {
+    position: absolute;
+    right: 41vw;
+}
+
+.door-sign-UnitFour-third {
+    position: absolute;
+    left: 19vw;
+}
+
+.door-sign-UnitFour-first:hover,
+.door-sign-UnitFour-second:hover,
+.door-sign-UnitFour-third:hover {
+    transform: scale(1.05);
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.door-sign-UnitFour-title-first,
+.door-sign-UnitFour-title-second,
+.door-sign-UnitFour-title-third {
+    font-size: 2.25vw;
+    font-weight: 400;
+    font-family: "Karantina";
+    text-align: center;
+    top: 5vw;
+    position: relative;
+    z-index: 1;
+}
+
+.door-sign-UnitFour-title-first {
+    transform: rotate(5deg);
+}
+
+.door-sign-UnitFour-title-third {
+    transform: rotate(355deg);
+}
+
+.door-sign-UnitFour-first img,
+.door-sign-UnitFour-second img,
+.door-sign-UnitFour-third img {
+    width: 100%;
+    height: auto;
+    max-height: 13vw;
+    object-fit: contain;
+}
+
+.doorOneDone.IntroUnitFour {
+    z-index: 10;
+    width: 16vw;
+    height: 49vh;
+    position: absolute;
+    top: 41vh;
+    transform: translateY(-50%);
+    right: 20vw;
+    pointer-events: none;
+}
+
+.doorTwoDone.IntroUnitFour {
+    z-index: 10;
+    width: 16vw;
+    height: 49vh;
+    position: absolute;
+    top: 41vh;
+    transform: translateY(-50%);
+    right: 42vw;
+    pointer-events: none;
+}
+
+.doorThreeDone.IntroUnitFour {
+    z-index: 10;
+    width: 16vw;
+    height: 49vh;
+    position: absolute;
+    top: 41vh;
+    transform: translateY(-50%);
+    left: 20vw;
+    pointer-events: none;
+}
+
+.doorOneDone.IntroUnitFour,
+.doorTwoDone.IntroUnitFour,
+.doorThreeDone.IntroUnitFour {
+    pointer-events: none;
+}
+
+.ShortcutButton {
+    position: absolute;
+    padding: 1vw 2vw;
+    font-size: 1vw;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 0.5vw;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.ShortcutButton:hover {
+    background-color: darkred;
+}
+
+#ShortcutButton1-four {
+    top: 73vh;
+    right: 22vw;
+}
+
+#ShortcutButton2-four {
+    top: 73vh;
+    right: 45vw;
+}
+
+#ShortcutButton3-four {
+    top: 73vh;
+    right: 70vw;
+}

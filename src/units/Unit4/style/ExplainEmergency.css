@@ -1,0 +1,349 @@
+.emergency-wrapper {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #fdf9f4;
+}
+
+
+.ExplainEmergency-main-title {
+  font-family: "Karantina";
+  font-size: 9vh;
+  position: absolute;
+  right: 0vw;
+  font-weight: 400;
+  top: 5vh;
+  width: 100%;
+}
+
+
+.active-glow-tv {
+  pointer-events: auto;
+  cursor: pointer;
+  filter: brightness(1.3) drop-shadow(0 0 1.5vw yellow);
+  z-index: 100 !important;
+  animation: pulse-orange 1.5s infinite ease-in-out;
+}
+
+
+@keyframes pulse-orange {
+  0% {
+    filter: brightness(1.1) drop-shadow(0 0 0.5vw #e9a572);
+  }
+  50% {
+    filter: brightness(1.5) drop-shadow(0 0 2.5vw #a05821)
+      drop-shadow(0 0 4vw #ffcc00);
+  }
+  100% {
+    filter: brightness(1.1) drop-shadow(0 0 0.5vw #e9a572);
+  }
+}
+
+
+.scene-viewport {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 2vw;
+  left: 0;
+}
+
+
+.stage-0 .bg-img {
+  width: 100vw;
+  height: 100vh;
+}
+
+
+.stage-1 .bg-img,
+.stage-2 .bg-img {
+  width: 60vw;
+  height: 60vh;
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+
+.tv-hotspot {
+  position: absolute;
+  top: 10vh;
+  left: 35%;
+  width: 30vw;
+  height: 30vh;
+  cursor: pointer;
+  z-index: 20;
+}
+
+
+.tv-standalone-img {
+  width: 30vw;
+  height: 30vh;
+  position: relative;
+  z-index: 2;
+}
+
+
+/* .glow-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 0.7vw;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+} */
+
+
+/* .tv-hotspot:hover .glow-effect {
+  opacity: 1;
+  box-shadow: 0 0 2vw 0.7vw rgba(233, 165, 114, 0.8);
+}
+*/
+.tv-hotspot:hover {
+  transform: scale(1.1);
+}
+
+
+.tv-content-container.visible {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: all;
+  overflow-y: auto;
+}
+
+
+.scroll-area {
+  padding: 2vh;
+  direction: rtl;
+}
+
+
+.click-hint-text {
+  font-size: 2vh;
+}
+
+
+.v-mark {
+  color: green;
+  font-weight: bold;
+}
+
+
+.continue-btn {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1.5vh 3vw;
+  font-size: 1.5vw;
+  background: #e9a572;
+  border: none;
+  border-radius: 3vw;
+  cursor: pointer;
+  color: white;
+  z-index: 110;
+}
+
+
+.ExplainEmergency-title {
+  z-index: 10;
+  position: fixed;
+  left: 25%;
+  top: 0vh;
+  width: 50vw;
+  padding-top: 6vh;
+  padding-bottom: 1vh;
+}
+
+
+.tv-content-container {
+  position: absolute;
+  top: 31vh;
+  height: 34vh;
+  left: 45.5vw;
+  width: 31vw;
+  background: #fff;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.5s ease-out;
+  pointer-events: none;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-size: 1vw;
+  direction: rtl;
+}
+
+
+.tv-content-container.visible {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: all;
+}
+
+
+.tv-red-header {
+  background-color: #ff0000;
+  padding: 1vh;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+
+.tv-title {
+  color: white;
+  margin: 0;
+  font-size: 1.2vw;
+  font-weight: bold;
+}
+
+
+.scroll-area-peach {
+  flex: 1;
+  background-color: #ffdab9;
+  padding: 1.5vh;
+  padding-top: 0;
+  overflow-y: auto;
+  direction: rtl;
+}
+.scroll-area-peach::-webkit-scrollbar {
+  width: 0.6vw;
+}
+
+
+/* עיצוב כל שורה ברשימה */
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  align-items: center;
+  text-align: right;
+  gap: 0.7vw;
+  margin-bottom: 0vh;
+  border-bottom: 0.1vh solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 0vh;
+}
+
+
+.step-item p {
+  margin-block-start: 1.5vmin;
+  margin-block-end: 1.5vmin;
+}
+
+
+.v-mark {
+  color: green;
+  font-weight: bold;
+  font-size: 1.2vw;
+  flex-shrink: 0;
+  width: 2vw;
+  height: 3.5vh;
+  display: flex;
+  justify-content: center;
+}
+
+
+/* מכולת הנחיית הגלילה */
+.scroll-hint {
+  padding: 0.4vh 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 0.2vh solid #e9a572;
+  font-size: 0.95vw;
+  font-weight: bold;
+  flex-shrink: 0;
+  z-index: 5;
+}
+
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 0.5vw solid transparent;
+  border-right: 0.5vw solid transparent;
+  border-top: 0.7vh solid #ff0000;
+  margin-top: 0.3vh;
+}
+
+
+/* האזור של החיילת */
+.soldier-hotspot {
+  position: absolute;
+  top: 45vh;
+  left: 26vw;
+  width: 10vw;
+  height: 20vh;
+  cursor: pointer;
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.pulse-circle {
+  width: 7vw;
+  height: 12vh;
+  position: absolute;
+  top: -5vh;
+  background: rgba(230, 154, 69, 0.7);
+  border-radius: 50%;
+  box-shadow: 0 0 1vw 0.3vw rgba(230, 154, 69, 0.5);
+  animation: pulse-animation 1.5s infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.15vw solid rgba(255, 255, 255, 0.8);
+}
+
+
+/* אנימציית פעימה חזקה יותר */
+@keyframes pulse-animation {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(230, 154, 69, 0.7);
+  }
+
+
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 2vw rgba(230, 154, 69, 0);
+  }
+
+
+  100% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(230, 154, 69, 0);
+  }
+}
+
+
+/* שדרוג קטן לכיתוב כדי שיבלוט על התמונה */
+.click-hint {
+  color: #fff;
+  background: #e69a45;
+  padding: 0.6vh 1vw;
+  border-radius: 2vw;
+  font-size: 0.9vw;
+  font-weight: bold;
+  margin-top: 1.5vh;
+  box-shadow: 0 0.2vh 1vw rgba(0, 0, 0, 0.3);
+  text-shadow: none;
+}
+
+
+

@@ -1,0 +1,214 @@
+/* Styles for Unit1 Population screen */
+
+.population-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* טקסט עליון */
+.subtext-population {
+  font-size: 1.25vw;
+  text-align: center;
+  position: absolute;
+  top: 13vh;
+  width: 100%;
+  z-index: 5;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* רקע */
+.room-background-population {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: fill;  /* שינוי מ-cover ל-fill */
+  z-index: 0;
+  transition: transform 2s ease-in-out;
+  transform-origin: 50% 15%;
+}
+
+/* אזורי לחיצה - תמונות */
+.click-laptop,
+.click-folder,
+.click-lamp {
+  position: absolute;
+  cursor: pointer;
+  z-index: 5;
+  object-fit: contain;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.click-laptop:hover,
+.click-folder:hover,
+.click-lamp:hover {
+  filter: drop-shadow(0 0 0.6vw #fff6a5) drop-shadow(0 0 1vw #ffe066);
+  transform: scale(1.03);
+}
+
+.click-laptop {
+  top: 50vh;
+  left: 46vw;
+  width: 12vw;
+  height: 12vh;
+}
+
+.click-folder {
+  top: 54vh;
+  left: 21vw;
+  width: 12vw;
+  height: 14vh;
+}
+
+.click-lamp {
+  top: 45vh;
+  left: 35vw;
+  width: 10vw;
+  height: 18vh;
+}
+
+/* מיקומי וי */
+.completion-v {
+  pointer-events: none;
+  position: absolute;
+  width: 2vw;
+  height: 2vw;
+  z-index: 10;
+  background: rgba(46, 204, 113, 0.85);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3vw;
+}
+
+.completion-v svg {
+  width: 100%;
+  height: 100%;
+}
+
+.completion-v.check-laptop-pos {
+  top: 52%;
+  left: 51%;
+}
+
+.completion-v.check-light-pos {
+  top: 45%;
+  left: 38%;
+}
+
+.completion-v.check-folder-pos {
+  top: 55%;
+  left: 26%;
+}
+
+/* אנימציות */
+.zoom-in-population {
+  transform: scale(2);
+}
+
+.zoom-out-population {
+  transform: scale(0.9);
+}
+
+.zoom-out-strong {
+  animation: zoomOutStrong 1.2s ease-in forwards;
+}
+
+@keyframes zoomOutStrong {
+  from { transform: scale(1); }
+  to { transform: scale(0.85); opacity: 0; }
+}
+
+.fade-in-background {
+  animation: fadeBackground 0.8s ease forwards;
+}
+
+@keyframes fadeBackground {
+  from { opacity: 0; transform: scale(1.05); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes zoomInLeft {
+  from { transform: scale(1); }
+  to { transform: scale(1.5); }
+}
+
+.zoom-in-left {
+  animation: zoomInLeft 1.2s ease forwards;
+}
+
+.zoom-out-gentle {
+  transform: scale(0.8);
+  transition: transform 1.5s ease-in-out;
+}
+
+.room-background-population.zoom-in-left {
+  transform-origin: 5% 50%;
+}
+
+/* תמונת בינדרים */
+.final-binders {
+  width: 51vw;
+  position: absolute;
+  left: 50%;
+  top: 54%;
+  transform: translate(-50%, -50%);
+  transition: all 1.5s ease-in-out;
+}
+
+/* כפתור מעבר */
+.nextUnitButton {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.78vw 1.56vw;
+  font-size: 1.25vw;
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 0.52vw;
+  cursor: pointer;
+  z-index: 20;
+  box-shadow: 0 0.21vw 0.78vw rgba(0, 0, 0, 0.3);
+}
+
+.nextUnitButton:hover {
+  background-color: #27ae60;
+}
+
+/* ── Yellow pulse glow for the active step ── */
+@keyframes yellowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 0px rgba(255, 220, 0, 0));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 18px rgba(255, 220, 0, 0.95)) drop-shadow(0 0 35px rgba(255, 180, 0, 0.6));
+    transform: scale(1.04);
+  }
+}
+
+.glow-yellow {
+  animation: yellowPulse 1.2s ease-in-out infinite;
+  cursor: pointer;
+}
+
+/* ── Completed items: subtle green tint ── */
+.item-done {
+  filter: drop-shadow(0 0 6px rgba(80, 220, 100, 0.5));
+  cursor: pointer;
+}
+
+/* ── Locked items: dimmed and not-allowed cursor ── */
+.item-locked {
+  filter: brightness(0.5) grayscale(0.4);
+  cursor: not-allowed;
+}

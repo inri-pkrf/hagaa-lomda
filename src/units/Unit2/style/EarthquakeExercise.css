@@ -1,0 +1,360 @@
+.EarthquakeExercise-game-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    overflow: hidden;
+}
+
+
+
+
+#brown-completed-popup{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    font-size: 2vmin;
+    padding: 2vh 4vw;
+    border-radius: 5vh;
+    z-index: 10;
+    border-color: #472E1A;
+    border-width: 1vh;
+    border-style: solid;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    direction: rtl;
+}
+
+
+
+
+#EarthquakeExercise-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    z-index: -2;
+}
+
+
+
+
+
+
+
+
+/* --- Pop-up Styles --- */
+#EarthquakeExercise-pop-up {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 3vh 3vw;
+    border-radius: 5vh;
+    z-index: 10;
+    border: 1vh solid #472E1A;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    animation: earthquakePopupEnter 0.5s ease-out;
+    width: 40vw;
+    height: 50vh;
+
+
+
+
+    position: absolute; /* ← לא משנה התנהגות קיימת, רק מאפשר עיגון פנימי */
+}
+
+
+
+
+@keyframes earthquakePopupEnter {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+
+
+
+
+
+
+
+.EarthquakeExercise-popup-exit {
+    animation: earthquakePopupExit 0.5s ease-in forwards;
+}
+
+
+
+
+
+
+
+
+@keyframes earthquakePopupExit {
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+}
+
+
+
+
+
+
+
+
+#EarthquakeExercise-headline {
+    font-family: 'Karantina';
+    font-size: 6vh;
+    margin-bottom: 2vh;
+}
+
+
+
+
+
+
+
+
+.EarthquakeExercise-text {
+    font-family: 'Assistant';
+    font-size: 2.8vh;
+    direction: rtl;
+}
+
+
+
+
+
+
+
+
+#EarthquakeExercise-start-btn {
+    background-color: #472E1A;
+    color: white;
+    padding: 2vh 3vw;
+    border-radius: 0 1vh 0 4vh;
+    font-size: 3.5vh;
+    cursor: pointer;
+    direction: rtl;
+    font-weight: 700;
+    font-family: 'Assistant';
+
+
+
+
+    position: absolute;
+    bottom: -4vh;
+    left: 0vw;
+}
+
+
+
+
+
+
+
+
+/* --- Characters --- */
+.EarthquakeExercise-character {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: grab;
+    z-index: 5;
+}
+
+
+
+
+
+
+
+
+.EarthquakeExercise-workers-img {
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 0.4vh solid white;
+    height: 14vh;
+    width: 8vw;
+    padding: 1vh;
+    border-radius: 2vh;
+}
+
+
+
+
+
+
+
+
+.EarthquakeExercise-workers-text {
+    margin-top: 0.8vh;
+    font-family: 'Assistant';
+    font-size: 1.8vh;
+    color: white;
+    font-weight: 700;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+}
+
+
+
+
+
+
+
+
+/* Character Locations */
+#EarthquakeExercise-character1 { top: 50vh; left: 50vw; }
+#EarthquakeExercise-character2 { top: 45vh; left: 8vw; }
+#EarthquakeExercise-character3 { top: 32vh; left: 82vw; }
+#EarthquakeExercise-character4 { top: 40vh; left: 24vw; }
+
+
+
+
+
+
+
+
+/* --- Shelters --- */
+.EarthquakeExercise-shelters {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 0.3vh solid #472E1A;
+    width: 9vw;
+    min-height: 6vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.5vh;
+    border-radius: 1.5vh;
+    font-size: 1.8vh;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    direction: rtl;
+}
+
+
+
+
+
+
+
+
+.EarthquakeExercise-shelters.correct {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+
+
+
+
+
+
+.EarthquakeExercise-shelters.wrong {
+    background-color: #f44336;
+    color: white;
+    animation: shelterErrorShake 0.4s;
+}
+
+
+
+
+
+
+
+
+@keyframes shelterErrorShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+
+
+
+
+
+
+
+/* Shelter Locations */
+#EarthquakeExercise-shelter1 { top: 25vh; left: 65vw; }
+#EarthquakeExercise-shelter3 { top: 75vh; left: 8vw; }
+#EarthquakeExercise-shelter4 { top: 28vh; left: 4vw; }
+#EarthquakeExercise-shelter5 { top: 20vh; left: 88vw; }
+#EarthquakeExercise-shelter6 { top: 50vh; left: 86vw; padding: 4vh 2vw;}
+#EarthquakeExercise-shelter7 { top: 25vh; left: 42vw; padding: 4vh 2vw; }
+
+
+
+
+
+
+
+
+/* --- Success Popup --- */
+#EarthquakeExercise-completed-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    direction: rtl;
+    font-family: 'Assistant';
+}
+
+
+
+
+
+
+
+
+.EarthquakeExercise-completed-content {
+    background: white;
+    padding: 5vh 5vw;
+    border-radius: 4vh;
+    text-align: center;
+    font-size: 5vh;
+    border: 1.5vh solid #472E1A;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,184 @@
+/* --- רכיבים בסיסיים --- */
+.hotspot-overlay {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3vw;
+  height: 3vw;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.education-game-container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-origin: 50% 55%;
+  transition: transform 1.2s cubic-bezier(0.45, 0.05, 0.55, 0.95), opacity 1s ease-in;
+}
+
+.zoom-active {
+  transform: scale(5);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.education-bg {
+  width: 100vw;
+  height: 100vh;
+  object-fit: fill;
+  z-index: 1;
+}
+
+.education-game-container .hotspots-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.education-game-container .hotspot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  opacity: 1 !important;
+  display: block !important;
+  transition: filter 0.3s ease;
+  pointer-events: auto;
+}
+
+.education-game-container .hotspot img {
+  width: 8vw;
+  height: 11vh;
+}
+
+.hotspot.nanny img{
+  width: 20vw;
+  height: 50vh;
+}
+
+.education-game-container .normal-state {
+  pointer-events: none;
+  filter: brightness(0.9);
+}
+
+.active-glow {
+  pointer-events: auto;
+  cursor: pointer;
+  filter: drop-shadow(0 0 1vw #ffff00) drop-shadow(0 0 2vw #ffff00) brightness(1.2);
+  z-index: 150 !important;
+}
+
+/* עיצוב הפופ-אפים */
+.education-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 2vh 2vw;
+}
+
+/* עיצוב הפופ-אפ */
+.education-popup-content.custom-design {
+  background: #FFFDF5;
+  border: 0.4vw solid #ffb356;
+  border-radius: 4vw;
+  width: 80vw;
+  max-width: 70vw;
+  min-height: auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  direction: rtl;
+  box-shadow: 0 1.5vh 4vw rgba(0, 0, 0, 0.4);
+}
+
+.popup-text-container h3 {
+  font-size: 4vmin;
+  margin: 0;
+}
+
+.popup-text-container p {
+  font-size: 3vmin;
+  margin-top: 10vh;
+}
+
+/* כפתור סגירה */
+.education-close-x-circle {
+  position: absolute;
+  top: 2vh;
+  right: 2vw;
+  width: 3vw;
+  height: 3vw;
+  border-radius: 50%;
+  border: 0.2vw solid #ffb356;
+  background: white;
+  color: #ffb356;
+  font-size: 1.8vw;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* שורת כפתור ואייקון למטה */
+.popup-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 0;
+}
+
+/* כפתור המשך */
+.education-continue-btn-new {
+  background: #ffb356;
+  color: white;
+  border: none;
+  padding: 1.5vh 3.5vw;
+  font-size: 1.8vmin;
+  font-weight: bold;
+  border-radius: 0 2vw 0 4vw;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.bottom-icon-circle {
+  width: 4vw;
+  height: 4vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 1vw;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottom-icon-circle img {
+  width: 100%;
+  height: auto;
+}
+
+.popup-text-container {
+  padding: 6vh 6vw;
+  text-align: center;
+}

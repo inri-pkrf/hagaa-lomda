@@ -1,0 +1,503 @@
+.et-main-container {
+    direction: rtl;
+    font-family: 'Assistant';
+    padding-top: 10vh;
+    background-color: #FDF9F4;
+    width: 100vw;
+    height: 100vh;
+}
+
+
+
+
+
+
+
+
+/* כותרות עמוד 1 */
+#title-ET {
+    font-size: 4vmin; /* 2.4rem */
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 1vw; /* 20px */
+    font-family: "Karantina";
+}
+
+
+
+
+
+
+
+
+.subText-ET {
+    font-size: 2vmin; /* 1.4rem */
+    margin-top: 2vh;
+    margin-bottom: 8vh;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+#EmergencyTeams-img {
+    width: 95vw;
+    height: 75vh;
+    position: absolute;
+    bottom: 0vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+
+
+
+
+/* עמוד 2 */
+.interactive-map-container {
+    position: relative;
+    margin: 0 auto;
+    width: 80%;
+}
+
+
+
+
+
+
+
+
+#EmergencyTeamsPeople-img {
+    width: 60vw;
+    height: 60vh;
+}
+
+
+
+
+
+
+
+
+/* עטיפה */
+.team-bubble-wrapper {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 0.5vmin; /* 10px */
+    z-index: 10;
+    flex-direction: row;
+}
+
+
+
+
+
+
+
+
+/* וי */
+.v-mark {
+    width: 1.5vw; /* 28px */
+    height: 1.5vw;
+    background-color: #fff;
+    border: 0.1vw solid #4CAF50;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2vw; /* 4px */
+    box-shadow: 0 0.1vw 0.2vw rgba(0,0,0,0.1);
+    animation: popIn 0.3s ease-out;
+}
+
+
+
+
+
+
+
+
+.v-mark svg {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+
+
+
+
+/* בועה */
+.team-bubble {
+    position: relative !important;
+    background-color: #ffd097;
+    padding: 1vh 1vw; /* 10px 20px */
+    border-radius: 1vw;
+    font-weight: 700;
+    color: #4a3427;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 0.2vw solid #f7c382;
+    box-shadow: 0.1vw 0.1vw 0px #f7c382;
+    transition: all 0.2s ease;
+    font-size: 2vmin;
+}
+
+
+
+
+
+
+
+
+.visited .team-bubble {
+    border-bottom: 0.2vw solid #4CAF50 !important;
+    box-shadow: 0.1vw 0.1vw 0px #4CAF50 !important;
+}
+
+
+
+
+
+
+
+
+.team-bubble:hover {
+    transform: scale(1.05) translateY(-0.1vw);
+    background-color: #ffdab0;
+    box-shadow: 0.2vw 0.2vw 0px #f7c382;
+}
+
+
+
+
+
+
+
+
+.visited .team-bubble:hover {
+    box-shadow: 0.2vw 0.2vw 0px #4CAF50 !important;
+}
+
+
+
+
+
+
+
+
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    80% { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+
+
+
+
+
+
+
+/* מיקומים */
+.b-hazmat { top: -7%; right: 45%; }
+.b-maintenance { top: 35%; right: 6%; }
+.b-fire { bottom: 25%; right: 6%; }
+.b-medical { bottom: -6%; right: 45%; }
+.b-rescue { bottom: 25%; right: 80%; }
+.b-workers { top: 35%; right: 81%; }
+
+
+
+
+
+
+
+
+/* עמוד 3 */
+.detail-main-title {
+    font-size: 6vmin; /* 3rem */
+    position: absolute;
+    right: 2vw;
+    margin-bottom: 4vh;
+    font-family: "Karantina";
+}
+
+
+
+
+
+
+
+
+.detail-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 67vw; /* ~1000px */
+    direction: rtl;
+    z-index: 5;
+}
+
+
+
+
+
+
+
+
+.detail-column {
+    flex: 0 0 45%;
+
+    text-align: right;
+}
+
+
+
+
+
+
+
+
+.detail-column.left-side {
+    border-right: 0.3vw solid #fb8c00;
+    padding-right: 1vw;
+}
+
+
+
+
+
+
+
+
+.task-item {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    justify-content: flex-end;
+    margin-bottom: 0.8vw; /* 15px */
+    gap: 0.6vw;
+}
+
+
+
+
+
+
+
+
+/* כותרות קטנות בתוך העמודות (ייעוד הצוות, משימות וכו') */
+.detail-column h3 {
+    font-size: 4vmin; /* הגדלה משמעותית */
+    margin-bottom: 0.5vw;
+    margin-top: 0vh;
+}
+
+
+
+
+
+
+
+
+/* הטקסט בתוך הפסקאות */
+.orange-border-section p, .task-item span {
+    font-size: 2.5vmin;
+    font-weight: 500;
+}
+
+
+
+
+
+
+
+
+.task-icon-circle {
+    flex-shrink: 0;
+    width: 1.8vw; /* 35px */
+    height: 4vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+
+
+
+
+.task-icon-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+
+
+
+
+
+
+.detail-column.right-side {
+    max-width: 21vw; /* 400px */
+}
+
+
+
+
+
+
+
+
+.orange-border-section {
+    border-right: 0.3vw solid #fb8c00;
+    padding-right: 1vw;
+    margin-bottom: 3vh;
+    text-align: right;
+    width: 30vw;
+}
+
+
+.tasks-list {
+    width: 30vw;
+    margin-block-start: 3vh;
+    margin-block-end: 1vh;
+    padding-inline-start: 0vw;
+}
+
+
+
+
+
+.bg-character-fade {
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+    height: 85vh;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 70%;
+}
+
+
+
+
+
+
+
+
+/* ניווט */
+.navigation-arrows {
+    position: absolute;
+    bottom: 1vw;
+    right: 2vw;
+    display: flex;
+    gap: 1vw;
+}
+
+
+
+
+
+
+
+
+.nav-arrow {
+    background: #fb8c00;
+    border: none;
+    border-radius: 50%;
+    width: 3vw; /* 60px */
+    height: 3vw;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s;
+}
+
+
+
+
+
+
+
+
+.nav-arrow:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+
+
+
+
+
+
+
+.nav-arrow img {
+    width: 1.5vw; /* 30px */
+}
+
+
+
+
+
+
+
+
+.fade-in {
+    animation: fadeIn 0.6s ease-in;
+}
+
+
+
+
+
+
+
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

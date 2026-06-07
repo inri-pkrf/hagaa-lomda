@@ -1,0 +1,118 @@
+.question-factory-container {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  padding-top: 7vh;
+  background-color: #FDF9F4;
+}
+
+
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+
+.question-counter.factoty-file {
+  position: absolute;
+  top: 6vh;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 7vmin;
+  font-family: 'Karantina';
+  font-weight: bold;
+}
+
+
+.QuestionFactoryFile-question-text {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  text-align: center;
+  font-size: 5vmin;
+  font-family: 'Assistant';
+  direction: rtl;
+}
+
+
+.QuestionFactoryFile-folders-row {
+  direction: rtl;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 2vw;
+  width: 95%;
+}
+
+
+.QuestionFactoryFile-folder-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s;
+  margin: 0 0.5vw;
+}
+
+
+.QuestionFactoryFile-answer-card {
+  width: 12vw;
+  height: 20vh;
+}
+
+
+.QuestionFactoryFile-answer-text {
+  white-space: pre-line;
+  margin-top: 1vh;
+  font-size: 2vmin;
+  text-align: center;
+  width: 80%;
+  height: 100%;
+  font-family: 'Assistant';
+  direction: rtl;
+  line-height: 1.4;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2vh 1vw;
+  border-radius: 1.5vw;
+  background-color: rgba(255,255,255,0.1);
+  box-shadow: 0 0.4vh 1.2vw rgba(0,0,0,0.08);
+  border: 0.4vmin solid transparent;
+  transition: border-color 0.3s;
+}
+
+
+.QuestionFactoryFile-answer-text.correct { border-color: #27ae60; }
+.QuestionFactoryFile-answer-text.wrong   { border-color: #c0392b; }
+
+
+.QuestionFactoryFile-answer-card:hover .QuestionFactoryFile-answer-text {
+  transform: scale(1.05);
+}
+
+
+.question-white-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.493);
+  z-index: 10;
+  cursor: pointer;
+}
+
+
+

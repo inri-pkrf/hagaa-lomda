@@ -1,0 +1,97 @@
+.buttons-page-corner {
+  position: fixed;
+  bottom: -1vw;
+  left: -1vw;
+  display: flex;
+  align-items: flex-end; 
+  justify-content: center;
+  padding: 0.8vw;
+  z-index: 1000000000;
+}
+
+.app-button {
+  --main-color: var(--btn-color, #3FC6F3);
+  background: var(--main-color);
+  border: none;
+  border-radius: 1vw;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  width: 5vw;
+  height: 5vw;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0.42vw 2vw rgba(0,0,0,0.16);
+  cursor: pointer;
+  transition: transform .2s ease, filter .2s ease;
+  margin: 0; 
+  position: relative; 
+  overflow: hidden;
+}
+
+/* כפתור הבא - רק גדול יותר */
+.app-button--next {
+  width: 6vw;  
+  height: 6vw; 
+  z-index: 2; 
+}
+
+/* שכבת כהות רק לכפתור הבא */
+.app-button--next::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: 1;
+  transition: background-color .2s ease;
+}
+
+.app-button--next .app-button__icon {
+  width: 5.5vw;
+  height: 5.5vw;
+  z-index: 2;
+}
+
+.app-button:hover:not(:disabled) {
+  transform: translateY(-0.14vw);
+}
+
+.app-button--prev:hover:not(:disabled) {
+  filter: brightness(1.05);
+}
+
+.app-button:active:not(:disabled) {
+  transform: translateY(0.5vw);
+}
+
+.app-button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.app-button__icon {
+  width: 5vw;
+  height: 5vw;
+  object-fit: contain;
+}
+
+.app-button__icon.back {
+  transform: scaleX(-1);
+}
+
+/* ⭐ אנימציה אינסופית — נעצרת רק כשמסירים את הקלאס */
+.highlight-pulse {
+  animation: yellow-pulse 0.9s ease-in-out infinite;
+}
+
+@keyframes yellow-pulse {
+  0%, 100% {
+    box-shadow: 0 0.42vw 2vw rgba(0,0,0,0.16);
+  }
+  50% {
+    box-shadow: 0 0 2.5vw 1.2vw rgba(255, 217, 0, 0.589);
+  }
+}

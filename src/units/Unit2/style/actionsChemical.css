@@ -1,0 +1,196 @@
+.hazard-screen {
+  width: 100vw;
+  height: 100vh;
+  background-size: contain;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-image-2-actions {
+  bottom: 25vw;
+  left: 17vw;
+}
+
+#chemical-actions-title {
+  position: absolute;
+  top: 5vh;
+  right: 5vw;
+}
+
+#actions-instruction-text {
+  direction: rtl;
+  top: 20vh;
+  right: 5vw;
+  width: 25vw;
+}
+
+.center-pole {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 0;
+}
+
+.center-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10vw;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sign-item {
+  position: relative;
+  width: 26vw;
+  height: 20vh;
+  margin-top: -3vh;
+  margin-bottom: 1vh;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sign-item img {
+  width: 100%;
+  height: 22vmin;
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+.sign-text {
+  position: absolute;
+  font-weight: bold;
+  color: white;
+  font-size: 2.5vmin;
+  text-align: center;
+  width: 75%;
+  pointer-events: none;
+  white-space: pre-line;
+  direction: rtl;
+}
+
+/* הגדרות כפתורים צדדיים מאוחדות */
+.side-btn {
+  position: absolute;
+  bottom: 0;
+  width: 12vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.side-btn img {
+  width: 100%;
+  height: 18vh;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-header-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5vw;
+  position: absolute;
+  top: 3vh;
+  width: 15vw;
+  white-space: nowrap;
+  z-index: 6;
+}
+
+.btn-title {
+  font-weight: bold;
+  font-size: 1.5vmin;
+  color: white;
+}
+
+.btn-icon {
+  font-size: 1.5vw;
+  pointer-events: none;
+}
+
+.speech-bubble {
+  position: absolute;
+  top: -20vh;
+  background: white;
+  padding: 1vh 1vw;
+  border-radius: 10px;
+  border: 2px solid #3e2723;
+  font-size: 1.4vw;
+  width: 21vw;
+  text-align: center;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 10;
+  pointer-events: none;
+  direction: rtl;
+  z-index: 100;
+}
+
+.side-btn:hover .speech-bubble {
+  opacity: 1;
+}
+
+.left {
+  left: 15vw;
+}
+.right {
+  right: 15vw;
+}
+.right img {
+  transform: scaleX(-1);
+}
+
+#ChemicalPoster-img {
+  position: absolute;
+  top: 30vh;
+  left: 50%;
+  width: 30vw;
+  height: 60vh;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+#ChemicalPoster-headline {
+  position: absolute;
+  top: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Karantina";
+  font-weight: 400;
+  font-size: 8vmin;
+  text-align: center;
+  direction: rtl;
+}
+
+#ChemicalPoster-subheadline {
+  position: absolute;
+  top: 20vh;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 300;
+  font-size: 2.5vmin;
+  text-align: center;
+  direction: rtl;
+}
+
+.enlarged-chemical {
+  position: fixed !important;
+  width: 45vw !important;
+  height: 85vh !important;
+  z-index: 1000 !important;
+  top: 55% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  border: 4px solid #e9a572;
+}

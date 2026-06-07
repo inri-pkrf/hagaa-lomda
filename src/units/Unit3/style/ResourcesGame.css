@@ -1,0 +1,325 @@
+/* --- רכיבים בסיסיים --- */
+.Resources-game-container .hotspot-overlay {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3vw;
+  height: 3vw;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.Resources-game-container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-origin: 50% 55%;
+  transition: transform 1.2s cubic-bezier(0.45, 0.05, 0.55, 0.95), opacity 1s ease-in;
+}
+
+.Resources-game-container .zoom-active {
+  transform: scale(5);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.Resources-game-container .Resources-bg {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: fill;
+  z-index: 1;
+}
+
+.Resources-game-container.dim-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 2;
+}
+
+.Resources-game-container.hotspots-layer {
+  z-index: 5;
+}
+
+.Resources-game-container .hotspot {
+  opacity: 0.4;
+  filter: brightness(0.6);
+  transition: all 0.3s ease;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  pointer-events: auto;
+}
+
+.Resources-game-container .active-glow img{
+  opacity: 1 !important;
+  filter: brightness(1.4) drop-shadow(0 0 1.5vw yellow);
+  transform: scale(1.1);
+  z-index: 10;
+}
+
+.Resources-game-container .done {
+  opacity: 0.8;
+  filter: brightness(0.9);
+}
+
+.Resources-game-container .hotspot img {
+  width: 8vw;
+  height: 12vh;
+}
+
+.hotspot.hotspot-solar img, .hotspot.hotspot-fuel img {
+  height: 20vh;
+}
+
+.Resources-game-container .normal-state {
+  pointer-events: none;
+  filter: brightness(0.9);
+}
+
+.Resources-game-container.active-glow {
+  pointer-events: auto;
+  cursor: pointer;
+  filter: drop-shadow(0 0 1vw #ffff00) drop-shadow(0 0 2vw #ffff00) brightness(1.2);
+  z-index: 150 !important;
+}
+
+.Resources-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 2vh 2vw;
+}
+
+.Resources-popup-content.custom-design {
+  background: #FFFDF5;
+  border: 0.4vw solid #ffb356;
+  border-radius: 4vw;
+  width: 80vw;
+  max-width: 70vw;
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  direction: rtl;
+  height: auto;
+  padding: 4vw;
+  justify-content: center;
+  box-shadow: 0 1.5vh 4vw rgba(0, 0, 0, 0.4);
+  font-size: 1.5vmin;
+}
+
+.Resources-game-container .popup-text-container h3 {
+  font-size: 4vmin;
+  margin-bottom: 1vh;
+}
+
+.Resources-game-container .popup-text-container p {
+  font-size: 3vmin;
+  line-height: 1.4;
+}
+
+/* כפתור סגירה */
+.Resources-game-container .close-x-circle {
+  position: absolute;
+  top: 2vh;
+  right: 2vw;
+  width: 3vw;
+  height: 3vw;
+  border-radius: 50%;
+  border: 0.2vw solid #ffb356;
+  background: white;
+  color: #ffb356;
+  font-size: 1.8vw;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.Resources-game-container .popup-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 0;
+}
+
+/* כפתור המשך */
+.Resources-game-container .continue-btn-new {
+  background: #ffb356;
+  color: white;
+  border: none;
+  padding: 1.5vh 3.5vw;
+  font-size: 1.8vmin;
+  font-weight: bold;
+  border-radius: 0 2vw 0 4vw;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.Resources-game-container .bottom-icon-circle {
+  width: 4vw;
+  height: 4vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 1vw;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.Resources-game-container .bottom-icon-circle img {
+  width: 100%;
+  height: auto;
+}
+
+.Resources-game-container .popup-text-container {
+  padding: 4vh 6vw 6vh 6vw;
+  text-align: center;
+}
+
+.Resources-game-container .bottels { width: 6vw; }
+.Resources-game-container .clock   { width: 7vw; }
+.Resources-game-container .nanny   { width: 17vw; }
+.Resources-game-container .name    { width: 7vw; }
+
+/* --- V --- */
+.Resources-game-container .v-container-fixed {
+  position: absolute;
+  width: 3vw;
+  height: 3vw;
+  pointer-events: none;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Resources-game-container .dim-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 4;
+  pointer-events: none;
+}
+
+.Resources-game-container .dimmed-hotspot {
+  filter: brightness(0.4);
+  pointer-events: auto;
+}
+
+.tooltip {
+  position: absolute;
+  background: rgba(0,0,0,0.85);
+  color: white;
+  padding: 0.5vw 1vw;
+  border-radius: 0.5vw;
+  top: -2.5vw;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 999;
+  font-size: 1.5vmin;
+}
+
+
+/* רשימת סיום */
+.Resources-game-container .final-checks-container-game {
+  background: rgba(255, 255, 255, 0.9);
+  position: relative;
+  padding: 5vmin;
+  text-align: right;
+  border: 0.4vw solid #ffb356;
+  border-radius: 6vmin;
+  direction: rtl;
+  z-index: 3000;
+}
+
+.Resources-game-container .final-checks-container-game h3 {
+  color: #4A3A2A;
+  font-size: 2.5vmin;
+  margin-bottom: 1vh;
+  border-bottom: 0.2vw solid #ffb356;
+  display: inline-block;
+  padding-bottom: 0.5vw;
+}
+
+.Resources-game-container .checks-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 2vh;
+  border-radius: 2vw;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1vmin;
+  margin-block-start: 0.5vmin;
+  margin-block-end: 1vmin;
+}
+
+.Resources-game-container .checks-list li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+  gap: 1.2vw;
+  font-size: 1.3vw;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 2vh 1.5vw;
+  border-radius: 1vw;
+  border-right: 0.4vw solid #ffb356;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.Resources-game-container .checks-list li:hover {
+  transform: translateX(-0.3vw);
+  background: rgba(255, 255, 255, 1);
+}
+
+.Resources-checklist-screen {
+  text-align: right;
+  direction: rtl;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+}
+
+.Resources-game-container .continue-btn-new-checklist {
+  background: #ffb356;
+  color: white;
+  border: none;
+  padding: 1.5vh 3.5vw;
+  font-size: 1.8vmin;
+  font-weight: bold;
+  border-radius: 0 2vw 0 4vw;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+#resources-span {
+  color: #4A3A2A;
+}

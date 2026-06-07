@@ -1,0 +1,108 @@
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+
+#PreparationFire-body {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-size: 100% 100%;      /* ← במקום object-fit: cover */
+    background-position: center;   /* ← ממרכז את התמונה */
+    background-repeat: no-repeat;  /* ← מונע חזרה */
+    z-index: 1;
+    animation:
+        firstSlider 2s ease-in-out forwards,
+        secondSlider 1s steps(1, end) 2s forwards;
+}
+
+
+
+
+@keyframes firstSlider {
+  0% {
+    background-image: url("/public/assets/UnitTwoImgs/fire/fire-bg1.webp");
+  }
+
+
+  100% {
+    background-image: url("/public/assets/UnitTwoImgs/fire/fire-bg2.webp");
+  }
+}
+
+
+
+
+@keyframes secondSlider {
+  0% {
+    background-image: url("/public/assets/UnitTwoImgs/fire/fire-bg2.webp");
+  }
+
+
+  100% {
+    background-image: url("/public/assets/UnitTwoImgs/fire/fire-bg2-marked.webp");
+  }
+}
+
+
+.marked-folder{
+    position: absolute;
+    height: 20vh;
+    width: 12vw;
+    left: 26vw;
+    top: 54.5vh;
+    cursor: pointer;
+
+
+}
+
+
+#PreparationFire-headline{
+    font-family: 'Karantina';
+    font-size: 7vh;
+    position: absolute;
+    right: 10vw;
+    top: 4vh;
+    color: rgb(0, 0, 0);
+
+
+  animation:
+    ToRed 2s ease-in-out 0.5s forwards,
+    ToBlack 1s steps(1, end) 2s forwards;
+
+
+}
+
+
+#PreparationFire-text{
+    font-family: 'Assistant';
+    font-size: 2.5vh;
+    position: absolute;
+    right: 10vw;
+    top: 14vh;
+}
+
+
+@keyframes ToRed {
+  to {
+    color: rgb(150, 2, 2);
+  }
+}
+
+
+@keyframes ToBlack {
+  to {
+    color: rgb(0, 0, 0);
+  }
+}
+
+
+
+
+

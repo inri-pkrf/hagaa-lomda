@@ -1,0 +1,214 @@
+.manpower-wrapper {
+  direction: rtl;
+  text-align: center;
+  padding: 2vw;
+  font-family: 'Assistant';
+  background-color: #FDF9F4;
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+
+
+#subtitles-manpower-center{
+      font-size: 3vmin;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 1vw;
+}
+
+
+.main-title {
+  font-size: 3.5vmin;
+  font-weight: bold;
+  margin-bottom: 0.5vh;
+}
+
+
+.sub-title .manpower-wrapper {
+  font-size: 1.8vmin;
+  margin-bottom: 4vh;
+}
+
+
+.manpower-main-title {
+  font-family: 'Karantina';
+  font-size: 9vh;
+  position: absolute;
+  right: 5vw;
+  font-weight: 400;
+  top: 7vh;
+}
+
+
+.main-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 35%;
+  width: 70vw;
+  background-color: #FFF6EB;
+  border: 0.3vw solid #d38b5d;
+  border-radius: 2.5vw;
+  overflow-x: auto;
+  transition: all 0.3s ease-in-out;
+  z-index: 10;
+}
+
+
+/* כרטיסיות */
+.tabs-header {
+  display: flex;
+  width: 100%;
+  border-bottom: 0.2vw solid #d38b5d;
+}
+
+
+.tabs-header:has(+ .content-area) {
+  border-bottom: 0.2vw solid #d38b5d;
+}
+
+
+.tab-item {
+  flex: 1;
+  padding: 2vh 1vw;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5vw;
+  font-size: 2.2vmin;
+  font-weight: bold;
+  transition: background 0.2s;
+  user-select: none;
+}
+
+
+.tab-text{
+  font-size: 3vmin;
+}
+
+
+.tab-item.inactive {
+  background-color: #e0e0e0;
+}
+
+
+.tab-item.inactive:first-child {
+  border-left: 0.2vw solid #d38b5d;
+}
+
+
+.tab-item.active {
+  background-color: #FFF6EB;
+  color: #000;
+}
+
+
+.tab-item.inactive:hover {
+  background-color: #d8d8d8;
+  color: #333;
+}
+
+
+.tab-item:hover .tab-image {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
+}
+
+
+.tab-item:hover .tab-arrow {
+  transform: translateY(0.2vh);
+  transition: transform 0.2s ease;
+}
+
+
+.tab-icon {
+  font-size: 2.5vmin;
+}
+
+
+.tab-icon-container {
+  position: relative;
+
+
+
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.tab-check {
+  position: absolute;
+  top: -0.8vw;
+  right: -0.8vw;
+}
+
+
+.tab-image {
+  width: 6vw;
+  height: 6vh;
+  object-fit: contain;
+}
+
+
+/* תוכן */
+.content-area {
+  padding: 3vh 3vw;
+  min-height: 30vh;
+  text-align: right;
+  animation: fadeIn 0.4s ease;
+}
+
+
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 2vw;
+  margin-bottom: 2vh;
+  padding: 0.5vh 1vw;
+  border-radius: 1vw;
+  transition: background-color 0.2s ease;
+}
+
+
+.info-item:hover {
+  background-color: rgba(211, 139, 93, 0.05);
+}
+
+
+.info-item:hover .bulb-icon {
+  filter: drop-shadow(0 0 0.5vw #ffd700);
+  transform: rotate(10deg);
+  transition: all 0.2s ease;
+}
+
+
+.info-text {
+  font-size: 3vmin;
+  margin: 0;
+  line-height: 1.4;
+}
+
+
+.bulb-icon {
+  font-size: 2vmin;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+

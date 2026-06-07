@@ -1,0 +1,69 @@
+
+
+
+
+.preparation-page-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 8vh;
+    background-color: #FDF9F4;
+    direction: rtl;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+
+
+
+
+
+
+
+.preparation-main-header {
+    font-weight: 700;
+    text-align: center;
+    font-family: 'Karantina';
+    font-size: 10vh;
+    position: absolute;
+    right: 5vw;
+    font-weight: 400;
+    top: 7vh;
+}
+
+
+
+
+.preparation-sub-text {
+    font-size: 3vh;
+    text-align: center;
+    line-height: 1.4;
+    position: absolute;
+    top: 22%;
+}
+
+
+
+
+.topics-grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 3vw;
+    width: 95%;
+    position: absolute;
+    top: 45%;
+}
+
+.play-arrow {
+    color: #ffffff;
+}
+
+
+

@@ -1,0 +1,75 @@
+#FireBehaviorOut-bg {
+    position: fixed;
+    inset: 0%;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    z-index: -2;
+}
+
+/* כותרת */
+#FireBehaviorOut-headline {
+    font-family: 'Karantina';
+    font-size: 6vh;
+    position: absolute;
+    top: 25vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 65%;
+    text-align: center;
+    font-weight: 200;
+    line-height: 1.2;
+}
+
+#FireBehaviorOut-bold {
+    color: #850909;
+    font-weight: 400;
+    font-family: 'Karantina';
+}
+
+/* רשימה */
+#FireBehaviorOut-list {
+    position: absolute;
+    top: 42vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5vh;
+}
+
+/* שורה */
+.FireBehaviorOut-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 1.5vw;
+    direction: rtl;
+}
+
+/* אייקון */
+.FireBehaviorOut-icon {
+    width: 2.6vw;
+    height: 4vh;
+    border: 0.2vw solid #850909;
+    border-radius: 0.4vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vh;
+    font-weight: bold;
+    color: black;
+    flex-shrink: 0;
+}
+
+/* טקסט */
+.FireBehaviorOut-row p {
+    margin: 0;
+    font-family: 'Assistant';
+    font-size: 2.5vh;
+    line-height: 1.5;
+    color: #4b2e19;
+    text-align: right;
+    width: 100%;
+}

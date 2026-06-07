@@ -1,0 +1,129 @@
+.interfaces-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 1.04vw;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  overflow: hidden;
+}
+
+/* TITLE */
+.interfaces-title {
+  position: absolute;
+
+  top: 25%;
+  left: 49.5%;
+  transform: translate(-50%, -50%);
+  height: 25vh;
+  width: 28.5vw;
+  padding: 3.5% 1.5%;
+  font-size: 2.5vh;
+
+  color: white;
+  text-align: center;
+  background-color: #222c3b;
+  font-weight: 400;
+  direction: rtl;
+  border-radius: 0.5vw;
+}
+
+/* TRIANGLE */
+.tringle {
+  width: 10vw;
+  height: 11vh;
+  font-size: 1.1vw;
+  cursor: pointer;
+  font-weight: 600;
+  position: absolute;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: 0.3s ease;
+}
+
+.tringle p {
+  margin-bottom: 2vw;
+}
+/* POSITIONS */
+.tringle.t1 { top: 62vh; left: 30vw; }
+.tringle.t2 { top: 52vh; left: 31vw; transform: scale(0.85); }
+.tringle.t3 { top: 48vh; left: 39vw; transform: scale(0.85); }
+.tringle.t4 { top: 62vh; left: 20vw; }
+.tringle.t5 { top: 57vh; left: 40vw; transform: scale(0.85); }
+
+.tringle.t6 { top: 47vh; left: 54vw; transform: scaleX(-1) scale(0.85); }
+.tringle.t7 { top: 51vh; left: 63vw; transform: scaleX(-1) scale(0.85); }
+.tringle.t8 { top: 62vh; left: 71vw; transform: scaleX(-1); }
+.tringle.t9 { top: 60vh; left: 60vw; transform: scaleX(-1); }
+.tringle.t10 { top: 55vh; left: 51vw; transform: scale(0.85) scaleX(-1); }
+
+/* VISITED */
+.tringle.visited {
+  filter: brightness(0.5);
+}
+
+/* DONE ICON */
+.tringle.visited::after {
+  content: "";
+  position: absolute;
+  width: 2vw;
+  height: 2vw;
+  top: 0vw;
+  right: 1vw;
+
+  background-image: url("../../../../public/assets/UnitOneImgs/Interfences/doneSign.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.tringle.t6.visited::after,
+.tringle.t7.visited::after,
+.tringle.t8.visited::after,
+.tringle.t9.visited::after,
+.tringle.t10.visited::after {
+  right: auto;
+  left: 1vw;
+  transform: scaleX(-1);
+}
+
+/* 🌟 HOVER (הוחזר צהוב + glow) */
+.tringle:not(.visited):hover {
+  filter: drop-shadow(0 0 0.6vw #fff6a5)
+          drop-shadow(0 0 1vw #ffe066);
+
+}
+
+/* BUTTON - MAIN */
+.complete-button-Interfaces {
+  padding: 0.625vw 1.56vw;
+  font-size: 1.56vw;
+  font-weight: 700;
+  color: #fff;
+
+  position: absolute;
+  left: 8vw;
+  top: 88vh;
+
+  background: linear-gradient(45deg, #ff6b6b, #f7d794, #63cdda, #ff6b6b);
+  background-size: 300% 300%;
+  border: none;
+  border-radius: 1.30vw;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.complete-button-Interfaces:hover {
+  transform: scale(1.05);
+}

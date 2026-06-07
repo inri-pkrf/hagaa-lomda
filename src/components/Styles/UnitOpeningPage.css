@@ -1,0 +1,118 @@
+.UnitOpeningPage {
+  position: fixed;
+  inset: 0; /* במקום top/left/width/height */
+ 
+  background-color: #e9f3f8;
+  background-image: url("/public/assets/General/mainBackground.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; /* 🔥 זה הכי חשוב שחסר לך */
+
+
+  overflow: hidden;
+}
+
+
+.UnitOpeningPage__building {
+    position: absolute;
+    width: 35vw;
+    top: 50%;
+    transform: translateY(-50%);
+    max-height: 100vh;
+    height: auto;
+    right: 5vw;
+}
+
+
+.UnitOpeningPage__title{
+    font-family: "Karantina";
+    font-size: 6vmin;
+    color: var(--card-text);
+    position: absolute;
+    top: -4vh;
+    left: 9vw;
+   
+    width: 15vw;
+    z-index: 10;
+}
+
+
+.UnitOpeningPage__subtitle{
+    font-family: "Karantina";
+    font-size: 5vmin;
+    font-weight: 400;
+    color: var(--card-text);
+}
+
+
+.UnitOpeningPage_cards{
+    width: 37vw;
+    height: 55vh;
+    padding: 2.08vw;              /* 40px */
+    background: var(--card-main);
+    border-radius: 2.6vw;         /* 50px */
+    text-align: center;
+    direction: rtl;
+    left: 8vw;
+    top: 26vh;
+    position: relative;
+    z-index: 5;
+    border: #6d6c6c solid 0.026vw; /* 0.5px */
+}
+
+
+.UnitOpeningPage__text {
+    text-align: right;
+    position: absolute;
+    font-family: "ASsistant";
+    font-size: 2.8vmin;
+    color: var(--card-text);
+    line-height: 5vmin;
+    right: 5vw;
+    top: 7vh;
+    z-index: 10;
+}
+
+.UnitOpeningPage__text li , .UnitOpeningPage__text b {
+    color: var(--card-text);
+}
+
+.UnitOpeningPage_cards::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--card-layer1);
+    border-radius: 2.6vw;
+    border: #6c6d6d solid 0.026vw;
+
+
+    top: -2vw;
+    right: 2vw;
+
+
+    z-index: 2;
+}
+
+
+.UnitOpeningPage_cards::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--card-layer2);
+    border-radius: 2.6vw;
+    border: #6c6d6d solid 0.026vw;
+
+
+    top: -1vw;
+    right: 1.1vw;
+
+
+    z-index: 1;
+}
+
+
+
+
+

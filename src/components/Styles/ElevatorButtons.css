@@ -1,0 +1,149 @@
+/* קונטיינר הכפתורים */
+.elevator-buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1vw;
+  border-radius: 1.56vw;
+  border: 0.16vw solid black;
+  background-color: #ebebeb;
+  transition: background-color 0.3s ease;
+
+}
+
+/* כותרת */
+.elevator-title {
+  margin-bottom: 0vw;
+  margin-top: 0vw;
+  font-size: 1.6vw;
+  font-weight: bold;
+  color: #fff;
+  font-family: "KARANTINA";
+  padding: 0.1vw 0.2vw;
+  transition: background-color 0.3s ease;
+  font-family: "Assistant";
+}
+
+/* פאנל כפתורים אנכי */
+.elevator-panel {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.78vw;
+  align-items: center;
+}
+
+/* כפתורים */
+.floor-button {
+  width: 3.9vw;
+  height: 5vw;
+  border: 0.16vw solid #3b2a1f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.45vw;
+  font-weight: bold;
+  border-radius: 0.78vw;
+  background: #eee;
+  transition: 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.floor-button.disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+  background-color: #ccc;
+  border-color: #999;
+  box-shadow: none;
+  color: #666;
+}
+
+/* צבעי יחידות + glow */
+.floor-button.unit1.active {
+  border-color: #58BFE2;
+  box-shadow: 0 0 0.78vw #58BFE2;
+
+}
+
+.floor-button.unit2.active {
+  border-color: #56C3A9;
+  box-shadow: 0 0 0.78vw #56C3A9;
+}
+
+.floor-button.unit3.active {
+  border-color: #FFB356;
+  box-shadow: 0 0 0.78vw #FFB356;
+}
+
+.floor-button.unit4.active {
+  border-color: #EA6F72;
+  box-shadow: 0 0 0.78vw #EA6F72;
+}
+
+
+/* רקע כותרת לפי יחידה */
+.elevator-buttons-container.unit1 .elevator-title {
+  background-color: #58BFE2;
+}
+
+.elevator-buttons-container.unit2 .elevator-title {
+  background-color: #56C3A9;
+}
+
+.elevator-buttons-container.unit3 .elevator-title {
+  background-color: #FFB356;
+}
+
+.elevator-buttons-container.unit4 .elevator-title {
+  background-color: #EA6F72;
+}
+
+.floor-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0vw;
+}
+
+#buttons-title {
+  font-size: 1.5vw;
+  font-family: 'Assistant';
+  margin-bottom: 0.5vw;
+  margin-top: 0;
+  font-weight: 600;
+}
+
+.floor-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+}
+
+.floor-button.auto-hover {
+  /* copy your :hover styles here, for example: */
+  transform: scale(1.1);
+  background-color: /* your hover color */;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+  transition: all 0.4s ease;
+}
+.floor-button.unit1.auto-hover {
+  background-color: #58BFE2;
+  color: #fff;
+}
+
+.floor-button.unit2.auto-hover {
+  background-color: #56C3A9;
+  color: #fff;
+}
+
+.floor-button.unit3.auto-hover{
+  background-color: #FFB356;
+  color: #fff;
+}
+
+.floor-button.unit4.auto-hover {
+  background-color: #EA6F72;
+  color: #fff;
+}

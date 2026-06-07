@@ -1,0 +1,161 @@
+.FirstPage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'karantina';
+  direction: rtl;
+
+}
+
+/* כרטיס לבן שקוף */
+#content {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  padding: 10vh 5vw;
+  border-radius: 2vw;
+  text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* כפתור */
+#button-FirstPage {
+  background: rgba(29, 138, 255, 0.7);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  color: white;
+  border: none;
+  padding: 1vh 3vw;
+  border-radius: 2vmin;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 7vmin;
+  font-family: 'karantina';
+}
+
+#button-FirstPage:hover {
+  background: rgba(0, 123, 255, 0.9);
+  transform: scale(1.05);
+}
+
+#Title1-FirstPage {
+  font-size: 4vmin;
+  margin-top: 0;
+  font-family: 'karantina';
+}
+
+#Title2-FirstPage {
+  font-size: 6vmin;
+  font-family: 'karantina';
+  margin-bottom: 8vmin;
+}
+
+.shortcutButtonsContainer {
+    margin-top: 38vw;
+    display: flex;
+    gap: 1vw;
+    justify-content: center;
+    width: 80%;
+
+}
+
+.skipBtn {
+    background: rgba(255, 29, 29, 0.7);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    color: white;
+    border: none;
+    padding: 0.5vw 3vw;
+    border-radius: 1vw;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1.2vw;
+    font-family: 'Assistant';
+}
+
+/* ─── Fullscreen Overlay ─────────────────────── */
+.fullscreen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+
+}
+
+.fullscreen-message {
+  background: #FFFDF5;
+  border: 0.4vw solid #dab197;
+  border-radius: 4vw;
+  width: 40vw;
+  max-width: 70vw;
+  padding: 4vh 4vw 8vh 4vw;
+  text-align: center;
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+  box-shadow: 0 1.5vh 4vh rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.fullscreen-message p {
+  font-size: 5vmin;
+  font-family: 'karantina';
+  font-weight: 500;
+  margin: 0;
+}
+
+.fullscreen-hint {
+  font-size: 2vmin;
+  line-height: 1.4;
+}
+
+kbd {
+  background: #eee;
+  border: 0.1vmin solid #bbb;
+  border-radius: 0.5vmin;
+  padding: 0.3vh 0.6vw;
+  font-size: 2vmin;
+  box-shadow: 0 0.2vh 0 #aaa;
+}
+
+/* ─── כפתור בסגנון הפופ-אפ ─────────────────── */
+.fullscreen-button {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 1.4vh 3vw;
+  background: #dab197;
+  color: white;
+  border: none;
+  border-radius: 0vw 3vw 0vw 3vw;
+  font-size: 2vmin;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  min-width: 10vw;
+}
+
+.fullscreen-button:hover {
+  background: #d69c78;
+}

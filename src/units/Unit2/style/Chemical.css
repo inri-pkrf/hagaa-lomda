@@ -1,0 +1,386 @@
+/* Styles for Unit2 Chemical screens */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Info Chemical*/
+#InfoChemical-text2,
+#InfoChemical-text3 {
+    top: 71.5vh;
+    position: absolute;
+    right: 5vw;
+    font-size: 3.5vh;
+    font-family: 'assistant';
+    width: 40vw;
+    direction: rtl;
+    text-align: right;
+}
+
+
+
+
+
+
+
+
+.chemical-causes-title {
+    font-family: 'Karantina';
+    font-size: 9vmin;
+    position: absolute;
+    right: 0vw;
+    font-weight: 400;
+    top: -10vh;
+}
+
+
+
+
+
+
+
+
+#InfoChemical-text2 {
+    top: 62vh;
+}
+
+
+
+
+#InfoChemical-text2-rockets{
+    position: absolute;
+    right: 5vw;
+    top: 45vh;
+    font-size: 3.5vh;
+    font-family: 'assistant';
+    width: 40vw;
+    direction: rtl;
+    text-align: right;
+}
+
+
+
+
+.sub-page-image-section-chemical{
+ position: relative;
+    top: 13.2vw;
+    left: -25vw;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Causes Chemical*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.chemical-text-container{
+   position: relative;
+   left: 5vw;
+   top: 1vw;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.chemical-card-item.chemical-routine {
+background-image: url('../../../../public/assets/UnitTwoImgs/chemical/causes/greenCard.png');}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.chemical-card-item.chemical-emergency {
+    background-image: url('../../../../public/assets/UnitTwoImgs/chemical/causes/redCard.png');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.chemical-page-wrapper {
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* מרכז אנכית את השורות */
+  align-items: center;     /* מרכז אופקית את כל השורות */
+  gap: 8vh;                /* מרווח יחסי בין השורות */
+  height: 100vh;       /* תופס את כל גובה המסך */
+  width: 100vw;        /* תופס את כל רוחב המסך */
+  padding: 5vh;
+   position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FDF9F4;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.chemical-section-row {
+  display: flex;
+  align-items: center;
+  gap: 7vw;                /* מרווח יחסי בין החץ לכרטיסיות */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.chemical-cards-grid {
+  display: flex;
+  gap: 7vw;              /* מרווח יחסי בין הכרטיסיות */
+}
+
+
+
+
+
+
+
+.chemical-subtitle {
+  font-size: 2.5vmin;
+  position: absolute;
+  top: 2vh;
+}
+
+
+
+
+
+
+
+
+.chemical-card-item {
+  width: 14vw;
+  height: 30vh;
+  background-size: 100% 100%;  /* ← במקום contain */
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1vh 1vw;           /* ← מונע מהתוכן לגעת בקצוות */
+  box-sizing: border-box;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.chemical-card-item img {
+  width: 5vw; 
+  height: 8vh;             /* גודל אייקון רספונסיבי */
+  margin-bottom: 1vh;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.chemical-card-item p {
+  font-size: 2.5vmin;       /* גודל גופן רספונסיבי */
+  margin-top: 0.5vw;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* החץ והטקסט בתוכו */
+.chemical-arrow-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15vw;             /* גודל יחסי לחץ */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.chemical-arrow-box img {
+  width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.chemical-arrow-text {
+  position: absolute;
+  font-weight: bold;
+  font-size: 1.5vw;        }
+
+
+
+
+
+
+

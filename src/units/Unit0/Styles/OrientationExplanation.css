@@ -1,0 +1,133 @@
+.tour-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999999;
+  pointer-events: none;
+}
+
+.tour-shade {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.65);
+  pointer-events: auto;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(4px);
+}
+
+.tour-highlight-border {
+  position: fixed;
+  border: 0.2vmin solid rgba(255, 255, 255, 0.9);
+  border-radius: 1vmin;
+  box-shadow:
+    0 0 0 0.4vmin rgba(63, 198, 243, 0.45),
+    0 0 2vmin rgba(63, 198, 243, 0.35);
+  pointer-events: none;
+  animation: tour-pulse 2s infinite ease-in-out;
+}
+
+@keyframes tour-pulse {
+  0%   { box-shadow: 0 0 0 0.4vmin rgba(63,198,243,0.4), 0 0 2vmin rgba(63,198,243,0.25); }
+  50%  { box-shadow: 0 0 0 0.7vmin rgba(63,198,243,0.25), 0 0 3vmin rgba(63,198,243,0.5); }
+  100% { box-shadow: 0 0 0 0.4vmin rgba(63,198,243,0.4), 0 0 2vmin rgba(63,198,243,0.25); }
+}
+
+.tour-popup {
+  width: clamp(28vmin, 28vw, 42vmin);
+  max-width: 92vw;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(8px);
+  border-radius: 1.5vmin;
+  padding: 2vmin 2.2vmin;
+  box-shadow: 0 1.2vmin 4vmin rgba(0,0,0,0.22), 0 0.2vmin 0.8vmin rgba(0,0,0,0.1);
+  pointer-events: auto;
+  direction: rtl;
+}
+
+@keyframes tour-pop-in {
+  from { opacity: 0; transform: scale(0.93) translateY(0.8vmin); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ─── dots ─── */
+.tour-step-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.6vmin;
+  margin-bottom: 1.2vmin;
+}
+
+.tour-dot {
+  width: 0.8vmin;
+  height: 0.8vmin;
+  border-radius: 50%;
+  background: #cfd8dc;
+  transition: all 0.2s ease;
+}
+
+.tour-dot.active {
+  background: #3fc6f3;
+  transform: scale(1.35);
+}
+
+.tour-dot.done {
+  background: #a8e6f8;
+}
+
+/* ─── text ─── */
+.tour-text {
+  font-size: 1.8vmin;
+  line-height: 1.65;
+  margin-bottom: 1.8vmin;
+  text-align: right;
+  font-family: "Assistant", sans-serif;
+}
+
+/* ─── buttons ─── */
+.tour-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1vmin;
+}
+
+.tour-btn-skip {
+  background: transparent;
+  border: none;
+  color: #7a8a99;
+  font-size: 1.6vmin;
+  cursor: pointer;
+  padding: 0.6vmin 1vmin;
+  border-radius: 0.8vmin;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  font-family: "Assistant", sans-serif;
+}
+
+.tour-btn-skip:hover {
+  color: #3fc6f3;
+  background: rgba(63, 198, 243, 0.12);
+}
+
+.tour-btn-next {
+  background: linear-gradient(135deg, #3fc6f3, #1aaedc);
+  color: #fff;
+  border: none;
+  border-radius: 0.9vmin;
+  padding: 0.9vmin 2vmin;
+  font-size: 1.7vmin;
+  font-weight: 600;
+  font-family: "Assistant", sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  box-shadow: 0 0.6vmin 1.8vmin rgba(63, 198, 243, 0.32);
+}
+
+.tour-btn-next:hover {
+  transform: translateY(-0.2vmin);
+  box-shadow: 0 0.8vmin 2.2vmin rgba(63, 198, 243, 0.48);
+}
+
+.tour-btn-next:active {
+  transform: scale(0.97);
+}
+

@@ -1,0 +1,161 @@
+#PostEarthquake-headline {
+    font-family: 'Karantina';
+    font-size: 8vh;
+    font-weight: 400;
+    position: absolute;
+    right: 5vw;
+    margin-top: 10vh;
+}
+
+.post-earthquake-wrapper {
+    position: relative;
+    height: 100vh;
+    background-color: #FDF9F4;
+}
+
+#earthquake-arrows {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    height: 30vh;
+    z-index: 2;
+}
+
+#earthquake-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    height: 35vh;
+}
+
+#PostEarthquake-text1 {
+    position: absolute;
+    width: 40vw;
+    right: 5vw;
+    top: 21%;
+    font-family: 'Assistant';
+    font-style: normal;
+    font-size: 2.5vmin;
+    line-height: 6vh;
+    text-align: right;
+    direction: rtl;
+    font-weight: 300;
+}
+
+#PostEarthquake-text2 {
+    position: absolute;
+    width: 50vw;
+    right: 5vw;
+    top: 70%;
+    font-family: 'Assistant';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2.5vmin;
+    line-height: 6vh;
+    text-align: right;
+    direction: rtl;
+}
+
+#PostEarthquake-text3 {
+    position: absolute;
+    width: 10vw;
+    right: 17vw;
+    top: 48%;
+    font-family: 'Assistant';
+    font-style: normal;
+    font-size: 2.5vmin;
+    line-height: 3vh;
+    text-align: center;
+    direction: rtl;
+    font-weight: 300;
+    z-index: 3;
+}
+
+#PostEarthquake-text4 {
+    position: absolute;
+    width: 14vw;
+    right: 34vw;
+    top: 48%;
+    font-family: 'Assistant';
+    font-style: normal;
+    font-size: 2.5vmin;
+    line-height: 3vh;
+    text-align: center;
+    direction: rtl;
+    font-weight: 300;
+    z-index: 3;
+}
+
+#PostEarthquake-text5 {
+    position: absolute;
+    width: 14vw;
+    right: 53.5vw;
+    top: 48%;
+    font-family: 'Assistant';
+    font-style: normal;
+    font-size: 2.5vmin;
+    line-height: 3vh;
+    text-align: center;
+    direction: rtl;
+    font-weight: 300;
+    z-index: 3;
+}
+
+#PostEarthquake-text6 {
+    position: absolute;
+    width: 14vw;
+    right: 73vw;
+    top: 48%;
+    font-family: 'Assistant';
+    font-style: normal;
+    font-size: 2.5vmin;
+    line-height: 3vh;
+    text-align: center;
+    direction: rtl;
+    font-weight: 300;
+    z-index: 3;
+}
+
+#PostEarthquake-bold {
+    font-weight: 600;
+}
+
+#earthquake-news {
+    position: absolute;
+    top: 38vh;
+    z-index: 3;
+    left: 17vw;
+    height: 12vh;
+     width: 6vw;
+}
+
+#earthquake-buildings {
+    position: absolute;
+    top: 38vh;
+    z-index: 3;
+    left: 56vw;
+    height: 12vh;
+    width: 6vw;
+}
+
+#earthquake-electricity {
+    position: absolute;
+    top: 38vh;
+    z-index: 3;
+    left: 36.5vw;
+    height: 11vh;
+    width: 6vw;
+}
+
+#earthquake-openSpace {
+    position: absolute;
+    top: 38vh;
+    z-index: 3;
+    left: 75vw;
+    height: 12vh;
+    width: 6vw;
+}

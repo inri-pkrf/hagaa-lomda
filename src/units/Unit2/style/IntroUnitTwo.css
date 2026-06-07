@@ -1,0 +1,204 @@
+.IntroUnitTwo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    direction: rtl;
+}
+
+.first-background {
+    width: 100vw;
+    height: 100vh;
+    object-fit: fill;
+    position: fixed;
+    left: 0;
+    top: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.door-signs-UnitTwo {
+    position: absolute;
+    top: 18vh;
+    width: 100vw;
+    height: 40vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5vw;
+}
+
+.door-sign-UnitTwo-first,
+.door-sign-UnitTwo-second,
+.door-sign-UnitTwo-third,
+.door-sign-UnitTwo-fourth {
+    width: 16vw;
+    height: 48vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 2vw;
+    border-radius: 0.52vw;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.door-sign-UnitTwo-first {
+    position: absolute;
+    right: -1vw;
+}
+
+.door-sign-UnitTwo-second {
+    position: absolute;
+    right: 25vw;
+}
+
+.door-sign-UnitTwo-third {
+    position: absolute;
+    right: 54vw;
+}
+
+.door-sign-UnitTwo-fourth {
+    position: absolute;
+    left: -3vw;
+}
+
+.door-sign-UnitTwo-first:hover,
+.door-sign-UnitTwo-second:hover,
+.door-sign-UnitTwo-third:hover,
+.door-sign-UnitTwo-fourth:hover {
+    transform: scale(1.05);
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.door-sign-UnitTwo-title-first,
+.door-sign-UnitTwo-title-second,
+.door-sign-UnitTwo-title-third,
+.door-sign-UnitTwo-title-fourth {
+    font-size: 2.25vw;
+    font-weight: 400;
+    font-family: "Karantina";
+    text-align: center;
+    top: 5vw;
+    position: relative;
+    z-index: 1;
+}
+
+.door-sign-UnitTwo-title-first {
+    transform: rotate(5deg);
+}
+
+.door-sign-UnitTwo-title-fourth {
+    transform: rotate(355deg);
+}
+
+.door-sign-UnitTwo-first img,
+.door-sign-UnitTwo-second img,
+.door-sign-UnitTwo-third img,
+.door-sign-UnitTwo-fourth img {
+    width: 100%;
+    height: auto;
+    max-height: 13vw;
+    object-fit: contain;
+}
+
+.doorOneDone.UnitTwoDoors {
+    z-index: 10;
+    width: 15vw;
+    height: 60vh;
+    position: absolute;
+    top: 40vh;
+    transform: translateY(-50%);
+    right: 1vw;
+    pointer-events: none;
+}
+
+.doorTwoDone.UnitTwoDoors {
+    z-index: 10;
+    width: 18vw;
+    height: 53vh;
+    position: absolute;
+    top: 37vh;
+    transform: translateY(-50%);
+    right: 26vw;
+    pointer-events: none;
+}
+
+.doorThreeDone.UnitTwoDoors {
+    z-index: 10;
+    width: 18vw;
+    height: 53vh;
+    position: absolute;
+    top: 37vh;
+    transform: translateY(-50%);
+    right: 55vw;
+    pointer-events: none;
+}
+
+.doorFourDone.UnitTwoDoors {
+    z-index: 10;
+    width: 18vw;
+    height: 62vh;
+    position: absolute;
+    top: 40vh;
+    transform: translateY(-50%);
+    right: 83vw;
+    pointer-events: none;
+}
+
+.doorOneDone.UnitTwoDoors,
+.doorTwoDone.UnitTwoDoors,
+.doorThreeDone.UnitTwoDoors,
+.doorFourDone.UnitTwoDoors {
+    pointer-events: none;
+}
+
+.ShortcutButton {
+    position: absolute;
+    padding: 1vw 2vw;
+    font-size: 1vw;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 0.5vw;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.ShortcutButton:hover {
+    background-color: darkred;
+}
+
+#ShortcutButton1-two {
+    top: 78vh;
+    right: 4vw;
+}
+
+#ShortcutButton2-two {
+    top: 73vh;
+    right: 28vw;
+}
+
+#ShortcutButton3-two {
+    top: 73vh;
+    right: 60vw;
+}
+
+#ShortcutButton4-two {
+    top: 78vh;
+    right: 84vw;
+}

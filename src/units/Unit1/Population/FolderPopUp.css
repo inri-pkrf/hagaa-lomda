@@ -1,0 +1,80 @@
+.popup-overlay{
+  position: fixed;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  background: rgba(0,0,0,0.5);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+}
+
+.popup-container{
+  position: relative;
+  width: 70vw;
+  top: 6vh;
+}
+
+.folderImg{
+  width: 90%;
+  height: 80vh;
+  margin-bottom: 4vh;
+  display:block;
+  border-radius: 1vw;
+}
+
+/* צד שמאל */
+.popup-left{
+  position: absolute;
+  left: 11.5vw;
+  top: 4vh;
+  text-align: center;
+}
+
+.popup-left h2{
+  font-size: 7vmin;
+  margin-bottom: 3vh;
+  font-family: "Karantina";
+  font-weight: lighter;
+}
+
+.popupIcon{
+  width:5vw;
+  height: 8vh;
+}
+
+/* טקסט צד ימין */
+.popup-text{
+  position: absolute;
+  top: 10vh;
+  right: 14vw;
+  width: 20vw;
+  font-size: 2.5vmin;
+  line-height: 2;
+  text-align: right;
+  color: #3b2b2b;
+  background: #ffffff40;
+  font-family: "Assistant";
+  direction: rtl;
+}
+
+/* כפתור סגירה */
+.closeBtn{
+  position:absolute;
+  top: 1.04vw;
+  left: 1.04vw;
+  background:white;
+  border:none;
+  font-size: 1.25vw;
+  width: 2.08vw;
+  height: 2.08vw;
+  border-radius:50%;
+  cursor:pointer;
+}
+
+#folder-2 {
+  left: 10vw;
+  top: 4vh;
+}

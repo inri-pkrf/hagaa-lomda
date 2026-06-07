@@ -1,0 +1,72 @@
+/* ... כל האנימציות וה-background-shifter שלך נשארים אותו דבר ... */
+
+
+.toolkit-memo-container {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr); /* 4 עמודות */
+  grid-template-rows: repeat(3, 1fr);    /* 3 שורות */
+  gap: 15px;
+  position: absolute;
+  top: 25vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1000px;
+  direction: rtl;
+}
+
+
+/* כל יחידה של תמונה וטקסט */
+.memo-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.toolkit-memo-img {
+  width: 100%; /* התמונה תמלא את התא בגריד */
+  height: auto;
+  display: block;
+  cursor: pointer;
+}
+
+
+.memo-inner-text {
+  position: absolute;
+    top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* מרכוז מושלם במרכז התמונה */
+  margin: 0;
+  width: 80%; /* מונע מהטקסט לצאת מהתמונה */
+  text-align: center;
+  font-family: 'Karantina';
+  font-size: 4vh; /* גודל מתאים */
+  font-weight: 400;
+  color: #333;
+  line-height: 1.2;
+  pointer-events: none; /* שהטקסט לא יפריע ללחיצה על התמונה */
+  cursor: pointer;
+}
+
+
+/* שאר הסטיילים של הכותרות שלך */
+#toolkit-headline {
+  position: absolute;
+  font-family: 'Karantina';
+  font-size: 8vh;
+  top: 5vh;
+  right: 5vw;
+}
+
+
+#toolkit-text1 {
+  position: absolute;
+  font-family: 'Assistant';
+  font-size: 3vh;
+  top: 16vh;
+  right: 5vw;
+  direction: rtl;
+}
+

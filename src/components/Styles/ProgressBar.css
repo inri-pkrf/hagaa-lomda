@@ -1,0 +1,55 @@
+.pg-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: white;
+    border-radius: 5vw;
+    padding: 0.3vw 0.5vw;
+    direction: rtl;
+    gap: 0px;
+    box-shadow: 0 0.5vw 1vw rgba(0, 0, 0, 0.1);
+    height: fit-content;
+}
+
+.pg-text-section {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    padding-left: 1vw;
+    border-left: 0.1vw solid #f0f0f0;
+}
+
+.pg-percentage {
+    font-size: 1vw;
+    color: #1a4b70;
+    font-weight: 900;
+}
+
+.pg-label {
+    font-size: 1vw;
+    color: #1a4b70;
+    font-weight: 600;
+}
+
+.pg-steps-section {
+    display: flex;
+    align-items: center;
+    padding-right: 0.4vw;
+}
+
+.pg-circle {
+    width: 1.5vw;
+    height: 1.5vw;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1vw;
+    box-sizing: border-box;
+}
+
+.pg-line {
+    width: 1vw;
+    height: 0.3vh;
+}

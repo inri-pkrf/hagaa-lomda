@@ -1,0 +1,233 @@
+/* הגדרות כלליות ומניעת גלילה */
+.routine-container {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    transition: background-image 0.5s ease-in-out;
+    overflow: hidden;
+    position: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 0;
+}
+
+
+.rte-title {  
+    font-family: 'Karantina';
+    font-size: 9vh;
+    position: absolute;
+    right: 5vw;
+    font-weight: 400;
+    top: 7vh;
+}
+
+
+/* אנימציית הבהוב אדום לחירום */
+.flash-red::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(255, 0, 0, 0.3);
+    animation: flash-animation 0.5s infinite;
+    pointer-events: none;
+}
+
+
+@keyframes flash-animation {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+
+/* מסך התוכן הסופי */
+.final-content-screen {
+    width: 100vw;
+    height: 100vh;
+    background-color: #FDF9F4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4vh 4vw;
+    box-sizing: border-box;
+    direction: rtl;
+}
+
+
+.header-section {
+    width: 85%;
+    text-align: right;
+}
+
+
+.description-text p {
+    font-size: 3vh;
+    line-height: 1.4;
+    max-width: 75vw;
+    position: absolute;
+    top: 25vh;
+    right: 5vw;
+}
+
+
+/* כרטיסיות הבחירה */
+.action-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    position: relative;
+}
+
+
+.action-card:hover { transform: translateY(-1.2vh); }
+
+
+.action-card img {
+    width: 20vw;
+    height: 32vh;
+    border-radius: 2vh;
+    box-shadow: 0 0.8vh 1.5vh rgba(0, 0, 0, 0.15);
+}
+
+
+.action-card span {
+    margin-top: 1.5vh;
+    font-weight: bold;
+    font-size: 2.2vh;
+}
+
+
+/* עיצוב הפופאפ (Modal) */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+
+#close-ExplainationRTE {
+    background-color: #E2787A;
+    border-radius: 0 2.5vh 0 3.5vh;
+    font-size: 3vh;
+}
+
+
+.modal-card {
+    background-color: white;
+    width: 40vw;
+    max-height: 95vh;
+    border-radius: 4.5vh;
+    border: 0.5vh solid #E2787A;
+    padding: 6vh 3vw;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+    border-bottom: 0.25vh dashed #E2787A;
+    padding-bottom: 1.5vh;
+    margin-bottom: 2vh;
+}
+
+
+.modal-title {
+    font-size: 3.5vh;
+    margin: 0;
+    text-align: center;
+}
+
+
+.scroll-hint {
+    color: #E2787A;
+    font-weight: bold;
+    animation: pulse 1.5s infinite;
+}
+
+
+.modal-list {
+    overflow-y: auto;
+    list-style: none;
+    padding: 0;
+    text-align: right;
+}
+
+
+.modal-list li {
+    font-size: 2.8vh;
+    margin-bottom: 1.5vh;
+    display: flex;
+    align-items: flex-start;
+    gap: 1vw;
+}
+
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
+
+
+/* עיצוב פס גלילה */
+.modal-list::-webkit-scrollbar { width: 0.8vw; }
+.modal-list::-webkit-scrollbar-thumb { background: #E2787A; border-radius: 1vh; }
+
+
+.modal-icon {
+    border-top-left-radius: 4vh;
+    border-bottom-right-radius: 4vh;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    width: 6vw;
+    height: 11vh;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+#completion-v-ExplainationRTE {
+    position: absolute;
+    top: -1.2vh;
+    left: -1.2vh;
+    width: 3vw;
+    height: 5vh;
+    border-radius: 50%;
+    background-color: #4CAF50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+}
+
+
+#completion-v-ExplainationRTE svg {
+    width: 1.5vw;
+    height: 3vh;
+}
+
+
+.cards-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8vw;
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: 8vh;
+}

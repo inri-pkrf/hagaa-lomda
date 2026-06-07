@@ -1,0 +1,108 @@
+#Sub2Legal-headline{
+    position: absolute;
+    font-family: 'Karantina';
+    font-size: 8vh;
+    top: 5vh;
+    right: 5vw;
+}
+
+
+#Sub2Legal-text1{
+    position: absolute;
+    font-family: 'Assistant';
+    font-size: 3vh;
+    top: 16vh;
+    right: 5vw;
+    direction: rtl;
+}
+
+.Sub2Legal-container {
+    background-color: #FDF9F4;
+}
+
+#Sub2Legal-subtext{
+    position: absolute;
+    font-family: 'Karantina';
+    font-size: 6vh;
+    top: 27vh;
+    right: 23.5vw;
+    direction: rtl;
+}
+
+
+#Sub2Legal-text2{
+    position: absolute;
+    font-family: 'Assistant';
+    font-size: 2.8vh;
+    top: 41vh;
+    right: 18vw;
+    direction: rtl;
+    width: 25vw;
+}
+
+
+#Sub2Legal-text3{
+    position: absolute;
+    font-family: 'Assistant';
+    font-size: 2.8vh;
+    top: 57vh;
+    right: 18vw;
+    direction: rtl;
+    width: 25vw;
+}
+
+
+.Sub2Legal-content{
+    border: solid #FF2A63 0.5vh;
+    display: block;
+    position: absolute;
+    width: 30vw;
+    height: 50vh;
+    top: 29vh;
+    right: 15vw;
+    border-radius: 2vh;
+}
+#Sub2Legal-pink{
+    color: #FF2A63;
+    font-weight: 700;
+}
+
+
+#Sub2Legal-blue{
+    color: #070e6e;
+    font-weight: 700;
+}
+
+
+#scales-left{
+    position: absolute;
+    left: 10vw;
+    top: 29vh;
+    height: 60vh;
+    width: 35vw;
+
+
+
+
+}
+
+
+#sub2legal-similarity{
+    position: absolute;
+    left: 34vw;
+    top: 46vh;
+    background-color: #070e6e;
+}
+
+
+#sub2legal-difference{
+    position: absolute;
+    left: 12vw;
+    top: 54vh;
+    background-color: #FF2A63;
+}
+
+
+
+
+

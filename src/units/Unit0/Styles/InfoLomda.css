@@ -1,0 +1,133 @@
+.InfoLomda {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #e9f3f8;
+    background-image: url("/public/assets/General/mainBackground.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: hidden;
+    direction: rtl;
+}
+
+/* CARD */
+.InfoLomdaCard {
+    position: absolute;
+    top: 52vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    background-color: #ffffffb9;
+    border-radius: 3vw; /* 80px */
+    padding: 3vw;
+    width: 80vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0.5vw 1vw rgba(82, 82, 82, 0.2);
+}
+
+/* CONTENT */
+.step-content {
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* TITLE */
+.InfoLomda-title {
+    font-family: 'Karantina';
+    font-weight: 700;
+    font-size: 6vmin;
+    line-height: 1.1;
+    text-align: right;
+
+    margin-top: -2vh;
+    margin-bottom: 2vh;
+}
+
+/* PARAGRAPHS */
+.InfoLomda-par1,
+.InfoLomda-par3,
+.InfoLomda-par4 {
+    font-family: 'Assistant';
+    font-size: 2.5vmin;
+    line-height: 1.4;
+    text-align: right;
+
+    margin-bottom: 2vh;
+}
+
+/* BOX PAR */
+.InfoLomda-par2 {
+    font-family: 'Assistant';
+    font-size: 2.5vmin;
+    line-height: 1.4;
+    text-align: right;
+
+    border: 0.2vmin solid #472E1A;
+    border-radius: 3vmin;
+    padding: 3vmin;
+    margin-bottom: 2vh;
+}
+
+/* LIST */
+.InfoLomda-ul {
+    font-family: 'Assistant';
+    font-size: 2.5vmin;
+    line-height: 1.5;
+    text-align: right;
+
+    padding-right: 6vw;
+    margin-bottom: 2vh;
+}
+
+/* NAV BUTTON AREA */
+.info-navigation-buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1.04vw;
+    margin-top: auto;
+    padding-top: 2vh;
+    width: 100%;
+}
+
+/* BUTTONS */
+.nav-btn-prev,
+.start-button-InfoLomda {
+    padding: 0.63vw 1.56vw;
+    font-size: 2vmin;
+    font-weight: 700;
+    font-family: 'Assistant';
+    color: #fff;
+    border: none;
+    border-radius: 1.3vw;
+    box-shadow: 0 0.42vw 0.78vw rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: all 0.4s ease;
+
+    background: linear-gradient(
+        45deg,
+        #ff6b6b,
+        #f7d794,
+        #63cdda,
+        #ff6b6b
+    );
+    background-size: 300% 300%;
+}
+
+/* HOVER */
+.nav-btn-prev:hover,
+.start-button-InfoLomda:hover {
+    transform: scale(1.05);
+    background-position: 100% 0;
+    box-shadow: 0 0.63vw 1.04vw rgba(0,0,0,0.3);
+}
+
+/* SECONDARY BUTTON */
+.nav-btn-prev {
+    filter: grayscale(0.3);
+}

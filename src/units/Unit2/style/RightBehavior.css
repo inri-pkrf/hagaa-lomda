@@ -1,0 +1,197 @@
+/* Styles for Unit2 RightBehavior-earthquake screens */
+.behavior-page-wrapper {
+  width: 100%;
+  height: 100vh;
+  padding: 0;
+  position: absolute;
+  top: 2.8vh;
+  background-color: #FDF9F4;
+}
+
+.behavior-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 50vh); /* במקום repeat(2, 1fr) */
+  width: 100%;
+  height: 100vh;
+  gap: 0;
+}
+
+.grid-item {
+  position: relative;
+  width: 100%;
+  height: 100%; /* יירש 50vh מהגריד */
+  overflow: hidden; /* חשוב! מונע מהתמונה לחרוג */
+}
+
+.behavior-image {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+.hover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(1.2vw);
+  -webkit-backdrop-filter: blur(1.2vw);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.grid-item:hover .hover-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hover-text-box {
+  white-space: pre-line;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 1.5vh 3vw;
+  border-radius: 0.8vw;
+  font-size: 2vmin;
+  font-weight: bold;
+  text-align: center;
+  direction: rtl;
+  box-shadow: 0 0.4vh 1vw rgba(0,0,0,0.1);
+  max-width: 80%;
+}
+
+.central-static-box {
+  direction: rtl;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 0.2vw solid #56C3A9;
+  padding: 2vh 3vw;
+  border-radius: 1.2vw;
+  z-index: 10;
+  pointer-events: none;
+  box-shadow: 0 0.4vh 1.5vw rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2vh;
+  max-width: 50vw;
+}
+
+.central-title {
+  font-size: 2.3vw;
+  font-weight: 700;
+}
+
+.central-disclaimer {
+  font-size: 1vw;
+  font-weight: 600;
+  text-align: center;
+  border-top: 0.1vw solid rgba(86, 195, 169, 0.3);
+  padding-top: 0.8vh;
+  width: 100%;
+}
+
+.behavior-page-wrapper .completion-v {
+  position: absolute;
+  top: 20%;
+  right: 50%;
+  transform: translate(50%, -50%);
+}
+
+/* רקע חצי שקוף שמכסה את כל המסך */
+.RightBehavior-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(0.4vw);
+}
+
+/* קופסת הפופ-אפ */
+.RightBehavior-popup-content {
+  background-color: #fcfaf8;
+  padding: 3vh;
+  border-radius: 4vh;
+  border: 0.7vh solid #56C3A9;
+  text-align: center;
+  direction: rtl;
+  width: 40vw;
+  box-shadow: 0 1vh 3vw rgba(0,0,0,0.5);
+  font-family: 'Assistant';
+}
+
+.RightBehavior-popup-content h2 {
+  color: #257b67;
+  position: relative;
+  top: -3vh;
+  font-size: 5vh;
+  margin-bottom: 2vh;
+  font-family: 'Karantina';
+}
+
+.RightBehavior-popup-content p {
+  position: relative;
+  top: -3vh;
+  font-size: 3vh;
+  line-height: 1.6;
+  margin-bottom: 3vh;
+}
+
+.continue-btn-new:hover {
+  scale: 1.05;
+}
+
+/* אנימציית כניסה קלה */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* שכבת הרקע הכהה מאחורי הפופ-אפ */
+.RightBehavior-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 2vh 2vw;
+}
+
+.RightBehavior-popup-content.custom-design {
+  background: #FFFDF5;
+  border: 0.8vmin solid #56C3A9;
+  border-radius: 6vmin;
+  width: 50vw;
+  max-width: 70vw;
+  min-height: auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  direction: rtl;
+  box-shadow: 0 1.5vh 4vw rgba(0, 0, 0, 0.4);
+}

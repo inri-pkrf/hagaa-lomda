@@ -1,0 +1,141 @@
+#choosingSafeRoom-headline {
+  position: absolute;
+  right: 11vw;
+  top: 6vh;
+  font-family: "Karantina";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 8vmin;
+  text-align: center;
+  z-index: 10;
+  color: #ff5a5d;
+}
+
+#choosingSafeRoom-icon {
+  margin: 2vh;
+  margin-top: 10.5vh;
+  border-radius: 50vw;
+  height: 14vh;
+  width: 14vh;
+  position: absolute;
+  right: 0vw;
+  z-index: 10;
+}
+
+.choosing-safe-room-wrapper {
+  background-color: #fdf9f4;
+  width: 100%;
+  height: 100vh;
+}
+
+#website-link {
+  position: absolute;
+  bottom: 6vh;
+  /* right: 5vw; */
+  left: 41%;
+  font-family: "Karantina";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 5vh;
+  line-height: 60px;
+  text-align: center;
+  color: #e97414;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#choosingSafeRoom-text1 {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: 20vh;
+  width: 70vw;
+  margin-bottom: 2vh;
+  font-family: "Assistant";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 3vmin;
+  direction: rtl;
+}
+
+.flip-cards-container {
+  position: absolute;
+  top: 30vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  gap: 1vw;
+}
+
+.shrinked {
+  position: absolute;
+  width: 30vw;
+  height: 55vh;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  border: 4px solid #e9a572;
+  transform: translateX(-50%);
+  z-index: 5;
+  top: 30vh;
+}
+
+#choosingSafeRoom-text2 {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: 73vh;
+  width: 70vw;
+  font-family: "Assistant";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2.5vmin;
+  color: #893739;
+  direction: rtl;
+}
+
+.completion-v-choosing-img {
+  position: absolute;
+  top: 0;
+  right: 50vh;
+  width: 2.5vw;
+  height: 2.5vw;
+  background-color: #4caf50;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.flip-cards-container .completion-v {
+  position: absolute;
+  top: 6vh;
+  right: 0vw;
+}
+
+#choosingSafeRoomImgs-pictures-text {
+  position: absolute;
+  top: 20vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70vw;
+  text-align: center;
+  direction: rtl;
+}
+
+#choosing-img1,
+#choosing-img2 {
+  position: absolute;
+}
+
+#choosing-img1 {
+  left: 30vw;
+}
+
+#choosing-img2 {
+  left: 71vw;
+}

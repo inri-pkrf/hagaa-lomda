@@ -1,0 +1,230 @@
+.IntroUnitThree {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    direction: rtl;
+}
+
+.first-background {
+    width: 100vw;
+    height: 100vh;
+    object-fit: fill;
+    position: fixed;
+    left: 0;
+    top: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.door-signs-UnitThree {
+    position: absolute;
+    top: 17.5vh;
+    width: 100vw;
+    height: 40vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5vw;
+}
+
+.door-sign-UnitThree-first,
+.door-sign-UnitThree-second,
+.door-sign-UnitThree-third,
+.door-sign-UnitThree-fourth,
+.door-sign-UnitThree-fifth {
+    width: 14vw;
+    height: 48vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 1vw;
+    border-radius: 0.52vw;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.door-sign-UnitThree-first {
+    position: absolute;
+    right: 0vw;
+}
+
+.door-sign-UnitThree-second {
+    position: absolute;
+    right: 21vw;
+}
+
+.door-sign-UnitThree-third {
+    position: absolute;
+    right: 38.5vw;
+}
+
+.door-sign-UnitThree-fourth {
+    position: absolute;
+    right: 55.5vw;
+}
+
+.door-sign-UnitThree-fifth {
+    position: absolute;
+    left: 0vw;
+}
+
+.door-sign-UnitThree-first:hover,
+.door-sign-UnitThree-second:hover,
+.door-sign-UnitThree-third:hover,
+.door-sign-UnitThree-fourth:hover,
+.door-sign-UnitThree-fifth:hover {
+    transform: scale(1.05);
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.door-sign-UnitThree-title-first,
+.door-sign-UnitThree-title-second,
+.door-sign-UnitThree-title-third,
+.door-sign-UnitThree-title-fourth,
+.door-sign-UnitThree-title-fifth {
+    font-size: 2.25vw;
+    font-weight: 400;
+    font-family: "Karantina";
+    text-align: center;
+    top: 5vw;
+    position: relative;
+    z-index: 1;
+}
+
+.door-sign-UnitThree-title-first {
+    transform: rotate(5deg);
+}
+
+.door-sign-UnitThree-title-fifth {
+    transform: rotate(355deg);
+}
+
+.door-sign-UnitThree-first img,
+.door-sign-UnitThree-second img,
+.door-sign-UnitThree-third img,
+.door-sign-UnitThree-fourth img,
+.door-sign-UnitThree-fifth img {
+    width: 100%;
+    height: auto;
+    max-height: 13vw;
+    object-fit: contain;
+}
+
+.doorOneDone.UnitThreeDoors {
+    z-index: 10;
+    width: 15vw;
+    height: 60vh;
+    position: absolute;
+    top: 40vh;
+    transform: translateY(-50%);
+    right: 0.5vw;
+    pointer-events: none;
+}
+
+.doorTwoDone.UnitThreeDoors {
+    z-index: 10;
+    width: 18vw;
+    height: 54vh;
+    position: absolute;
+    top: 37vh;
+    transform: translateY(-50%);
+    right: 20vw;
+    pointer-events: none;
+}
+
+.doorThreeDone.UnitThreeDoors {
+    z-index: 10;
+    width: 17vw;
+    height: 54vh;
+    position: absolute;
+    top: 37vh;
+    transform: translateY(-50%);
+    right: 38vw;
+    pointer-events: none;
+}
+
+.doorFourDone.UnitThreeDoors {
+    z-index: 10;
+    width: 17vw;
+    height: 54vh;
+    position: absolute;
+    top: 37vh;
+    transform: translateY(-50%);
+    right: 55vw;
+    pointer-events: none;
+}
+
+.doorFiveDone.UnitThreeDoors {
+    z-index: 10;
+    width: 16vw;
+    height: 62vh;
+    position: absolute;
+    top: 40vh;
+    transform: translateY(-50%);
+    left: 0vw;
+    pointer-events: none;
+}
+
+.doorOneDone.UnitThreeDoors,
+.doorTwoDone.UnitThreeDoors,
+.doorThreeDone.UnitThreeDoors,
+.doorFourDone.UnitThreeDoors,
+.doorFiveDone.UnitThreeDoors {
+    pointer-events: none;
+}
+
+.ShortcutButton {
+    position: absolute;
+    padding: 1vw 2vw;
+    font-size: 1vw;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 0.5vw;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.ShortcutButton:hover {
+    background-color: darkred;
+}
+
+#ShortcutButton1-three {
+    top: 78vh;
+    right: 4vw;
+}
+
+#ShortcutButton2-three {
+    top: 73vh;
+    right: 21vw;
+}
+
+#ShortcutButton3-three {
+    top: 73vh;
+    right: 40vw;
+}
+
+#ShortcutButton4-three {
+    top: 73vh;
+    right: 59vw;
+}
+
+#ShortcutButton5-three {
+    top: 78vh;
+    right: 84vw;
+}

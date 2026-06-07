@@ -1,0 +1,279 @@
+/* הגדרות לקונטיינר הראשי (תמונת הרקע) */
+.question-time-container {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  direction: rtl;
+}
+
+
+#rte-question-click {
+  position: absolute;
+}
+
+
+.glowing-woman,
+.woman-static {
+  position: absolute;
+  bottom: 0;
+  left: 5%;
+  height: 80vh;
+  width: auto;
+}
+
+
+/* הגדרות לתמונת האישה */
+.glowing-woman {
+  pointer-events: auto;
+  cursor: pointer;
+  filter: brightness(1.3) drop-shadow(0 0 1.5vw yellow);
+  z-index: 100 !important;
+  animation: pulse-yellow 1.5s infinite ease-in-out;
+}
+
+
+/* הגדרות כלליות למסך השאלה המלא */
+.question-page-full {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  direction: rtl;
+  background-color: #fdf9f4;
+}
+
+
+/* עיצוב הלוח (Clipboard) והתשובות */
+.clipboard-area {
+  background-color: white;
+  border: 0.7vw solid #e5a3a7;
+  border-radius: 2vw;
+  padding: 2vw;
+  width: 35vw;
+  box-shadow: 0 1vw 2vw rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+
+/* הוספת ה"קליפס" של הלוח בחלק העליון */
+.clipboard-area::before {
+  content: "";
+  position: absolute;
+  top: -2vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10vw;
+  height: 4vh;
+  background-color: #e5a3a7;
+  border-radius: 1vw 1vw 0 0;
+}
+
+
+.answers-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+}
+
+
+.answer-option {
+  background: white;
+  border: 0.15vw solid #e5a3a7;
+  border-radius: 2vw;
+  padding: 1.5vh 1.5vw;
+  font-size: 1.3vw;
+  text-align: right;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+
+.answer-option:hover {
+  background-color: #fcebed;
+  transform: translateX(-0.3vw);
+}
+
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+
+/* קונטיינר הלוח */
+.clipboard-wrapper {
+  position: absolute;
+  top: 15vw;
+  right: 10vw;
+  width: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+
+.clipboard-bg-img {
+  width: 55vw;
+  height: 65vh;
+}
+
+
+.answer-option-QuestionRTE:hover {
+  background-color: #fcebed;
+  transform: scale(1.02);
+}
+
+
+/* צבעים לתשובות */
+/* תשובה נכונה - ירוק */
+.answer-option-QuestionRTE.correct {
+  background-color: #d4edda !important;
+  border-color: #28a745 !important;
+  color: #155724 !important;
+  cursor: default;
+}
+
+
+/* תשובה שגויה - אדום */
+.answer-option-QuestionRTE.wrong {
+  background-color: #f8d7da !important;
+  border-color: #dc3545 !important;
+  color: #721c24 !important;
+  opacity: 0.8;
+}
+
+
+/* אפקט ריחוף רק על מה שעוד לא נלחץ או נטעה */
+.answer-option-QuestionRTE:not(.correct):not(.wrong):hover {
+  background-color: #fcebed;
+  transform: scale(1.02);
+}
+
+
+.subtitles strong {
+  font-family: "Assistant" !important;
+  font-weight: bold;
+}
+
+
+/* קונטיינר הלוח */
+.clipboard-wrapper {
+  position: absolute;
+  top: 55%;
+  right: 10vw;
+  transform: translateY(-50%);
+  width: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+
+/* יצירת קונטיינר גמיש לתוכן שעל הלוח */
+.content-on-clipboard {
+  position: absolute;
+  top: 56%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  align-items: center;
+}
+
+
+.question-overlay {
+  position: relative;
+  top: 0;
+  left: 0;
+  transform: none;
+  font-size: 1.5vw;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 0.1vh;
+}
+
+
+/* קונטיינר התשובות */
+.answers-overlay {
+  position: relative;
+  top: 0;
+  left: 0;
+  transform: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2vh;
+}
+
+
+.answer-option-QuestionRTE {
+  width: 80%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50% -50%);
+  background: white;
+  border: 0.15vw solid #e5a3a7;
+  border-radius: 2vw;
+  padding: 2vh 2vw;
+  font-size: 1.8vmin;
+  font-weight: bold;
+  text-align: right;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+
+/* white overlay */
+.clipboard-success-overlay {
+  position: absolute;
+  width: 150vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 2vw;
+  z-index: 10000;
+
+
+  /* optional smooth fade */
+  animation: fadeInOverlay 0.4s ease;
+}
+
+
+.content-on-clipboard {
+  position: absolute;
+  top: 56%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  align-items: center;
+  z-index: 5; /* above overlay */
+}
+
+
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+

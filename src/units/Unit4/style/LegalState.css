@@ -1,0 +1,88 @@
+
+
+
+
+#LegalState-headline{
+    position: absolute;
+    font-family: 'Karantina';
+    font-size: 9vh;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 9vh;
+    font-weight: 600;
+}
+
+
+.LegalState-container {
+    background-color: #FDF9F4;
+}
+
+
+#LegalState-sub-text{
+    position: absolute;
+    font-family: 'Karantina';
+    font-size: 5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20vh;
+}
+
+
+
+
+#LegalState-text1{
+    position: absolute;
+    font-family: 'Assistant';
+    font-size: 3.5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 34vh;
+    direction: rtl;
+    width: 48vw;
+ 
+}
+
+
+
+
+#LegalState-text2{
+    position: absolute;
+    font-family: 'Assistant';
+    font-size: 3vh;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 60vh;
+    direction: rtl;
+    border: solid 0.5vh #F9A94B;
+    width: 35vw;
+    text-align: center;
+    padding: 3vh;
+    border-radius: 2vh;
+}
+
+
+
+
+#icon-pkar-legal{
+    position: absolute;
+    height: 7vh;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 60vh;
+}
+
+
+
+
+#LegalState-img{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 90%;
+}
+
+
+
+
+

@@ -1,0 +1,107 @@
+.populationFolder-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 1.04vw;
+    background-color: #FDF9F4;
+    overflow: hidden;
+}
+
+.subtext-populationFolder{
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    top: 13vh;
+    width: 100%;
+    z-index: 1;
+    direction: rtl;
+}
+
+.Population-foldersImg {
+    width: 40vw;
+    height: 70vh;
+    position: absolute;
+    left: 50%;
+    top: 54%;
+    transform: translate(-50%, -50%);
+}
+
+/* כרטיס */
+.populationFolder-text {
+    position: relative;
+    width: 9vw;
+    height: 39vh;
+    background-color: #ffffff;
+    cursor: pointer;
+    border-radius: 1vw;
+    font-family: 'karantina';
+}
+
+.populationFolder-text:hover {
+    background-color: #edf2ff;
+    border: 0.2vw solid #78bbe2;
+}
+
+/* טקסטים - אותו Y לכולם */
+.firstText,
+.secondText,
+.thirdText {
+    position: absolute;
+    top: 44vh;
+    transform: translateY(-50%) rotate(-2deg);
+    font-weight: lighter;
+    font-family: 'karantina';
+    font-size: 2.2vw;
+}
+
+.title-population {
+    font-family: 'karantina';
+    font-size: 6vmin;
+}
+
+/* רק X שונה */
+.firstText { left: 31%; }
+.secondText { left: 43%; }
+.thirdText { left: 55%; }
+
+/* אייקונים - אותו Y לכולם */
+.folderIcon{
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 7vw;
+    height: 11vh;
+}
+
+/* וי */
+.checkMarkFolder {
+    position: absolute;
+    top: -0.52vw;
+    left: -0.52vw;
+    font-size: 1.46vw;
+    color: green;
+    font-weight: bold;
+}
+
+/* כפתור */
+.gameButton {
+    padding: 0.63vw 1.56vw;
+    font-size: 3vw;
+    font-weight: 700;
+    font-family: 'Assistant';
+    color: #fff;
+    position: absolute;
+    left: 14%;
+    top: 73%;
+    background: linear-gradient(45deg, #ff6b6b, #f7d794, #63cdda, #ff6b6b);
+    background-size: 300% 300%;
+    border: none;
+    border-radius: 1.3vw;
+    box-shadow: 0 0.42vw 0.78vw rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.4s ease;
+}

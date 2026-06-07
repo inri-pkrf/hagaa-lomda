@@ -1,0 +1,1118 @@
+/* ================================================================= */
+/* 1. הגדרות בסיס לעמוד הקרדיטים                                     */
+/* ================================================================= */
+.credit-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  direction: rtl;
+  font-family: "assistant", sans-serif;
+  box-sizing: border-box;
+  padding: 30px 20px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f5f7fa 0%, #eff7fd 50%, #d9e6f1 100%);
+}
+
+
+/* ================================================================= */
+/* 2. בלובים מונפשים של הרקע                                          */
+/* ================================================================= */
+.bg-blob-blue {
+  position: fixed;
+  width: 520px;
+  height: 520px;
+  top: -130px;
+  left: -130px;
+  border-radius: 50%;
+  filter: blur(9vw);
+  background: rgba(147, 223, 253, 0.6);
+  pointer-events: none;
+  z-index: 0;
+  animation: blobDriftBlue 10s ease-in-out infinite;
+}
+
+
+.bg-blob-purple {
+  position: fixed;
+  width: 450px;
+  height: 450px;
+  bottom: -100px;
+  right: -100px;
+  border-radius: 50%;
+  filter: blur(9vw);
+  background: rgba(156, 210, 255, 0.6);
+  pointer-events: none;
+  z-index: 0;
+  animation: blobDriftPurple 13s ease-in-out infinite;
+}
+
+
+.bg-blob-pink {
+  position: fixed;
+  width: 380px;
+  height: 380px;
+  top: 35%;
+  left: 35%;
+  border-radius: 50%;
+  filter: blur(80px);
+  background: rgba(207, 221, 251, 0.6);
+  pointer-events: none;
+  z-index: 0;
+  animation: blobDriftPink 16s ease-in-out infinite;
+}
+
+
+@keyframes blobDriftBlue {
+  0%,
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(40px, 30px) scale(1.06);
+  }
+  66% {
+    transform: translate(-20px, 50px) scale(0.95);
+  }
+}
+
+
+@keyframes blobDriftPurple {
+  0%,
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(-50px, -30px) scale(1.08);
+  }
+  66% {
+    transform: translate(30px, -50px) scale(0.94);
+  }
+}
+
+
+@keyframes blobDriftPink {
+  0%,
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  25% {
+    transform: translate(30px, -40px) scale(1.1);
+  }
+  50% {
+    transform: translate(-40px, 20px) scale(0.92);
+  }
+  75% {
+    transform: translate(20px, 40px) scale(1.05);
+  }
+}
+
+
+/* ================================================================= */
+/* 3. קונטיינר הטורים                                                  */
+/* ================================================================= */
+.credit-columns-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3vw;
+  width: 130vw;
+  margin-top: 25vh;
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ================================================================= */
+/* 4. הגדרות הטורים                                                    */
+/* ================================================================= */
+/* בסעיף 4 — עדכון רוחב */
+.credit-column {
+  position: relative;
+  flex: 1;
+  max-width: 19vw; /* היה 24vw */
+  height: 46vh !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  border-radius: 1vh;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+
+/* הוסף — סגנון פתק מכללה */
+.credit-page-college {
+  background-color: #fffed1;
+  box-shadow: -10px 10px 5px rgba(185, 187, 47, 0.342);
+  --tape-color: rgba(236, 214, 113, 0.507);
+}
+
+
+.credit-column:hover {
+  transform: translateY(-0.6vh);
+}
+
+
+.credit-page-management {
+  background-color: #e2f6e9;
+  box-shadow: -10px 10px 5px rgba(70, 136, 92, 0.25);
+  --tape-color: rgba(176, 216, 191, 0.582);
+}
+
+
+.credit-page-content {
+  background-color: #d9efff;
+  box-shadow: -10px 10px 5px rgba(85, 145, 194, 0.25);
+  --tape-color: rgba(173, 207, 221, 0.507);
+}
+
+
+.credit-page-development {
+  background-color: #ffebf0;
+  box-shadow: -10px 10px 5px rgba(211, 103, 134, 0.25);
+  --tape-color: rgba(230, 193, 207, 0.521);
+}
+
+
+.credit-column:hover .credit-page-development {
+  background-color: #fde5ea;
+  box-shadow: -10px 10px 5px rgba(211, 103, 134, 0.35);
+}
+
+
+/* ================================================================= */
+/* 5. תוכן הטורים וסלוטייפים                                          */
+/* ================================================================= */
+.column-content-wrapper {
+  opacity: 1;
+  width: 100%;
+  padding: 4vh 2vw;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+}
+
+
+.tape {
+  opacity: 1;
+  position: absolute;
+  width: 15vh;
+  height: 4vh;
+  background-color: var(--tape-color);
+  border-left: 0.2vh dashed rgba(255, 255, 255, 0.5);
+  border-right: 0.2vh dashed rgba(255, 255, 255, 0.5);
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.03);
+  backdrop-filter: blur(2px);
+  z-index: 10;
+}
+
+
+.tape-top-right {
+  top: 1vh;
+  right: -3.5vh;
+  transform: rotate(40deg);
+}
+
+
+.tape-bottom-left {
+  bottom: 1vh;
+  left: -4vh;
+  transform: rotate(40deg);
+}
+
+
+/* ================================================================= */
+/* 6. טיפוגרפיה ורשימות                                               */
+/* ================================================================= */
+.column-title {
+  font-size: 3vmin;
+  color: #4a3b32;
+  margin: 0 0 1vh 0;
+  font-weight: 800;
+}
+.column-subtitle {
+  font-size: 1.5vmin;
+  color: #555;
+  text-align: center;
+  line-height: 1.4;
+  margin: 0 0 0vh 0;
+}
+.highlight-link {
+  color: #d63384;
+  text-decoration: underline;
+  cursor: pointer;
+  display: block;
+  margin-top: 0.5vh;
+  font-size: 1.5vmin;
+}
+.highlight-link:hover {
+  transform: scale(1.15);
+  font-weight: 700;
+}
+
+
+.credit-names-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1.5vh;
+  list-style: none;
+  padding: 0;
+  margin: 2vh 0 0 0;
+  width: 100%;
+}
+
+
+.name-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.5vh;
+  width: 100%;
+  text-align: right;
+  direction: ltr;
+}
+
+
+.name-item.small-item {
+  width: auto !important;
+  flex: 0 0 auto !important;
+  display: inline-flex !important;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1vh;
+  white-space: nowrap;
+  min-width: max-content;
+}
+
+
+.item-icon-image {
+  width: 2vw;
+  height: 3.5vh;
+  object-fit: contain;
+}
+.item-text {
+  font-size: 1.8vmin;
+  font-weight: 600;
+  color: #3b2d23;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: right;
+  direction: rtl;
+  margin-inline-end: 0.6rem;
+}
+.item-name {
+  font-weight: 700;
+}
+.item-detail {
+  font-size: 1.5vmin;
+  color: #5e5047;
+  margin-top: 0.3vh;
+  line-height: 1.25;
+}
+.small-item .item-text {
+  font-size: 1.6vmin;
+  color: #353434;
+}
+.small-item .item-name {
+  font-weight: 700;
+}
+.small-item .item-detail {
+  font-size: 1.25vmin;
+  color: #5e5047;
+}
+.small-item .item-icon-image {
+  width: 1.8vmin;
+  height: 2vmin;
+}
+
+
+.group-title-item {
+  width: 100%;
+  font-size: 1.5vmin;
+  margin-top: 0vh;
+  margin-bottom: 0vh;
+  color: #727272;
+  border-top: 0.1vw solid #727272;
+  padding-top: 0.5vh;
+  list-style: none;
+  font-weight: 400;
+  text-align: right;
+}
+
+
+.section-title-item {
+  width: 100%;
+  font-size: 3vmin;
+  font-weight: 800;
+  color: #4a3b32;
+  list-style: none;
+  text-align: center;
+  margin: 1.5vh 0 0.5vh 0;
+  padding-top: 1vh;
+  border-top: 0.1vw solid #b0c8b8;
+}
+
+
+.section-title-item:first-child {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+
+/* ================================================================= */
+/* 7. כותרת ראשית                                                      */
+/* ================================================================= */
+.credit-page-header {
+  position: absolute;
+  top: 14vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85vw;
+  text-align: center;
+  z-index: 10;
+}
+
+
+.credit-page-intro {
+  font-size: 2.5vmin;
+  line-height: 1.8;
+  font-weight: 600;
+  margin: 0;
+  padding: 1.5vh 2vw;
+  /* background: rgba(255, 251, 244, 0.8); */
+  border-radius: 1vh;
+  border: 0.3vh dashed rgba(141, 141, 141, 0.3);
+  backdrop-filter: blur(4px);
+}
+
+
+/* ================================================================= */
+/* 8. פופ-אפ מפתחת לומדה                                              */
+/* ================================================================= */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeInOverlay 0.25s ease forwards;
+}
+
+
+.popup-water-blob {
+  position: relative;
+  width: 55vw;
+  height: 52vh;
+  background-color: #fff0f2;
+  border-radius: 3vh;
+  box-shadow:
+    0 15px 35px rgba(214, 51, 132, 0.15),
+    0 5px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4vh 4vw;
+  box-sizing: border-box;
+  animation: popupScaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.popup-water-blob:hover {
+  background-color: #ffe6ea;
+  box-shadow: 0 20px 40px rgba(214, 51, 132, 0.22);
+}
+
+
+.popup-water-blob::after {
+  content: "";
+  position: absolute;
+  top: 2vh;
+  left: 2vw;
+  right: 2vw;
+  bottom: 2vh;
+  border: 2px dashed rgba(214, 51, 132, 0.3);
+  border-radius: 2vh;
+  pointer-events: none;
+}
+
+
+.blob-content-centered {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 3vw;
+  z-index: 5;
+  text-align: right;
+}
+
+
+.popup-text-side-credit {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+  margin-top: -5vw;
+  margin-right: 3vw;
+}
+
+
+.blob-popup-title {
+  font-size: 4vh;
+  color: #1a1a1a;
+  font-weight: 900;
+  margin: 0 0 3vh 0;
+  font-family: "assistant";
+}
+
+
+.blob-popup-text-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+}
+
+
+.blob-popup-text-lines p {
+  font-size: 2.2vh;
+  color: #333;
+  font-weight: 700;
+  width: 20vw;
+  margin: 0;
+}
+
+
+.credit-protrait-popup {
+  max-width: 20vw;
+  max-height: 38vh;
+  margin-left: 3vw;
+  object-fit: contain;
+  border-radius: 1.5vh;
+}
+
+
+.blob-close-btn {
+  position: absolute;
+  top: 3vh;
+  right: 3vw;
+  width: 5vh;
+  height: 5vh;
+  border-radius: 50%;
+  border: 0.2vh solid #d63384;
+  background: #ffffff;
+  color: #d63384;
+  font-size: 5vh;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+
+.blob-close-btn:hover {
+  transform: scale(1.1);
+}
+
+
+/* ================================================================= */
+/* 9. כפתור חזרה ללומדה                                               */
+/* ================================================================= */
+.back-to-lomda-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1vw;
+  font-family: "Assistant";
+  font-size: 2.5vmin;
+  font-weight: 800;
+  padding: 1vh 2vh;
+  border-radius: 15vh;
+  cursor: pointer;
+  background: #fca6d4;
+  color: #fff;
+  border: 2px solid #fabddd;
+  position: absolute;
+  bottom: 2vh;
+  left: 1vw;
+  overflow: hidden;
+  z-index: 100;
+  transition:
+    color 0.4s ease,
+    border-color 0.4s ease,
+    transform 0.2s ease;
+}
+
+
+.back-to-lomda-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to left,
+    #fa93cb,
+    #f7589a,
+    #f868ae,
+    #84aefc,
+    #70f8a9
+  );
+  background-size: 300% 100%;
+  background-position: right center;
+  transition: background-position 0.6s ease;
+}
+
+
+.back-to-lomda-btn:hover::after {
+  background-position: left center;
+}
+.back-to-lomda-btn:hover {
+  border-color: transparent;
+  transform: translateY(-2px);
+}
+.back-to-lomda-btn:active {
+  transform: scale(0.97);
+}
+
+
+.btn-star {
+  display: inline-block;
+  color: #fcae1e;
+  font-size: 2.5vmin;
+  transition: transform 0.45s ease;
+}
+
+
+.back-to-lomda-btn:hover .btn-star {
+  transform: rotate(72deg) scale(1.25);
+}
+
+
+/* ================================================================= */
+/* 10. נצנוצי כוכבים                                                  */
+/* ================================================================= */
+.mouse-sparkle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 3vh;
+  height: 3vh;
+  pointer-events: none;
+  z-index: 10000;
+  background-color: var(--sparkle-color, #fcae1e);
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  animation: sparkleFade 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+
+@keyframes sparkleFade {
+  0% {
+    transform: translate(-50%, -50%) scale(0) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, calc(-50% + 3vh)) scale(1.2) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+
+/* ================================================================= */
+/* 11. כפתור משוב                                                      */
+/* ================================================================= */
+.open-feedback-btn {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  border-radius: 1vh !important;
+  overflow: hidden;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 1vw;
+  position: absolute;
+  bottom: 4vh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  font-family: "Assistant", sans-serif;
+  font-size: 2vmin;
+  font-weight: 800;
+  padding: 1vh 2.5vh;
+  cursor: pointer;
+  background: #ffd2e9;
+  color: #50341a;
+  border: 0.1vh dashed #ff9dc2 !important;
+  box-shadow: 0 4px 15px rgba(186, 39, 115, 0.2);
+}
+
+
+.open-feedback-btn:hover {
+  box-shadow: 0 6px 20px rgba(186, 39, 115, 0.4);
+  background: #ffacd4;
+}
+
+
+/* ================================================================= */
+/* 12. פופ-אפ משוב (וויזארד)                                          */
+/* ================================================================= */
+.inner-feedback-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+  animation: fadeInOverlay 0.2s ease forwards;
+}
+
+
+.inner-feedback-card {
+  position: relative;
+  width: 32vw;
+  min-height: 35vh;
+  background-color: hsl(324, 100%, 96%);
+  border-radius: 2.5vh;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  padding: 7vh 2vw 3vh;
+  box-sizing: border-box;
+  animation: popupScaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+
+.inner-feedback-card::after {
+  content: "";
+  position: absolute;
+  top: 1.5vh;
+  left: 1vw;
+  right: 1vw;
+  bottom: 1.5vh;
+  border: 2px dashed rgba(232, 52, 138, 0.2);
+  border-radius: 1.8vh;
+  pointer-events: none;
+}
+
+
+.feedback-wizard-box {
+  width: 100%;
+  z-index: 5;
+  position: relative;
+  background: hsl(320, 100%, 99%);
+  border-radius: 1.2vh;
+  overflow: hidden;
+  border: 0.2vh solid rgb(255, 100, 185);
+}
+
+
+.feedback-close-btn {
+  position: absolute;
+  top: 1.4vw;
+  right: 2vw;
+  width: 4vh;
+  height: 4vh;
+  border-radius: 50%;
+  border: 0.2vh solid #e8348a;
+  background: #ffffff;
+  color: #e8348a;
+  font-size: 2.5vmin;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+
+.feedback-close-btn:hover {
+  transform: scale(1.1);
+}
+
+
+.wiz-header {
+  padding: 1.6vh 1vw 1.3vh;
+  transition: background 0.4s ease;
+}
+.wiz-header-pink {
+  background: #ffe3f0;
+}
+.wiz-header-purple {
+  background: #f3dcfd;
+}
+.wiz-header-teal {
+  background: #cbece1;
+}
+
+
+.wiz-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5vh;
+}
+
+
+.wiz-badge {
+  font-size: 1.5vh;
+  font-weight: 500;
+  padding: 0.3vh 0.5vw;
+  border-radius: 5vw;
+}
+.wiz-badge-pink {
+  background: #fce4f0;
+  color: #aa2e57;
+}
+.wiz-badge-purple {
+  background: #cecbf6;
+  color: #834496;
+}
+.wiz-badge-teal {
+  background: #9fe1cb;
+  color: #04342c;
+}
+
+
+.wiz-dots {
+  display: flex;
+  gap: 0.25vw;
+}
+.wiz-dot {
+  width: 0.5vw;
+  height: 0.5vw;
+  border-radius: 50%;
+  transition:
+    opacity 0.3s,
+    transform 0.2s;
+  background: #ccc; /* צבע ברירת מחדל */
+}
+
+
+/* רק נקודות שניתן ללחוץ עליהן מקבלות את הסמן */
+.wiz-dot.is-clickable {
+  cursor: pointer;
+}
+
+
+.wiz-dot.is-clickable:hover {
+  transform: scale(1.3);
+}
+
+
+.wiz-title {
+  font-size: 2.5vmin;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+.wiz-title-wiz-header-pink {
+  color: #72243e;
+}
+.wiz-title-wiz-header-purple {
+  color: #26215c;
+}
+.wiz-title-wiz-header-teal {
+  color: #04342c;
+}
+
+
+.wiz-body {
+  padding: 1vh 1vw;
+}
+.wiz-step {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+}
+
+
+.wiz-stars {
+  display: flex;
+  gap: 0.4vw;
+  justify-content: center;
+  direction: ltr;
+}
+.wiz-star {
+  font-size: 2.8vh;
+  cursor: pointer;
+  filter: grayscale(1) opacity(0.25);
+  transition: all 0.15s;
+}
+.wiz-star-lit {
+  filter: none;
+  transform: scale(1.1);
+}
+
+
+.wiz-emoji-row {
+  display: flex;
+  justify-content: space-around;
+}
+.wiz-emoji-opt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5vh;
+  cursor: pointer;
+  padding: 1vh 0.6vw;
+  border-radius: 0.7vw;
+  border: 0.15vw solid transparent;
+  transition: all 0.15s;
+}
+.wiz-emoji-opt:hover {
+  background: #fff0f7;
+  border-color: #f4c0d1;
+}
+.wiz-emoji-picked {
+  background: #fce4f0;
+  border-color: #f4c0d1;
+}
+.wiz-emoji-icon {
+  font-size: 2.4vh;
+  line-height: 1;
+}
+.wiz-emoji-label {
+  font-size: 1.5vh;
+  color: #993556;
+}
+
+
+.wiz-textarea {
+  width: 100%;
+  min-height: 7.5vh;
+  border: 0.1vw solid #e0e0e0;
+  border-radius: 0.6vw;
+  padding: 1vh 0.6vw;
+  font-size: 1.3vh;
+  resize: none;
+  font-family: inherit;
+  outline: none;
+  background: #fafafa;
+  color: #333;
+  transition: border-color 0.2s;
+  direction: rtl;
+}
+.wiz-textarea::placeholder {
+  color: #bbb;
+}
+.wiz-textarea:focus {
+  border-color: #e8348a;
+}
+
+
+.wiz-btn {
+  width: 100%;
+  padding: 1vh 0.6vw;
+  border: none;
+  border-radius: 5vw;
+  font-size: 1.4vh;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: filter 0.15s;
+}
+.wiz-btn:hover {
+  filter: brightness(0.9);
+}
+.wiz-btn-pink {
+  background: #e8348a;
+  color: #fdf9f4;
+}
+.wiz-btn-purple {
+  background: #534ab7;
+  color: #fdf9f4;
+}
+.wiz-btn-teal {
+  background: #0f6e56;
+  color: #fdf9f4;
+}
+
+
+.wiz-thanks {
+  text-align: center;
+  padding: 1.5vh 0;
+}
+.wiz-thanks-icon {
+  font-size: 3vh;
+  margin-bottom: 0.5vh;
+}
+.wiz-thanks-title {
+  font-size: 2vh;
+  font-weight: 500;
+  color: #04342c;
+}
+.wiz-thanks-sub {
+  font-size: 1.7vh;
+  color: #0f6e56;
+  margin-top: 0.3vh;
+}
+
+
+/* ================================================================= */
+/* 13. Keyframes כלליים                                               */
+/* ================================================================= */
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+@keyframes popupScaleIn {
+  0% {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+@keyframes fadeContentIn {
+  from {
+    opacity: 0;
+    transform: translateY(1vh);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ================================================================= */
+/* 14. ענני רקע                                                        */
+/* ================================================================= */
+.cloud {
+  position: fixed;
+  left: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  animation-fill-mode: both;
+}
+
+
+.cloud-1 {
+  top: 12%;
+  animation: floatCloud 28s linear infinite;
+}
+.cloud-2 {
+  top: 40%;
+  animation: floatCloudReverse 38s linear infinite 6s;
+}
+.cloud-3 {
+  top: 65%;
+  animation: floatCloud 22s linear infinite 12s;
+}
+.cloud-4 {
+  top: 25%;
+  animation: floatCloudReverse 34s linear infinite 19s;
+}
+.cloud-5 {
+  top: 55%;
+  animation: floatCloud 46s linear infinite 3s;
+}
+.cloud-6 {
+  top: 70%;
+  animation: floatCloudReverse 24s linear infinite 22s;
+}
+.cloud-8 {
+  top: 80%;
+  animation: floatCloudReverse 28s linear infinite 25s;
+}
+
+
+@keyframes floatCloud {
+  0% {
+    transform: translateX(110vw);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-280px);
+    opacity: 0;
+  }
+}
+
+
+@keyframes floatCloudReverse {
+  0% {
+    transform: translateX(-280px);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(110vw);
+    opacity: 0;
+  }
+}
+
+
+

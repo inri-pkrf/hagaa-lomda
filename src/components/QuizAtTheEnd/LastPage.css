@@ -1,0 +1,209 @@
+.lastPage {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  direction: rtl;
+  font-family: 'Karantina';
+  background: #fffaf7;
+
+  /* 🔥 חשוב: לא לשבור תמונות */
+  overflow: visible;
+  margin-top: 4vw;
+}
+
+
+/* מרכז */
+.lastPage__center {
+  position: absolute;
+  z-index: 2;
+
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3vh;
+  width: 80%;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ציונים */
+.lastPage__score {
+  font-size: 5vmin;
+  color: #5a3b2e;
+  margin: 0;
+  font-family: 'Karantina';
+}
+
+.lastPage_score {
+  font-size: 7vmin;
+  color: #78be4f;
+  margin: 0;
+  font-family: 'Karantina';
+}
+
+/* כותרות */
+.lastPage__title {
+  font-size: 9vmin;
+  font-weight: 700;
+  color: #3b2a1d;
+  margin: 0;
+  font-family: 'Karantina';
+}
+
+.lastPage__subtitle {
+  font-size: 6vmin;
+  font-weight: 500;
+  color: #3b2a1d;
+  max-width: 60%;
+  line-height: 1.3;
+  margin: 0;
+  font-family: 'Karantina';
+}
+
+.lastPage__building {
+  position: absolute;
+  bottom: -10vh;
+  width: 70vw;
+  height: 110vh;
+  opacity: 0.20;
+  z-index: 1;
+}
+
+/* כפתור */
+.lastPage__button {
+  margin-top: 1.5vh;
+  padding: 1vh 2vw;
+  font-size: 3vmin;
+  border: none;
+  border-radius: 1vw;
+  cursor: pointer;
+  background: #3FC6F3;
+  color: white;
+  box-shadow: 0 1vw 2vw rgba(5, 57, 82, 0.2);
+  z-index: 2;
+}
+
+.lastPage__button:hover {
+  background: #36b0d9;
+  scale: 1.05;
+}
+
+/* פופאפ */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  font-family: "Assistant";
+  font-size: 1.8vmin;
+}
+
+.modalContent {
+  background: white;
+  width: 70%;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 2vw;
+  border-radius: 1vw;
+  text-align: right;
+  z-index: 10000;
+}
+
+/* סקירה */
+.reviewItem {
+  border-bottom: 1px solid #ddd;
+  padding: 1vh 0;
+}
+
+.reviewQuestion {
+  font-weight: bold;
+}
+
+.reviewUser {
+  color: #e67e22;
+}
+
+.reviewCorrect {
+  color: #2ecc71;
+}
+
+.modalCloseBtn {
+  position: absolute;
+  top: 2vw;
+  left: 2vw;
+font-size: 3.5vmin;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.modalContent {
+  position: relative;
+}
+
+.lastPage__subtitle_restart {
+  font-size: 4vmin;
+  color: #3b2a1d;
+  margin: 0;
+  font-family: 'Karantina';
+  font-weight: 500;
+  width: 60%;
+}
+
+.lastPage_score {
+  font-size: 7vmin;
+  margin: 0;
+  font-family: 'Karantina';
+}
+
+.lastPage_score--pass {
+  color: #78be4f;
+}
+
+.lastPage_score--fail {
+  color: #e25344;
+}
+
+.lastPage__aboutWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1vw;
+
+}
+
+.lastPage__aboutHint {
+  font-size: 2vmin;
+  font-weight: 600;
+  color: #555;
+  animation: hintPulse 1.8s infinite;
+}
+
+@keyframes hintPulse {
+  0% { opacity: 0.5; transform: translateX(0); }
+  50% { opacity: 1; transform: translateX(-0.4vw); }
+  100% { opacity: 0.5; transform: translateX(0); }
+}
+
+.lastPage_button {
+  margin-top: 1.5vh;
+  padding: 1vh 2vw;
+  font-size: 3vmin;
+  background: #e46176;
+  border-radius: 1vw;
+  cursor: pointer;
+  position: absolute;
+  z-index: 2;
+  top: 80%;
+  color: white;
+  border-color: #ffffff;
+}
