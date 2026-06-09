@@ -6,14 +6,13 @@
   justify-content: center;
   align-items: center;
   direction: rtl;
-  font-family: 'Karantina';
+  font-family: "Karantina";
   background: #fffaf7;
 
   /* 🔥 חשוב: לא לשבור תמונות */
   overflow: visible;
   margin-top: 4vw;
 }
-
 
 /* מרכז */
 .lastPage__center {
@@ -36,14 +35,14 @@
   font-size: 5vmin;
   color: #5a3b2e;
   margin: 0;
-  font-family: 'Karantina';
+  font-family: "Karantina";
 }
 
 .lastPage_score {
   font-size: 7vmin;
   color: #78be4f;
   margin: 0;
-  font-family: 'Karantina';
+  font-family: "Karantina";
 }
 
 /* כותרות */
@@ -52,7 +51,7 @@
   font-weight: 700;
   color: #3b2a1d;
   margin: 0;
-  font-family: 'Karantina';
+  font-family: "Karantina";
 }
 
 .lastPage__subtitle {
@@ -62,7 +61,7 @@
   max-width: 60%;
   line-height: 1.3;
   margin: 0;
-  font-family: 'Karantina';
+  font-family: "Karantina";
 }
 
 .lastPage__building {
@@ -70,7 +69,7 @@
   bottom: -10vh;
   width: 70vw;
   height: 110vh;
-  opacity: 0.20;
+  opacity: 0.2;
   z-index: 1;
 }
 
@@ -82,7 +81,7 @@
   border: none;
   border-radius: 1vw;
   cursor: pointer;
-  background: #3FC6F3;
+  background: #3fc6f3;
   color: white;
   box-shadow: 0 1vw 2vw rgba(5, 57, 82, 0.2);
   z-index: 2;
@@ -97,7 +96,7 @@
 .modalOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -115,6 +114,7 @@
   border-radius: 1vw;
   text-align: right;
   z-index: 10000;
+  direction: rtl;
 }
 
 /* סקירה */
@@ -135,26 +135,55 @@
   color: #2ecc71;
 }
 
-.modalCloseBtn {
-  position: absolute;
-  top: 2vw;
-  left: 2vw;
-font-size: 3.5vmin;
+/* .modalCloseBtn {
+  position: fixed;
+  top: 6.5vw;
+
+  font-size: 3.5vmin;
   background: transparent;
   border: none;
   cursor: pointer;
   z-index: 10;
+} */
+
+.modalCloseBtn {
+  position: static; /* חשוב! */
+  font-size: 3.5vmin;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.modalHeader {
+  position: sticky;
+  top: -2vw;
+  background: white;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-bottom: 1vh;
+}
+
+.modalTitle-center {
+  position: absolute;
+  left: 43%;
 }
 
 .modalContent {
   position: relative;
 }
 
+/* .modalContent {
+  position: relative;
+} */
+
 .lastPage__subtitle_restart {
   font-size: 4vmin;
   color: #3b2a1d;
   margin: 0;
-  font-family: 'Karantina';
+  font-family: "Karantina";
   font-weight: 500;
   width: 60%;
 }
@@ -162,7 +191,7 @@ font-size: 3.5vmin;
 .lastPage_score {
   font-size: 7vmin;
   margin: 0;
-  font-family: 'Karantina';
+  font-family: "Karantina";
 }
 
 .lastPage_score--pass {
@@ -178,7 +207,6 @@ font-size: 3.5vmin;
   align-items: center;
   justify-content: center;
   gap: 1vw;
-
 }
 
 .lastPage__aboutHint {
@@ -189,9 +217,18 @@ font-size: 3.5vmin;
 }
 
 @keyframes hintPulse {
-  0% { opacity: 0.5; transform: translateX(0); }
-  50% { opacity: 1; transform: translateX(-0.4vw); }
-  100% { opacity: 0.5; transform: translateX(0); }
+  0% {
+    opacity: 0.5;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-0.4vw);
+  }
+  100% {
+    opacity: 0.5;
+    transform: translateX(0);
+  }
 }
 
 .lastPage_button {

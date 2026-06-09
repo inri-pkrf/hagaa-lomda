@@ -19,7 +19,6 @@
   background: linear-gradient(135deg, #f5f7fa 0%, #eff7fd 50%, #d9e6f1 100%);
 }
 
-
 /* ================================================================= */
 /* 2. בלובים מונפשים של הרקע                                          */
 /* ================================================================= */
@@ -37,7 +36,6 @@
   animation: blobDriftBlue 10s ease-in-out infinite;
 }
 
-
 .bg-blob-purple {
   position: fixed;
   width: 450px;
@@ -51,7 +49,6 @@
   z-index: 0;
   animation: blobDriftPurple 13s ease-in-out infinite;
 }
-
 
 .bg-blob-pink {
   position: fixed;
@@ -67,7 +64,6 @@
   animation: blobDriftPink 16s ease-in-out infinite;
 }
 
-
 @keyframes blobDriftBlue {
   0%,
   100% {
@@ -81,7 +77,6 @@
   }
 }
 
-
 @keyframes blobDriftPurple {
   0%,
   100% {
@@ -94,7 +89,6 @@
     transform: translate(30px, -50px) scale(0.94);
   }
 }
-
 
 @keyframes blobDriftPink {
   0%,
@@ -112,7 +106,6 @@
   }
 }
 
-
 /* ================================================================= */
 /* 3. קונטיינר הטורים                                                  */
 /* ================================================================= */
@@ -126,7 +119,6 @@
   position: relative;
   z-index: 1;
 }
-
 
 /* ================================================================= */
 /* 4. הגדרות הטורים                                                    */
@@ -149,7 +141,6 @@
     background-color 0.2s ease;
 }
 
-
 /* הוסף — סגנון פתק מכללה */
 .credit-page-college {
   background-color: #fffed1;
@@ -157,11 +148,9 @@
   --tape-color: rgba(236, 214, 113, 0.507);
 }
 
-
 .credit-column:hover {
   transform: translateY(-0.6vh);
 }
-
 
 .credit-page-management {
   background-color: #e2f6e9;
@@ -169,13 +158,11 @@
   --tape-color: rgba(176, 216, 191, 0.582);
 }
 
-
 .credit-page-content {
   background-color: #d9efff;
   box-shadow: -10px 10px 5px rgba(85, 145, 194, 0.25);
   --tape-color: rgba(173, 207, 221, 0.507);
 }
-
 
 .credit-page-development {
   background-color: #ffebf0;
@@ -183,12 +170,10 @@
   --tape-color: rgba(230, 193, 207, 0.521);
 }
 
-
 .credit-column:hover .credit-page-development {
   background-color: #fde5ea;
   box-shadow: -10px 10px 5px rgba(211, 103, 134, 0.35);
 }
-
 
 /* ================================================================= */
 /* 5. תוכן הטורים וסלוטייפים                                          */
@@ -209,7 +194,6 @@
   z-index: 5;
 }
 
-
 .tape {
   opacity: 1;
   position: absolute;
@@ -223,20 +207,17 @@
   z-index: 10;
 }
 
-
 .tape-top-right {
   top: 1vh;
   right: -3.5vh;
   transform: rotate(40deg);
 }
 
-
 .tape-bottom-left {
   bottom: 1vh;
   left: -4vh;
   transform: rotate(40deg);
 }
-
 
 /* ================================================================= */
 /* 6. טיפוגרפיה ורשימות                                               */
@@ -267,7 +248,6 @@
   font-weight: 700;
 }
 
-
 .credit-names-list {
   display: flex;
   flex-wrap: wrap;
@@ -278,7 +258,6 @@
   margin: 2vh 0 0 0;
   width: 100%;
 }
-
 
 .name-item {
   display: flex;
@@ -291,7 +270,6 @@
   direction: ltr;
 }
 
-
 .name-item.small-item {
   width: auto !important;
   flex: 0 0 auto !important;
@@ -303,7 +281,6 @@
   white-space: nowrap;
   min-width: max-content;
 }
-
 
 .item-icon-image {
   width: 2vw;
@@ -346,7 +323,6 @@
   height: 2vmin;
 }
 
-
 .group-title-item {
   width: 100%;
   font-size: 1.5vmin;
@@ -360,7 +336,6 @@
   text-align: right;
 }
 
-
 .section-title-item {
   width: 100%;
   font-size: 3vmin;
@@ -373,13 +348,11 @@
   border-top: 0.1vw solid #b0c8b8;
 }
 
-
 .section-title-item:first-child {
   border-top: none;
   margin-top: 0;
   padding-top: 0;
 }
-
 
 /* ================================================================= */
 /* 7. כותרת ראשית                                                      */
@@ -394,7 +367,6 @@
   z-index: 10;
 }
 
-
 .credit-page-intro {
   font-size: 2.5vmin;
   line-height: 1.8;
@@ -406,7 +378,6 @@
   border: 0.3vh dashed rgba(141, 141, 141, 0.3);
   backdrop-filter: blur(4px);
 }
-
 
 /* ================================================================= */
 /* 8. פופ-אפ מפתחת לומדה                                              */
@@ -424,7 +395,6 @@
   z-index: 2000;
   animation: fadeInOverlay 0.25s ease forwards;
 }
-
 
 .popup-water-blob {
   position: relative;
@@ -446,12 +416,10 @@
     box-shadow 0.2s ease;
 }
 
-
 .popup-water-blob:hover {
   background-color: #ffe6ea;
   box-shadow: 0 20px 40px rgba(214, 51, 132, 0.22);
 }
-
 
 .popup-water-blob::after {
   content: "";
@@ -465,7 +433,6 @@
   pointer-events: none;
 }
 
-
 .blob-content-centered {
   display: flex;
   flex-direction: row;
@@ -478,7 +445,6 @@
   text-align: right;
 }
 
-
 .popup-text-side-credit {
   flex: 1;
   display: flex;
@@ -488,7 +454,6 @@
   margin-right: 3vw;
 }
 
-
 .blob-popup-title {
   font-size: 4vh;
   color: #1a1a1a;
@@ -497,13 +462,11 @@
   font-family: "assistant";
 }
 
-
 .blob-popup-text-lines {
   display: flex;
   flex-direction: column;
   gap: 1vh;
 }
-
 
 .blob-popup-text-lines p {
   font-size: 2.2vh;
@@ -513,7 +476,6 @@
   margin: 0;
 }
 
-
 .credit-protrait-popup {
   max-width: 20vw;
   max-height: 38vh;
@@ -521,7 +483,6 @@
   object-fit: contain;
   border-radius: 1.5vh;
 }
-
 
 .blob-close-btn {
   position: absolute;
@@ -543,11 +504,9 @@
   transition: transform 0.2s ease;
 }
 
-
 .blob-close-btn:hover {
   transform: scale(1.1);
 }
-
 
 /* ================================================================= */
 /* 9. כפתור חזרה ללומדה                                               */
@@ -576,7 +535,6 @@
     transform 0.2s ease;
 }
 
-
 .back-to-lomda-btn::after {
   content: "";
   position: absolute;
@@ -595,7 +553,6 @@
   transition: background-position 0.6s ease;
 }
 
-
 .back-to-lomda-btn:hover::after {
   background-position: left center;
 }
@@ -607,7 +564,6 @@
   transform: scale(0.97);
 }
 
-
 .btn-star {
   display: inline-block;
   color: #fcae1e;
@@ -615,11 +571,9 @@
   transition: transform 0.45s ease;
 }
 
-
 .back-to-lomda-btn:hover .btn-star {
   transform: rotate(72deg) scale(1.25);
 }
-
 
 /* ================================================================= */
 /* 10. נצנוצי כוכבים                                                  */
@@ -648,7 +602,6 @@
   animation: sparkleFade 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-
 @keyframes sparkleFade {
   0% {
     transform: translate(-50%, -50%) scale(0) rotate(0deg);
@@ -662,7 +615,6 @@
     opacity: 0;
   }
 }
-
 
 /* ================================================================= */
 /* 11. כפתור משוב                                                      */
@@ -693,12 +645,10 @@
   box-shadow: 0 4px 15px rgba(186, 39, 115, 0.2);
 }
 
-
 .open-feedback-btn:hover {
   box-shadow: 0 6px 20px rgba(186, 39, 115, 0.4);
   background: #ffacd4;
 }
-
 
 /* ================================================================= */
 /* 12. פופ-אפ משוב (וויזארד)                                          */
@@ -713,12 +663,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 3000;
+  z-index: 999999;
   animation: fadeInOverlay 0.2s ease forwards;
 }
 
-
 .inner-feedback-card {
+  direction: rtl;
   position: relative;
   width: 32vw;
   min-height: 35vh;
@@ -729,7 +679,6 @@
   box-sizing: border-box;
   animation: popupScaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-
 
 .inner-feedback-card::after {
   content: "";
@@ -743,7 +692,6 @@
   pointer-events: none;
 }
 
-
 .feedback-wizard-box {
   width: 100%;
   z-index: 5;
@@ -753,7 +701,6 @@
   overflow: hidden;
   border: 0.2vh solid rgb(255, 100, 185);
 }
-
 
 .feedback-close-btn {
   position: absolute;
@@ -776,11 +723,9 @@
   transition: transform 0.2s ease;
 }
 
-
 .feedback-close-btn:hover {
   transform: scale(1.1);
 }
-
 
 .wiz-header {
   padding: 1.6vh 1vw 1.3vh;
@@ -796,14 +741,12 @@
   background: #cbece1;
 }
 
-
 .wiz-header-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.5vh;
 }
-
 
 .wiz-badge {
   font-size: 1.5vh;
@@ -824,11 +767,11 @@
   color: #04342c;
 }
 
-
 .wiz-dots {
   display: flex;
   gap: 0.25vw;
 }
+
 .wiz-dot {
   width: 0.5vw;
   height: 0.5vw;
@@ -839,17 +782,14 @@
   background: #ccc; /* צבע ברירת מחדל */
 }
 
-
 /* רק נקודות שניתן ללחוץ עליהן מקבלות את הסמן */
 .wiz-dot.is-clickable {
   cursor: pointer;
 }
 
-
 .wiz-dot.is-clickable:hover {
   transform: scale(1.3);
 }
-
 
 .wiz-title {
   font-size: 2.5vmin;
@@ -866,7 +806,6 @@
   color: #04342c;
 }
 
-
 .wiz-body {
   padding: 1vh 1vw;
 }
@@ -876,12 +815,12 @@
   gap: 1.5vh;
 }
 
-
 .wiz-stars {
   display: flex;
   gap: 0.4vw;
   justify-content: center;
   direction: ltr;
+  direction: rtl;
 }
 .wiz-star {
   font-size: 2.8vh;
@@ -893,7 +832,6 @@
   filter: none;
   transform: scale(1.1);
 }
-
 
 .wiz-emoji-row {
   display: flex;
@@ -927,7 +865,6 @@
   color: #993556;
 }
 
-
 .wiz-textarea {
   width: 100%;
   min-height: 7.5vh;
@@ -949,7 +886,6 @@
 .wiz-textarea:focus {
   border-color: #e8348a;
 }
-
 
 .wiz-btn {
   width: 100%;
@@ -978,7 +914,6 @@
   color: #fdf9f4;
 }
 
-
 .wiz-thanks {
   text-align: center;
   padding: 1.5vh 0;
@@ -991,13 +926,13 @@
   font-size: 2vh;
   font-weight: 500;
   color: #04342c;
+  padding: 15px;
 }
 .wiz-thanks-sub {
   font-size: 1.7vh;
   color: #0f6e56;
   margin-top: 0.3vh;
 }
-
 
 /* ================================================================= */
 /* 13. Keyframes כלליים                                               */
@@ -1011,7 +946,6 @@
   }
 }
 
-
 @keyframes popupScaleIn {
   0% {
     transform: scale(0.92);
@@ -1022,7 +956,6 @@
     opacity: 1;
   }
 }
-
 
 @keyframes fadeContentIn {
   from {
@@ -1035,7 +968,6 @@
   }
 }
 
-
 /* ================================================================= */
 /* 14. ענני רקע                                                        */
 /* ================================================================= */
@@ -1047,7 +979,6 @@
   opacity: 0;
   animation-fill-mode: both;
 }
-
 
 .cloud-1 {
   top: 12%;
@@ -1078,7 +1009,6 @@
   animation: floatCloudReverse 28s linear infinite 25s;
 }
 
-
 @keyframes floatCloud {
   0% {
     transform: translateX(110vw);
@@ -1096,7 +1026,6 @@
   }
 }
 
-
 @keyframes floatCloudReverse {
   0% {
     transform: translateX(-280px);
@@ -1113,6 +1042,3 @@
     opacity: 0;
   }
 }
-
-
-
