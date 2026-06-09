@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "../../style/ChoosingSafeRoom.css";
 import FlipCard from "../flipCard";
 
-
 const openWebsitePopup = () => {
   window.open(
     "https://www.oref.org.il/heb/life-saving-guidelines/rocket-and-missile-attacks",
@@ -10,7 +9,6 @@ const openWebsitePopup = () => {
     "width=1200,height=800,top=100,left=200,resizable=yes,scrollbars=yes",
   );
 };
-
 
 function ChoosingSafeRoom() {
   const safeRoomPriorities = [
@@ -44,13 +42,11 @@ function ChoosingSafeRoom() {
     },
   ];
 
-
   // מה כבר נצפה
   const [hoveredCards, setHoveredCards] = useState(() => {
     const saved = sessionStorage.getItem("hoveredSafeRoom");
     return saved ? JSON.parse(saved) : [];
   });
-
 
   // כרטיסים שהוי מוצג עליהם
   const [showCheckmarks, setShowCheckmarks] = useState(() => {
@@ -58,11 +54,9 @@ function ChoosingSafeRoom() {
     return saved ? JSON.parse(saved) : [];
   });
 
-
   const handleHover = (id) => {
     // אם כבר עברו עליו - לא לעשות שוב
     if (hoveredCards.includes(id)) return;
-
 
     // שומר שהכרטיס נצפה
     setHoveredCards((prev) => {
@@ -71,13 +65,11 @@ function ChoosingSafeRoom() {
       return updated;
     });
 
-
     // דיליי של שנייה לפני הופעת הוי
     setTimeout(() => {
       setShowCheckmarks((prev) => [...prev, id]);
     }, 800);
   };
-
 
   // הפעלת NEXT רק אחרי שעברו על הכל
   useEffect(() => {
@@ -85,11 +77,9 @@ function ChoosingSafeRoom() {
       hoveredCards.includes(item.id),
     );
 
-
     window.dispatchEvent(
       new CustomEvent("setNextBtnDisabled", { detail: !allHovered }),
     );
-
 
     return () => {
       window.dispatchEvent(
@@ -97,7 +87,6 @@ function ChoosingSafeRoom() {
       );
     };
   }, [hoveredCards]);
-
 
   return (
     <div className="choosing-safe-room-wrapper">
@@ -109,7 +98,8 @@ function ChoosingSafeRoom() {
       />
       <p id="choosingSafeRoom-text1">
         בעת קבלת התרעה על ירי רקטות וטילים, יש להיכנס למרחב מוגן בזמן ההתגוננות
-        העומד לרשותנו, בהתאם לסדר עדיפויות. יש לעבור על הכרטיסיות עם העכבר על מנת לחשוף את סדר העדיפויות.
+        העומד לרשותנו, בהתאם לסדר עדיפויות. <br></br> <strong>יש לעבור</strong>{" "}
+        על הכרטיסיות עם העכבר על מנת לחשוף את סדר העדיפויות.
       </p>
       <p id="choosingSafeRoom-text2">
         תכנון קיבולת אדם למבנה: יש להקצות 1.25 מ"ר לאדם במרחב מוגן. במוסדות
@@ -132,7 +122,6 @@ function ChoosingSafeRoom() {
               image={priority.image}
             />
 
-
             {/* ✔ וי */}
             {showCheckmarks.includes(priority.id) && (
               <div className="completion-v">
@@ -153,8 +142,4 @@ function ChoosingSafeRoom() {
   );
 }
 
-
 export default ChoosingSafeRoom;
-
-
-

@@ -94,7 +94,9 @@ function Defense() {
 
       {/* עמוד 1 - וידאו */}
       <div style={{ display: page === 1 ? "block" : "none" }}>
-        <h2 id="defense-dircations">צפו בסרטון, בסיום לחצו על החץ להמשך</h2>
+        <h2 id="protectedSpace-headline">
+          יש לצפות בסרטון, בסיומו יש ללחוץ על החץ להמשך
+        </h2>
         <div id="yt-player-defense"></div>
       </div>
 
@@ -104,8 +106,8 @@ function Defense() {
         style={{ display: page === 2 ? "block" : "none" }}
       >
         <p id="defense-pictures-text" className="subtitles">
-          להגדלת כל תמונה, יש ללחוץ עליה. כדי להקטין אותה בחזרה יש ללחוץ עליה
-          פעם נוספת.
+          יש ללחוץ על התמונה על מנת להגדיל אותה. בלחיצה נוספת היא תחזור לגודלה
+          המקורי
         </p>
 
         <img

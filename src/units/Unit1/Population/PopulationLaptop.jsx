@@ -96,9 +96,11 @@ function PopulationLaptop() {
         בחירום אנו עלולים להיתקל בהתנהגויות ובתגובות שונות של בני האדם למצבי
         חירום, הנובעות מתחושת האיום, שיבוש שגרת החיים, הנזקים הנראים ועוד.
       </div>
-      <div id="copmuter-instruction" className="subtitles">
-        יש ללחוץ על כל אחת מהכרטיסיות בכדי לחשוף את המידע
-      </div>
+      {!current && (
+        <div id="copmuter-instruction" className="subtitles">
+          יש ללחוץ על כל אחת מהכרטיסיות בכדי לחשוף את המידע
+        </div>
+      )}
       {!current && (
         <div className="cards-container">
           {populationDataLaptop.map((item) => (
@@ -125,21 +127,23 @@ function PopulationLaptop() {
         </div>
       )}
 
-      {current && (
-        <>
-          <div className="content-screen">
-            <div className="header-with-image">
-              <img
-                src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/populotion${current.id}.png`}
-                className="header-main-img"
-                alt=""
-              />
-              <h2>{current.title}</h2>
-            </div>
+{current && (
+  <>
+    <div className="content-screen">
 
-            {current.type === "text" && (
-              <p className="normal-text">{current.content}</p>
-            )}
+      <div className="header-with-image">
+        <img
+          src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/populotion${current.id}.png`}
+          className="header-main-img"
+          alt=""
+        />
+        <h2>{current.title}</h2>
+      </div>
+
+      {/* ⭐ הוראה חדשה של הטאב */}
+      <div className="tab-instruction">
+        יש ללחוץ על הסעיפים כדי לחשוף מידע
+      </div>
 
             {current.type === "accordion" && (
               <div className="accordion-container">

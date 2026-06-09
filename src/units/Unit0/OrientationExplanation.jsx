@@ -191,10 +191,10 @@ function OrientationExplanation() {
   const vw = viewport.width;
   const vh = viewport.height;
 
-const getPopupStyle = () => {
-  const popupW = Math.min(vw * 0.28, 500);
-  const popupH = Math.min(vh * 0.38, 400); // ← היה 0.28 / 220, עכשיו גדול יותר
-  const gap = vw * 0.012;
+  const getPopupStyle = () => {
+    const popupW = Math.min(vw * 0.28, 500);
+    const popupH = Math.min(vh * 0.38, 400); // ← היה 0.28 / 220, עכשיו גדול יותר
+    const gap = vw * 0.012;
 
     if (!rect)
       return { bottom: "8vh", left: "50%", transform: "translateX(-50%)" };
@@ -232,9 +232,19 @@ const getPopupStyle = () => {
   const strips = rect
     ? [
         { top: 0, left: 0, width: vw, height: Math.max(0, rect.y) },
-        { top: rect.y + rect.h, left: 0, width: vw, height: Math.max(0, vh - rect.y - rect.h) },
+        {
+          top: rect.y + rect.h,
+          left: 0,
+          width: vw,
+          height: Math.max(0, vh - rect.y - rect.h),
+        },
         { top: rect.y, left: 0, width: Math.max(0, rect.x), height: rect.h },
-        { top: rect.y, left: rect.x + rect.w, width: Math.max(0, vw - rect.x - rect.w), height: rect.h },
+        {
+          top: rect.y,
+          left: rect.x + rect.w,
+          width: Math.max(0, vw - rect.x - rect.w),
+          height: rect.h,
+        },
       ]
     : [{ top: 0, left: 0, width: vw, height: vh }];
 
@@ -249,7 +259,8 @@ const getPopupStyle = () => {
           style={{
             position: "fixed",
             ...s,
-            transition: "top 0.45s cubic-bezier(0.4,0,0.2,1), left 0.45s cubic-bezier(0.4,0,0.2,1), width 0.45s cubic-bezier(0.4,0,0.2,1), height 0.45s cubic-bezier(0.4,0,0.2,1)",
+            transition:
+              "top 0.45s cubic-bezier(0.4,0,0.2,1), left 0.45s cubic-bezier(0.4,0,0.2,1), width 0.45s cubic-bezier(0.4,0,0.2,1), height 0.45s cubic-bezier(0.4,0,0.2,1)",
           }}
         />
       ))}
@@ -263,7 +274,8 @@ const getPopupStyle = () => {
             left: rect.x,
             width: rect.w,
             height: rect.h,
-            transition: "top 0.45s cubic-bezier(0.4,0,0.2,1), left 0.45s cubic-bezier(0.4,0,0.2,1), width 0.45s cubic-bezier(0.4,0,0.2,1), height 0.45s cubic-bezier(0.4,0,0.2,1)",
+            transition:
+              "top 0.45s cubic-bezier(0.4,0,0.2,1), left 0.45s cubic-bezier(0.4,0,0.2,1), width 0.45s cubic-bezier(0.4,0,0.2,1), height 0.45s cubic-bezier(0.4,0,0.2,1)",
           }}
         />
       )}
@@ -289,7 +301,9 @@ const getPopupStyle = () => {
         </div>
         <p className="tour-text">{steps[step].text}</p>
         <div className="tour-actions">
-          <button className="tour-btn-skip" onClick={handleSkip}>דלג</button>
+          <button className="tour-btn-skip" onClick={handleSkip}>
+            דילוג
+          </button>
           <button className="tour-btn-next" onClick={handleNext}>
             {step < steps.length - 1 ? "הבא ←" : "סיום ✓"}
           </button>

@@ -190,7 +190,7 @@ function IntroUnitTwo() {
             onClick={handleSignOneClick}
             style={{ cursor: "pointer" }}
           >
-            <p className="door-sign-UnitTwo-title-first">טילים</p>
+            <p className="door-sign-UnitTwo-title-first">ירי טילים</p>
             <img
               src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsSigns/DoorSignOne.png`}
               alt="Sign 1"
@@ -214,7 +214,7 @@ function IntroUnitTwo() {
                   : "default",
             }}
           >
-            <p className="door-sign-UnitTwo-title-second">רעידת אדמה</p>
+            <p className="door-sign-UnitTwo-title-second">רעידת אדמה וצונמי</p>
             <img
               src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsSigns/DoorSignTwo.png`}
               alt="Sign 2"
@@ -262,7 +262,7 @@ function IntroUnitTwo() {
                   : "default",
             }}
           >
-            <p className="door-sign-UnitTwo-title-fourth">חומ"ס</p>
+            <p className="door-sign-UnitTwo-title-fourth">חומרים מסוכנים</p>
             <img
               src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsSigns/DoorSignFour.png`}
               alt="Sign 4"

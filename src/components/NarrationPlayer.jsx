@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNarration } from '../hooks/useNarration';
 
+
 const isFullscreen = () => {
   return !!document.fullscreenElement ||
     (window.innerHeight === window.screen.height && window.innerWidth === window.screen.width);
 };
+
 
 export default function NarrationPlayer() {
   const srcs = useNarration();
@@ -13,14 +15,15 @@ export default function NarrationPlayer() {
   const [muted, setMuted] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+
   const currentSrc = srcs?.[currentIndex];
 
-  // איפוס לקובץ הראשון בכל מעבר דף
+
   useEffect(() => {
     setCurrentIndex(0);
   }, [srcs]);
 
-  // נגן כשמשתנה הקובץ הנוכחי
+
   useEffect(() => {
     if (!audioRef.current || !currentSrc) return;
     audioRef.current.pause();
@@ -33,7 +36,7 @@ export default function NarrationPlayer() {
     }
   }, [currentSrc]);
 
-  // האזנה לשינויי מסך מלא
+
   useEffect(() => {
     const handleFullscreenChange = () => {
       if (!audioRef.current || !currentSrc) return;
@@ -46,6 +49,7 @@ export default function NarrationPlayer() {
       }
     };
 
+
     document.addEventListener('fullscreenchange', handleFullscreenChange);
     window.addEventListener('resize', handleFullscreenChange);
     return () => {
@@ -54,13 +58,23 @@ export default function NarrationPlayer() {
     };
   }, [currentSrc]);
 
+
   const handleEnded = () => {
+    // ב-questions-end לא ממשיכים אוטומטית — ה-QuizEngine מפעיל ידנית
+    const isQuizPage = window.location.hash.includes('questions-end');
+    if (isQuizPage) {
+      setPlaying(false);
+      return;
+    }
+
+
     if (srcs && currentIndex < srcs.length - 1) {
       setCurrentIndex(i => i + 1);
     } else {
       setPlaying(false);
     }
   };
+
 
   const togglePlay = () => {
     if (!audioRef.current) return;
@@ -73,13 +87,16 @@ export default function NarrationPlayer() {
     }
   };
 
+
   const toggleMute = () => {
     if (!audioRef.current) return;
     audioRef.current.muted = !muted;
     setMuted(!muted);
   };
 
+
   if (!currentSrc) return null;
+
 
   return (
     <div className="narration-player">
@@ -89,11 +106,9 @@ export default function NarrationPlayer() {
         onEnded={handleEnded}
       />
       <button className="narration-btn" onClick={togglePlay} title={playing ? 'השהה קריינות' : 'הפעל קריינות'}>
-        {playing ? '⏸' : '▶️'}
-      </button>
-      <button className="narration-btn" onClick={toggleMute} title={muted ? 'בטל השתקה' : 'השתק'}>
-        {muted ? '🔇' : '🔊'}
+        {playing ? '🔊' :  '🔇'}
       </button>
     </div>
   );
 }
+

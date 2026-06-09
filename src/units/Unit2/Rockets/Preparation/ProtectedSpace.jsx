@@ -1,10 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import "../../style/ProtectedSpace.css";
 
-
 function ProtectedSpace() {
   const videoRef = useRef(null);
-
 
   useEffect(() => {
     // בתחילת הקומפוננטה - נעל כפתור
@@ -12,9 +10,7 @@ function ProtectedSpace() {
       new CustomEvent("setNextBtnDisabled", { detail: true }),
     );
 
-
     const videoElement = videoRef.current;
-
 
     // פונקציה שנקראת כשהסרטון מסתיים
     const handleVideoEnd = () => {
@@ -23,11 +19,9 @@ function ProtectedSpace() {
       );
     };
 
-
     if (videoElement) {
       videoElement.addEventListener("ended", handleVideoEnd);
     }
-
 
     // ניקוי בעת יציאה מהקומפוננטה
     return () => {
@@ -47,7 +41,9 @@ function ProtectedSpace() {
         id="protectedSpace-icon"
       />
       <h2 id="headline-icon-protectedSpace">כיצד המרחב המוגן שומר עלינו?</h2>
-      <h2 id="protectedSpace-headline">צפו בסרטון, בסיום לחצו על החץ להמשך</h2>
+      <h2 id="protectedSpace-headline">
+        יש לצפות בסרטון, בסיומו יש ללחוץ על החץ להמשך
+      </h2>
       <video
         id="yt-player-protectedspace" // ה-ID הזה מושך את העיצוב מה-CSS
         ref={videoRef}
@@ -64,10 +60,4 @@ function ProtectedSpace() {
   );
 }
 
-
 export default ProtectedSpace;
-
-
-
-
-

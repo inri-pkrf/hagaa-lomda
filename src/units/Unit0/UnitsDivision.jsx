@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./Styles/UnitsDivision.css";
-import { useNavigate } from "react-router-dom";
-
 
 function UnitsDivision() {
   const units = [
@@ -11,12 +9,7 @@ function UnitsDivision() {
       text: "יחידה 1 - מבוא",
       dropdown: {
         title: 'רקע לתפקיד ממונה הג"א',
-        items: [
-          "תשתית נורמטיבית",
-          "האיומים על העורף",
-          "מצבי התפקוד השונים",
-          "התנהגות אוכלוסייה",
-        ],
+        items: ["היערכות לאיומים", "מצבי תפקוד", "ממשקים", "אוכלוסייה"],
       },
     },
     {
@@ -25,13 +18,7 @@ function UnitsDivision() {
       text: "יחידה 2 - שגרה",
       dropdown: {
         title: "איומים על העורף",
-        items: [
-          "איומים על העורף",
-          "ירי טילים",
-          `רעא"ד וצונמי`,
-          `חומ"ס`,
-          `שריפה`,
-        ],
+        items: ["ירי טילים", `רעידת אדמה וצונמי`, `חומרים מסוכנים`, `שריפה`],
       },
     },
     {
@@ -41,11 +28,11 @@ function UnitsDivision() {
       dropdown: {
         title: "משימות משלימות בשגרה",
         items: [
-          "הקמת צוותי חירום",
+          "צוותי חירום",
+          "מסגרות חינוכיות לילדי העובדים החיוניים",
           "משאבים",
           "מגויסי חוץ",
-          "הקמת מסגרות לילדי עובדים חיוניים",
-          "הכנת תיק מפעל",
+          "תיק מפעל",
         ],
       },
     },
@@ -55,11 +42,10 @@ function UnitsDivision() {
       text: "יחידה 4 - חירום",
       dropdown: {
         title: `תפקיד במעמ"ל ובאירוע חירום`,
-        items: ["מצבים משפטיים", "מעבר משגרה לחירום", `סד"פ אירוע חירום במפעל`],
+        items: ["מצבים משפטיים", "מעבר משגרה לחירום", "אירוע חירום"],
       },
     },
   ];
-
 
   // כפתור קדימה תמיד פעיל בעמוד זה
   useEffect(() => {
@@ -67,7 +53,6 @@ function UnitsDivision() {
       new CustomEvent("setNextBtnDisabled", { detail: false }),
     );
   }, []);
-
 
   return (
     <div className="UnitsDivision">
@@ -78,7 +63,6 @@ function UnitsDivision() {
               <img src={unit.img} alt="" />
               <div className="unit-overlay-text">{unit.text}</div>
             </div>
-
 
             {/* תמיד מוצג */}
             <div className="unit-dropdown">
@@ -96,8 +80,4 @@ function UnitsDivision() {
   );
 }
 
-
 export default UnitsDivision;
-
-
-

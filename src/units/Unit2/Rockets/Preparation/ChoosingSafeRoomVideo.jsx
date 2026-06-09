@@ -6,13 +6,13 @@ function ChoosingSafeRoomVideo() {
   useEffect(() => {
     // ⭐ בכניסה לדף — נעל את כפתור הקדימה
     window.dispatchEvent(
-      new CustomEvent("setNextBtnDisabled", { detail: true })
+      new CustomEvent("setNextBtnDisabled", { detail: true }),
     );
 
     const handleVideoEnded = () => {
       // ⭐ בסיום הסרטון — שחרר את כפתור הקדימה
       window.dispatchEvent(
-        new CustomEvent("setNextBtnDisabled", { detail: false })
+        new CustomEvent("setNextBtnDisabled", { detail: false }),
       );
     };
 
@@ -27,7 +27,7 @@ function ChoosingSafeRoomVideo() {
       }
       // ⭐ ניקוי — שחרר את הכפתור ביציאה מהדף
       window.dispatchEvent(
-        new CustomEvent("setNextBtnDisabled", { detail: false })
+        new CustomEvent("setNextBtnDisabled", { detail: false }),
       );
     };
   }, []);
@@ -43,7 +43,9 @@ function ChoosingSafeRoomVideo() {
         />
       </div>
 
-      <h1 id="alert-headline">צפו בסרטון, בסיום הסרטון לחצו על המשך</h1>
+      <h2 id="protectedSpace-headline">
+        יש לצפות בסרטון, בסיומו יש ללחוץ על החץ להמשך
+      </h2>
 
       <video
         ref={videoRef}

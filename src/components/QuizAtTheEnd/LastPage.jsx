@@ -8,6 +8,7 @@ import { STATE_KEYS } from "../../Data/Statekeys"; // ⭐ ייבוא משותף 
 function LastPage() {
   const navigate = useNavigate();
   const { width, height } = useWindowSize();
+  const [isOpen, setIsOpen] = useState(false);
 
   const score = Number(sessionStorage.getItem("finalQuizScore")) || 0;
   const answersKey = "unit_5_quiz_answers";
@@ -59,6 +60,10 @@ function LastPage() {
 
     saveToServer();
   }, []);
+  const handleFeedbackClick = () => {
+    setIsOpen(false);
+    window.dispatchEvent(new Event("openFeedbackPopup"));
+  };
 
   // ⭐ הורדה למחשב לבדיקה
   const downloadReport = () => {
@@ -204,10 +209,7 @@ function LastPage() {
           >
             אודות
           </button>
-          <button
-            className="about-us-btn"
-            onClick={() => navigate("/CreditPage")}
-          >
+          <button className="about-us-btn" onClick={handleFeedbackClick}>
             משוב
           </button>
         </div>
@@ -230,10 +232,8 @@ function LastPage() {
                 ✕
               </button>
               <h2 className="modalTitle-center">סקירת טעויות</h2>
-
             </div>
             <div className="reviewList">
-              
               {questions.map((q, i) => {
                 const userAnswer = savedAnswers[i];
                 const correct = q.correctAnswer;

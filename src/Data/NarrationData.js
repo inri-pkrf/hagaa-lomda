@@ -9,7 +9,6 @@ export const narrationMap = {
   "/unit-one-opening": ["recordings/01 - unit1/004 - unit-one-opening.mp3"],
   "/goals-unit-one": ["recordings/01 - unit1/005 - goals-unit-one.mp3"],
   "/interfaces": ["recordings/01 - unit1/006 - interfaces.mp3"],
-  "/intro-unit-one": ["recordings/01 - unit1/007 - 007 - intro-unit-one.mp3"],
 
   "/questions-end/1": [
     "recordings/01 - unit1/008 - questions-end1-1.mp3",

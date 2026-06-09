@@ -139,6 +139,15 @@
   border-radius: 1vw;
 }
 
+.tab-instruction {
+  width: 100%;
+  text-align: center;
+  font-size: 1.4vw;
+  font-weight: 600;
+  margin-top: 0.8vw;
+  margin-bottom: 1vw;
+}
+
 .content-screen::-webkit-scrollbar {
   width: 0.42vw;
 }

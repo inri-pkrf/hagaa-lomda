@@ -93,7 +93,7 @@ function Preparation() {
     <div className="preparation-page-container">
       <h1 className="preparation-main-header">היערכות והתנהגות</h1>
       <p className="preparation-sub-text">
-        לפניך מספר עקרונות להיערכות והתנהגות בתרחיש ירי טילים.
+        לפניכם מספר עקרונות להיערכות והתנהגות בתרחיש ירי טילים.
         <br />
         <strong>יש ללחוץ על האייקונים להרחבה:</strong>
       </p>

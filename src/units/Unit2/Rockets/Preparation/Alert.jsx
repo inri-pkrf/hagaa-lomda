@@ -15,28 +15,38 @@ function Alert() {
 
   useEffect(() => {
     if (page !== 1) return;
-    window.dispatchEvent(new CustomEvent("setNextBtnDisabled", { detail: true }));
+    window.dispatchEvent(
+      new CustomEvent("setNextBtnDisabled", { detail: true }),
+    );
     return () => {
-      window.dispatchEvent(new CustomEvent("setNextBtnDisabled", { detail: false }));
+      window.dispatchEvent(
+        new CustomEvent("setNextBtnDisabled", { detail: false }),
+      );
     };
   }, [page]);
 
   useEffect(() => {
     if (page !== 4) return;
     const bothViewed = viewedImgs.img1 && viewedImgs.img2;
-    window.dispatchEvent(new CustomEvent("setNextBtnDisabled", { detail: !bothViewed }));
+    window.dispatchEvent(
+      new CustomEvent("setNextBtnDisabled", { detail: !bothViewed }),
+    );
     return () => {
-      window.dispatchEvent(new CustomEvent("setNextBtnDisabled", { detail: false }));
+      window.dispatchEvent(
+        new CustomEvent("setNextBtnDisabled", { detail: false }),
+      );
     };
   }, [viewedImgs, page]);
 
   const handleEnded = () => {
-    window.dispatchEvent(new CustomEvent("setNextBtnDisabled", { detail: false }));
+    window.dispatchEvent(
+      new CustomEvent("setNextBtnDisabled", { detail: false }),
+    );
   };
 
   const handleImgClick = (imgKey) => {
     setActiveImage(activeImage === imgKey ? null : imgKey);
-    setViewedImgs(prev => ({ ...prev, [imgKey]: true }));
+    setViewedImgs((prev) => ({ ...prev, [imgKey]: true }));
   };
 
   return (
@@ -54,7 +64,9 @@ function Alert() {
             alt="Siren"
             className="alert-background"
           />
-          <h1 id="alert-headline">צפו בסרטון, בסיום הסרטון לחצו על המשך</h1>
+          <h2 id="protectedSpace-headline">
+            יש לצפות בסרטון, בסיומו יש ללחוץ על החץ להמשך
+          </h2>
           {/* page 1 - תקן את ה-video */}
           <video
             ref={videoRef}
@@ -63,7 +75,10 @@ function Alert() {
             controlsList="nodownload"
             id="yt-player-alert"
           >
-            <source src={`${process.env.PUBLIC_URL}/assets/videos/Alert.mp4`} type="video/mp4" />
+            <source
+              src={`${process.env.PUBLIC_URL}/assets/videos/Alert.mp4`}
+              type="video/mp4"
+            />
             הדפדפן שלך אינו תומך בהפעלת וידאו.
           </video>
         </div>
@@ -133,8 +148,22 @@ function Alert() {
             onClick={() => handleImgClick("img1")}
           />
           {viewedImgs.img1 && (
-            <div className="completion-v" style={{ position: "absolute", top: "42vh", left: "30%", transform: "translateX(-50%)", zIndex: 999 }}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4">
+            <div
+              className="completion-v"
+              style={{
+                position: "absolute",
+                top: "42vh",
+                left: "30%",
+                transform: "translateX(-50%)",
+                zIndex: 999,
+              }}
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="white"
+                strokeWidth="4"
+              >
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </div>
@@ -148,8 +177,22 @@ function Alert() {
             onClick={() => handleImgClick("img2")}
           />
           {viewedImgs.img2 && (
-            <div className="completion-v" style={{ position: "absolute", top: "42vh", left: "70%", transform: "translateX(-50%)", zIndex: 999 }}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4">
+            <div
+              className="completion-v"
+              style={{
+                position: "absolute",
+                top: "42vh",
+                left: "70%",
+                transform: "translateX(-50%)",
+                zIndex: 999,
+              }}
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="white"
+                strokeWidth="4"
+              >
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </div>
@@ -161,7 +204,8 @@ function Alert() {
             className="alert-background"
           />
           <p id="alert-text3">
-            <b>שימו לב:</b> יש ללחוץ על התמונה על מנת להגדיל אותה. בלחיצה נוספת היא תחזור לגודלה המקורי
+            יש ללחוץ על התמונה על מנת להגדיל אותה. בלחיצה נוספת היא תחזור לגודלה
+            המקורי
           </p>
         </div>
       )}

@@ -11,6 +11,10 @@
   color: #ff5a5d;
 }
 
+#choosingSafeRoom-text1 strong {
+  font-weight: 700;
+}
+
 #choosingSafeRoom-icon {
   margin: 2vh;
   margin-top: 10.5vh;

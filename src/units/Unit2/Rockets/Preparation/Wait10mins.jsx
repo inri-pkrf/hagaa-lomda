@@ -12,9 +12,13 @@ function Wait10mins() {
 
   useEffect(() => {
     if (page !== 2) return;
-    window.dispatchEvent(new CustomEvent("setNextBtnDisabled", { detail: !viewed }));
+    window.dispatchEvent(
+      new CustomEvent("setNextBtnDisabled", { detail: !viewed }),
+    );
     return () => {
-      window.dispatchEvent(new CustomEvent("setNextBtnDisabled", { detail: false }));
+      window.dispatchEvent(
+        new CustomEvent("setNextBtnDisabled", { detail: false }),
+      );
     };
   }, [viewed, page]);
 
@@ -53,7 +57,8 @@ function Wait10mins() {
             id="wait10min-icon"
           />
           <p id="wait10min-dircations">
-            להגדלת התמונה, יש ללחוץ עליה. כדי להקטין אותה יש ללחוץ עליה פעם נוספת.
+            יש ללחוץ על התמונה על מנת להגדיל אותה. בלחיצה נוספת היא תחזור לגודלה
+            המקורי{" "}
           </p>
           <img
             src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/wait10min-poster.png`}
