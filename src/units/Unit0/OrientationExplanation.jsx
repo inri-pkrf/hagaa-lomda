@@ -2,41 +2,42 @@ import React, { useEffect, useState, useCallback, useRef } from "react";
 import "./Styles/OrientationExplanation.css";
 import { useNavigate } from "react-router-dom";
 
+
 const steps = [
   {
     target: ".app-header-0",
-    text: "בחלק הזה של המסך תוכלו לראות את הכותרת הראשית של הפרק או תת פרק ביחידה בו אתם נמצאים",
+    text: "בחלק זה תופיע הכותרת הראשית של הפרק או תת הפרק של היחידה בה אתם נמצאים.",
     popupPosition: "bottom",
     openSidebar: false,
   },
   {
     target: ".pg-container",
-    text: "זהו סרגל ההתקדמות, הוא נועד להציג את אחוז ההשלמה של הקורס כולו. המד מחולק לפי יחידות – כל יחידה שווה 25%.",
+    text: "זהו סרגל ההתקדמות להצגת אחוזי השלמה של השיעור הדיגיטלי, כל יחידה שווה 25%.",
     popupPosition: "bottom",
     openSidebar: false,
   },
   {
     target: ".toggle-tab",
-    text: "בלחיצה על הלשונית הזו יפתח תפריט הניווט הצדדי.",
+    text: "בלחיצה על הלשונית יפתח תפריט הניווט הצדדי המאפשר מעבר מהיר בין חלקי התוכן.",
     popupPosition: "left",
     openSidebar: false,
   },
   {
     target: ".sidebar-content",
-    text: "בתפריט הצדדי תוכלו לראות את כל הפרקים והנושאים ביחידה הנוכחית ולקפוץ בין הנושאים שהשלמתם.",
+    text: "בתפריט הצדדי תוכלו לראות את כל הפרקים והנושאים ביחידה הנוכחית ולחזור לצפות בנושאים קודמים שהושלמו.",
     popupPosition: "left",
     openSidebar: true,
   },
   {
     target: ".sidebar-footer",
-    text: `בתחתית התפריט, תוכלו למצוא שני כפתורים. כפתור "מי אנחנו" מוביל לאודות, שם תוכלו לקרוא על הצוות שיצר את הלומדה. בלחיצה על כפתור "משוב", תוכלו להשאיר חוות דעת ולתת ביקורת בונה על הלומדה ועל החוויה שלכם איתה.`,
+    text: `בתחתית התפריט, נמצאים כפתור "אודות" לפרטים על צוות האפיון והפיתוח של השיעור הדיגיטלי, וכפתור "משוב", המקשר לטופס לשאלון על התוכן הלימודי.`,
     popupPosition: "left",
     openSidebar: true,
   },
   {
     target: ".buttons-page-corner",
     text: [
-      "כפתורי הניווט – בלחיצה על הכפתור הגדול השמאלי תוכלו לעבור קדימה ובלחיצה על הכפתור הקטן הימני אחורה.",
+      "כפתורי הניווט – בלחיצה על החץ הגדול השמאלי תוכלו להתקדם, ובלחיצה על החץ הקטן הימני לחזור אחורה.",
       <br key="br" />,
       <>
         <strong>שימו לב:</strong> הכפתורים יכולים להיות מושבתים בחלק מהדפים עד
@@ -48,7 +49,9 @@ const steps = [
   },
 ];
 
+
 const PADDING = 8;
+
 
 const normalizeUnit = (unit) => {
   const map = {
@@ -60,6 +63,7 @@ const normalizeUnit = (unit) => {
   };
   return map[unit] || "unit1";
 };
+
 
 function getVisibleRect(el) {
   const r = el.getBoundingClientRect();
@@ -77,6 +81,7 @@ function getVisibleRect(el) {
   };
 }
 
+
 function OrientationExplanation() {
   const [step, setStep] = useState(0);
   const [rect, setRect] = useState(null);
@@ -89,12 +94,14 @@ function OrientationExplanation() {
     height: window.innerHeight,
   });
 
+
   useEffect(() => {
     const handleResize = () =>
       setViewport({ width: window.innerWidth, height: window.innerHeight });
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
 
   useEffect(() => {
     sessionStorage.setItem("currentUnit", "UnitOne");
@@ -106,20 +113,24 @@ function OrientationExplanation() {
     };
   }, []);
 
+
   const isSidebarOpen = () => {
     const s = document.querySelector(".sidebar-container");
     return s ? !s.classList.contains("closed") : false;
   };
+
 
   const openSidebar = useCallback(() => {
     if (!isSidebarOpen()) document.querySelector(".toggle-tab")?.click();
     sidebarOpenRef.current = true;
   }, []);
 
+
   const closeSidebar = useCallback(() => {
     if (isSidebarOpen()) document.querySelector(".toggle-tab")?.click();
     sidebarOpenRef.current = false;
   }, []);
+
 
   const findRect = (selector) =>
     new Promise((resolve) => {
@@ -139,11 +150,13 @@ function OrientationExplanation() {
       attempt();
     });
 
+
   const goToStep = useCallback(
     async (newStep) => {
       const stepConfig = steps[newStep];
       setPopupVisible(false);
       await new Promise((r) => setTimeout(r, 250));
+
 
       if (stepConfig.openSidebar) {
         openSidebar();
@@ -153,6 +166,7 @@ function OrientationExplanation() {
         await new Promise((r) => setTimeout(r, 400));
       }
 
+
       const newRect = await findRect(stepConfig.target);
       setRect(newRect);
       await new Promise((r) => setTimeout(r, 400));
@@ -160,6 +174,7 @@ function OrientationExplanation() {
     },
     [openSidebar, closeSidebar],
   );
+
 
   useEffect(() => {
     const init = async () => {
@@ -169,6 +184,7 @@ function OrientationExplanation() {
     };
     init();
   }, []);
+
 
   const handleNext = () => {
     if (step < steps.length - 1) {
@@ -182,28 +198,35 @@ function OrientationExplanation() {
     }
   };
 
+
   const handleSkip = () => {
     if (sidebarOpenRef.current) closeSidebar();
     sessionStorage.setItem("tourDone", "true");
     navigate("/elevator");
   };
 
+
   const vw = viewport.width;
   const vh = viewport.height;
 
+
   const getPopupStyle = () => {
     const popupW = Math.min(vw * 0.28, 500);
-    const popupH = Math.min(vh * 0.38, 400); // ← היה 0.28 / 220, עכשיו גדול יותר
+    const popupH = Math.min(vh * 0.38, 400);
     const gap = vw * 0.012;
+
 
     if (!rect)
       return { bottom: "8vh", left: "50%", transform: "translateX(-50%)" };
 
+
     const pos = steps[step].popupPosition;
     const extraLeft = steps[step].target === ".toggle-tab" ? 44 : 0;
 
+
     const clampL = (l) => Math.max(12, Math.min(l, vw - popupW - 12));
     const clampT = (t) => Math.max(12, Math.min(t, vh - popupH - 12));
+
 
     if (pos === "bottom")
       return {
@@ -226,8 +249,10 @@ function OrientationExplanation() {
         left: clampL(rect.x + rect.w + gap),
       };
 
+
     return { bottom: "8vh", right: "4vw" };
   };
+
 
   const strips = rect
     ? [
@@ -248,7 +273,9 @@ function OrientationExplanation() {
       ]
     : [{ top: 0, left: 0, width: vw, height: vh }];
 
+
   const popupBaseStyle = getPopupStyle();
+
 
   return (
     <div className={`tour-overlay theme-${unit}`}>
@@ -265,6 +292,7 @@ function OrientationExplanation() {
         />
       ))}
 
+
       {rect && (
         <div
           className="tour-highlight-border"
@@ -280,6 +308,7 @@ function OrientationExplanation() {
         />
       )}
 
+
       <div
         className="tour-popup"
         style={{
@@ -291,6 +320,13 @@ function OrientationExplanation() {
           pointerEvents: popupVisible ? "auto" : "none",
         }}
       >
+        <div className="tour-step-counter">
+          <span className="tour-step-current">{step + 1}</span>
+          <span className="tour-step-sep">/</span>
+          <span className="tour-step-total">{steps.length}</span>
+        </div>
+
+
         <div className="tour-step-dots">
           {steps.map((_, i) => (
             <span
@@ -313,4 +349,8 @@ function OrientationExplanation() {
   );
 }
 
+
 export default OrientationExplanation;
+
+
+

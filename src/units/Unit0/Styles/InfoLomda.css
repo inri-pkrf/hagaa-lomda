@@ -23,7 +23,7 @@
     background-color: #ffffffb9;
     border-radius: 3vw; /* 80px */
     padding: 3vw;
-    width: 80vw;
+    width: 75vw;
     height: 80vh;
     display: flex;
     flex-direction: column;
@@ -32,8 +32,14 @@
 
 /* CONTENT */
 .step-content {
-    flex: 1;
     overflow-y: auto;
+    overflow-x: visible; /* או */
+    padding: 1.5vmin; /* נותן מקום לפסאודו שלא ייחתך */
+    top: 12%;
+    position: absolute;
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* TITLE */
@@ -42,10 +48,13 @@
     font-weight: 700;
     font-size: 6vmin;
     line-height: 1.1;
-    text-align: right;
+    text-align: center;
 
-    margin-top: -2vh;
-    margin-bottom: 2vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 2%;
+    width: 100%;
 }
 
 /* PARAGRAPHS */
@@ -57,7 +66,7 @@
     line-height: 1.4;
     text-align: right;
 
-    margin-bottom: 2vh;
+    margin-bottom: 0vh;
 }
 
 /* BOX PAR */
@@ -66,11 +75,7 @@
     font-size: 2.5vmin;
     line-height: 1.4;
     text-align: right;
-
-    border: 0.2vmin solid #472E1A;
-    border-radius: 3vmin;
-    padding: 3vmin;
-    margin-bottom: 2vh;
+    
 }
 
 /* LIST */
@@ -79,11 +84,16 @@
     font-size: 2.5vmin;
     line-height: 1.5;
     text-align: right;
-
-    padding-right: 6vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    padding-right: 4vw;
     margin-bottom: 2vh;
 }
 
+.InfoLomda-ul b {
+    margin-bottom: 0vh;
+}
 /* NAV BUTTON AREA */
 .info-navigation-buttons {
     display: flex;
@@ -130,4 +140,38 @@
 /* SECONDARY BUTTON */
 .nav-btn-prev {
     filter: grayscale(0.3);
+}
+
+.Pay-attention {
+    position: relative;
+    border: none;
+    background: #ffefdf;
+    border-radius: 2vmin;
+    padding: 2.5vmin 3vmin 2.5vmin 3vmin;
+    margin-bottom: 2vh;
+    box-shadow: 0 0.3vw 1vw #dfa6778e;
+
+    border-right: 0.6vmin solid #c0622a;
+    margin-top: 6vh;
+}
+
+.Pay-attention::before {
+    content: "♥";
+    position: absolute;
+    top: -1.5vmin;
+    right: -1.5vmin;
+    font-size: 3vmin;
+    background: #fff;
+    border-radius: 50%;
+    width: 4vmin;
+    height: 4vmin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0.2vw 0.4vw #472e1a30;
+    color: #c0622a;
+}
+
+#pay-attention-step2 {
+    font-size: 2.2vmin;
 }

@@ -1,10 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useNarration } from '../hooks/useNarration';
+import React, { useEffect, useRef, useState } from "react";
+import { useNarration } from "../hooks/useNarration";
 
 
 const isFullscreen = () => {
-  return !!document.fullscreenElement ||
-    (window.innerHeight === window.screen.height && window.innerWidth === window.screen.width);
+  return (
+    !!document.fullscreenElement ||
+    (window.innerHeight === window.screen.height &&
+      window.innerWidth === window.screen.width)
+  );
 };
 
 
@@ -12,7 +15,6 @@ export default function NarrationPlayer() {
   const srcs = useNarration();
   const audioRef = useRef(null);
   const [playing, setPlaying] = useState(false);
-  const [muted, setMuted] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
 
@@ -50,18 +52,18 @@ export default function NarrationPlayer() {
     };
 
 
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    window.addEventListener('resize', handleFullscreenChange);
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    window.addEventListener("resize", handleFullscreenChange);
     return () => {
-      document.removeEventListener('fullscreenchange', handleFullscreenChange);
-      window.removeEventListener('resize', handleFullscreenChange);
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      window.removeEventListener("resize", handleFullscreenChange);
     };
   }, [currentSrc]);
 
 
   const handleEnded = () => {
     // ב-questions-end לא ממשיכים אוטומטית — ה-QuizEngine מפעיל ידנית
-    const isQuizPage = window.location.hash.includes('questions-end');
+    const isQuizPage = window.location.hash.includes("questions-end");
     if (isQuizPage) {
       setPlaying(false);
       return;
@@ -69,7 +71,7 @@ export default function NarrationPlayer() {
 
 
     if (srcs && currentIndex < srcs.length - 1) {
-      setCurrentIndex(i => i + 1);
+      setCurrentIndex((i) => i + 1);
     } else {
       setPlaying(false);
     }
@@ -88,13 +90,6 @@ export default function NarrationPlayer() {
   };
 
 
-  const toggleMute = () => {
-    if (!audioRef.current) return;
-    audioRef.current.muted = !muted;
-    setMuted(!muted);
-  };
-
-
   if (!currentSrc) return null;
 
 
@@ -105,10 +100,16 @@ export default function NarrationPlayer() {
         src={`${process.env.PUBLIC_URL}/${currentSrc}`}
         onEnded={handleEnded}
       />
-      <button className="narration-btn" onClick={togglePlay} title={playing ? 'השהה קריינות' : 'הפעל קריינות'}>
-        {playing ? '🔊' :  '🔇'}
+      <button
+        className="narration-btn"
+        onClick={togglePlay}
+        title={playing ? "השהה קריינות" : "הפעל קריינות"}
+      >
+        {playing ? "🔊" : "🔇"}
       </button>
     </div>
   );
 }
+
+
 
