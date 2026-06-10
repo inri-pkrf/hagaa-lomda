@@ -2,7 +2,6 @@ import React from "react";
 import "./InfoQuiz.css";
 import { useNavigate } from "react-router-dom";
 
-
 function InfoQuiz() {
   const navigate = useNavigate();
   return (
@@ -13,7 +12,6 @@ function InfoQuiz() {
       }}
     >
       <div id="content-info-quiz">
-
         <h2 id="Title1-InfoQuiz">
           ברכות! סיימתם את התוכן הלימודי של השיעור הדיגיטלי להסמכת ממונה הג"א
           במפעל / מוסד
@@ -25,8 +23,8 @@ function InfoQuiz() {
           לפחות בציון 70
         </p>
         <p className="Title2-InfoQuiz" id="Title2-InfoQuiz-3">
-          לאחר שתעברו את המבחן בהצלחה, תשלח אליכם תעודה המסמיכה אתכם כממוני
-          הג"א.
+          לאחר שתעברו את המבחן בהצלחה, תשלח אליכם תעודה המסמיכה אתכם ואתכן
+          כממוני הג"א.
         </p>
         <h2 id="Title1-InfoQuiz">בהצלחה!</h2>
       </div>
@@ -42,14 +40,9 @@ function InfoQuiz() {
           alt="woman"
           className="person"
         />
-
       </div>
     </div>
   );
 }
 
-
 export default InfoQuiz;
-
-
-

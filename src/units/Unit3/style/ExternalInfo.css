@@ -8,7 +8,6 @@
   margin-top: 12vh;
 }
 
-
 .ExternalInfo {
   background-color: #fdf9f4;
   height: 100vh;
@@ -17,7 +16,6 @@
   left: 0;
   position: absolute;
 }
-
 
 #ExternalInfo-text1,
 #ExternalInfo-text2,
@@ -32,7 +30,6 @@
   text-align: right;
 }
 
-
 #ExternalInfo-text1 {
   top: 25vh;
 }
@@ -40,14 +37,13 @@
   top: 35vh;
 }
 #ExternalInfo-text3 {
-  top: 61.8vh;
+  top: 55vh;
 }
 #ExternalInfo-text4 {
-  top: 78vh;
+  top: 70vh;
   display: flex;
   align-items: center;
 }
-
 
 .ExternalInfo-link {
   font-family: "karantina";
@@ -58,7 +54,6 @@
   text-align: center;
   color: #e97414;
 }
-
 
 .ExternalInfo-left-half-bg {
   position: fixed;
@@ -71,6 +66,3 @@
   opacity: 0.2;
   z-index: 1;
 }
-
-
-

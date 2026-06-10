@@ -7,7 +7,6 @@ import { STATE_KEYS } from "../Data/Statekeys"; // ⭐ ייבוא משותף
 const routeOrder = [
   "/",
   "/info-lomda",
-  "/info-lomda/2",
   "/info-lomda/3",
   "/info-lomda/4",
   "/info-lomda/5",

@@ -2,10 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../Unit3/style/EducationGame.css";
 
-
 function EducationGame() {
   const navigate = useNavigate();
-
 
   const getInitialState = () => {
     const saved = sessionStorage.getItem("educationGameState");
@@ -22,9 +20,7 @@ function EducationGame() {
     };
   };
 
-
   const initial = getInitialState();
-
 
   const [activeStep, setActiveStep] = useState(initial.activeStep);
   const [showPopup, setShowPopup] = useState(initial.showPopup);
@@ -34,7 +30,6 @@ function EducationGame() {
   );
   const [clickedSteps, setClickedSteps] = useState(initial.clickedSteps);
   const [stepCompleted, setStepCompleted] = useState(initial.stepCompleted);
-
 
   const steps = [
     {
@@ -95,11 +90,9 @@ function EducationGame() {
     },
   ];
 
-
   useEffect(() => {
     sessionStorage.setItem("MainTitle", "משחק שמרטפיה");
   }, []);
-
 
   useEffect(() => {
     const state = {
@@ -120,7 +113,6 @@ function EducationGame() {
     stepCompleted,
   ]);
 
-
   const handleElementClick = (index) => {
     if (index === activeStep) {
       setIsIntro(false);
@@ -132,17 +124,14 @@ function EducationGame() {
     }
   };
 
-
   const handleClose = () => {
     setShowPopup(false);
     if (!stepCompleted && !isIntro) return;
-
 
     if (isIntro) {
       setIsIntro(false);
       return;
     }
-
 
     // ניווט ישיר ל-Education כשיוצאים מהשלב האחרון
     if (activeStep === steps.length - 1) {
@@ -154,18 +143,16 @@ function EducationGame() {
     }
   };
 
-
   const isLastStep = activeStep === steps.length - 1;
   const popupContent = isIntro
     ? {
-        text: "יש ללחוץ בכל פעם על האלמנט המבהב כדי לחשוף מידע אודות מסגרות להפעלת ילדי העובדים",
+        text: "יש ללחוץ בכל פעם על האלמנט המבהב כדי לחשוף מידע אודות מסגרות חינוכיות להפעלת ילדי העובדים",
         btn: "התחלה",
       }
     : {
         text: steps[activeStep].text,
         btn: isLastStep ? "סיום" : "המשך",
       };
-
 
   return (
     <div className="education-game-container">
@@ -175,19 +162,15 @@ function EducationGame() {
         alt="bg"
       />
 
-
       <div className="dim-overlay" />
-
 
       <div className="steps-counter">
         {clickedSteps.length}/{steps.length}
       </div>
 
-
       <div className="hotspots-layer">
         {steps.map((step, index) => {
           const isActive = index === activeStep;
-
 
           return (
             <div
@@ -205,7 +188,6 @@ function EducationGame() {
             </div>
           );
         })}
-
 
         {/* ✅ וי על מה שנלחץ */}
         {steps.map((step, index) => {
@@ -234,7 +216,6 @@ function EducationGame() {
         })}
       </div>
 
-
       {showPopup && (
         <div className="education-popup-overlay">
           <div className="education-popup-content custom-design">
@@ -255,7 +236,6 @@ function EducationGame() {
           </div>
         </div>
       )}
-
 
       {/*
       {showFinalChecks && (
@@ -279,8 +259,4 @@ function EducationGame() {
   );
 }
 
-
 export default EducationGame;
-
-
-
