@@ -9,30 +9,35 @@ const steps = [
     text: "בחלק זה תופיע הכותרת הראשית של הפרק או תת הפרק של היחידה בה אתם נמצאים.",
     popupPosition: "bottom",
     openSidebar: false,
+    arrowDirection: "up",      // הפופאפ מתחת → החץ מצביע למעלה
   },
   {
     target: ".pg-container",
     text: "זהו סרגל ההתקדמות להצגת אחוזי השלמה של השיעור הדיגיטלי, כל יחידה שווה 25%.",
     popupPosition: "bottom",
     openSidebar: false,
+    arrowDirection: "up",
   },
   {
     target: ".toggle-tab",
     text: "בלחיצה על הלשונית יפתח תפריט הניווט הצדדי המאפשר מעבר מהיר בין חלקי התוכן.",
     popupPosition: "left",
     openSidebar: false,
+    arrowDirection: "right",   // הפופאפ משמאל → החץ מצביע ימינה
   },
   {
     target: ".sidebar-content",
     text: "בתפריט הצדדי תוכלו לראות את כל הפרקים והנושאים ביחידה הנוכחית ולחזור לצפות בנושאים קודמים שהושלמו.",
     popupPosition: "left",
     openSidebar: true,
+    arrowDirection: "right",
   },
   {
     target: ".sidebar-footer",
     text: `בתחתית התפריט, נמצאים כפתור "אודות" לפרטים על צוות האפיון והפיתוח של השיעור הדיגיטלי, וכפתור "משוב", המקשר לטופס לשאלון על התוכן הלימודי.`,
     popupPosition: "left",
     openSidebar: true,
+    arrowDirection: "right",
   },
   {
     target: ".buttons-page-corner",
@@ -46,6 +51,7 @@ const steps = [
     ],
     popupPosition: "top",
     openSidebar: false,
+    arrowDirection: "down",    // הפופאפ מעל → החץ מצביע למטה
   },
 ];
 
@@ -205,6 +211,47 @@ function OrientationExplanation() {
     navigate("/elevator");
   };
 
+  const getArrowStyle = (direction) => {
+  const base = {
+    position: "absolute",
+    width: "9vw",
+    height: "6vh",
+    overflow: "visible",
+  };
+
+  switch (direction) {
+    case "up":
+      return {
+        ...base,
+        top: "-4vh",
+        left: "95%",
+        transform: "translateX(-50%) rotate(0deg) scaleX(-1)",
+      };
+    case "down":
+      return {
+        ...base,
+        bottom: "-8vh",
+        left: "50%",
+        transform: "translateX(-50%) rotate(180deg)",
+      };
+    case "right":
+      return {
+        ...base,
+        top: "110%",
+        right: "-4vw",
+        transform: "translateY(-50%) rotate(160deg) scaleX(-1)",
+      };
+    case "left":
+      return {
+        ...base,
+        top: "50%",
+        left: "-8vw",
+        transform: "translateY(-50%) rotate(-90deg) scaleX(-1)",
+      };
+    default:
+      return { display: "none" };
+  }
+};
 
   const vw = viewport.width;
   const vh = viewport.height;
@@ -325,7 +372,29 @@ function OrientationExplanation() {
           <span className="tour-step-sep">/</span>
           <span className="tour-step-total">{steps.length}</span>
         </div>
-
+        <svg
+          className="tour-arrow-svg"
+          style={getArrowStyle(steps[step].arrowDirection)}
+          viewBox="0 0 90 80"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10 75 C10 30, 60 20, 80 5"
+            stroke="#3fc6f3"
+            strokeWidth="5"
+            strokeLinecap="round"
+            fill="none"
+          />
+          <path
+            d="M68 2 L82 4 L80 18"
+            stroke="#3fc6f3"
+            strokeWidth="5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
+        </svg>
 
         <div className="tour-step-dots">
           {steps.map((_, i) => (

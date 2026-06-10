@@ -36,7 +36,8 @@
   position: absolute;
   bottom: 6vh;
   /* right: 5vw; */
-  left: 41%;
+  left: 50%;
+  transform: translateX(-50%);
   font-family: "Karantina";
   font-style: normal;
   font-weight: 400;

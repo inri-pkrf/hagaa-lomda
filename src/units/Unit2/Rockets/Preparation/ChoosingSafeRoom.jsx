@@ -4,7 +4,7 @@ import FlipCard from "../flipCard";
 
 const openWebsitePopup = () => {
   window.open(
-    "https://www.oref.org.il/heb/life-saving-guidelines/rocket-and-missile-attacks",
+    "https://www.oref.org.il/heb/articles/info/preparing-protected-space/1200",
     "popupWindow",
     "width=1200,height=800,top=100,left=200,resizable=yes,scrollbars=yes",
   );
@@ -106,7 +106,7 @@ function ChoosingSafeRoom() {
         חינוך יש להקצות 0.5 מ"ר למרחב מוגן.
       </p>
       <p id="website-link" onClick={openWebsitePopup}>
-        לחצו כאן להנחיות מצילות חיים
+        לחצו כאן להנחיות לבחירת המרחב המוגן
       </p>
       <div className="flip-cards-container">
         {safeRoomPriorities.map((priority) => (

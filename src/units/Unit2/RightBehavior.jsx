@@ -142,7 +142,7 @@ function RightBehavior() {
         <div className="central-static-box">
           <div className="central-title">{centralText}</div>
           <div className="central-disclaimer">
-            אלו הנחיות עבור אוכלוסיה קרובה, על המפעל לפעול על פי נוהל החירום אשר
+             על המפעל לפעול על פי נוהל החירום אשר
             יאושר על ידי פיקוד העורף באירוע
           </div>
         </div>

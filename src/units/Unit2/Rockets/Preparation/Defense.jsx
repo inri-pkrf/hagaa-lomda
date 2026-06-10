@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "../../style/Defense.css";
 
+
 function Defense() {
   const location = useLocation();
+  const videoRef = useRef(null);
   const [selectedImg, setSelectedImg] = useState(null);
   const [viewedImgs, setViewedImgs] = useState({
     img1: false,
@@ -12,11 +14,14 @@ function Defense() {
     img4: false,
   });
 
+
   let page = 1;
   if (location.pathname === "/Defense/2") page = 2;
 
+
   const allViewed =
     viewedImgs.img1 && viewedImgs.img2 && viewedImgs.img3 && viewedImgs.img4;
+
 
   useEffect(() => {
     if (page === 1) {
@@ -25,48 +30,37 @@ function Defense() {
       );
     }
 
-    if (!document.getElementById("yt-api-script")) {
-      const tag = document.createElement("script");
-      tag.id = "yt-api-script";
-      tag.src = "https://www.youtube.com/iframe_api";
-      document.body.appendChild(tag);
+    if (page !== 1) return;
+
+    const handleEnded = () =>
+      window.dispatchEvent(
+        new CustomEvent("setNextBtnDisabled", { detail: false }),
+      );
+
+    const videoElement = videoRef.current;
+    if (videoElement) {
+      videoElement.addEventListener("ended", handleEnded);
     }
 
-    let player;
-    const initPlayer = () => {
-      if (document.getElementById("yt-player-defense")) {
-        player = new window.YT.Player("yt-player-defense", {
-          videoId: "9BMH_58WOEI",
-          playerVars: { rel: 0 },
-          events: {
-            onStateChange: (e) => {
-              if (e.data === window.YT.PlayerState.ENDED)
-                window.dispatchEvent(
-                  new CustomEvent("setNextBtnDisabled", { detail: false }),
-                );
-            },
-          },
-        });
-      }
-    };
-
-    if (window.YT && window.YT.Player) initPlayer();
-    else window.onYouTubeIframeAPIReady = initPlayer;
-
     return () => {
-      player?.destroy();
+      if (videoElement) {
+        videoElement.removeEventListener("ended", handleEnded);
+      }
       window.dispatchEvent(
         new CustomEvent("setNextBtnDisabled", { detail: false }),
       );
     };
   }, [page]);
 
+
   useEffect(() => {
     if (page !== 2) return;
+
 
     window.dispatchEvent(
       new CustomEvent("setNextBtnDisabled", { detail: !allViewed }),
     );
+
 
     return () => {
       window.dispatchEvent(
@@ -75,10 +69,12 @@ function Defense() {
     };
   }, [allViewed, page]);
 
+
   const handleImgClick = (imgKey) => {
     setSelectedImg(selectedImg === imgKey ? null : imgKey);
     setViewedImgs((prev) => ({ ...prev, [imgKey]: true }));
   };
+
 
   return (
     <div
@@ -92,13 +88,24 @@ function Defense() {
         id="defense-icon"
       />
 
+
       {/* עמוד 1 - וידאו */}
       <div style={{ display: page === 1 ? "block" : "none" }}>
         <h2 id="protectedSpace-headline">
           יש לצפות בסרטון, בסיומו יש ללחוץ על החץ להמשך
         </h2>
-        <div id="yt-player-defense"></div>
+        <video
+          ref={videoRef}
+          id="defense-video"
+          width="640"
+          height="360"
+          controls
+          src={`${process.env.PUBLIC_URL}/assets/videos/DefenseVideo.mp4`}
+        >
+          הדפדפן שלך אינו תומך בווידאו.
+        </video>
       </div>
+
 
       {/* עמוד 2 - 4 תמונות */}
       <div
@@ -110,33 +117,6 @@ function Defense() {
           המקורי
         </p>
 
-        <img
-          src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/defense-img1.png`}
-          alt="3"
-          id="img3"
-          className={
-            selectedImg === "img3"
-              ? "enlarged"
-              : "shrinked-defense img-pos-3-defense"
-          }
-          onClick={() => handleImgClick("img3")}
-        />
-        {viewedImgs.img3 && selectedImg !== "img3" && (
-          <div
-            className="completion-v"
-            style={{
-              position: "absolute",
-              left: "60%",
-              top: "42vh",
-              transform: "translateX(-50%)",
-              zIndex: 999,
-            }}
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-          </div>
-        )}
 
         <img
           src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/defense-img2.png`}
@@ -154,7 +134,7 @@ function Defense() {
             className="completion-v"
             style={{
               position: "absolute",
-              left: "80%",
+              left: "70%",
               top: "42vh",
               transform: "translateX(-50%)",
               zIndex: 999,
@@ -165,6 +145,7 @@ function Defense() {
             </svg>
           </div>
         )}
+
 
         <img
           src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/defense-img3.jpeg`}
@@ -182,7 +163,7 @@ function Defense() {
             className="completion-v"
             style={{
               position: "absolute",
-              left: "40%",
+              left: "50%",
               top: "42vh",
               transform: "translateX(-50%)",
               zIndex: 999,
@@ -193,6 +174,7 @@ function Defense() {
             </svg>
           </div>
         )}
+
 
         <img
           src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/defense-img4.jpeg`}
@@ -210,7 +192,7 @@ function Defense() {
             className="completion-v"
             style={{
               position: "absolute",
-              left: "20%",
+              left: "30%",
               top: "42vh",
               transform: "translateX(-50%)",
               zIndex: 999,
@@ -225,5 +207,6 @@ function Defense() {
     </div>
   );
 }
+
 
 export default Defense;

@@ -18,7 +18,7 @@ function PreparationEarth() {
       hasInfo: true,
     },
     {
-      id: `RightBehavior`, //לשים בApp את הנתיב
+      id: `VideoPreperEarth`, //לשים בApp את הנתיב
       title: "התנהגות נכונה- הנחיות מצילות חיים",
       bgColor: "#56C3A9",
       icon: "goodBehavior.png",
