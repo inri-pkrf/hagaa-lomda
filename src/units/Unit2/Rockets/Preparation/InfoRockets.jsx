@@ -8,7 +8,7 @@ function InfoRockets() {
       colorClass="green-box-InfoPage"
       boxes={[
         "ירי טילים הוא אירוע מלחמתי המאיים על העורף ועלול לגרום לאובדן חיי אדם, שריפות ואירועי חומרים מסוכנים.",
-        "המרחב המוגן הינו המקום הבטוח ביותר להימצא בו בזמן ירי טילים.",
+        "המרחב המוגן הינו המקום הבטוח ביותר להימצא בו\n  בזמן ירי טילים.",
       ]}
       sliderImages={[
         `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/rockets-gallery/gallery1.webp`,

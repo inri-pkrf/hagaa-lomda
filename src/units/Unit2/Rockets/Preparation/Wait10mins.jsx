@@ -5,22 +5,26 @@ import { useLocation } from "react-router-dom";
 function Wait10mins() {
   const location = useLocation();
   const [isEnlarged, setIsEnlarged] = useState(false);
+  // הסטייט viewed נשאר לשימוש פנימי אם תרצה להציג אייקון "וי" או משהו דומה,
+  // אבל הוא לא יחסום יותר את המעבר.
   const [viewed, setViewed] = useState(false);
 
-  let page = 1;
-  if (location.pathname === "/Wait10mins/2") page = 2;
+  let page = location.pathname === "/Wait10mins/2" ? 2 : 1;
 
   useEffect(() => {
     if (page !== 2) return;
+
+    // הפכנו את ה-detail ל-false באופן קבוע כדי שהכפתור תמיד יהיה פעיל
     window.dispatchEvent(
-      new CustomEvent("setNextBtnDisabled", { detail: !viewed }),
+      new CustomEvent("setNextBtnDisabled", { detail: false }),
     );
+
     return () => {
       window.dispatchEvent(
         new CustomEvent("setNextBtnDisabled", { detail: false }),
       );
     };
-  }, [viewed, page]);
+  }, [page]); // הסרנו את viewed מהתלויות
 
   const handleClick = () => {
     setIsEnlarged(!isEnlarged);
@@ -31,7 +35,7 @@ function Wait10mins() {
     <div className="wait10min-wrapper">
       {page === 1 && (
         <div>
-          <h2 id="wait10min-headline">?למה חשוב להמתין להנחיה מפורשת</h2>
+          <h2 id="wait10min-headline">למה חשוב להמתין להנחיה מפורשת?</h2>
           <img
             src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/icons/Wait10mins.png`}
             alt="icon"
@@ -50,7 +54,7 @@ function Wait10mins() {
 
       {page === 2 && (
         <div style={{ position: "relative" }}>
-          <h2 id="wait10min-headline">?למה חשוב להמתין להנחיה מפורשת</h2>
+          <h2 id="wait10min-headline">למה חשוב להמתין להנחיה מפורשת?</h2>
           <img
             src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/icons/Wait10mins.png`}
             alt="icon"
@@ -58,7 +62,7 @@ function Wait10mins() {
           />
           <p id="wait10min-dircations">
             יש ללחוץ על התמונה על מנת להגדיל אותה. בלחיצה נוספת היא תחזור לגודלה
-            המקורי{" "}
+            המקורי
           </p>
           <img
             src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/wait10min-poster.png`}

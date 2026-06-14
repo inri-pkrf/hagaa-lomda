@@ -1,7 +1,6 @@
 import React from "react";
 import "./style/HowPreper.css";
 
-
 const Training = () => {
   const cards = [
     {
@@ -18,7 +17,6 @@ const Training = () => {
     },
   ];
 
-
   return (
     <div className="how-preper-page">
       {/* כותרת */}
@@ -33,7 +31,6 @@ const Training = () => {
         />
         <h2 className="prep-title">הדרכת עובדים</h2>
       </div>
-
 
       {/* לוח */}
       <div className="whiteboard-wrapper">
@@ -57,7 +54,6 @@ const Training = () => {
             משמעותי בהיערכות לרעידת אדמה.
           </p>
 
-
           {/* שורת 3 התמונות */}
           <div className="training-images-row">
             {cards.map((card, i) => (
@@ -68,7 +64,6 @@ const Training = () => {
                   alt={card.text}
                   className="card-bg"
                 />
-
 
                 {/* הטקסט שמולבש על התמונה */}
                 <div className="card-overlay-text">{card.text}</div>
@@ -81,8 +76,4 @@ const Training = () => {
   );
 };
 
-
 export default Training;
-
-
-

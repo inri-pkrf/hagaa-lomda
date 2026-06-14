@@ -92,8 +92,7 @@ function RightBehavior() {
               <p>
                 עליכם לעבור עם העכבר מעל התמונות על מנת לגלות על התנהגות נכונה
                 בעת רעידת אדמה.
-                <br />
-                רק לאחר שתעברו על כל התמונות, תוכלו להמשיך הלאה.
+                רק לאחר שתעברו על כל התמונות, תוכלו להמשיך&nbsp;הלאה.{" "}
               </p>
             </div>
 
@@ -142,8 +141,7 @@ function RightBehavior() {
         <div className="central-static-box">
           <div className="central-title">{centralText}</div>
           <div className="central-disclaimer">
-             על המפעל לפעול על פי נוהל החירום אשר
-            יאושר על ידי פיקוד העורף באירוע
+            על המפעל לפעול על פי נוהל החירום אשר יאושר על ידי פיקוד העורף באירוע
           </div>
         </div>
       </div>

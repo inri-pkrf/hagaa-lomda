@@ -6,7 +6,7 @@ const ActionsChemical = () => {
   const imagesPath = `${basePath}/assets/UnitTwoImgs/chemical/actions`;
 
   const signs = [
-    { text: "דיווח לרשות הארצית לכבאות והצלה", flip: true },
+    { text: "דיווח לרשות הארצית\n לכבאות והצלה", flip: true },
     {
       text: "דיווח למשרד להגנת הסביבה\n(לא יאוחר מ-15 דקות מהתרחשות האירוע)",
       flip: false,

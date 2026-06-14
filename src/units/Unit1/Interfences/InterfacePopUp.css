@@ -9,7 +9,6 @@
   backdrop-filter: blur(0.26vw);
 }
 
-
 .popup-box {
   width: 65vw;
   height: 50vh;
@@ -17,35 +16,25 @@
   border-radius: 1.82vw;
   border: 0.5vw solid #7fb6d6;
   padding: 6vw;
-
-
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-
-
   box-sizing: border-box;
   gap: 2vw;
   direction: rtl;
 }
-
 
 /* 🔥 תיקון חשוב: כותרת + טקסט באותה שורה */
 .popup-title {
   font-size: 3vw;
   font-weight: bold;
   color: #4a3b2f;
-
-
   margin: 0; /* ביטול רווחים שמפרידים */
   text-align: right;
-
-
   display: inline-block;
 }
-
 
 .popup-content-wrapper {
   display: flex;
@@ -55,11 +44,8 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: 1.04vw;
-
-
   direction: ltr;
 }
-
 
 .popup-description {
   font-size: 1.5vw;
@@ -71,14 +57,12 @@
   width: 90%;
 }
 
-
 .popup-image-side {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 
 .image-container {
   position: relative;
@@ -88,7 +72,6 @@
   width: 15vw;
 }
 
-
 .popup-character {
   width: auto;
   width: 8vw;
@@ -96,7 +79,6 @@
   object-fit: contain;
   z-index: 2;
 }
-
 
 .popup-image-circle {
   position: absolute;
@@ -108,7 +90,6 @@
   z-index: 1;
   opacity: 0.8;
 }
-
 
 .popup-close {
   position: absolute;
@@ -122,12 +103,9 @@
   z-index: 10;
 }
 
-
 .popup-title,
 .popup-description {
   text-align: right;
   width: 100%;
+    /* width: 32vw; */
 }
-
-
-

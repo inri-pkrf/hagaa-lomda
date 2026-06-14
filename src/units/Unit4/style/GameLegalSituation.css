@@ -8,15 +8,15 @@
   height: 100vh;
   padding: 2vh 2vw 4vh;
   box-sizing: border-box;
-  font-family: 'Assistant', sans-serif;
+  font-family: "Assistant", sans-serif;
   direction: rtl;
   padding-top: 15vh;
-  background-color: #FDF9F4;
+  background-color: #fdf9f4;
 }
 
 /* ── Page headline (above table) ── */
 #GameLegalSituation-headline {
-  font-family: 'Karantina', cursive;
+  font-family: "Karantina", cursive;
   font-size: 8vh;
   font-weight: 500;
   direction: rtl;
@@ -41,7 +41,7 @@
   width: 100%;
   background-color: #893739;
   color: #fff;
-  font-family: 'Karantina', cursive;
+  font-family: "Karantina", cursive;
   font-size: 6vh;
   font-weight: 500;
   text-align: center;
@@ -77,7 +77,7 @@
 
 /* ── Column label ── */
 .GameLegalSituation-column-label {
-  font-family: 'Assistant';
+  font-family: "Assistant";
   font-size: 3vh;
   font-weight: 700;
   direction: rtl;
@@ -101,7 +101,7 @@
   margin-top: 1vh;
   background-color: rgba(55, 139, 59, 0.18);
   border-style: dashed;
-  width: 85%;
+  width: 75%;
   cursor: default;
   font-size: 2vh;
   display: flex;
@@ -124,16 +124,18 @@
 .GameLegalSituation-answer {
   direction: rtl;
   text-align: center;
-  font-family: 'Assistant';
+  font-family: "Assistant";
   font-size: 2vh;
   font-weight: 600;
   border: 0.3vh solid #893739;
   border-radius: 1.5vh;
-  padding: 1vw ;
+  padding: 1vw;
   background-color: #fff;
   cursor: grab;
-  transition: transform 0.15s, box-shadow 0.15s;
-  width: 20vw;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+  width: 25vw;
   box-sizing: border-box;
   z-index: 10;
 }
@@ -146,11 +148,21 @@
 
 /* ── Shake animation ── */
 @keyframes shake {
-  0%   { transform: translateX(0); }
-  25%  { transform: translateX(-0.5vw) rotate(-1deg); }
-  50%  { transform: translateX(0.5vw) rotate(1deg); }
-  75%  { transform: translateX(-0.3vw); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-0.5vw) rotate(-1deg);
+  }
+  50% {
+    transform: translateX(0.5vw) rotate(1deg);
+  }
+  75% {
+    transform: translateX(-0.3vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .shake {
@@ -163,7 +175,7 @@
 .finish-message {
   margin-top: 3vh;
   padding: 1.5vh 4vw;
-  font-family: 'Assistant', sans-serif;
+  font-family: "Assistant", sans-serif;
   font-size: 2.5vh;
   font-weight: bold;
   border-radius: 1.5vh;
@@ -176,8 +188,14 @@
 }
 
 @keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-2vh); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-2vh);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ── Mobile: stack columns ── */

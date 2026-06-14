@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../../Unit2/style/PreparationChemical.css";
 
-
 function PreparationChemical() {
   const contentData = {
     hazard_recognition: {
@@ -38,10 +37,9 @@ function PreparationChemical() {
     },
     signage: {
       title: "שילוט",
-      text: "יש להציב שילוט ברור על כל מצבור חומרים מסוכנים כולל תמרורי אזהרה.",
+      text: "יש להציב שילוט ברור על כל מצבור חומרים מסוכנים \nכולל תמרורי אזהרה.",
     },
   };
-
 
   const topics = [
     { id: "hazard_recognition", label: "הכרת החומרים", icon: "🧪" },
@@ -55,26 +53,28 @@ function PreparationChemical() {
     { id: "signage", label: "שילוט", icon: "⚠️" },
   ];
 
-
   const [activeTopic, setActiveTopic] = useState(null);
   const [completedTopics, setCompletedTopics] = useState([]);
 
-
   // חסום כפתור קדימה בטעינה
   useEffect(() => {
-    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: true }));
+    window.dispatchEvent(
+      new CustomEvent("setNextBtnDisabled", { detail: true }),
+    );
     return () => {
-      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
+      window.dispatchEvent(
+        new CustomEvent("setNextBtnDisabled", { detail: false }),
+      );
     };
   }, []);
-
 
   // עדכון חסימה לפי התקדמות
   useEffect(() => {
     const allCompleted = topics.every((t) => completedTopics.includes(t.id));
-    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: !allCompleted }));
+    window.dispatchEvent(
+      new CustomEvent("setNextBtnDisabled", { detail: !allCompleted }),
+    );
   }, [completedTopics]);
-
 
   const handleTopicClick = (id) => {
     setActiveTopic(id);
@@ -82,7 +82,6 @@ function PreparationChemical() {
       setCompletedTopics((prev) => [...prev, id]);
     }
   };
-
 
   return (
     <div className="prep-page-wrapper">
@@ -107,13 +106,11 @@ function PreparationChemical() {
         ))}
       </div>
 
-
       <div className="text-panel">
         <h2 id="chemical-title">היערכות ומניעה</h2>
         <p className="chemical-second">
-          כדי למנוע אירוע שבו יש חשיפה לחומרים מסוכנים, יש להקפיד על הנחיות.
+          כדי למנוע אירוע שבו יש חשיפה לחומרים מסוכנים, יש להקפיד על&nbsp;הנחיות.
         </p>
-
 
         {activeTopic && contentData[activeTopic] ? (
           <div className="dynamic-box">
@@ -131,6 +128,4 @@ function PreparationChemical() {
   );
 }
 
-
 export default PreparationChemical;
-

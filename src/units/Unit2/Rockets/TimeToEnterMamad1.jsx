@@ -1,17 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import "../../Unit2/style/TimeToEnterMamad.css";
 
-
 function TimeToEnterMamad1() {
-  const navigate = useNavigate();
-
-
-  const handleNextClick = () => {
-    navigate("/TimeToEnterMamad2");
-  };
-
-
   const openOrefPopup = () => {
     window.open(
       "https://www.oref.org.il/heb",
@@ -19,7 +9,6 @@ function TimeToEnterMamad1() {
       "width=1200,height=800,top=100,left=200,resizable=yes,scrollbars=yes",
     );
   };
-
 
   return (
     <div className="time-to-enter-mamad-wrapper">
@@ -29,9 +18,7 @@ function TimeToEnterMamad1() {
         id="background-timer"
       />
 
-
       <p id="frame3-text1">זמן כניסה למרחב מוגן</p>
-
 
       <p id="frame3-text2">
         עליכם להכיר את{" "}
@@ -40,12 +27,10 @@ function TimeToEnterMamad1() {
         זמן זה.
       </p>
 
-
       <p id="frame3-text3">
         לכל יישוב בישראל מוגדר זמן התגוננות – הזמן העומד לרשות השוהים לפעול
         ולהיכנס למרחב המוגן מרגע ההתרעה.
       </p>
-
 
       <div id="frame3-text4">
         זמן התגוננות זה משתנה בין יישוב ליישוב, בהתאם למרחק שלו מהגבול, ומוגדר
@@ -66,8 +51,4 @@ function TimeToEnterMamad1() {
   );
 }
 
-
 export default TimeToEnterMamad1;
-
-
-

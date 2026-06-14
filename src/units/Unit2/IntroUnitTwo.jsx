@@ -179,7 +179,7 @@ function IntroUnitTwo() {
     <div className="IntroUnitTwo">
       <UnitTwoSidebar />
       <div className="subtext-IntroUnit">
-        יחידה זו בנויה מ - 4 תתי-נושאים, בלחיצה על כל דלת יפתח תת-נושא חדש
+        יחידה זו בנויה מ-4 תתי-נושאים, בלחיצה על כל דלת יפתח תת-נושא חדש
       </div>
       <img className="first-background" src={doorImage} alt="Intro Unit 2" />
 

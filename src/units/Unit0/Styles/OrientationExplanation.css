@@ -5,15 +5,14 @@
   pointer-events: none;
 }
 
-
 .tour-shade {
   position: fixed;
   background: rgba(0, 0, 0, 0.65);
   pointer-events: auto;
   transition: all 0.25s ease;
   backdrop-filter: blur(4px);
+  z-index: 999999998;
 }
-
 
 .tour-highlight-border {
   position: fixed;
@@ -25,7 +24,6 @@
   pointer-events: none;
   animation: tour-pulse 2s infinite ease-in-out;
 }
-
 
 @keyframes tour-pulse {
   0% {
@@ -45,7 +43,6 @@
   }
 }
 
-
 .tour-popup {
   width: clamp(28vmin, 28vw, 42vmin);
   max-width: 92vw;
@@ -58,8 +55,8 @@
     0 0.2vmin 0.8vmin rgba(0, 0, 0, 0.1);
   pointer-events: auto;
   direction: rtl;
+  z-index: 999999999;
 }
-
 
 @keyframes tour-pop-in {
   from {
@@ -72,7 +69,6 @@
   }
 }
 
-
 /* ─── dots ─── */
 .tour-step-dots {
   display: flex;
@@ -80,7 +76,6 @@
   gap: 0.6vmin;
   margin-bottom: 1.2vmin;
 }
-
 
 .tour-dot {
   width: 0.8vmin;
@@ -90,17 +85,14 @@
   transition: all 0.2s ease;
 }
 
-
 .tour-dot.active {
   background: #3fc6f3;
   transform: scale(1.35);
 }
 
-
 .tour-dot.done {
   background: #a8e6f8;
 }
-
 
 /* ─── text ─── */
 .tour-text {
@@ -111,7 +103,6 @@
   font-family: "Assistant", sans-serif;
 }
 
-
 /* ─── buttons ─── */
 .tour-actions {
   display: flex;
@@ -119,7 +110,6 @@
   align-items: center;
   gap: 1vmin;
 }
-
 
 .tour-btn-skip {
   background: transparent;
@@ -134,12 +124,10 @@
   font-family: "Assistant", sans-serif;
 }
 
-
 .tour-btn-skip:hover {
   color: #3fc6f3;
   background: rgba(63, 198, 243, 0.12);
 }
-
 
 .tour-btn-next {
   background: linear-gradient(135deg, #3fc6f3, #1aaedc);
@@ -156,17 +144,14 @@
   box-shadow: 0 0.6vmin 1.8vmin rgba(63, 198, 243, 0.32);
 }
 
-
 .tour-btn-next:hover {
   transform: translateY(-0.2vmin);
   box-shadow: 0 0.8vmin 2.2vmin rgba(63, 198, 243, 0.48);
 }
 
-
 .tour-btn-next:active {
   transform: scale(0.97);
 }
-
 
 .tour-step-counter {
   position: absolute;
@@ -175,11 +160,9 @@
   font-size: 2vmin;
 }
 
-
 .tour-arrow-line {
   animation: tour-dash-flow 1s linear infinite;
 }
-
 
 @keyframes tour-dash-flow {
   from {
@@ -189,8 +172,6 @@
     stroke-dashoffset: -24;
   }
 }
-
-
 
 .tour-arrow-svg {
   position: absolute;

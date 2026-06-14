@@ -2,14 +2,13 @@ import React, { useEffect, useState, useCallback, useRef } from "react";
 import "./Styles/OrientationExplanation.css";
 import { useNavigate } from "react-router-dom";
 
-
 const steps = [
   {
     target: ".app-header-0",
     text: "בחלק זה תופיע הכותרת הראשית של הפרק או תת הפרק של היחידה בה אתם נמצאים.",
     popupPosition: "bottom",
     openSidebar: false,
-    arrowDirection: "up",      // הפופאפ מתחת → החץ מצביע למעלה
+    arrowDirection: "up",
   },
   {
     target: ".pg-container",
@@ -23,7 +22,7 @@ const steps = [
     text: "בלחיצה על הלשונית יפתח תפריט הניווט הצדדי המאפשר מעבר מהיר בין חלקי התוכן.",
     popupPosition: "left",
     openSidebar: false,
-    arrowDirection: "right",   // הפופאפ משמאל → החץ מצביע ימינה
+    arrowDirection: "right",
   },
   {
     target: ".sidebar-content",
@@ -40,6 +39,13 @@ const steps = [
     arrowDirection: "right",
   },
   {
+    target: ".narration-player-dummy",
+    text: "כפתור השמע – בלחיצה על כפתור זה תוכלו להפעיל או להשהות את הקראת הטקסט.",
+    popupPosition: "bottom",
+    openSidebar: false,
+    arrowDirection: "up-left",
+  },
+  {
     target: ".buttons-page-corner",
     text: [
       "כפתורי הניווט – בלחיצה על החץ הגדול השמאלי תוכלו להתקדם, ובלחיצה על החץ הקטן הימני לחזור אחורה.",
@@ -51,13 +57,11 @@ const steps = [
     ],
     popupPosition: "top",
     openSidebar: false,
-    arrowDirection: "down",    // הפופאפ מעל → החץ מצביע למטה
+    arrowDirection: "down",
   },
 ];
 
-
 const PADDING = 8;
-
 
 const normalizeUnit = (unit) => {
   const map = {
@@ -69,7 +73,6 @@ const normalizeUnit = (unit) => {
   };
   return map[unit] || "unit1";
 };
-
 
 function getVisibleRect(el) {
   const r = el.getBoundingClientRect();
@@ -87,7 +90,6 @@ function getVisibleRect(el) {
   };
 }
 
-
 function OrientationExplanation() {
   const [step, setStep] = useState(0);
   const [rect, setRect] = useState(null);
@@ -100,14 +102,12 @@ function OrientationExplanation() {
     height: window.innerHeight,
   });
 
-
   useEffect(() => {
     const handleResize = () =>
       setViewport({ width: window.innerWidth, height: window.innerHeight });
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
 
   useEffect(() => {
     sessionStorage.setItem("currentUnit", "UnitOne");
@@ -119,24 +119,20 @@ function OrientationExplanation() {
     };
   }, []);
 
-
   const isSidebarOpen = () => {
     const s = document.querySelector(".sidebar-container");
     return s ? !s.classList.contains("closed") : false;
   };
-
 
   const openSidebar = useCallback(() => {
     if (!isSidebarOpen()) document.querySelector(".toggle-tab")?.click();
     sidebarOpenRef.current = true;
   }, []);
 
-
   const closeSidebar = useCallback(() => {
     if (isSidebarOpen()) document.querySelector(".toggle-tab")?.click();
     sidebarOpenRef.current = false;
   }, []);
-
 
   const findRect = (selector) =>
     new Promise((resolve) => {
@@ -156,13 +152,11 @@ function OrientationExplanation() {
       attempt();
     });
 
-
   const goToStep = useCallback(
     async (newStep) => {
       const stepConfig = steps[newStep];
       setPopupVisible(false);
       await new Promise((r) => setTimeout(r, 250));
-
 
       if (stepConfig.openSidebar) {
         openSidebar();
@@ -172,7 +166,6 @@ function OrientationExplanation() {
         await new Promise((r) => setTimeout(r, 400));
       }
 
-
       const newRect = await findRect(stepConfig.target);
       setRect(newRect);
       await new Promise((r) => setTimeout(r, 400));
@@ -180,7 +173,6 @@ function OrientationExplanation() {
     },
     [openSidebar, closeSidebar],
   );
-
 
   useEffect(() => {
     const init = async () => {
@@ -190,7 +182,6 @@ function OrientationExplanation() {
     };
     init();
   }, []);
-
 
   const handleNext = () => {
     if (step < steps.length - 1) {
@@ -204,7 +195,6 @@ function OrientationExplanation() {
     }
   };
 
-
   const handleSkip = () => {
     if (sidebarOpenRef.current) closeSidebar();
     sessionStorage.setItem("tourDone", "true");
@@ -212,68 +202,72 @@ function OrientationExplanation() {
   };
 
   const getArrowStyle = (direction) => {
-  const base = {
-    position: "absolute",
-    width: "9vw",
-    height: "6vh",
-    overflow: "visible",
-  };
+    const base = {
+      position: "absolute",
+      width: "9vw",
+      height: "6vh",
+      overflow: "visible",
+    };
 
-  switch (direction) {
-    case "up":
-      return {
-        ...base,
-        top: "-4vh",
-        left: "95%",
-        transform: "translateX(-50%) rotate(0deg) scaleX(-1)",
-      };
-    case "down":
-      return {
-        ...base,
-        bottom: "-8vh",
-        left: "50%",
-        transform: "translateX(-50%) rotate(180deg)",
-      };
-    case "right":
-      return {
-        ...base,
-        top: "110%",
-        right: "-4vw",
-        transform: "translateY(-50%) rotate(160deg) scaleX(-1)",
-      };
-    case "left":
-      return {
-        ...base,
-        top: "50%",
-        left: "-8vw",
-        transform: "translateY(-50%) rotate(-90deg) scaleX(-1)",
-      };
-    default:
-      return { display: "none" };
-  }
-};
+    switch (direction) {
+      case "up":
+        return {
+          ...base,
+          top: "-4vh",
+          left: "95%",
+          transform: "translateX(-50%) rotate(0deg) scaleX(-1)",
+        };
+      case "down":
+        return {
+          ...base,
+          bottom: "-8vh",
+          left: "50%",
+          transform: "translateX(-50%) rotate(180deg)",
+        };
+      case "right":
+        return {
+          ...base,
+          top: "110%",
+          right: "-4vw",
+          transform: "translateY(-50%) rotate(160deg) scaleX(-1)",
+        };
+      case "left":
+        return {
+          ...base,
+          top: "50%",
+          left: "-8vw",
+          transform: "translateY(-50%) rotate(-90deg) scaleX(-1)",
+        };
+      case "up-left":
+        return {
+          ...base,
+          top: "-6vh",
+          left: "8vw",
+          transform: "translateX(-50%) rotate(0deg) scaleX(-1)",
+          height: "5vh",
+          width: "8vw",
+        };
+      default:
+        return { display: "none" };
+    }
+  };
 
   const vw = viewport.width;
   const vh = viewport.height;
-
 
   const getPopupStyle = () => {
     const popupW = Math.min(vw * 0.28, 500);
     const popupH = Math.min(vh * 0.38, 400);
     const gap = vw * 0.012;
 
-
     if (!rect)
       return { bottom: "8vh", left: "50%", transform: "translateX(-50%)" };
-
 
     const pos = steps[step].popupPosition;
     const extraLeft = steps[step].target === ".toggle-tab" ? 44 : 0;
 
-
     const clampL = (l) => Math.max(12, Math.min(l, vw - popupW - 12));
     const clampT = (t) => Math.max(12, Math.min(t, vh - popupH - 12));
-
 
     if (pos === "bottom")
       return {
@@ -296,10 +290,8 @@ function OrientationExplanation() {
         left: clampL(rect.x + rect.w + gap),
       };
 
-
     return { bottom: "8vh", right: "4vw" };
   };
-
 
   const strips = rect
     ? [
@@ -320,9 +312,7 @@ function OrientationExplanation() {
       ]
     : [{ top: 0, left: 0, width: vw, height: vh }];
 
-
   const popupBaseStyle = getPopupStyle();
-
 
   return (
     <div className={`tour-overlay theme-${unit}`}>
@@ -339,7 +329,6 @@ function OrientationExplanation() {
         />
       ))}
 
-
       {rect && (
         <div
           className="tour-highlight-border"
@@ -355,6 +344,15 @@ function OrientationExplanation() {
         />
       )}
 
+      {/* כפתור שמע דמה — מיקום זהה ל-NarrationPlayer האמיתי, לא לחיץ */}
+      <div
+        className="narration-player narration-player-dummy"
+        style={{ pointerEvents: "none" }}
+      >
+        <button className="narration-btn" title="הפעל קריינות">
+          🔇
+        </button>
+      </div>
 
       <div
         className="tour-popup"
@@ -418,8 +416,4 @@ function OrientationExplanation() {
   );
 }
 
-
 export default OrientationExplanation;
-
-
-

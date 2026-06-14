@@ -115,7 +115,7 @@
   align-items: flex-start;
   gap: 3vw;
   width: 130vw;
-  margin-top: 25vh;
+  margin-top: 16vh;
   position: relative;
   z-index: 1;
 }
@@ -368,11 +368,11 @@
 }
 
 .credit-page-intro {
-  font-size: 2.5vmin;
+  font-size: 2.2vmin;
   line-height: 1.8;
-  font-weight: 600;
+  /* font-weight: 600; */
   margin: 0;
-  padding: 1.5vh 2vw;
+  padding: 1.5vh 1vw;
   /* background: rgba(255, 251, 244, 0.8); */
   border-radius: 1vh;
   border: 0.3vh dashed rgba(141, 141, 141, 0.3);

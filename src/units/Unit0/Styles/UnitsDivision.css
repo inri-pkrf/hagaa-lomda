@@ -96,7 +96,7 @@
   font-size: 2vmin;
   padding: 1vh 1.5vw 1vh 0;
   position: relative;
-  transition: 0.2s ease;
+  width: 15vw;
 }
 
 /* בולט — קו אנכי */

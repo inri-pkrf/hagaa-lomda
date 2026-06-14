@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "../../Unit3/style/ManPower.css";
 
-
 function ManPower() {
   const [activeTab, setActiveTab] = useState(null);
   const [clickedTabs, setClickedTabs] = useState([]);
-
 
   const personnelData = {
     internal: {
@@ -24,12 +22,11 @@ function ManPower() {
       content: [
         "עובדים הפטורים משירות ביטחון הינם עובדים שלא משרתים במילואים.",
         "במקרים ייחודיים, ניתן לנתק אף עובדים המחויבים בשירות ביטחון.",
-        "יש להכשיר מחליפים לבעלי תפקידים חיוניים חייבי גיוס לצבא ההגנה לישראל מקרב עובדי המפעל או על בסיס מגויסי חוץ",
+        "יש להכשיר מחליפים לבעלי תפקידים חיוניים חייבי גיוס לצבא ההגנה לישראל מקרב עובדי המפעל או על בסיס מגויסי חוץ.",
         "יש ליצור מראש עתודת עובדים שתבוסס על עובדים שפרשו לגמלאות, בני משפחה וכו'.",
       ],
     },
   };
-
 
   // חסום כפתור קדימה בטעינה
   useEffect(() => {
@@ -43,7 +40,6 @@ function ManPower() {
     };
   }, []);
 
-
   // שחרר כשנלחצו שני הטאבים
   useEffect(() => {
     const allClicked = Object.keys(personnelData).every((key) =>
@@ -54,14 +50,12 @@ function ManPower() {
     );
   }, [clickedTabs]);
 
-
   const handleTabClick = (id) => {
     setActiveTab((prev) => (prev === id ? null : id));
     if (!clickedTabs.includes(id)) {
       setClickedTabs((prev) => [...prev, id]);
     }
   };
-
 
   return (
     <div className="manpower-wrapper">
@@ -70,7 +64,6 @@ function ManPower() {
         <br /> לכל מפעל קיים קו תקן עובדים בחירום, ואיושו מתבסס על שני סוגי
         עובדים.
       </p>
-
 
       <div className="main-container">
         <div className="tabs-header">
@@ -103,7 +96,6 @@ function ManPower() {
           ))}
         </div>
 
-
         {activeTab && (
           <div className="content-area">
             <ul className="info-list">
@@ -121,8 +113,4 @@ function ManPower() {
   );
 }
 
-
 export default ManPower;
-
-
-

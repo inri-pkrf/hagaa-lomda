@@ -2,23 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style/HowPreper.css";
 
-
-
-
 function HowPreper() {
   const navigate = useNavigate();
-
-
-
 
   // שמירת מה נלחץ
   const [clickedItems, setClickedItems] = useState(() => {
     const saved = sessionStorage.getItem("clickedHowPreper");
     return saved ? JSON.parse(saved) : [];
   });
-
-
-
 
   const handleClick = (id) => {
     setClickedItems((prev) => {
@@ -30,29 +21,17 @@ function HowPreper() {
       return prev;
     });
 
-
-
-
     navigate(`/${id}`);
   };
-
-
-
 
   useEffect(() => {
     const allClicked = prepItems.every((item) =>
       clickedItems.includes(item.id),
     );
 
-
-
-
     window.dispatchEvent(
       new CustomEvent("setNextBtnDisabled", { detail: !allClicked }),
     );
-
-
-
 
     return () => {
       window.dispatchEvent(
@@ -60,9 +39,6 @@ function HowPreper() {
       );
     };
   }, [clickedItems]);
-
-
-
 
   // נתוני המגנטים על הלוח
   const prepItems = [
@@ -131,9 +107,6 @@ function HowPreper() {
     },
   ];
 
-
-
-
   return (
     <div className="how-preper-page">
       <div className="whiteboard-wrapper">
@@ -146,14 +119,8 @@ function HowPreper() {
           className="whiteboard-image"
         />
 
-
-
-
         {prepItems.map((item) => {
           const isClicked = clickedItems.includes(item.id);
-
-
-
 
           return (
             <button
@@ -164,9 +131,6 @@ function HowPreper() {
             >
               <img src={item.img} alt={item.title} className="magnet-icon" />
               <span className="magnet-title">{item.title}</span>
-
-
-
 
               {/* ✔ אם נלחץ */}
               {isClicked && (
@@ -189,20 +153,4 @@ function HowPreper() {
   );
 }
 
-
-
-
 export default HowPreper;
-
-
-
-
-
-
-
-
-
-
-
-
-

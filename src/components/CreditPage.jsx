@@ -39,7 +39,13 @@ const CREDIT_DATA = [
   {
     id: "content",
     title: "תוכן",
-    subtitle: "לתיקוף וחידוש התוכן היו אחראים מומחי התוכן",
+    subtitle: (
+      <>
+        לתיקוף וחידוש התוכן היו אחראיים
+        <br />
+        מומחי התוכן
+      </>
+    ),
     className: "credit-page-content",
     items: [
       {
@@ -73,17 +79,6 @@ const CREDIT_DATA = [
       {
         name: "נעמה לביא - מפתחת לומדה",
         icon: `${PUBLIC_URL}/assets/CreditPage/pink-star.png`,
-      },
-      {
-        name: "אביטל המבורג",
-        icon: `${PUBLIC_URL}/assets/CreditPage/pink-star.png`,
-        isSmall: true,
-        groupTitle: "מפתחות נוספות",
-      },
-      {
-        name: "עלמה יובל",
-        icon: `${PUBLIC_URL}/assets/CreditPage/pink-star.png`,
-        isSmall: true,
       },
     ],
   },
@@ -162,9 +157,10 @@ function CreditPage() {
         <p className="credit-page-intro">
           אנשים רבים וטובים לקחו חלק בהקמתה של הכשרה זו והקדישו זמן, ניסיון
           ומקצועיות כדי להפוך ידע חיוני לחוויית למידה דיגיטלית נגישה ואיכותית.
+          <br />
           תודה לכל מי שתרמה או תרם לידע, לתכנון, לכתיבה, לעיצוב, לפיתוח, להפקה
-          ולהטמעת ההכשרה, ולכל מי שסייע בהפיכת חזון זה למוצר למידה משמעותי
-          ומתקדם.
+          ולהטמעת ההכשרה,{" "}
+          <b>ולכל מי שסייע בהפיכת חזון זה למוצר למידה משמעותי ומתקדם.</b>
         </p>
       </header>
 

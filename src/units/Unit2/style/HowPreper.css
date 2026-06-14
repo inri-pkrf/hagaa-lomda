@@ -1,6 +1,5 @@
 /* ══ HowPreper.css - מאוחד ומלא ══ */
 
-
 .how-preper-page {
   width: 100vw;
   height: 100vh;
@@ -17,7 +16,6 @@
   left: 0;
 }
 
-
 /* ══ כותרת ══ */
 .header-container {
   display: flex;
@@ -30,24 +28,20 @@
   z-index: 10;
 }
 
-
 .page-icon {
   width: 5vw;
   height: 8vh;
 }
-
 
 .prep-title {
   font-size: 4.5vmin;
   margin-bottom: 1.5vh;
 }
 
-
 .prep-subtitle {
   font-size: 1.8vw;
   margin-bottom: 4vh;
 }
-
 
 /* ══ לוח ══ */
 .whiteboard-wrapper {
@@ -55,7 +49,6 @@
   width: 75%;
   margin: 25vh auto 0 auto;
 }
-
 
 .whiteboard-image {
   width: 100%;
@@ -66,11 +59,9 @@
   object-fit: fill;
 }
 
-
 .whiteboard-image.bottom {
   top: -5vh;
 }
-
 
 /* ══ מגנטים (HowPreper) ══ */
 .magnet-button {
@@ -89,12 +80,10 @@
   text-align: center;
 }
 
-
 .magnet-button:hover {
   transform: translate(-50%, -50%) scale(1.1);
   filter: drop-shadow(0 1vh 1vh rgba(0, 0, 0, 0.4));
 }
-
 
 .magnet-icon {
   width: 10vw;
@@ -102,7 +91,6 @@
   margin-bottom: 1.5vh;
   object-fit: contain;
 }
-
 
 .magnet-title {
   font-weight: 700;
@@ -112,7 +100,6 @@
   border-radius: 0.8vw;
   box-shadow: 0 0.4vh 0.6vh rgba(0, 0, 0, 0.15);
 }
-
 
 /* ══ V הושלם (HowPreper) ══ */
 .completion-v {
@@ -128,12 +115,10 @@
   justify-content: center;
 }
 
-
 .completion-v svg {
   width: 60%;
   height: 60%;
 }
-
 
 /* ══ גריד אייקונים (Securing / Reinforcement) ══ */
 .icons-grid {
@@ -149,7 +134,6 @@
   max-width: 70vw;
   margin: 0 auto;
 }
-
 
 .icon-wrapper {
   position: relative;
@@ -170,12 +154,10 @@
   align-items: center;
 }
 
-
 .icon-securing {
   width: 4vw;
   height: 8vh;
 }
-
 
 .icon-wrapper:hover {
   background-color: #a3d7c5;
@@ -183,28 +165,23 @@
   box-shadow: 0 0.8vh 1.6vh rgba(66, 99, 60, 0.2);
 }
 
-
 /* Red variants */
 .icon-wrapper-red {
   border: 0.2vw solid #bd7171;
 }
-
 
 .icon-wrapper-red img {
   width: 6vw;
   height: 10vh;
 }
 
-
 .icon-wrapper-red:hover {
   background-color: #e0b1b1;
 }
 
-
 .icons-grid-red {
   top: 30%;
 }
-
 
 /* ══ V הושלם (Securing) ══ */
 .checkmark {
@@ -225,7 +202,6 @@
   z-index: 5;
 }
 
-
 /* ══ כותרת הוראה על הגריד ══ */
 .grid-instruction-title {
   position: absolute;
@@ -237,7 +213,6 @@
   margin: 0;
   padding: 0 2vw;
 }
-
 
 /* ══ פופ-אפ (Securing / Reinforcement) ══ */
 .overlay {
@@ -253,7 +228,6 @@
   z-index: 1000;
 }
 
-
 .popup-box-securing {
   background: white;
   width: 40vw;
@@ -266,23 +240,19 @@
   border: 0.4vw solid #a1b3ad;
 }
 
-
 .popup-box-securing h3 {
   margin-top: 0;
   font-size: 1.5vw;
 }
-
 
 .popup-box-securing p {
   font-size: 1.4vw;
   margin: 2vh 0;
 }
 
-
 .popup-box-red {
   border: 0.4vw solid #bd7171;
 }
-
 
 .popup-close-x-securing {
   position: absolute;
@@ -301,23 +271,19 @@
   z-index: 10;
 }
 
-
 #red-x {
   color: #bd7171;
 }
 
-
 .popup-text-container {
   padding-top: 1vh;
 }
-
 
 .popup-icon-securing {
   width: 3vw;
   height: 3vw;
   padding: 0.3vw;
 }
-
 
 .popup-header-row-securing {
   display: flex;
@@ -328,28 +294,23 @@
   margin-bottom: 3vh;
 }
 
-
 .continue-btn-new-securing,
 .maintenance-popup-content-securing.custom-design {
   border: 0.4vmin solid #388629;
 }
 
-
 .continue-btn-new-securing {
   background-color: #388629;
 }
-
 
 .continue-btn-new-securing-red {
   background-color: #bd7171;
 }
 
-
 .continue-btn-new-securing-red,
 .maintenance-popup-content-securing-red.custom-design {
   border: 0.4vmin solid #bd7171;
 }
-
 
 /* ══ Progress bar ══ */
 .progress-section-custom {
@@ -361,7 +322,6 @@
   gap: 1vh;
 }
 
-
 .progress-bar-wrapper {
   width: 100%;
   height: 0.8vh;
@@ -370,7 +330,6 @@
   position: relative;
   box-shadow: inset 0 0.1vh 0.3vh rgba(0, 0, 0, 0.1);
 }
-
 
 .progress-bar-fill-custom {
   height: 100%;
@@ -381,11 +340,9 @@
   box-shadow: 0 0.2vh 0.4vh rgba(233, 165, 114, 0.3);
 }
 
-
 #red-progress-bar {
   background: linear-gradient(90deg, #ebbcbc, #bd7171);
 }
-
 
 .progress-number-tooltip {
   position: absolute;
@@ -400,11 +357,9 @@
   box-shadow: 0 0.2vh 0.5vh rgba(0, 0, 0, 0.1);
 }
 
-
 #red-progress-number {
   color: #bd7171;
 }
-
 
 .progress-label-custom {
   font-size: 0.8vw;
@@ -412,7 +367,6 @@
   text-transform: uppercase;
   font-weight: 500;
 }
-
 
 /* ══ Escape ══ */
 .escape-items-container {
@@ -427,14 +381,12 @@
   gap: 3vw;
 }
 
-
 .escape-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 20%;
 }
-
 
 .escape-icon {
   width: 10vw;
@@ -446,7 +398,6 @@
   top: 15vh;
 }
 
-
 .escape-text {
   position: relative;
   top: 5vh;
@@ -456,7 +407,6 @@
   border-radius: 0.6vw;
   text-align: center;
 }
-
 
 .escape-bold-text-top {
   position: absolute;
@@ -469,7 +419,6 @@
   box-sizing: border-box;
 }
 
-
 .escape-bold-text-bottom {
   position: absolute;
   bottom: 14vh;
@@ -481,7 +430,6 @@
   box-sizing: border-box;
 }
 
-
 /* ══ Tsunami ══ */
 .simple-content-container {
   position: absolute;
@@ -492,7 +440,6 @@
   display: flex;
   justify-content: center;
 }
-
 
 .highlighted-paragraph {
   background-color: #d1aed3;
@@ -506,7 +453,6 @@
   box-shadow: 0.5vw 0.5vw 1.5vw rgba(0, 0, 0, 0.1);
 }
 
-
 .tsunami {
   background-color: #b8e4e7;
   border: 0.3vw solid #102e70;
@@ -514,7 +460,6 @@
   top: -10vh;
   width: 60vw;
 }
-
 
 .tsunami-text-bottom {
   font-size: 3vmin;
@@ -524,7 +469,6 @@
   margin-top: 18vh;
   width: 90vw;
 }
-
 
 /* ══ Training ══ */
 .training-content {
@@ -538,7 +482,6 @@
   align-items: center;
 }
 
-
 .training-paragraph {
   font-size: 3vmin;
   text-align: center;
@@ -546,7 +489,6 @@
   font-weight: 600;
   line-height: 1.5;
 }
-
 
 .training-images-row {
   display: flex;
@@ -556,21 +498,18 @@
   align-items: center;
 }
 
-
 .training-card {
   position: relative;
-  width: 15vw;
-  height: 20vh;
+  width: 25vw;
+  height: 22vh;
   border-radius: 1vw;
   overflow: hidden;
 }
-
 
 .card-bg {
   width: 100%;
   height: 100%;
 }
-
 
 .card-overlay-text {
   position: absolute;
@@ -584,7 +523,6 @@
   box-sizing: border-box;
 }
 
-
 /* ══ Risk ══ */
 .risk-content {
   position: absolute;
@@ -595,7 +533,6 @@
   text-align: center;
 }
 
-
 .risk-title {
   width: 100%;
   font-size: 3vmin;
@@ -604,7 +541,6 @@
   position: absolute;
   top: -10vh;
 }
-
 
 .risk-list {
   list-style: none;
@@ -616,7 +552,6 @@
   text-align: right;
 }
 
-
 .risk-list li {
   position: relative;
   font-size: 2.5vmin;
@@ -624,6 +559,3 @@
   padding-right: 2.5vw;
   font-weight: 600;
 }
-
-
-

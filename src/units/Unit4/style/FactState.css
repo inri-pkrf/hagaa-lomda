@@ -1,71 +1,63 @@
-
-
-#FactState-headline{
-    position: absolute;
-    font-family: 'Karantina';
-    font-size: 9vh;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 9vh;
-    font-weight: 600;
+#FactState-headline {
+  position: absolute;
+  font-family: "Karantina";
+  font-size: 9vh;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 9vh;
+  font-weight: 600;
 }
 
 .FactState-container {
-    background-color: #FDF9F4;
+  background-color: #fdf9f4;
 }
 
-#FactState-sub-text{
-    position: absolute;
-    font-family: 'Karantina';
-    font-size: 5vh;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 20vh;
+#FactState-sub-text {
+  position: absolute;
+  font-family: "Karantina";
+  font-size: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 20vh;
 }
 
-
-#FactState-text1{
-    position: absolute;
-    font-family: 'Assistant';
-    font-size: 3.5vh;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 34vh;
-    direction: rtl;
-    width: 40vw;
- 
+#FactState-text1 {
+  position: absolute;
+  font-family: "Assistant";
+  font-size: 3.5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 34vh;
+  direction: rtl;
+  width: 40vw;
 }
 
-
-#FactState-text2{
-    position: absolute;
-    font-family: 'Assistant';
-    font-size: 3vh;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 60vh;
-    direction: rtl;
-    border: solid 0.5vh #F9A94B;
-    width: 28vw;
-    text-align: center;
-    padding: 3vh;
-    border-radius: 2vh;
+#FactState-text2 {
+  position: absolute;
+  font-family: "Assistant";
+  font-size: 3vh;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 60vh;
+  direction: rtl;
+  border: solid 0.5vh #f9a94b;
+  width: 30vw;
+  text-align: center;
+  padding: 3vh;
+  border-radius: 2vh;
 }
 
-
-#icon-pkar-legal{
-    position: absolute;
-    height: 7vh;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 59.5vh;
+#icon-pkar-legal {
+  position: absolute;
+  height: 7vh;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 59.5vh;
 }
 
-
-#FactState-img{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 45%;
+#FactState-img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 45%;
 }
-

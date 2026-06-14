@@ -2,12 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../Unit2/style/FireBehaviorIn.css";
 
-
 function FireBehaviorIn() {
-  const navigate = useNavigate();
-  const [activeImage, setActiveImage] = useState(null);
-
-
   const items = [
     "אם השריפה קטנה, כבו אותה",
     "אם לא ניתן לכבות - יש להתפנות מהמבנה",
@@ -18,7 +13,6 @@ function FireBehaviorIn() {
     "יש להישאר במקום כדי למסור מידע ללוחמי האש לרבות לגבי לכודים",
   ];
 
-
   return (
     <div>
       <img
@@ -26,7 +20,6 @@ function FireBehaviorIn() {
         alt="bg"
         id="FireBehaviorIn-bg"
       />
-
 
       <h2 id="FireBehaviorIn-headline">
         כללי התנהגות בשריפה במצב שבו
@@ -46,8 +39,4 @@ function FireBehaviorIn() {
   );
 }
 
-
 export default FireBehaviorIn;
-
-
-

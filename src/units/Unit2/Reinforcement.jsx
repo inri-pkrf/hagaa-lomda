@@ -7,18 +7,23 @@ function Reinforcement() {
 
   // חסום כפתור קדימה בטעינה
   useEffect(() => {
-    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: true }));
+    window.dispatchEvent(
+      new CustomEvent("setNextBtnDisabled", { detail: true }),
+    );
     return () => {
-      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
+      window.dispatchEvent(
+        new CustomEvent("setNextBtnDisabled", { detail: false }),
+      );
     };
   }, []);
 
   // שחרר כשכל הפריטים נפתחו
   useEffect(() => {
     const allOpened = itemsData.every((item) => openedItems.includes(item.id));
-    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: !allOpened }));
+    window.dispatchEvent(
+      new CustomEvent("setNextBtnDisabled", { detail: !allOpened }),
+    );
   }, [openedItems]);
-
 
   const itemsData = [
     {
@@ -44,11 +49,10 @@ function Reinforcement() {
       id: 4,
       title: "חשמל וגז",
       description:
-        "תיקון וחיזוק חיווטי חשמל וחיבורי גז המהווים מקור סיכון לשריפות",
+        "תיקון וחיזוק חיווטי חשמל וחיבורי גז המהווים מקור סיכון\u00A0לשריפות",
       icon: "electrical-gas-icon-red",
     },
   ];
-
 
   const handleOpenItem = (item) => {
     setSelectedItem(item);
@@ -57,19 +61,16 @@ function Reinforcement() {
     }
   };
 
-
   const handleNextItem = () => {
     // מוצאים את כל הפריטים שעדיין לא נפתחו
     const unopenedItems = itemsData.filter(
       (item) => !openedItems.includes(item.id),
     );
 
-
     if (unopenedItems.length > 0) {
       // אם יש כאלו, עוברים לראשון מביניהם (לא משנה איפה הוא במערך)
       const nextItem = unopenedItems[0];
       setSelectedItem(nextItem);
-
 
       // מוסיפים אותו לרשימת הפתוחים
       setOpenedItems((prev) => [...prev, nextItem.id]);
@@ -78,7 +79,6 @@ function Reinforcement() {
       setSelectedItem(null);
     }
   };
-
 
   return (
     <div className="how-preper-page">
@@ -93,10 +93,8 @@ function Reinforcement() {
           className="page-icon"
         />
 
-
         <h2 className="prep-title">חיזוק המבנה</h2>
       </div>
-
 
       {/* הלוח */}
       <div className="whiteboard-wrapper">
@@ -109,12 +107,10 @@ function Reinforcement() {
           className="whiteboard-image bottom"
         />
 
-
         <h2 className="grid-instruction-title">
           באירוע רעידת אדמה נדרשות מספר פעולות היערכות. בעת לחיצה על האייקונים
           יתאפשר לגלות אודותיהם.
         </h2>
-
 
         <div className="icons-grid-red icons-grid">
           {itemsData.map((item) => (
@@ -128,7 +124,6 @@ function Reinforcement() {
                 alt={item.title}
               />
 
-
               {/* וי אחרי פתיחה */}
               {openedItems.includes(item.id) && (
                 <div className="checkmark">✔</div>
@@ -137,7 +132,6 @@ function Reinforcement() {
           ))}
         </div>
       </div>
-
 
       {selectedItem && (
         <div className="maintenance-popup-overlay">
@@ -158,10 +152,8 @@ function Reinforcement() {
                 />
               </div>
 
-
               <p>{selectedItem.description}</p>
             </div>
-
 
             <div className="progress-section-custom">
               <div className="progress-bar-wrapper">
@@ -186,7 +178,6 @@ function Reinforcement() {
               </div>
             </div>
 
-
             <div className="popup-footer">
               <button
                 className="continue-btn-new continue-btn-new-securing continue-btn-new-securing-red"
@@ -198,7 +189,6 @@ function Reinforcement() {
                   : "לפעולה הבאה"}
               </button>
 
-
               <div className="bottom-icon-circle"></div>
             </div>
           </div>
@@ -208,8 +198,4 @@ function Reinforcement() {
   );
 }
 
-
 export default Reinforcement;
-
-
-

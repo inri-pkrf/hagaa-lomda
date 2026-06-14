@@ -166,7 +166,7 @@ function DetailEmergencyTeams() {
               <div className="orange-border-section">
                 <h3>עקרונות להקמה:</h3>
                 {/* כאן הוספנו את הגבלת הרוחב רק לטקסט עצמו */}
-                <p style={{ width: "35vw" }}>{selectedTeam.establishment}</p>
+                <p>{selectedTeam.establishment}</p>
               </div>
             </div>
 

@@ -1,7 +1,6 @@
 import React from "react";
 import "./style/PostEarthquake.css";
 
-
 function PostEarthquake() {
   return (
     <div className="post-earthquake-wrapper">
@@ -22,7 +21,6 @@ function PostEarthquake() {
         <br></br>
         סיוע לפצועים - באחריות צוות עזרה ראשונה במפעל, עליו נפרט בפרק הבא.
       </p>
-
 
       <img
         src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/earthquake/news.png`}
@@ -54,18 +52,14 @@ function PostEarthquake() {
       </p>
       <p id="PostEarthquake-text5">
         <div id="PostEarthquake-bold">לסגור </div>
-        חשמל/גז ולא להדליק אש
+        חשמל/גז ולא להדליק&nbsp;אש
       </p>
       <p id="PostEarthquake-text6">
         <div id="PostEarthquake-bold">להתעדכן </div>
-        בהנחיות באמצעי התקשורת
+        בהנחיות המופצות באמצעי התקשורת
       </p>
     </div>
   );
 }
 
-
 export default PostEarthquake;
-
-
-

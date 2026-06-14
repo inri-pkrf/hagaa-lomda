@@ -171,7 +171,7 @@ function IntroUnitThree() {
       <UnitThreeSidebar />
 
       <div className="subtext-IntroUnit">
-        יחידה זו בנויה מ - 5 תתי-נושאים, בלחיצה על כל דלת יפתח תת-נושא חדש
+        יחידה זו בנויה מ-5 תתי-נושאים, בלחיצה על כל דלת יפתח תת-נושא חדש
       </div>
 
       <img className="first-background" src={doorImage} alt="Intro Unit 3" />

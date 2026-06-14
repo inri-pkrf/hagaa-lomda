@@ -33,6 +33,7 @@
   right: 5vw;
   top: 8vh;
   font-size: 2vmin;
+  width: 100%;
 }
 
 .placeholder-text {
@@ -64,6 +65,8 @@
   position: absolute;
   top: 25vh;
   right: 5vw;
+  width: 100%;
+  white-space: pre-line;
 }
 
 .wheel-container {

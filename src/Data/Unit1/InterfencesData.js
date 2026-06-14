@@ -7,7 +7,7 @@ const InterfencesData = {
   },
   2: {
     name: "פיקוד העורף",
-    description: `קובע למפעל את ההכנות הנדרשות בשגרה בתחום ההתגוננות האזרחית. כמו כן, קובע את הנחיות ההתגוננות האזרחית בשעת חירום.`,
+    description: `קובע למפעל את ההכנות הנדרשות בשגרה בתחום ההתגוננות האזרחית ואת הנחיות ההתגוננות האזרחית בשעת חירום.`,
     image: `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Interfences/PikudHoref.png`,
     colorCircle: "#ffb356",
   },
