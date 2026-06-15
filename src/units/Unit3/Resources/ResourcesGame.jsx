@@ -2,14 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../Unit3/style/ResourcesGame.css";
 
-
-
-
 function ResourcesGame() {
   const navigate = useNavigate();
-
-
-
 
   const steps = [
     {
@@ -73,9 +67,6 @@ function ResourcesGame() {
     },
   ];
 
-
-
-
   const unexaminedResources = [
     { id: "raw_materials", label: "חומרי גלם ליצור ייעודי למפעל" },
     { id: "energy_sources", label: "מקורות אנרגיה" },
@@ -92,17 +83,11 @@ function ResourcesGame() {
     },
   ];
 
-
-
-
   const [activeIndex, setActiveIndex] = useState(0);
   const [hovered, setHovered] = useState(null);
   const [clicked, setClicked] = useState([]);
   const [showIntro, setShowIntro] = useState(true);
   const [isFinished, setIsFinished] = useState(false);
-
-
-
 
   useEffect(() => {
     sessionStorage.setItem("MainTitle", "משחק משאבים");
@@ -111,17 +96,11 @@ function ResourcesGame() {
     const savedIntro = sessionStorage.getItem("ResourcesIntro");
     const savedFinished = sessionStorage.getItem("ResourcesFinished");
 
-
-
-
     if (savedClicks) setClicked(JSON.parse(savedClicks));
     if (savedIndex) setActiveIndex(Number(savedIndex));
     if (savedIntro) setShowIntro(savedIntro === "true");
     if (savedFinished) setIsFinished(savedFinished === "true");
   }, []);
-
-
-
 
   useEffect(() => {
     sessionStorage.setItem("ResourcesClicks", JSON.stringify(clicked));
@@ -130,34 +109,22 @@ function ResourcesGame() {
     sessionStorage.setItem("ResourcesFinished", isFinished);
   }, [clicked, activeIndex, showIntro, isFinished]);
 
-
-
-
   useEffect(() => {
     if (activeIndex >= steps.length) {
       setIsFinished(true);
     }
   }, [activeIndex]);
 
-
-
-
   const handleHover = (index, id) => {
     if (index !== activeIndex) return;
     setHovered(id);
   };
-
-
-
 
   const handleCompleteStep = (step, index) => {
     if (index !== activeIndex) return;
     setClicked((prev) => (prev.includes(step.id) ? prev : [...prev, step.id]));
     setActiveIndex((prev) => prev + 1);
   };
-
-
-
 
   return (
     <div className="Resources-game-container">
@@ -179,9 +146,6 @@ function ResourcesGame() {
         </div>
       )}
 
-
-
-
       <img
         src={`${process.env.PUBLIC_URL}/assets/UnitThreeImgs/Resources/ResourcesBackground.jpg`}
         className="Resources-bg"
@@ -189,24 +153,15 @@ function ResourcesGame() {
       />
       <div className="dim-overlay" />
 
-
-
-
       {/* המונה המתוקן */}
       <div className="steps-counter">
         {clicked.length}/{steps.length}
       </div>
 
-
-
-
       <div className="hotspots-layer">
         {steps.map((step, index) => {
           const isActive = index === activeIndex;
           const isClicked = clicked.includes(step.id);
-
-
-
 
           return (
             <div
@@ -229,9 +184,6 @@ function ResourcesGame() {
           );
         })}
 
-
-
-
         {steps.map((step) => {
           if (!clicked.includes(step.id)) return null;
           return (
@@ -253,9 +205,6 @@ function ResourcesGame() {
           );
         })}
       </div>
-
-
-
 
       {isFinished && (
         <div className="Resources-checklist-screen">
@@ -299,16 +248,4 @@ function ResourcesGame() {
   );
 }
 
-
-
-
 export default ResourcesGame;
-
-
-
-
-
-
-
-
-

@@ -2,10 +2,8 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../Unit2/style/TimeToEnterMamad.css";
 
-
 function TimeToEnterMamad2() {
   const navigate = useNavigate();
-
 
   useEffect(() => {
     window.dispatchEvent(
@@ -18,13 +16,11 @@ function TimeToEnterMamad2() {
     };
   }, []);
 
-
   const handleVideoEnd = () => {
     window.dispatchEvent(
       new CustomEvent("setNextBtnDisabled", { detail: false }),
     );
   };
-
 
   return (
     <div className="time-to-enter-mamad-wrapper">
@@ -43,18 +39,14 @@ function TimeToEnterMamad2() {
         id="video-time-to-enter-mamad"
         onEnded={handleVideoEnd}
       >
-      <source
-        src={`${process.env.PUBLIC_URL}/assets/videos/TimeToEnterMamad-slow.mp4`}
-        type="video/mp4"
-      />
+        <source
+          src={`${process.env.PUBLIC_URL}/assets/videos/TimeToEnterMamad-slow.mp4`}
+          type="video/mp4"
+        />
         הדפדפן שלך לא תומך בסרטון
       </video>
     </div>
   );
 }
 
-
 export default TimeToEnterMamad2;
-
-
-

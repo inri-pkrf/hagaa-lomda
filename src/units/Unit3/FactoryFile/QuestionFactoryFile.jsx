@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "../../Unit3/style/QuestionFactoryFile.css";
 
-
 const QUESTIONS = [
   {
     id: 1,
-    question: "מתי עלייך לכתוב את תיק המפעל?",
+    question: "מתי עליכם לכתוב את תיק המפעל?",
     answers: [
       "בשגרה",
       "בחירום",
@@ -16,11 +15,9 @@ const QUESTIONS = [
   },
 ];
 
-
 function QuestionFactoryFile() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
-
 
   const currentQuestion = QUESTIONS[currentQuestionIndex];
   const correctIndex =
@@ -30,7 +27,6 @@ function QuestionFactoryFile() {
       : currentQuestion.correctAnswer;
   const isCorrect = selectedAnswer === correctIndex;
 
-
   useEffect(() => {
     const isLastQuestion = currentQuestionIndex === QUESTIONS.length - 1;
     const shouldDisable = !isCorrect || !isLastQuestion;
@@ -39,12 +35,10 @@ function QuestionFactoryFile() {
     );
   }, [isCorrect, currentQuestionIndex]);
 
-
   const handleAnswerClick = (answerIndex) => {
     if (isCorrect) return;
     setSelectedAnswer(answerIndex);
   };
-
 
   const getAnswerClass = (answerIndex) => {
     if (selectedAnswer === null) return "QuestionFactoryFile-answer-text";
@@ -58,12 +52,10 @@ function QuestionFactoryFile() {
     return "QuestionFactoryFile-answer-text";
   };
 
-
   return (
     <div className="question-factory-container">
       {/* דיב לבן מופיע רק אחרי תשובה נכונה */}
       {isCorrect && <div className="question-white-cover" />}
-
 
       <div className="QuestionFactoryFile-question-text">
         {currentQuestion.question}
@@ -92,8 +84,4 @@ function QuestionFactoryFile() {
   );
 }
 
-
 export default QuestionFactoryFile;
-
-
-

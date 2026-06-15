@@ -2,26 +2,21 @@ import React, { useState } from "react";
 import "../../Unit4/style/QuestionRTE.css";
 import { useEffect } from "react";
 
-
 function QuestionRTE() {
   const [isClicked, setIsClicked] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState(null); // התשובה הנכונה שנבחרה
   const [wrongAnswers, setWrongAnswers] = useState([]); // רשימת הטעויות שנלחצו
-
 
   const imgPath = `${process.env.PUBLIC_URL}/assets/UnitFourImgs/RoutineToEmergency`;
   const bgImageUrl = `${imgPath}/emergency-question-bg.webp`;
   const womanImageUrl = `${imgPath}/women.webp`;
   const clipboardImg = `${imgPath}/clipboard.webp`;
 
-
   const correctAnswer = "קידום משימות להגברת מוכנות המפעל לאירוע חירום";
-
 
   const handleAnswerClick = (answer) => {
     // אם המשתמש כבר צדק, לא עושים כלום
     if (selectedAnswer === correctAnswer) return;
-
 
     if (answer === correctAnswer) {
       setSelectedAnswer(answer);
@@ -42,14 +37,12 @@ function QuestionRTE() {
     sessionStorage.setItem("unitFour-second", "finished");
   }, [isCorrect]);
 
-
   if (isClicked) {
     return (
       <div className="question-page-full no-bg">
         <p className="subtitles">
-          יש לקרוא את השאלה שלפניך, ולבחור בתשובה הנכונה ביותר:
+          יש לקרוא את השאלה המוצגת, ולבחור בתשובה הנכונה ביותר:
         </p>
-
 
         <div className="clipboard-wrapper">
           <img
@@ -58,9 +51,7 @@ function QuestionRTE() {
             className="clipboard-bg-img"
           />
 
-
           {isCorrect && <div className="clipboard-success-overlay" />}
-
 
           <div className="content-on-clipboard">
             <p className="question-overlay">
@@ -77,7 +68,6 @@ function QuestionRTE() {
                 let statusClass = "";
                 if (answer === selectedAnswer) statusClass = "correct";
                 else if (wrongAnswers.includes(answer)) statusClass = "wrong";
-
 
                 return (
                   <button
@@ -97,7 +87,6 @@ function QuestionRTE() {
     );
   }
 
-
   return (
     <div
       className="question-time-container"
@@ -116,10 +105,4 @@ function QuestionRTE() {
   );
 }
 
-
 export default QuestionRTE;
-
-
-
-
-

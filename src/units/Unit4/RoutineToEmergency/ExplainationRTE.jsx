@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../../Unit4/style/RoutineToEmergency.css";
 
-
 function ExplainationRTE() {
   // ניהול המצב: שגרה, חירום, או הצגת תוכן
   const [step, setStep] = useState("routine");
@@ -9,10 +8,8 @@ function ExplainationRTE() {
   const [isScrollable, setIsScrollable] = useState(false);
   const listRef = useRef(null);
 
-
   // כותרת ראשית לסינכרון עם שאר הלומדה
   sessionStorage.setItem("MainTitle", "מעבר משגרה לחירום");
-
 
   useEffect(() => {
     // מעבר למסך חירום (הבהוב) אחרי שנייה אחת
@@ -20,19 +17,16 @@ function ExplainationRTE() {
       setStep("emergency");
     }, 3000);
 
-
     // מעבר למסך התוכן הסופי אחרי 4 שניות סה"כ
     const contentTimer = setTimeout(() => {
       setStep("content");
     }, 6000);
-
 
     return () => {
       clearTimeout(emergencyTimer);
       clearTimeout(contentTimer);
     };
   }, []);
-
 
   // בדיקה האם הרשימה בפופאפ ארוכה מדי ומצריכה גלילה
   useEffect(() => {
@@ -41,7 +35,6 @@ function ExplainationRTE() {
       setIsScrollable(scrollHeight > clientHeight);
     }
   }, [activePopup]);
-
 
   // נתוני התוכן עבור הפופאפים
   const popupData = {
@@ -79,28 +72,22 @@ function ExplainationRTE() {
     },
   };
 
-
   const routineImg = `${process.env.PUBLIC_URL}/assets/UnitFourImgs/RoutineToEmergency/routine-bg.jpg`;
   const emergencyImg = `${process.env.PUBLIC_URL}/assets/UnitFourImgs/RoutineToEmergency/emergency-bg.jpg`;
 
-
   const [selectedCards, setSelectedCards] = useState([]);
-
 
   // ✔ קודם מחשבים את זה
   const allCardsClicked =
     selectedCards.length === Object.keys(popupData).length;
 
-
   const handleCardClick = (key) => {
     setActivePopup(popupData[key]);
-
 
     if (!selectedCards.includes(key)) {
       setSelectedCards([...selectedCards, key]);
     }
   };
-
 
   // ✔ ורק אז useEffect
   useEffect(() => {
@@ -110,7 +97,6 @@ function ExplainationRTE() {
       }),
     );
   }, [allCardsClicked]);
-
 
   // שלב התוכן הסופי (אחרי האנימציה)
   if (step === "content") {
@@ -129,7 +115,6 @@ function ExplainationRTE() {
           </div>
         </div>
 
-
         <div className="cards-row">
           {[
             { key: "infrastructure", label: "ציוד ותשתיות" },
@@ -143,9 +128,7 @@ function ExplainationRTE() {
             >
               <img src={popupData[item.key].img} alt={item.label} />
 
-
               <span>{item.label}</span>
-
 
               {/* וי נשאר אחרי לחיצה */}
               {selectedCards.includes(item.key) && (
@@ -167,7 +150,6 @@ function ExplainationRTE() {
           ))}
         </div>
 
-
         {/* מנגנון הפופאפ והחשכת הרקע */}
         {activePopup && (
           <div className="modal-overlay" onClick={() => setActivePopup(null)}>
@@ -180,7 +162,6 @@ function ExplainationRTE() {
                 סגור
               </button>
 
-
               <div className="modal-header">
                 <img src={activePopup.img} alt="icon" className="modal-icon" />
                 <div className="title-area">
@@ -190,7 +171,6 @@ function ExplainationRTE() {
                   )}
                 </div>
               </div>
-
 
               <ul className="modal-list" ref={listRef}>
                 {activePopup.actions.map((action, index) => (
@@ -207,7 +187,6 @@ function ExplainationRTE() {
     );
   }
 
-
   // רנדור שלבי המעבר (שגרה וחירום עם הבהוב)
   return (
     <div
@@ -219,8 +198,4 @@ function ExplainationRTE() {
   );
 }
 
-
 export default ExplainationRTE;
-
-
-

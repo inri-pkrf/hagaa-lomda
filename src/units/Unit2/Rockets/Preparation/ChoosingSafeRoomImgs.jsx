@@ -1,25 +1,20 @@
 import React, { useState, useEffect } from "react";
 
-
 function ChoosingSafeRoomImgs() {
   const [selectedImg, setSelectedImg] = useState(null);
   const [viewedImgs, setViewedImgs] = useState({ img1: false, img2: false });
-
 
   const handleImgClick = (imgKey) => {
     setSelectedImg(selectedImg === imgKey ? null : imgKey);
     setViewedImgs((prev) => ({ ...prev, [imgKey]: true }));
   };
 
-
   const bothViewed = viewedImgs.img1 && viewedImgs.img2;
-
 
   useEffect(() => {
     window.dispatchEvent(
       new CustomEvent("setNextBtnDisabled", { detail: !bothViewed }),
     );
-
 
     return () => {
       window.dispatchEvent(
@@ -27,7 +22,6 @@ function ChoosingSafeRoomImgs() {
       );
     };
   }, [bothViewed]);
-
 
   return (
     <div
@@ -44,7 +38,6 @@ function ChoosingSafeRoomImgs() {
         להגדלת כל תמונה, יש ללחוץ עליה. כדי להקטין אותה בחזרה יש ללחוץ עליה פעם
         נוספת או ללחוץ על התמונה השנייה.
       </p>
-
 
       <img
         src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/choosing-img1.jpg`}
@@ -63,7 +56,6 @@ function ChoosingSafeRoomImgs() {
           </svg>
         </div>
       )}
-
 
       <img
         src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/choosing-img2.jpg`}
@@ -86,10 +78,4 @@ function ChoosingSafeRoomImgs() {
   );
 }
 
-
 export default ChoosingSafeRoomImgs;
-
-
-
-
-

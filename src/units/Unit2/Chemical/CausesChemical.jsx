@@ -1,7 +1,6 @@
 import React from "react";
 import "../../Unit2/style/Chemical.css";
 
-
 const chemicalCauses = [
   { id: 1, title: "שריפה", icon: "fire", type: "routine" },
   { id: 2, title: "תקלות", icon: "problems", type: "routine" },
@@ -15,7 +14,6 @@ const chemicalCauses = [
   { id: 5, title: "פעילות חבלנית", icon: "emergencyAct2", type: "emergency" },
   { id: 6, title: "רעידת אדמה/ צונמי", icon: "earthquake", type: "emergency" },
 ];
-
 
 function CausesChemical() {
   const renderCards = (type) => (
@@ -33,7 +31,6 @@ function CausesChemical() {
         ))}
     </div>
   );
-
 
   return (
     <div className="chemical-page-wrapper">
@@ -55,7 +52,6 @@ function CausesChemical() {
         {renderCards("routine")}
       </div>
 
-
       <div className="chemical-section-row">
         <div className="chemical-arrow-box">
           <img
@@ -70,8 +66,4 @@ function CausesChemical() {
   );
 }
 
-
 export default CausesChemical;
-
-
-

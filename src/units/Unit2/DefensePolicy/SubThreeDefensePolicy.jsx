@@ -1,7 +1,6 @@
 import React from "react";
 import "../style/DefensePolicy.css";
 
-
 function SubThreeDefensePolicy() {
   return (
     <div className="defense-policy-page">
@@ -11,7 +10,6 @@ function SubThreeDefensePolicy() {
         alt=""
         aria-hidden="true"
       />
-
 
       <p id="defense-tasks-sub">משימתך כממונה הג"א - מדיניות התגוננות</p>
       <ol id="defense-tasks-list">
@@ -30,10 +28,4 @@ function SubThreeDefensePolicy() {
   );
 }
 
-
 export default SubThreeDefensePolicy;
-
-
-
-
-

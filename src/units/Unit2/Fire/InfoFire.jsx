@@ -1,7 +1,6 @@
 import React from "react";
 import InfoPageBase from "../../../components/InfoPageBase";
 
-
 function InfoFire() {
   return (
     <InfoPageBase
@@ -10,9 +9,7 @@ function InfoFire() {
       boxes={[
         "שריפה היא התפשטות בלתי מבוקרת של בעירה, והיא מתרחשת כאשר יש מפגש בין ארבעת הגורמים הבאים:",
         <b>שרשרת תגובה כימית + חום + חומר בערה + חמצן</b>,
-        
       ]}
-
       sliderImages={[
         `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/fire/fire-img1.webp`,
         `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/fire/fire-img2.jpg`,
@@ -23,6 +20,3 @@ function InfoFire() {
   );
 }
 export default InfoFire;
-
-
-

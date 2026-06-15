@@ -1,21 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../../Unit4/style/ExplainEmergency.css";
 
-
 function ExplainEmergency() {
   const [stage, setStage] = useState(0);
   const [isScrolledToEnd, setIsScrolledToEnd] = useState(false);
 
-
   const scrollRef = useRef(null);
   const audioRef = useRef(null);
-
 
   // תמונות
   const lobbyImg = `${process.env.PUBLIC_URL}/assets/UnitFourImgs/emergency/lobby_no_tv.jpg`;
   const tvUnitImg = `${process.env.PUBLIC_URL}/assets/UnitFourImgs/emergency/tv_unit.webp`;
   const soldierWithTvImg = `${process.env.PUBLIC_URL}/assets/UnitFourImgs/emergency/soldier_with_tv.jpg`;
-
 
   const steps = [
     { text: "הגעה למקום האירוע ביצוע סריקות וגיבוש תמונת מצב.", v: true },
@@ -38,30 +34,25 @@ function ExplainEmergency() {
     { text: "קשר עם הנהלת המתקן.", v: true },
   ];
 
-
   const getBackgroundImage = () => {
     if (stage === 0) return lobbyImg;
     if (stage === 1) return tvUnitImg;
     return soldierWithTvImg;
   };
 
-
   // ✅ בדיקת גלילה משופרת (כולל תמיכה במסכים שונים ועיגול מספרים)
   const handleScroll = () => {
     const el = scrollRef.current;
     if (!el) return;
 
-
     const isAtBottom =
       Math.abs(el.scrollHeight - el.clientHeight - el.scrollTop) < 5;
-
 
     if (isAtBottom && !isScrolledToEnd) {
       setIsScrolledToEnd(true);
       sessionStorage.setItem("unitFour-third", "finished");
     }
   };
-
 
   // ✅ שליטה בכפתור הבא הגלובלי
   useEffect(() => {
@@ -72,7 +63,6 @@ function ExplainEmergency() {
     );
   }, [isScrolledToEnd]);
 
-
   // ✅ שחזור מצב אם חוזרים למסך
   useEffect(() => {
     if (stage !== 2) {
@@ -80,13 +70,11 @@ function ExplainEmergency() {
       return;
     }
 
-
     const saved = sessionStorage.getItem("unitFour-third");
     if (saved === "finished") {
       setIsScrolledToEnd(true);
     }
   }, [stage]);
-
 
   // ✅ ניהול סאונד נקי (טעינה פעם אחת, עצירה מסודרת ב-unmount)
   useEffect(() => {
@@ -95,7 +83,6 @@ function ExplainEmergency() {
         `${process.env.PUBLIC_URL}/assets/unitFourImgs/emergency/ivan_luzan-breaking-news-intro-logo-154189.mp3`,
       );
     }
-
 
     if (stage === 0) {
       audioRef.current.volume = 0.5;
@@ -107,7 +94,6 @@ function ExplainEmergency() {
       }
     }
 
-
     // פונקציית ניקוי (Cleanup) למקרה שהמשתמש עובר דף לגמרי
     return () => {
       if (audioRef.current) {
@@ -116,20 +102,17 @@ function ExplainEmergency() {
     };
   }, [stage]);
 
-
   return (
     <div className={`emergency-wrapper stage-${stage}`}>
       <h2 className="ExplainEmergency-main-title">
         סדר פעולות לטיפול באירוע חירום במפעל / מוסד
       </h2>
 
-
       {stage === 0 && (
         <p className="ExplainEmergency-title subtitles">
           יש ללחוץ על הטלוויזיה לצפייה בהנחיות
         </p>
       )}
-
 
       <div className="scene-viewport">
         <img
@@ -138,7 +121,6 @@ function ExplainEmergency() {
           alt="background"
           key={stage}
         />
-
 
         {/* שלב 0: לחיצה על הטלוויזיה */}
         {stage === 0 && (
@@ -151,7 +133,6 @@ function ExplainEmergency() {
           </div>
         )}
 
-
         {/* שלב 1: לחיצה על הנציגה/חיילת */}
         {stage === 1 && (
           <div className="soldier-hotspot" onClick={() => setStage(2)}>
@@ -159,7 +140,6 @@ function ExplainEmergency() {
             <span className="click-hint">לחצו על הנציגה להסבר</span>
           </div>
         )}
-
 
         {/* שלב 2: הצגת הטקסט והגלילה */}
         <div className={`tv-content-container ${stage === 2 ? "visible" : ""}`}>
@@ -171,7 +151,6 @@ function ExplainEmergency() {
                 </h3>
               </div>
 
-
               {/* חץ גלילה שנעלם ברגע שהמשתמש גלל עד הסוף */}
               {!isScrolledToEnd && (
                 <div className="scroll-hint">
@@ -179,7 +158,6 @@ function ExplainEmergency() {
                   <div className="arrow-down"></div>
                 </div>
               )}
-
 
               <div
                 className="scroll-area-peach"
@@ -201,8 +179,4 @@ function ExplainEmergency() {
   );
 }
 
-
 export default ExplainEmergency;
-
-
-

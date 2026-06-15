@@ -1,7 +1,6 @@
 import React from "react";
 import "./style/HowPreper.css";
 
-
 function Emergency() {
   return (
     <div className="how-preper-page">
@@ -17,7 +16,6 @@ function Emergency() {
         />
         <h2 className="prep-title">הכנת ציוד חירום</h2>
       </div>
-
 
       <div className="whiteboard-wrapper">
         <img
@@ -39,8 +37,4 @@ function Emergency() {
   );
 }
 
-
 export default Emergency;
-
-
-

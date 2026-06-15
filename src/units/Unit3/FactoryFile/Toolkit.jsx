@@ -1,6 +1,5 @@
-import React from 'react';
+import React from "react";
 import "../../Unit3/style/Toolkit.css";
-
 
 function Toolkit() {
   // מערך המכיל את כל הטקסטים לפי הסדר
@@ -16,24 +15,26 @@ function Toolkit() {
     "תקנות אחסנה של חומרים מסוכנים",
     "סדר פעולות",
     "קישור ללומדה מפעלים חיוניים – משרד העבודה",
-    "תיק מפעל – למילוי (יופץ בהמשך)"
+    "תיק מפעל – למילוי (יופץ בהמשך)",
   ];
 
-
   return (
-    <div className='toolkit-container'>
+    <div className="toolkit-container">
       {/* שכבות הרקע לאנימציה */}
       <div className="background-shifter">
         <div className="bg-layer bg1"></div>
         <div className="bg-layer bg2"></div>
         <div className="bg-layer bg3"></div>
       </div>
-     
-      <div className='toolkit-content'>
-        <h2 id='toolkit-headline'>ארגז כלים לממונה הג”א</h2>
-        <p id='toolkit-text1'>באפשרותך לגשת אל הנהלים והטפסים החשובים שנלמדו ביחידה זו, כל פתקית מהווה קישור:</p>
-       
-        <div className='toolkit-memo-container'>
+
+      <div className="toolkit-content">
+        <h2 id="toolkit-headline">ארגז כלים לממונה הג”א</h2>
+        <p id="toolkit-text1">
+          באפשרותך לגשת אל הנהלים והטפסים החשובים שנלמדו ביחידה זו, כל פתקית
+          מהווה קישור:
+        </p>
+
+        <div className="toolkit-memo-container">
           {memoItems.map((text, index) => (
             <div className="memo-wrapper" key={index}>
               <img
@@ -41,7 +42,7 @@ function Toolkit() {
                 className="toolkit-memo-img"
                 alt="memo"
               />
-              <p className='memo-inner-text'>{text}</p>
+              <p className="memo-inner-text">{text}</p>
             </div>
           ))}
         </div>
@@ -50,6 +51,4 @@ function Toolkit() {
   );
 }
 
-
 export default Toolkit;
-

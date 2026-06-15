@@ -89,7 +89,6 @@ import InfoFire from "./units/Unit2/Fire/InfoFire.jsx";
 import PreparationFire from "./units/Unit2/Fire/PreparationFire.jsx";
 import FireBehaviorIn from "./units/Unit2/Fire/FireBehaviorIn.jsx";
 import FireBehaviorOut from "./units/Unit2/Fire/FireBehaviorOut.jsx";
-import SummaryFire from "./units/Unit2/Fire/SummaryFire.jsx";
 import Emergency from "./units/Unit2/Emergency.jsx";
 import Training from "./units/Unit2/Training.jsx";
 import Risk from "./units/Unit2/Risk.jsx";
@@ -369,7 +368,6 @@ function App() {
           <Route path="/InfoFire" element={<InfoFire />} />
           <Route path="/PreparationFire" element={<PreparationFire />} />
           <Route path="/FireBehaviorOut" element={<FireBehaviorOut />} />
-          <Route path="/SummaryFire" element={<SummaryFire />} />
           <Route path="/FireBehaviorIn" element={<FireBehaviorIn />} />
           <Route path="/Training" element={<Training />} />
           <Route path="/Emergency" element={<Emergency />} />

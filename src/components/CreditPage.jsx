@@ -53,7 +53,7 @@ const CREDIT_DATA = [
         icon: `${PUBLIC_URL}/assets/CreditPage/blue-star.png`,
       },
       {
-        name: "סילביה - רכזת תוכן",
+        name: "סילביה כהן - רכזת תוכן",
         icon: `${PUBLIC_URL}/assets/CreditPage/blue-star.png`,
       },
       {

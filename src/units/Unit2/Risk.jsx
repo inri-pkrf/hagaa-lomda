@@ -1,7 +1,6 @@
 import React from "react";
 import "./style/HowPreper.css";
 
-
 function Risk() {
   return (
     <div className="how-preper-page">
@@ -18,7 +17,6 @@ function Risk() {
         <h2 className="prep-title">ניתוח סיכונים במפעל</h2>
       </div>
 
-
       {/* הלוח */}
       <div className="whiteboard-wrapper">
         <img
@@ -34,11 +32,10 @@ function Risk() {
             ניתוח סיכונים במתקן ובניית תוכנית היערכות ומענה הכוללת תוכנית מילוט
           </h2>
 
-
           <ul className="risk-list">
             <li>
-              ניתוח הסיכונים כולל התייחסות ל-מיקום המתקן, סוג הקרקע, שנת בנייה, המהווים 
-              מדדים להעריך את עמידות המתקן.
+              ניתוח הסיכונים כולל התייחסות ל-מיקום המתקן, סוג הקרקע, שנת בנייה,
+              המהווים מדדים להעריך את עמידות המתקן.
             </li>
             <li>
               בחינת נקודות תורפה בתוך המתקן ובסביבה (מס' דרכי גישה, גשרים, חומ"ס
@@ -56,8 +53,4 @@ function Risk() {
   );
 }
 
-
 export default Risk;
-
-
-

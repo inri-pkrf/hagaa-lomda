@@ -1,24 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import "../style/DefensePolicy.css";
 
-
-
-
 function SubOneDefensePolicy() {
-  const navigate = useNavigate();
-
-
-
-
-  // כאן את מגדירה לאן הכפתור יעבור
-  const handleNext = () => {
-    navigate("/defense-policy/sub-two");
-  };
-
-
-
-
   return (
     <div className="defense-policy-page">
       <img
@@ -28,19 +11,10 @@ function SubOneDefensePolicy() {
         aria-hidden="true"
       />
 
-
-
-
       <div className="policy-content-container">
         <h1 className="policy-main-title">הסמכות החוקית</h1>
 
-
-
-
         <h2 className="policy-sub-title">לשון החוק - סעיף 9ד:</h2>
-
-
-
 
         <div className="quote-container">
           <span className="quote-icon-top">❝</span>
@@ -53,23 +27,9 @@ function SubOneDefensePolicy() {
           </p>
           <span className="quote-icon-bottom">❞</span>
         </div>
-
-
-
-
-
-
       </div>
     </div>
   );
 }
 
-
-
-
 export default SubOneDefensePolicy;
-
-
-
-
-

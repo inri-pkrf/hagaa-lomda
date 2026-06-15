@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNarration } from "../hooks/useNarration";
 
-
 const isFullscreen = () => {
   return (
     !!document.fullscreenElement ||
@@ -10,21 +9,17 @@ const isFullscreen = () => {
   );
 };
 
-
 export default function NarrationPlayer() {
   const srcs = useNarration();
   const audioRef = useRef(null);
   const [playing, setPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-
   const currentSrc = srcs?.[currentIndex];
-
 
   useEffect(() => {
     setCurrentIndex(0);
   }, [srcs]);
-
 
   useEffect(() => {
     if (!audioRef.current || !currentSrc) return;
@@ -38,7 +33,6 @@ export default function NarrationPlayer() {
     }
   }, [currentSrc]);
 
-
   useEffect(() => {
     const handleFullscreenChange = () => {
       if (!audioRef.current || !currentSrc) return;
@@ -51,7 +45,6 @@ export default function NarrationPlayer() {
       }
     };
 
-
     document.addEventListener("fullscreenchange", handleFullscreenChange);
     window.addEventListener("resize", handleFullscreenChange);
     return () => {
@@ -59,7 +52,6 @@ export default function NarrationPlayer() {
       window.removeEventListener("resize", handleFullscreenChange);
     };
   }, [currentSrc]);
-
 
   const handleEnded = () => {
     // ב-questions-end לא ממשיכים אוטומטית — ה-QuizEngine מפעיל ידנית
@@ -69,14 +61,12 @@ export default function NarrationPlayer() {
       return;
     }
 
-
     if (srcs && currentIndex < srcs.length - 1) {
       setCurrentIndex((i) => i + 1);
     } else {
       setPlaying(false);
     }
   };
-
 
   const togglePlay = () => {
     if (!audioRef.current) return;
@@ -89,9 +79,7 @@ export default function NarrationPlayer() {
     }
   };
 
-
   if (!currentSrc) return null;
-
 
   return (
     <div className="narration-player">
@@ -110,6 +98,3 @@ export default function NarrationPlayer() {
     </div>
   );
 }
-
-
-

@@ -1,7 +1,6 @@
 import React from "react";
 import "../../Unit2/style/flipCard.css";
 
-
 function FlipCard({ priority, description, image }) {
   return (
     <div className="flip-card">
@@ -12,7 +11,6 @@ function FlipCard({ priority, description, image }) {
             {image && <img src={image} alt="place image" />}
           </div>
         </div>
-
 
         {/* צד אחורי: נשאר ללא שינוי */}
         <div className="flip-card-back">
@@ -26,6 +24,4 @@ function FlipCard({ priority, description, image }) {
   );
 }
 
-
 export default FlipCard;
-

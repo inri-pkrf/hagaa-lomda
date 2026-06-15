@@ -1,7 +1,6 @@
 import React from "react";
 import "../../Unit2/style/FireBehaviorOut.css";
 
-
 function FireBehaviorOut() {
   const items = [
     "יש להגיע לחדר מרוחק עם חלון",
@@ -11,7 +10,6 @@ function FireBehaviorOut() {
     "להישאר צמוד לחלון פתוח כדי לסמן לכוחות החילוץ על מיקומך",
   ];
 
-
   return (
     <div>
       <img
@@ -20,13 +18,11 @@ function FireBehaviorOut() {
         id="FireBehaviorOut-bg"
       />
 
-
       <h2 id="FireBehaviorOut-headline">
         כללי התנהגות בשריפה במצב שבו
         <span id="FireBehaviorOut-bold"> לא ניתן </span>
         לצאת מהמבנה
       </h2>
-
 
       <div id="FireBehaviorOut-list">
         {items.map((item, index) => (
@@ -40,8 +36,4 @@ function FireBehaviorOut() {
   );
 }
 
-
 export default FireBehaviorOut;
-
-
-

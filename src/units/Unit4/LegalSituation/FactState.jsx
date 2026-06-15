@@ -1,7 +1,6 @@
 import React from "react";
 import "../../Unit4/style/FactState.css";
 
-
 function FactState() {
   return (
     <div className="FactState-container">
@@ -10,8 +9,8 @@ function FactState() {
         <p id="FactState-sub-text"> שעת התקפה </p>
         <p id="FactState-text1">
           פרק זמן בו מתרחשת התקפה, כמצב עובדתי, זמן זה מוגבל עד 24 שעות בכל פעם
-          ובשלב זה מתקיימות פעולות התגוננות הנתונות נתון לשיקול דעת
-          הגורמים המוסמכים.
+          ובשלב זה מתקיימות פעולות התגוננות הנתונות נתון לשיקול דעת הגורמים
+          המוסמכים.
         </p>
         <p id="FactState-text2">
           אחריות הפיקוד והשליטה על האירוע הוא של צה"ל או פיקוד העורף.
@@ -34,8 +33,4 @@ function FactState() {
   );
 }
 
-
 export default FactState;
-
-
-

@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "../../Unit3/style/UsesFactoryFileExplanations.css";
 
 function UsesFactoryFileExplanations() {
   const { id } = useParams();
-  const navigate = useNavigate();
 
   const [hasReachedBottom, setHasReachedBottom] = useState(false);
 

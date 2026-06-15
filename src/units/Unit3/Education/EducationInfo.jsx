@@ -1,7 +1,6 @@
 import React from "react";
 import InfoPageBase from "../../../components/InfoPageBase";
 
-
 function EducationInfo() {
   return (
     <InfoPageBase
@@ -9,7 +8,10 @@ function EducationInfo() {
       colorClass="orange-box-InfoPage"
       sliderColor="#FFB356"
       boxes={[
-        { type: "box", text: "מסגרת חינוכית לטיפול בילדי העובדים החיוניים עד גיל 12." },
+        {
+          type: "box",
+          text: "מסגרת חינוכית לטיפול בילדי העובדים החיוניים עד גיל 12.",
+        },
         { type: "headline", text: "למה זה חשוב?" },
         {
           type: "box",
@@ -26,6 +28,3 @@ function EducationInfo() {
   );
 }
 export default EducationInfo;
-
-
-
