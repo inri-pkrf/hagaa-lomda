@@ -60,7 +60,7 @@ function ManPower() {
   return (
     <div className="manpower-wrapper">
       <p id="subtitles-manpower-center" className="subtitles">
-        מהי מידת הזמינות של העובדים במפעלך, בשעת חירום?
+        מהי מידת הזמינות של העובדים במפעלכם בשעת חירום?
         <br /> לכל מפעל קיים קו תקן עובדים בחירום, ואיושו מתבסס על שני סוגי
         עובדים.
       </p>

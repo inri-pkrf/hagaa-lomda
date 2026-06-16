@@ -12,6 +12,12 @@ const isFullscreen = () => {
 export default function NarrationPlayer() {
   const srcs = useNarration();
   const audioRef = useRef(null);
+  // useEffect(() => {
+  //   window.__narrationAudio = audioRef.current;
+  // }, [audioRef.current]);
+  useEffect(() => {
+    window.__narrationAudio = audioRef.current;
+  }, []);
   const [playing, setPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -68,13 +74,35 @@ export default function NarrationPlayer() {
     }
   };
 
+  // const togglePlay = () => {
+  //   if (!audioRef.current) return;
+  //   if (playing) {
+  //     audioRef.current.pause();
+  //     setPlaying(false);
+  //   } else {
+  //     audioRef.current.play();
+  //     setPlaying(true);
+  //   }
+  // };
+
   const togglePlay = () => {
     if (!audioRef.current) return;
+
+    const noticeAudio = window.__noticeAudio;
+    const noticeIsActive =
+      noticeAudio && !noticeAudio.ended && noticeAudio.src !== "";
+
     if (playing) {
       audioRef.current.pause();
+      if (noticeIsActive) noticeAudio.pause();
       setPlaying(false);
     } else {
-      audioRef.current.play();
+      // מנגן רק את מה שרלוונטי — לא את שניהם
+      if (noticeIsActive) {
+        noticeAudio.play();
+      } else {
+        audioRef.current.play();
+      }
       setPlaying(true);
     }
   };
@@ -83,8 +111,16 @@ export default function NarrationPlayer() {
 
   return (
     <div className="narration-player">
-      <audio
+      {/* <audio
         ref={audioRef}
+        src={`${process.env.PUBLIC_URL}/${currentSrc}`}
+        onEnded={handleEnded}
+      /> */}
+      <audio
+        ref={(el) => {
+          audioRef.current = el;
+          window.__narrationAudio = el; // 👈 זה כל השינוי
+        }}
         src={`${process.env.PUBLIC_URL}/${currentSrc}`}
         onEnded={handleEnded}
       />

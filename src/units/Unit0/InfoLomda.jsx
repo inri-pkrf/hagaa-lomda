@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Styles/InfoLomda.css";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -20,6 +20,47 @@ function InfoLomda() {
   };
 
   const [step, setStep] = useState(getStepFromPath(location.pathname));
+  const [noticeOpen, setNoticeOpen] = useState(false);
+
+  // const audioRef = useRef(null);
+
+  // useEffect(() => {
+  //   const audio = new Audio(
+  //     process.env.PUBLIC_URL + "/recordings/00-hakdama/004 -  info-lomda-04.mp3",
+  //   );
+  //   audioRef.current = audio;
+
+  //   // 👇 זה מה שמאפשר לעצור מבחוץ
+  //   window.__narrationAudio = audio;
+
+  //   audio.play();
+
+  //   return () => {
+  //     audio.pause();
+  //     audioRef.current = null;
+  //     window.__narrationAudio = null;
+  //   };
+  // }, []);
+
+  const stopNarration = () => {
+    const audio = window.__narrationAudio;
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  };
+
+  const playNoticeAudio = () => {
+    if (window.__noticeAudio) {
+      window.__noticeAudio.pause();
+    }
+    const audio = new Audio(
+      process.env.PUBLIC_URL +
+        "/recordings/00-hakdama/004 -  info-lomda-04.mp3",
+    );
+    window.__noticeAudio = audio; // 👈 חשוף אותו
+    audio.play().catch(() => {});
+  };
 
   useEffect(() => {
     setStep(getStepFromPath(location.pathname));
@@ -48,6 +89,27 @@ function InfoLomda() {
       window.removeEventListener("onPrevNav", handlePrev);
     };
   }, [navigate, location.pathname]);
+
+  useEffect(() => {
+    return () => {
+      // cleanup כשעוזבים את הקומפוננטה או משנים סטפ
+      if (window.__noticeAudio) {
+        window.__noticeAudio.pause();
+        window.__noticeAudio.currentTime = 0;
+        window.__noticeAudio = null;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+  if (step !== 0) {
+    if (window.__noticeAudio) {
+      window.__noticeAudio.pause();
+      window.__noticeAudio.currentTime = 0;
+      window.__noticeAudio = null;
+    }
+  }
+}, [step]);
 
   return (
     <div className="InfoLomda">
@@ -85,16 +147,42 @@ function InfoLomda() {
               </div>
             </p>
 
-            <p className="InfoLomda-par2 Pay-attention">
-              <b>שימו לב!</b>
-              <br />
-              לומדה זו מיועדת לממונה הג"א (התגוננות אזרחית) במפעל חיוני / קיומי.
-              <br /> עם זאת, כל ממונה הג"א בכל ארגון אחר (שאיננו מפעל חיוני){" "}
-              יכול ללמוד מיחידה זו את הנושאים הרלוונטיים אליו.
-              <br />
-              בסיום הלומדה יתבצע מבחן מסכם - ציון עובר במבחן הינו 70. <br /> עם
-              ההצלחה במבחן תשלח באופן אוטומטי תעודת הסמכה אשר תקפה ל-5 שנים.
-            </p>
+            <div
+              className={`InfoLomda-par2 Pay-attention ${noticeOpen ? "notice-open" : "notice-closed"}`}
+              onClick={() => {
+                if (!noticeOpen) {
+                  setNoticeOpen(true);
+
+                  stopNarration(); // עוצר את הקריינות הראשית
+
+                  setTimeout(() => {
+                    playNoticeAudio(); // מנגן את “שימו לב”
+                  }, 50);
+                }
+              }}
+            >
+              {/* לב קטן בפינה — גלוי רק אחרי פתיחה */}
+              <span className="notice-corner-heart"> שימו לב!</span>
+
+              {/* מרכז — גלוי רק לפני פתיחה */}
+              <span className="notice-center">
+                <span className="notice-big-heart">♥</span>
+                <span className="notice-center-title">שימו לב!</span>
+                <span className="notice-click-hint">לחץ לקריאה</span>
+              </span>
+
+              {/* תוכן — גלוי רק אחרי פתיחה */}
+              <span className="notice-content">
+                לומדה זו מיועדת לממונה הג"א (התגוננות אזרחית) במפעל חיוני /
+                קיומי.
+                <br /> עם זאת, כל ממונה הג"א בכל ארגון אחר (שאיננו מפעל חיוני){" "}
+                יכול ללמוד מיחידה זו את הנושאים הרלוונטיים אליו.
+                <br />
+                בסיום הלומדה יתבצע מבחן מסכם - ציון עובר במבחן הינו 70. <br />{" "}
+                עם ההצלחה במבחן תשלח באופן אוטומטי תעודת הסמכה אשר תקפה ל-5
+                שנים.
+              </span>
+            </div>
           </div>
         )}
 

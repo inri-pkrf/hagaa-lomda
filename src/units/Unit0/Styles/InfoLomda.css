@@ -180,3 +180,104 @@
 .list-icon-clock {
   opacity: 0.55;
 }
+
+/* NOTICE CLOSED */
+.notice-closed {
+  cursor: pointer;
+  animation: noticePulse 1.8s ease-in-out infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 10vmin;
+}
+
+.notice-closed::before {
+  display: none; /* מסתירים את הפסאודו המקורי במצב סגור */
+}
+
+@keyframes noticePulse {
+  0%, 100% { box-shadow: 0 0 0 0 #c0622a33, 0 0.3vw 1vw #dfa6778e; }
+  50%       { box-shadow: 0 0 0 1vmin #c0622a22, 0 0.5vw 2vw #dfa677bb; }
+}
+
+/* CENTER (מצב סגור בלבד) */
+.notice-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5vmin;
+  transition: opacity 0.2s ease;
+}
+
+.notice-big-heart {
+  font-size: 4vmin;
+  color: #c0622a;
+  animation: heartbeat 1.4s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  30%       { transform: scale(1.2); }
+  60%       { transform: scale(1.07); }
+}
+
+.notice-center-title {
+  font-size: 2.5vmin;
+  font-weight: 700;
+  color: #c0622a;
+}
+
+.notice-click-hint {
+  font-size: 1.6vmin;
+  color: #b07050;
+  animation: fadeHint 1.8s ease-in-out infinite;
+}
+
+@keyframes fadeHint {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1; }
+}
+
+/* CORNER HEART (מצב פתוח בלבד) */
+.notice-corner-heart {
+  display: none;
+  font-size: 2vmin;
+  font-weight: 700;
+  color: #c0622a;
+  margin-bottom: 1vmin;
+}
+
+/* CONTENT (מוסתר במצב סגור) */
+.notice-content {
+  display: none;
+}
+
+/* NOTICE OPEN */
+.notice-open {
+  cursor: default;
+  animation: none;
+  align-items: flex-start;
+}
+
+.notice-open::before {
+  display: flex; /* מחזירים את הפסאודו המקורי */
+}
+
+.notice-open .notice-center {
+  display: none;
+}
+
+.notice-open .notice-corner-heart {
+  display: block;
+}
+
+.notice-open .notice-content {
+  display: block;
+  animation: fadeSlideIn 0.5s ease;
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
