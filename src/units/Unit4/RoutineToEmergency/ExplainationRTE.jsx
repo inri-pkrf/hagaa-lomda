@@ -1,34 +1,41 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../../Unit4/style/RoutineToEmergency.css";
 
 function ExplainationRTE() {
-  // ניהול המצב: שגרה, חירום, או הצגת תוכן
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isContentPage = location.pathname === "/ExplainationRTE2";
+
   const [step, setStep] = useState("routine");
   const [activePopup, setActivePopup] = useState(null);
   const [isScrollable, setIsScrollable] = useState(false);
+  const [selectedCards, setSelectedCards] = useState([]);
   const listRef = useRef(null);
 
-  // כותרת ראשית לסינכרון עם שאר הלומדה
   sessionStorage.setItem("MainTitle", "מעבר משגרה לחירום");
 
   useEffect(() => {
-    // מעבר למסך חירום (הבהוב) אחרי שנייה אחת
-    const emergencyTimer = setTimeout(() => {
-      setStep("emergency");
-    }, 3000);
+    if (isContentPage) return;
 
-    // מעבר למסך התוכן הסופי אחרי 4 שניות סה"כ
+    window.dispatchEvent(
+      new CustomEvent("setNextBtnDisabled", { detail: true }),
+    );
+
+    const emergencyTimer = setTimeout(() => setStep("emergency"), 3000);
     const contentTimer = setTimeout(() => {
-      setStep("content");
+      window.dispatchEvent(
+        new CustomEvent("setNextBtnDisabled", { detail: false }),
+      );
+      navigate("/ExplainationRTE2");
     }, 6000);
 
     return () => {
       clearTimeout(emergencyTimer);
       clearTimeout(contentTimer);
     };
-  }, []);
+  }, [isContentPage]);
 
-  // בדיקה האם הרשימה בפופאפ ארוכה מדי ומצריכה גלילה
   useEffect(() => {
     if (activePopup && listRef.current) {
       const { scrollHeight, clientHeight } = listRef.current;
@@ -36,7 +43,6 @@ function ExplainationRTE() {
     }
   }, [activePopup]);
 
-  // נתוני התוכן עבור הפופאפים
   const popupData = {
     infrastructure: {
       title: "ציוד ותשתיות",
@@ -47,7 +53,7 @@ function ExplainationRTE() {
         "וידוא שלטי צירי תנועה",
         "בדיקת מערכות כריזה/ התראה",
         "נטרול והקטנת מלאי חומרים מסוכנים- בהתאם להנחיות מקצועיות",
-        "בדיקת ציוד לרציפות תפקודית (מים, מזון, דלק וכו’)",
+        "בדיקת ציוד לרציפות תפקודית (מים, מזון, דלק וכו')",
         "בחינת הצורך לקדם רכש אמצעים",
         "בדיקת מוכנות להפעלת מסגרות לילדי העובדים",
       ],
@@ -72,34 +78,28 @@ function ExplainationRTE() {
     },
   };
 
-  const routineImg = `${process.env.PUBLIC_URL}/assets/UnitFourImgs/RoutineToEmergency/routine-bg.jpg`;
-  const emergencyImg = `${process.env.PUBLIC_URL}/assets/UnitFourImgs/RoutineToEmergency/emergency-bg.jpg`;
-
-  const [selectedCards, setSelectedCards] = useState([]);
-
-  // ✔ קודם מחשבים את זה
   const allCardsClicked =
     selectedCards.length === Object.keys(popupData).length;
 
   const handleCardClick = (key) => {
     setActivePopup(popupData[key]);
-
     if (!selectedCards.includes(key)) {
       setSelectedCards([...selectedCards, key]);
     }
   };
 
-  // ✔ ורק אז useEffect
   useEffect(() => {
+    if (!isContentPage) return;
     window.dispatchEvent(
-      new CustomEvent("setNextBtnDisabled", {
-        detail: !allCardsClicked,
-      }),
+      new CustomEvent("setNextBtnDisabled", { detail: !allCardsClicked }),
     );
-  }, [allCardsClicked]);
+  }, [allCardsClicked, isContentPage]);
 
-  // שלב התוכן הסופי (אחרי האנימציה)
-  if (step === "content") {
+  const routineImg = `${process.env.PUBLIC_URL}/assets/UnitFourImgs/RoutineToEmergency/routine-bg.jpg`;
+  const emergencyImg = `${process.env.PUBLIC_URL}/assets/UnitFourImgs/RoutineToEmergency/emergency-bg.jpg`;
+
+  // ── דף תוכן (/ExplainationRTE2) ──
+  if (isContentPage) {
     return (
       <div className="final-content-screen">
         <div className="header-section">
@@ -107,8 +107,7 @@ function ExplainationRTE() {
           <div className="description-text">
             <p>
               על רקע תקיפות חיל האוויר ברצועת עזה לפנות בוקר בהמשך לירי רקטות,
-              החליט שר הביטחון להכריז על מצב מיוחד בעורף עד לטווח 40 ק”מ.{" "}
-              <br></br>
+              החליט שר הביטחון להכריז על מצב מיוחד בעורף עד לטווח 40 ק"מ. <br />
               <strong>יש ללחוץ </strong>על האיורים לצפייה בפעולות שעליכם לקדם
               כחלק ממוכנות המפעל.
             </p>
@@ -127,15 +126,9 @@ function ExplainationRTE() {
               onClick={() => handleCardClick(item.key)}
             >
               <img src={popupData[item.key].img} alt={item.label} />
-
               <span>{item.label}</span>
-
-              {/* וי נשאר אחרי לחיצה */}
               {selectedCards.includes(item.key) && (
-                <div
-                  className="completion-v "
-                  id={`completion-v-ExplainationRTE`}
-                >
+                <div className="completion-v" id="completion-v-ExplainationRTE">
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -150,7 +143,6 @@ function ExplainationRTE() {
           ))}
         </div>
 
-        {/* מנגנון הפופאפ והחשכת הרקע */}
         {activePopup && (
           <div className="modal-overlay" onClick={() => setActivePopup(null)}>
             <div className="modal-card" onClick={(e) => e.stopPropagation()}>
@@ -161,7 +153,6 @@ function ExplainationRTE() {
               >
                 סגור
               </button>
-
               <div className="modal-header">
                 <img src={activePopup.img} alt="icon" className="modal-icon" />
                 <div className="title-area">
@@ -171,7 +162,6 @@ function ExplainationRTE() {
                   )}
                 </div>
               </div>
-
               <ul className="modal-list" ref={listRef}>
                 {activePopup.actions.map((action, index) => (
                   <li key={index}>
@@ -187,7 +177,7 @@ function ExplainationRTE() {
     );
   }
 
-  // רנדור שלבי המעבר (שגרה וחירום עם הבהוב)
+  // ── דף אנימציה (/ExplainationRTE) ──
   return (
     <div
       className={`routine-container ${step === "emergency" ? "flash-red" : ""}`}

@@ -92,7 +92,14 @@ export const narrationMap = {
     "recordings/03 - unit3/0349 - summary-checklist-unit3-sub4.mp3",
   ],
 
-  "/UsesFactoryFile": ["recordings/03 - unit3/03410 - UsesFactoryFile.mp3"],
+  "/UsesFactoryFile": ["recordings/03 - unit3/UsesFactoryFileContent.mp3"],
+
+  "/UsesFactoryFile-guidelines": [
+    "recordings/03 - unit3/UsesFactoryFileGuidelines.mp3",
+  ], // השמע של הפופאפ
+  "/UsesFactoryFile-intro": [
+    "recordings/03 - unit3/UsesFactoryFileContent.mp3",
+  ], // השמע של המבוא
 
   "/summary-checklist-unit3": [
     "recordings/03 - unit3/040 - summary-checklist-unit3.mp3",
@@ -132,8 +139,7 @@ export const narrationMap = {
     "recordings/04 - unit4/048 - Sub2Legal1.mp3",
   ],
 
-  // "/ExplainationRTE": ["recordings/04 - unit4/049 - ExplainationRTE.mp3"], //צריך שזה יהיה אחרי כמה שניות לפי האנימציה.
-
+  "/ExplainationRTE2": ["recordings/04 - unit4/049 - ExplainationRTE.mp3"], //צריך שזה יהיה אחרי כמה שניות לפי האנימציה.
 
   "/questions-end/4": [
     "recordings/04 - unit4/051 - questions-end4-1 .mp3",

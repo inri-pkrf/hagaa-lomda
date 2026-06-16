@@ -448,6 +448,8 @@ function App() {
             element={<QuestionFactoryFile />}
           />
           <Route path="/UsesFactoryFile" element={<UsesFactoryFile />} />
+          <Route path="/factory2" element={<UsesFactoryFile />} />
+
           <Route path="/Toolkit" element={<Toolkit />} />
           <Route
             path="/DetailEmergencyTeams"
@@ -483,6 +485,7 @@ function App() {
           <Route path="/Sub2Legal" element={<Sub2Legal />} />
           <Route path="/GameLegalSituation" element={<GameLegalSituation />} />
           <Route path="/ExplainationRTE" element={<ExplainationRTE />} />
+          <Route path="/ExplainationRTE2" element={<ExplainationRTE />} />
           <Route path="/QuestionRTE" element={<QuestionRTE />} />
         </Route>
 

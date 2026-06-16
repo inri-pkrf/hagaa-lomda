@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../Unit3/style/UsesFactoryFile.css";
+// וודא שהנתיב ל-narrationMap נכון
+import { narrationMap } from "../../../Data/NarrationData.js";
 
 const STORAGE_KEY = "factoryCompleted";
 const POPUP_SEEN_KEY = "factoryPopupSeen";
@@ -15,6 +17,12 @@ const steps = [
 function UsesFactoryFile() {
   const navigate = useNavigate();
 
+  // שליפת נתיבי השמע מהדאטה בצורה דינמית
+  const instructionsAudio = narrationMap["/UsesFactoryFile-guidelines"]?.[0];
+  const introAudio = narrationMap["/UsesFactoryFile"]?.[0];
+  const hasPlayedIntro =
+    sessionStorage.getItem("UsesFactoryFileIntroPlayed") === "true";
+
   const [completed, setCompleted] = useState(() => {
     const saved = sessionStorage.getItem(STORAGE_KEY);
     return saved ? JSON.parse(saved) : [];
@@ -25,11 +33,43 @@ function UsesFactoryFile() {
     return seen ? false : true;
   });
 
+  
+
+  // ניהול השמע של הפופ-אפ ושל המעבר לשמע הגלובלי
+  useEffect(() => {
+    if (showPopup) {
+      if (instructionsAudio) {
+        window.dispatchEvent(
+          new CustomEvent('setNarration', {
+            detail: {
+              srcs: [instructionsAudio],
+              autoplay: true,
+              skipFullscreenCheck: true,
+            },
+          }),
+        );
+      }
+    } else {
+      if (!hasPlayedIntro && introAudio) {
+        window.dispatchEvent(
+          new CustomEvent('setNarration', {
+            detail: {
+              srcs: [introAudio],
+              autoplay: true,
+              skipFullscreenCheck: true,
+            },
+          }),
+        );
+      } else {
+        window.dispatchEvent(new CustomEvent('setNarration', { detail: null }));
+      }
+    }
+  }, [showPopup, instructionsAudio, hasPlayedIntro, introAudio]);
+
   useEffect(() => {
     sessionStorage.setItem(STORAGE_KEY, JSON.stringify(completed));
   }, [completed]);
 
-  // שליחת אירוע לכפתור קדימה + סימון frame 1 ב-FactoryFile כשהכל הושלם
   useEffect(() => {
     const allDone = completed.length === steps.length;
     window.dispatchEvent(
@@ -37,7 +77,6 @@ function UsesFactoryFile() {
     );
 
     if (allDone) {
-      // סימון שframe 1 של FactoryFile הושלם — הוי יופיע בחזרה ל-FactoryFile
       sessionStorage.setItem("factoryFrame1Completed", "true");
       sessionStorage.setItem("FactoryFile-sub1-finished", "finished");
     }
@@ -46,6 +85,7 @@ function UsesFactoryFile() {
   const closePopup = () => {
     setShowPopup(false);
     sessionStorage.setItem(POPUP_SEEN_KEY, "true");
+    sessionStorage.setItem("UsesFactoryFileIntroPlayed", "true");
   };
 
   const items = [
@@ -88,21 +128,17 @@ function UsesFactoryFile() {
 
   const handleClick = (id) => {
     if (showPopup) return;
-
     const stepForItem = steps.find((s) => s.active === id);
     if (!stepForItem) return;
+
+    window.dispatchEvent(new CustomEvent('setNarrationPaused', { detail: true }));
 
     if (completed.includes(stepForItem.id)) {
       navigate(`/unit3/factory/${stepForItem.id}`);
       return;
     }
-
     if (!activeStep || id !== activeStep.active) return;
-
-    setCompleted((prev) => {
-      const next = [...prev, activeStep.id];
-      return Array.from(new Set(next));
-    });
+    setCompleted((prev) => Array.from(new Set([...prev, activeStep.id])));
     navigate(`/unit3/factory/${activeStep.id}`);
   };
 
@@ -111,7 +147,7 @@ function UsesFactoryFile() {
       {showPopup && (
         <div className="factory-popup-overlay">
           <div className="factory-popup-content">
-            <h3>הנחיות </h3>
+            <h3>הנחיות</h3>
             <p>
               לפניכם מוצגים 4 שלבים ביצירת תיק מפעל. <br />
               עליכם לקרוא תחילה את המבוא ולאחר מכן ללחוץ על התיק המהבהב כדי
@@ -119,8 +155,7 @@ function UsesFactoryFile() {
               בסיום כל פרק, התיק יסומן ב-✔ וייפתח הפרק הבא.
             </p>
             <button className="popup-close-btn" onClick={closePopup}>
-              {" "}
-              הבנתי{" "}
+              הבנתי
             </button>
           </div>
         </div>
@@ -134,8 +169,8 @@ function UsesFactoryFile() {
         הביטחון ותוכנית התגוננות.
       </p>
       <p className="orange-box" id="UsesFactoryFile-text3">
-        אחת מהמשימות המרכזיות והמשמעותיות של ממוני הג"א הינה לכתוב את התיק בזמן
-        שגרה, בהתאם לצרכי המפעל ולאשרו אצל המנהל.
+        אחת המשימות המרכזיות והמשמעותיות של ממוני הג"א הינה לכתוב את התיק בזמן
+        שגרה, בהתאם לצרכי המפעל ולאשרו אצל מנהל או מנהלת הארגון.
       </p>
 
       {completed.length === 0 && (
@@ -158,7 +193,6 @@ function UsesFactoryFile() {
         const stepForItem = steps.find((s) => s.active === item.id);
         const isCompleted = stepForItem && completed.includes(stepForItem.id);
         const isActive = item.id === activeStep?.active;
-
         const className = isActive
           ? "overlay blinking"
           : isCompleted

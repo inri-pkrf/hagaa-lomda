@@ -23,11 +23,11 @@ const routeOrder = [
   "/interfaces",
   "/interfaces-game",
   "/population",
-  "/PopulationInfo",   
+  "/PopulationInfo",
   "/population",
   "/population-parts",
   "/population",
-  "/PopulationGame",    
+  "/PopulationGame",
   "/intro-unit-one",
   "/questions-end/1",
   "/summary-checklist-unit1",
@@ -76,13 +76,13 @@ const routeOrder = [
   "/earthquake",
   "/preparation-earth",
   "/HowPreper",
-  "/securing",           
+  "/securing",
   "/HowPreper",
   "/Tsunami",
   "/HowPreper",
   "/Training",
   "/HowPreper",
-  "/reinforcement",    
+  "/reinforcement",
   "/HowPreper",
   "/Emergency",
   "/HowPreper",
@@ -188,7 +188,7 @@ const routeOrder = [
   "/FactoryFile",
   "/QuestionFactoryFile",
   "/FactoryFile",
-  "/Toolkit",           
+  "/Toolkit",
   "/FactoryFile",
   "/intro-unit-three",
   "/questions-end/3",
@@ -205,6 +205,7 @@ const routeOrder = [
   "/GameLegalSituation",
   "/intro-unit-four",
   "/ExplainationRTE",
+  "/ExplainationRTE2",
   "/QuestionRTE",
   "/intro-unit-four",
   "/ExplainEmergency",
@@ -237,8 +238,10 @@ function Buttons() {
   const [nextPath, setNextPath] = useState(null);
   const [isNextDisabled, setIsNextDisabled] = useState(false);
   const [isMamad3Complete, setIsMamad3Complete] = useState(false);
-  const [isSafeRoomExerciseComplete, setIsSafeRoomExerciseComplete] = useState(false);
-  const [isEarthquakeExerciseComplete, setIsEarthquakeExerciseComplete] = useState(false);
+  const [isSafeRoomExerciseComplete, setIsSafeRoomExerciseComplete] =
+    useState(false);
+  const [isEarthquakeExerciseComplete, setIsEarthquakeExerciseComplete] =
+    useState(false);
   const [isPrevDisabled, setIsPrevDisabled] = useState(false);
   const [highlightNext, setHighlightNext] = useState(false);
   const prevIsNextDisabled = useRef(true);
@@ -304,7 +307,7 @@ function Buttons() {
   const saveState = async (path) => {
     try {
       const sessionState = {};
-      STATE_KEYS.forEach(key => {
+      STATE_KEYS.forEach((key) => {
         const val = sessionStorage.getItem(key);
         if (val !== null) sessionState[key] = val;
       });
@@ -339,13 +342,21 @@ function Buttons() {
     let index = matchingIndexes[0] ?? -1;
 
     const savedIndex = Number(sessionStorage.getItem("routeIndex"));
-    if (!Number.isNaN(savedIndex) && savedIndex >= 0 && savedIndex < routeOrder.length) {
+    if (
+      !Number.isNaN(savedIndex) &&
+      savedIndex >= 0 &&
+      savedIndex < routeOrder.length
+    ) {
       if (matchingIndexes.includes(savedIndex)) index = savedIndex;
     }
 
     setCurrentIndex(index);
     setPrevPath(index > 0 ? routeOrder[index - 1] : null);
-    setNextPath(index >= 0 && index < routeOrder.length - 1 ? routeOrder[index + 1] : null);
+    setNextPath(
+      index >= 0 && index < routeOrder.length - 1
+        ? routeOrder[index + 1]
+        : null,
+    );
     sessionStorage.setItem("routeIndex", String(index));
     saveState(currentPath);
     setHighlightNext(false);
@@ -371,7 +382,13 @@ function Buttons() {
       );
     };
     checkExerciseComplete();
-    if (["/TimeToEnterMamad3", "/SafeRoomExercise", "/EarthquakeExercise"].includes(location.pathname)) {
+    if (
+      [
+        "/TimeToEnterMamad3",
+        "/SafeRoomExercise",
+        "/EarthquakeExercise",
+      ].includes(location.pathname)
+    ) {
       intervalId = setInterval(checkExerciseComplete, 300);
     }
     return () => {
@@ -388,7 +405,12 @@ function Buttons() {
     const nextWasDisabled = prevIsNextDisabled.current;
     const nextIsNowEnabled = !isCurrentlyDisabled;
     const nextPathExists = !!nextPath;
-    if (nextWasDisabled && nextIsNowEnabled && nextPathExists && !isBuildingMaintenance) {
+    if (
+      nextWasDisabled &&
+      nextIsNowEnabled &&
+      nextPathExists &&
+      !isBuildingMaintenance
+    ) {
       setHighlightNext(true);
     }
     prevIsNextDisabled.current = isCurrentlyDisabled;
@@ -414,7 +436,9 @@ function Buttons() {
       sessionStorage.setItem("currentUnit", "UnitZero");
       sessionStorage.setItem("MainTitle", "מבנה שיעור הסמכה דיגיטלי");
     }
-    const navEvent = new CustomEvent(isNext ? "onNextNav" : "onPrevNav", { cancelable: true });
+    const navEvent = new CustomEvent(isNext ? "onNextNav" : "onPrevNav", {
+      cancelable: true,
+    });
     if (!window.dispatchEvent(navEvent)) return;
     if (!isNext && openingToPrev[location.pathname]) {
       navigate(openingToPrev[location.pathname]);
@@ -427,26 +451,117 @@ function Buttons() {
     for (const [base, steps] of Object.entries(multiStepPages)) {
       const idx = steps.indexOf(location.pathname);
       if (idx !== -1) {
-        if (isNext && idx < steps.length - 1) { navigate(steps[idx + 1]); return; }
-        if (!isNext && idx > 0) { navigate(steps[idx - 1]); return; }
+        if (isNext && idx < steps.length - 1) {
+          navigate(steps[idx + 1]);
+          return;
+        }
+        if (!isNext && idx > 0) {
+          navigate(steps[idx - 1]);
+          return;
+        }
       }
     }
     const frameChecks = [
-      { path: "/rockets", key: "clickedFrames", frames: [1,2,3,4,5], keys: ["unitTwo-opening","unitTwo-first"], nav: "/intro-unit-two" },
-      { path: "/earthquake", key: "earthquake_clickedFrames", frames: [1,2,3,4], keys: ["unitTwo-opening","unitTwo-first","unitTwo-second"], nav: "/intro-unit-two" },
-      { path: "/fire", key: "clickedFireFrames", frames: [1,2,3,4,5], keys: ["unitTwo-opening","unitTwo-first","unitTwo-second","unitTwo-third"], nav: "/intro-unit-two" },
-      { path: "/chemical", key: "clickedChemicalFrames", frames: [1,2,3,4,5], keys: ["unitTwo-opening","unitTwo-first","unitTwo-second","unitTwo-third","unitTwo-fourth"], nav: "/intro-unit-two" },
-      { path: "/EmergencyTeams", key: "clickedEmergencyFrames", frames: [1,2,3], keys: ["unitThree-opening","unitThree-first"], nav: "/intro-unit-three" },
-      { path: "/Education", key: "clickedEducationFrames", frames: [1,2,3], keys: ["unitThree-opening","unitThree-first","unitThree-second"], nav: "/intro-unit-three" },
-      { path: "/Resources", key: "clickedResourcesFrames", frames: [1,2,3], keys: ["unitThree-opening","unitThree-first","unitThree-second","unitThree-third"], nav: "/intro-unit-three" },
-      { path: "/ExternalRecruits", key: "clickedExternalRecruitsFrames", frames: [1,2,3,4], keys: ["unitThree-opening","unitThree-first","unitThree-second","unitThree-third","unitThree-fourth"], nav: "/intro-unit-three" },
-      { path: "/FactoryFile", key: "clickedFactoryFrames", frames: [1,2], keys: ["unitThree-opening","unitThree-first","unitThree-second","unitThree-third","unitThree-fourth","unitThree-fifth"], nav: "/intro-unit-three" },
+      {
+        path: "/rockets",
+        key: "clickedFrames",
+        frames: [1, 2, 3, 4, 5],
+        keys: ["unitTwo-opening", "unitTwo-first"],
+        nav: "/intro-unit-two",
+      },
+      {
+        path: "/earthquake",
+        key: "earthquake_clickedFrames",
+        frames: [1, 2, 3, 4],
+        keys: ["unitTwo-opening", "unitTwo-first", "unitTwo-second"],
+        nav: "/intro-unit-two",
+      },
+      {
+        path: "/fire",
+        key: "clickedFireFrames",
+        frames: [1, 2, 3, 4, 5],
+        keys: [
+          "unitTwo-opening",
+          "unitTwo-first",
+          "unitTwo-second",
+          "unitTwo-third",
+        ],
+        nav: "/intro-unit-two",
+      },
+      {
+        path: "/chemical",
+        key: "clickedChemicalFrames",
+        frames: [1, 2, 3, 4, 5],
+        keys: [
+          "unitTwo-opening",
+          "unitTwo-first",
+          "unitTwo-second",
+          "unitTwo-third",
+          "unitTwo-fourth",
+        ],
+        nav: "/intro-unit-two",
+      },
+      {
+        path: "/EmergencyTeams",
+        key: "clickedEmergencyFrames",
+        frames: [1, 2, 3],
+        keys: ["unitThree-opening", "unitThree-first"],
+        nav: "/intro-unit-three",
+      },
+      {
+        path: "/Education",
+        key: "clickedEducationFrames",
+        frames: [1, 2, 3],
+        keys: ["unitThree-opening", "unitThree-first", "unitThree-second"],
+        nav: "/intro-unit-three",
+      },
+      {
+        path: "/Resources",
+        key: "clickedResourcesFrames",
+        frames: [1, 2, 3],
+        keys: [
+          "unitThree-opening",
+          "unitThree-first",
+          "unitThree-second",
+          "unitThree-third",
+        ],
+        nav: "/intro-unit-three",
+      },
+      {
+        path: "/ExternalRecruits",
+        key: "clickedExternalRecruitsFrames",
+        frames: [1, 2, 3, 4],
+        keys: [
+          "unitThree-opening",
+          "unitThree-first",
+          "unitThree-second",
+          "unitThree-third",
+          "unitThree-fourth",
+        ],
+        nav: "/intro-unit-three",
+      },
+      {
+        path: "/FactoryFile",
+        key: "clickedFactoryFrames",
+        frames: [1, 2],
+        keys: [
+          "unitThree-opening",
+          "unitThree-first",
+          "unitThree-second",
+          "unitThree-third",
+          "unitThree-fourth",
+          "unitThree-fifth",
+        ],
+        nav: "/intro-unit-three",
+      },
     ];
     if (isNext) {
       for (const check of frameChecks) {
         if (location.pathname === check.path) {
           try {
-            const clicked = JSON.parse(sessionStorage.getItem(check.key) || "[]");
+            const clicked = JSON.parse(
+              sessionStorage.getItem(check.key) || "[]",
+            );
             if (check.frames.every((id) => clicked.includes(id))) {
               check.keys.forEach((k) => sessionStorage.setItem(k, "finished"));
               window.dispatchEvent(new Event("updateNavbar"));
@@ -458,13 +573,34 @@ function Buttons() {
         }
       }
     }
-    if (isNext && location.pathname === "/Sub1Legal") { navigate("/Sub2Legal"); return; }
-    if (isNext && location.pathname === "/BuildingMaintenance") { navigate("/preparation"); return; }
-    if (isNext && location.pathname === "/preparation") { navigate("/rockets"); return; }
-    if (isNext && location.pathname === "/preparation-earth") { navigate("/earthquake"); return; }
-    if (isNext && location.pathname === "/HowPreper") { navigate("/preparation-earth"); return; }
-    if (isNext && location.pathname === "/DetailEmergencyTeams/2") { navigate("/EmergencyTeams"); return; }
-    if (isNext && location.pathname === "/UsesFactoryFile") { navigate("/FactoryFile"); return; }
+    if (isNext && location.pathname === "/Sub1Legal") {
+      navigate("/Sub2Legal");
+      return;
+    }
+    if (isNext && location.pathname === "/BuildingMaintenance") {
+      navigate("/preparation");
+      return;
+    }
+    if (isNext && location.pathname === "/preparation") {
+      navigate("/rockets");
+      return;
+    }
+    if (isNext && location.pathname === "/preparation-earth") {
+      navigate("/earthquake");
+      return;
+    }
+    if (isNext && location.pathname === "/HowPreper") {
+      navigate("/preparation-earth");
+      return;
+    }
+    if (isNext && location.pathname === "/DetailEmergencyTeams/2") {
+      navigate("/EmergencyTeams");
+      return;
+    }
+    if (isNext && location.pathname === "/UsesFactoryFile") {
+      navigate("/FactoryFile");
+      return;
+    }
     navigate(targetPath);
   };
 
@@ -474,7 +610,8 @@ function Buttons() {
     location.pathname === "/last-page" ||
     location.pathname === "/AboutUs" ||
     location.pathname === "/CreditPage"
-  ) return null;
+  )
+    return null;
 
   return (
     <div className="buttons-page-corner" style={{ "--btn-color": color }}>
@@ -483,18 +620,28 @@ function Buttons() {
         onClick={() => goToPath(nextPath, true)}
         disabled={!nextPath || isCurrentlyDisabled}
       >
-        <img src={`${process.env.PUBLIC_URL}/assets/Btns/NextBtnArrow.png`} alt="Next" className="app-button__icon next" />
+        <img
+          src={`${process.env.PUBLIC_URL}/assets/Btns/NextBtnArrow.png`}
+          alt="Next"
+          className="app-button__icon next"
+        />
       </button>
       <button
         className="app-button app-button--prev"
         onClick={() => goToPath(prevPath, false)}
         disabled={
-          !prevPath || isPrevDisabled || isBuildingMaintenance ||
+          !prevPath ||
+          isPrevDisabled ||
+          isBuildingMaintenance ||
           location.pathname === "/EducationGame" ||
           location.pathname === "/ResourcesGame"
         }
       >
-        <img src={`${process.env.PUBLIC_URL}/assets/Btns/NextBtnArrow.png`} alt="Back" className="app-button__icon back" />
+        <img
+          src={`${process.env.PUBLIC_URL}/assets/Btns/NextBtnArrow.png`}
+          alt="Back"
+          className="app-button__icon back"
+        />
       </button>
     </div>
   );
