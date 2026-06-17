@@ -20,7 +20,10 @@ function InfoLomda() {
   };
 
   const [step, setStep] = useState(getStepFromPath(location.pathname));
-  const [noticeOpen, setNoticeOpen] = useState(false);
+  const [noticeClicked, setNoticeClicked] = useState(
+    () => sessionStorage.getItem("infoLomdaNoticeClicked") === "true",
+  );
+  const [noticeOpen, setNoticeOpen] = useState(noticeClicked);
 
   // const audioRef = useRef(null);
 
@@ -53,13 +56,18 @@ function InfoLomda() {
   const playNoticeAudio = () => {
     if (window.__noticeAudio) {
       window.__noticeAudio.pause();
+      window.__noticeAudio.currentTime = 0;
     }
     const audio = new Audio(
       process.env.PUBLIC_URL +
         "/recordings/00-hakdama/004 -  info-lomda-04.mp3",
     );
+    const isMuted = sessionStorage.getItem("narrationPaused") === "true";
+    audio.muted = isMuted;
     window.__noticeAudio = audio; // 👈 חשוף אותו
-    audio.play().catch(() => {});
+    if (!isMuted) {
+      audio.play().catch(() => {});
+    }
   };
 
   useEffect(() => {
@@ -67,6 +75,11 @@ function InfoLomda() {
 
     const handleNext = (e) => {
       const currentStep = getStepFromPath(location.pathname);
+      // בשלב 0 (עמוד פתיחה עם שימו לב), לא לתת לעבור עד שלחצנו על שימו לב
+      if (currentStep === 0 && !noticeOpen) {
+        e.preventDefault();
+        return;
+      }
       if (currentStep < PATHS.length - 1) {
         e.preventDefault();
         navigate(PATHS[currentStep + 1]);
@@ -88,7 +101,7 @@ function InfoLomda() {
       window.removeEventListener("onNextNav", handleNext);
       window.removeEventListener("onPrevNav", handlePrev);
     };
-  }, [navigate, location.pathname]);
+  }, [navigate, location.pathname, noticeOpen]);
 
   useEffect(() => {
     return () => {
@@ -102,14 +115,18 @@ function InfoLomda() {
   }, []);
 
   useEffect(() => {
-  if (step !== 0) {
-    if (window.__noticeAudio) {
-      window.__noticeAudio.pause();
-      window.__noticeAudio.currentTime = 0;
-      window.__noticeAudio = null;
+    if (step !== 0) {
+      if (window.__noticeAudio) {
+        window.__noticeAudio.pause();
+        window.__noticeAudio.currentTime = 0;
+        window.__noticeAudio = null;
+      }
+    } else {
+      window.dispatchEvent(new CustomEvent("setNextBtnDisabled", {
+        detail: noticeClicked ? false : true,
+      }));
     }
-  }
-}, [step]);
+  }, [step, noticeClicked]);
 
   return (
     <div className="InfoLomda">
@@ -152,6 +169,9 @@ function InfoLomda() {
               onClick={() => {
                 if (!noticeOpen) {
                   setNoticeOpen(true);
+                  setNoticeClicked(true);
+                  sessionStorage.setItem("infoLomdaNoticeClicked", "true");
+                  window.dispatchEvent(new CustomEvent("setNextBtnDisabled", { detail: false }));
 
                   stopNarration(); // עוצר את הקריינות הראשית
 

@@ -52,6 +52,14 @@ export default function NarrationPlayer() {
     setCurrentIndex(0);
   }, [srcs]);
 
+  // קרא את muted מ-sessionStorage כל פעם שcurrentSrc משתנה (כלומר, כשעברנו לעמוד חדש)
+  useEffect(() => {
+    const saved = sessionStorage.getItem("narrationPaused");
+    if (saved !== null) {
+      setMuted(saved === "true");
+    }
+  }, [currentSrc]);
+
   useEffect(() => {
     if (!audioRef.current || !currentSrc) return;
     if (previousSrcRef.current !== currentSrc) {
@@ -64,6 +72,15 @@ export default function NarrationPlayer() {
       setPlaying(false);
       return;
     }
+    // אל תנגן את הקריינות הראשית כשה-notice פעיל
+    const noticeAudio = window.__noticeAudio;
+    const noticeIsActive =
+      noticeAudio && !noticeAudio.ended && noticeAudio.src !== "";
+    
+    if (noticeIsActive) {
+      return;
+    }
+    
     if (skipFullscreenCheck || (isFullscreen() && autoplay)) {
       audioRef.current.play().catch(() => setPlaying(false));
       setPlaying(true);
@@ -137,9 +154,12 @@ export default function NarrationPlayer() {
 
     // מנגן רק את מה שרלוונטי — לא את שניהם
     if (noticeIsActive) {
-      noticeAudio.play();
+      // וודא שהקריינות הראשית מושתקת כשמנגנים notice
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      noticeAudio.play().catch(() => setPlaying(false));
     } else {
-      audioRef.current.play();
+      audioRef.current.play().catch(() => setPlaying(false));
     }
     setPlaying(true);
   };
