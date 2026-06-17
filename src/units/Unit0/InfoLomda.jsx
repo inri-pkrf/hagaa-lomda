@@ -25,26 +25,6 @@ function InfoLomda() {
   );
   const [noticeOpen, setNoticeOpen] = useState(noticeClicked);
 
-  // const audioRef = useRef(null);
-
-  // useEffect(() => {
-  //   const audio = new Audio(
-  //     process.env.PUBLIC_URL + "/recordings/00-hakdama/004 -  info-lomda-04.mp3",
-  //   );
-  //   audioRef.current = audio;
-
-  //   // 👇 זה מה שמאפשר לעצור מבחוץ
-  //   window.__narrationAudio = audio;
-
-  //   audio.play();
-
-  //   return () => {
-  //     audio.pause();
-  //     audioRef.current = null;
-  //     window.__narrationAudio = null;
-  //   };
-  // }, []);
-
   const stopNarration = () => {
     const audio = window.__narrationAudio;
     if (audio) {
@@ -122,9 +102,11 @@ function InfoLomda() {
         window.__noticeAudio = null;
       }
     } else {
-      window.dispatchEvent(new CustomEvent("setNextBtnDisabled", {
-        detail: noticeClicked ? false : true,
-      }));
+      window.dispatchEvent(
+        new CustomEvent("setNextBtnDisabled", {
+          detail: noticeClicked ? false : true,
+        }),
+      );
     }
   }, [step, noticeClicked]);
 
@@ -171,7 +153,9 @@ function InfoLomda() {
                   setNoticeOpen(true);
                   setNoticeClicked(true);
                   sessionStorage.setItem("infoLomdaNoticeClicked", "true");
-                  window.dispatchEvent(new CustomEvent("setNextBtnDisabled", { detail: false }));
+                  window.dispatchEvent(
+                    new CustomEvent("setNextBtnDisabled", { detail: false }),
+                  );
 
                   stopNarration(); // עוצר את הקריינות הראשית
 
@@ -188,7 +172,7 @@ function InfoLomda() {
               <span className="notice-center">
                 <span className="notice-big-heart">♥</span>
                 <span className="notice-center-title">שימו לב!</span>
-                <span className="notice-click-hint">לחץ לקריאה</span>
+                <span className="notice-click-hint">לחצו לקריאה</span>
               </span>
 
               {/* תוכן — גלוי רק אחרי פתיחה */}
