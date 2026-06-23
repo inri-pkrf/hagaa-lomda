@@ -1,11 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import "./Styles/QuizEngine.css";
 import { narrationMap } from "../Data/NarrationData";
 
 const QuizEngine = ({ data, unitNumber, onFinished }) => {
-  const navigate = useNavigate();
-
   const answersKey = `unit_${unitNumber}_quiz_answers`;
   const indexKey = `unit_${unitNumber}_quiz_index`;
 

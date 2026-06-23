@@ -205,13 +205,7 @@ function LastPage() {
                   תעברו אותו, תצטרכו לעבור את כל הלומדה מחדש.{" "}
                 </h2>
                 <button
-                  className="lastPage__button"
-                  onClick={() => setOpenReview(true)}
-                >
-                  איפה טעיתי
-                </button>
-                <button
-                  className="lastPage__button"
+                  className="lastPage__button-try"
                   onClick={() => {
                     sessionStorage.setItem("quiz_attempt_5", attempts + 1);
                     sessionStorage.removeItem("unit_5_quiz_answers");
@@ -220,6 +214,12 @@ function LastPage() {
                   }}
                 >
                   נסו שוב
+                </button>
+                <button
+                  className="lastPage__button"
+                  onClick={() => setOpenReview(true)}
+                >
+                  איפה טעיתי
                 </button>
               </>
             )}
@@ -231,13 +231,19 @@ function LastPage() {
                   קבלת הסמכה
                 </h2>
                 <button
-                  className="lastPage__button lastPage__button--danger"
+                  className="lastPage__button-again lastPage__button--danger"
                   onClick={() => {
                     sessionStorage.clear();
                     navigate("/");
                   }}
                 >
                   התחלת הלומדה מחדש
+                </button>
+                <button
+                  className="lastPage__button"
+                  onClick={() => setOpenReview(true)}
+                >
+                  איפה טעיתי
                 </button>
               </>
             )}

@@ -66,8 +66,6 @@ const QuestionDataQuizB = [
     ],
     correctAnswer: 1,
   },
-
-
   {
     id: 7,
     question: "מהן ההנחיות מצילות החיים באירוע רעידת אדמה?",
@@ -227,8 +225,4 @@ const QuestionDataQuizB = [
   },
 ];
 
-
 export default QuestionDataQuizB;
-
-
-
