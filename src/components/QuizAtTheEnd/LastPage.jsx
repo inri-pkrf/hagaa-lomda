@@ -4,6 +4,17 @@ import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
 import "./LastPage.css";
 import { STATE_KEYS } from "../../Data/Statekeys"; // ⭐ ייבוא משותף (תקן את הנתיב לפי מבנה הפרויקט שלך)
+import { calculateOverallProgress, getCurrentUnit } from "../Progressunits"; // ⭐ חישוב אחוז התקדמות + יחידה נוכחית, משותף (תקן את הנתיב לפי מבנה הפרויקט שלך)
+
+// ⭐ שליפת learningId מה-URL (פרמטר חובה בכל קריאות ה-API)
+function getUrlParams() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    learningId: parseInt(params.get("learningId"), 10),
+    key: params.get("key"),
+  };
+}
+const { learningId: LEARNING_ID } = getUrlParams();
 
 function LastPage() {
   const navigate = useNavigate();
@@ -28,9 +39,14 @@ function LastPage() {
 
   const [showConfetti, setShowConfetti] = useState(false);
 
-  // ⭐ שמירה לשרת כולל כל sessionStorage
+  // ⭐ שמירה לשרת כולל כל sessionStorage + אחוז ההתקדמות הכולל
   useEffect(() => {
     const saveToServer = async () => {
+      if (!LEARNING_ID || Number.isNaN(LEARNING_ID)) {
+        console.warn("learningId חסר או לא תקין ב-URL, לא נשלחת שמירה");
+        return;
+      }
+
       try {
         const sessionState = {};
         STATE_KEYS.forEach((key) => {
@@ -38,15 +54,35 @@ function LastPage() {
           if (val !== null) sessionState[key] = val;
         });
 
-        const res = await fetch("/umbraco/surface/learning/SetIframeLearning", {
+        // ⭐ אחוז ההתקדמות הכולל (0-100), מחושב באותה לוגיקה כמו ב-ProgressBar
+        const progress = calculateOverallProgress();
+
+        // ⭐ היחידה הנוכחית בפורמט "X/4"
+        const unit = getCurrentUnit();
+
+        // ⭐ ה-status נשלח גם כפרמטר נפרד ב-body (כנדרש ב-API) וגם בתוך stateJson עצמו
+        const status = score >= 70 ? 3 : 2;
+
+        // ⭐ הכל נשלח עטוף ב-stateJson אחד, כנדרש ב-API
+        const stateJson = JSON.stringify({
+          lastPath: "/last-page",
+          score,
+          pass: score >= 70,
+          sessionState,
+          progress,
+          unit,
+          status,
+        });
+
+        const res = await fetch("/umbraco/api/learning/SetIframeLearning", {
           method: "POST",
           credentials: "include",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            lastPath: "/last-page",
-            score,
-            pass: score >= 70,
-            sessionState,
+            learningId: LEARNING_ID,
+            stateJson,
+            // ⭐ 3 = עבר את המבחן בציון 70+, 2 = הגיע לסיום אך לא עבר (עדיין "בתהליך")
+            status,
           }),
         });
 
@@ -65,7 +101,7 @@ function LastPage() {
     window.dispatchEvent(new Event("openFeedbackPopup"));
   };
 
-  // ⭐ הורדה למחשב לבדיקה
+  // ⭐ הורדה למחשב לבדיקה (כולל אחוז ההתקדמות, היחידה הנוכחית והסטטוס)
   const downloadReport = () => {
     const sessionState = {};
     STATE_KEYS.forEach((key) => {
@@ -73,11 +109,18 @@ function LastPage() {
       if (val !== null) sessionState[key] = val;
     });
 
+    const progress = calculateOverallProgress();
+    const unit = getCurrentUnit();
+    const status = score >= 70 ? 3 : 2;
+
     const report = {
       lastPath: "/last-page",
       score,
       pass: score >= 70,
       sessionState,
+      progress,
+      unit,
+      status,
     };
     const blob = new Blob([JSON.stringify(report, null, 2)], {
       type: "application/json",

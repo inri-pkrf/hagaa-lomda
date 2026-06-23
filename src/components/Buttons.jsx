@@ -3,6 +3,17 @@ import headerData from "../Data/HeaderData";
 import "./Styles/Buttons.css";
 import React, { useEffect, useState, useRef } from "react";
 import { STATE_KEYS } from "../Data/Statekeys"; // ⭐ ייבוא משותף
+import { calculateOverallProgress, getCurrentUnit } from "./Progressunits"; // ⭐ חישוב אחוז התקדמות + יחידה נוכחית, משותף
+
+// ⭐ שליפת learningId מה-URL (פרמטר חובה בכל קריאות ה-API)
+function getUrlParams() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    learningId: parseInt(params.get("learningId"), 10),
+    key: params.get("key"),
+  };
+}
+const { learningId: LEARNING_ID } = getUrlParams();
 
 const routeOrder = [
   "/",
@@ -229,6 +240,12 @@ const openingToPrev = {
   "/unit-four-opening": "/summary-checklist-unit3",
 };
 
+// ⭐ קביעת status לפי הנתיב הנוכחי:
+// 1 = טרם התחיל (רק בעמוד הבית "/")
+// 2 = בתהליך (כל שאר העמודים)
+// (status 3 = הושלם בהצלחה, נקבע רק ב-LastPage לפי ציון המבחן)
+const getStatusForPath = (path) => (path === "/" ? 1 : 2);
+
 function Buttons() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -276,26 +293,39 @@ function Buttons() {
     if (hasRestoredState.current) return;
     // ⭐ אם המשתמש כבר התקדם בסשן הנוכחי - לא לדרוס
     if (location.pathname !== "/") return;
+
+    if (!LEARNING_ID || Number.isNaN(LEARNING_ID)) {
+      console.warn("learningId חסר או לא תקין ב-URL");
+      return;
+    }
+
     try {
-      const res = await fetch("/umbraco/surface/learning/GetIframeLearning", {
-        credentials: "include",
-      });
+      const res = await fetch(
+        `/umbraco/api/learning/GetIframeLearning?learningId=${LEARNING_ID}`,
+        { credentials: "include" },
+      );
       if (!res.ok) {
         console.warn("השרת לא זמין:", res.status);
         return;
       }
       const data = await res.json();
-      if (data.success && data.lastPath) {
-        if (data.sessionState) {
-          Object.entries(data.sessionState).forEach(([key, val]) => {
+
+      // ⭐ stateJson מגיע כ-string מהשרת ולכן יש לפענח אותו
+      if (data.success && data.stateJson) {
+        const parsedState = JSON.parse(data.stateJson);
+        const { lastPath, sessionState } = parsedState;
+
+        if (sessionState) {
+          Object.entries(sessionState).forEach(([key, val]) => {
             sessionStorage.setItem(key, val);
           });
         }
-        const index = routeOrder.indexOf(data.lastPath);
+
+        const index = routeOrder.indexOf(lastPath);
         if (index !== -1) {
           hasRestoredState.current = true;
           setCurrentIndex(index);
-          navigate(data.lastPath);
+          navigate(lastPath);
         }
       }
     } catch (e) {
@@ -303,8 +333,13 @@ function Buttons() {
     }
   };
 
-  // ⭐ שמירת מצב לשרת כולל כל sessionStorage
+  // ⭐ שמירת מצב לשרת כולל כל sessionStorage + אחוז ההתקדמות הכולל
   const saveState = async (path) => {
+    if (!LEARNING_ID || Number.isNaN(LEARNING_ID)) {
+      console.warn("learningId חסר או לא תקין ב-URL, לא נשלחת שמירה");
+      return;
+    }
+
     try {
       const sessionState = {};
       STATE_KEYS.forEach((key) => {
@@ -312,11 +347,34 @@ function Buttons() {
         if (val !== null) sessionState[key] = val;
       });
 
-      const res = await fetch("/umbraco/surface/learning/SetIframeLearning", {
+      // ⭐ אחוז ההתקדמות הכולל (0-100), מחושב באותה לוגיקה כמו ב-ProgressBar
+      const progress = calculateOverallProgress();
+
+      // ⭐ היחידה הנוכחית בפורמט "X/4"
+      const unit = getCurrentUnit();
+
+      // ⭐ ה-status נשלח גם כפרמטר נפרד ב-body (כנדרש ב-API) וגם בתוך stateJson עצמו
+      const status = getStatusForPath(path);
+
+      // ⭐ הכל (lastPath + sessionState + progress + unit + status) נשלח עטוף ב-stateJson אחד, כנדרש ב-API
+      const stateJson = JSON.stringify({
+        lastPath: path,
+        sessionState,
+        progress,
+        unit,
+        status,
+      });
+
+      const res = await fetch("/umbraco/api/learning/SetIframeLearning", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ lastPath: path, sessionState }),
+        body: JSON.stringify({
+          learningId: LEARNING_ID,
+          stateJson,
+          // ⭐ 1 = טרם התחיל (רק בעמוד "/"), 2 = בתהליך (כל עמוד אחר)
+          status,
+        }),
       });
 
       if (!res.ok) {

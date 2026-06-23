@@ -7,6 +7,8 @@ import {
   useLocation,
 } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { STATE_KEYS } from "./Data/Statekeys"; // ⭐ ייבוא משותף
+import { calculateOverallProgress, getCurrentUnit } from "./components/Progressunits.jsx"; // ⭐ חישוב אחוז התקדמות + יחידה נוכחית, משותף
 
 // עמודים כללים של כל הלומדה
 import Buttons from "./components/Buttons";
@@ -215,15 +217,56 @@ function App() {
     }
   };
 
+  // ⭐ הורדת JSON לבדיקה - כולל כל sessionStorage, אחוז ההתקדמות, היחידה הנוכחית והסטטוס
+  // זמין מכל עמוד בלומדה (לא רק בעמוד הסיום) כדי לאפשר בדיקה באמצע התהליך
+  const handleDownloadReport = () => {
+    const sessionState = {};
+    STATE_KEYS.forEach((key) => {
+      const val = sessionStorage.getItem(key);
+      if (val !== null) sessionState[key] = val;
+    });
+
+    const progress = calculateOverallProgress();
+    const unit = getCurrentUnit();
+    const score = Number(sessionStorage.getItem("finalQuizScore")) || 0;
+
+    const report = {
+      lastPath: location.pathname,
+      score,
+      pass: score >= 70,
+      sessionState,
+      progress,
+      unit,
+      status: location.pathname === "/" ? 1 : score >= 70 ? 3 : 2,
+    };
+
+    const blob = new Blob([JSON.stringify(report, null, 2)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "learning-report.json";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="App">
       {/* ─── overlay מסך מלא - תמיד פעיל בכל האפליקציה ─── */}
       <FullscreenOverlay />
 
-      {/* כפתור איפוס זמני לפיתוח */}
-      <button className="developer-reset-btn" onClick={handleResetAll}>
-        איפוס לומדה 🔄
-      </button>
+      {/* כפתורי פיתוח זמניים: איפוס + הורדת JSON לבדיקה */}
+      <div className="developer-toolbar">
+        <button className="developer-reset-btn" onClick={handleResetAll}>
+          איפוס לומדה 🔄
+        </button>
+        <button className="developer-download-btn" onClick={handleDownloadReport}>
+          הורד JSON לבדיקה ⬇️
+        </button>
+      </div>
 
       {location.pathname !== "/elevator" && <Header />}
 

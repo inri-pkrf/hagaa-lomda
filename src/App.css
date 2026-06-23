@@ -117,3 +117,22 @@
 .narration-btn:hover {
   transform: scale(1.1);
 }
+
+.developer-download-btn {
+  position: fixed;
+  top: 7vh;
+  right: 14.5vw;
+  z-index: 9999; /* מוודא שהוא מעל הכל */
+  background: #ff4757; /* אדום בולט */
+  color: white;
+  border: none;
+  padding: 0.1vw 0.1vw;
+  border-radius: 1vw;
+  font-family: "Assistant", sans-serif;
+  font-size: 1vw;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  opacity: 0.6;
+  transition: opacity 0.3s;
+  direction: rtl;
+}
