@@ -26,7 +26,7 @@ function GuidelinesChemical() {
         process.env.PUBLIC_URL + "/assets/UnitTwoImgs/earthquake/vehicle.jpg",
       title: "בכלי רכב",
       alt: "רכב",
-      text: "אין לעצור, יש להמשיך בנסיעה תוך סגירת חלונות וכיבוי המזגן ולהתרחק מהאירוע",
+      text: "יש לעצור בבטחה, לסגור את החלונות ולכבות את המזגן",
     },
   ];
 

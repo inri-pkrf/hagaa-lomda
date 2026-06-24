@@ -42,20 +42,14 @@ const InterfencesData = {
     image: `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Interfences/Outsider.webp`,
     colorCircle: "#3fc6f3",
   },
+
   8: {
-    name: 'ממונה הג"א',
-    description: `אמון על יישום הוראות ההתגוננות כנדרש במפעל. מתוקף זה, אחראי על תיאום פעילות ההתגוננות, כשירות הצוותים ועוד.`,
-    image: `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Interfences/HaggaMan.png`,
-    image2: `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Interfences/HaggaWoman.png`,
-    colorCircle: "#3fc6f3",
-  },
-  9: {
     name: 'מד"א',
     description: `אחראי על ניהול האירוע בהיבט הפינוי והטיפול בנפגעים בהיותו חלק מגופי ההצלה האזרחיים.`,
     image: `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Interfences/Medic.png`,
     colorCircle: "#ea6f72",
   },
-  10: {
+  9: {
     name: "כבאות והצלה",
     description: `אמונים על ניהול האירוע בהיבט הכבאות וההצלה (לרבות חומרים מסוכנים) בהיותם חלק מגופי ההצלה האזרחיים.`,
     image: `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Interfences/Fireman.png`,
