@@ -7,7 +7,9 @@ import { STATE_KEYS } from "../../Data/Statekeys";
 import { getProgressData } from "../Progressunits";
 
 function getUrlParams() {
-  const params = new URLSearchParams(window.location.search);
+  const hash = window.location.hash;
+  const queryString = hash.includes("?") ? hash.split("?")[1] : "";
+  const params = new URLSearchParams(queryString);
   return {
     learningId: parseInt(params.get("learningId"), 10),
     key: params.get("key"),
@@ -36,7 +38,6 @@ function LastPage() {
 
   const [showConfetti, setShowConfetti] = useState(false);
 
-  // ⭐ שמירה לשרת במבנה החדש
   useEffect(() => {
     const saveToServer = async () => {
       if (!LEARNING_ID || Number.isNaN(LEARNING_ID)) {
@@ -50,11 +51,8 @@ function LastPage() {
           if (val !== null) sessionState[key] = val;
         });
 
-        // ⭐ 3 = עבר בציון 70+, 2 = לא עבר
         const status = score >= 70 ? 3 : 2;
         const progressData = getProgressData(status);
-
-        // ⭐ stateJson מכיל רק sessionState
         const stateJson = JSON.stringify({ sessionState });
 
         const res = await fetch("/umbraco/api/learning/SetIframeLearning", {
@@ -86,7 +84,6 @@ function LastPage() {
     window.dispatchEvent(new Event("openFeedbackPopup"));
   };
 
-  // ⭐ הורדה למחשב לבדיקה
   const downloadReport = () => {
     const sessionState = {};
     STATE_KEYS.forEach((key) => {
@@ -102,6 +99,7 @@ function LastPage() {
       stateJson: JSON.stringify({ sessionState }),
       progressData,
       status,
+      score,
     };
 
     const blob = new Blob([JSON.stringify(report, null, 2)], {
@@ -141,9 +139,7 @@ function LastPage() {
 
       <div className="lastPage__center">
         <p className="lastPage__score">ציונך:</p>
-        <p
-          className={`lastPage_score ${isFail ? "lastPage_score--fail" : "lastPage_score--pass"}`}
-        >
+        <p className={`lastPage_score ${isFail ? "lastPage_score--fail" : "lastPage_score--pass"}`}>
           {score}/100
         </p>
 
@@ -181,11 +177,8 @@ function LastPage() {
                 <h2 className="lastPage__subtitle_restart">
                   שימו לב: יש לבצע את המבחן פעם נוספת, אך אם גם בפעם הזו לא תעברו אותו, תצטרכו לעבור את כל הלומדה מחדש.
                 </h2>
-                <button className="lastPage__button" onClick={() => setOpenReview(true)}>
-                  איפה טעיתי
-                </button>
                 <button
-                  className="lastPage__button"
+                  className="lastPage__button-try"
                   onClick={() => {
                     sessionStorage.setItem("quiz_attempt_5", attempts + 1);
                     sessionStorage.removeItem("unit_5_quiz_answers");
@@ -194,6 +187,9 @@ function LastPage() {
                   }}
                 >
                   נסו שוב
+                </button>
+                <button className="lastPage__button" onClick={() => setOpenReview(true)}>
+                  איפה טעיתי
                 </button>
               </>
             )}
@@ -204,13 +200,16 @@ function LastPage() {
                   שימו לב: עליכם לעבור עוד פעם את הקורס על מנת לגשת שוב למבחן קבלת הסמכה
                 </h2>
                 <button
-                  className="lastPage__button lastPage__button--danger"
+                  className="lastPage__button-again lastPage__button--danger"
                   onClick={() => {
                     sessionStorage.clear();
                     navigate("/");
                   }}
                 >
                   התחלת הלומדה מחדש
+                </button>
+                <button className="lastPage__button" onClick={() => setOpenReview(true)}>
+                  איפה טעיתי
                 </button>
               </>
             )}
