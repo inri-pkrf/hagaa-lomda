@@ -3,10 +3,9 @@ import { useNavigate } from "react-router-dom";
 import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
 import "./LastPage.css";
-import { STATE_KEYS } from "../../Data/Statekeys"; // ⭐ ייבוא משותף (תקן את הנתיב לפי מבנה הפרויקט שלך)
-import { calculateOverallProgress, getCurrentUnit } from "../Progressunits"; // ⭐ חישוב אחוז התקדמות + יחידה נוכחית, משותף (תקן את הנתיב לפי מבנה הפרויקט שלך)
+import { STATE_KEYS } from "../../Data/Statekeys";
+import { getProgressData } from "../Progressunits";
 
-// ⭐ שליפת learningId מה-URL (פרמטר חובה בכל קריאות ה-API)
 function getUrlParams() {
   const params = new URLSearchParams(window.location.search);
   return {
@@ -24,9 +23,7 @@ function LastPage() {
   const score = Number(sessionStorage.getItem("finalQuizScore")) || 0;
   const answersKey = "unit_5_quiz_answers";
   const savedAnswers = JSON.parse(sessionStorage.getItem(answersKey)) || {};
-  const questions = JSON.parse(
-    sessionStorage.getItem("unit_5_questions") || "[]",
-  );
+  const questions = JSON.parse(sessionStorage.getItem("unit_5_questions") || "[]");
 
   const [openReview, setOpenReview] = useState(false);
   const attempts = Number(sessionStorage.getItem("quiz_attempt_5")) || 1;
@@ -39,14 +36,13 @@ function LastPage() {
 
   const [showConfetti, setShowConfetti] = useState(false);
 
-  // ⭐ שמירה לשרת כולל כל sessionStorage + אחוז ההתקדמות הכולל
+  // ⭐ שמירה לשרת במבנה החדש
   useEffect(() => {
     const saveToServer = async () => {
       if (!LEARNING_ID || Number.isNaN(LEARNING_ID)) {
         console.warn("learningId חסר או לא תקין ב-URL, לא נשלחת שמירה");
         return;
       }
-
       try {
         const sessionState = {};
         STATE_KEYS.forEach((key) => {
@@ -54,25 +50,12 @@ function LastPage() {
           if (val !== null) sessionState[key] = val;
         });
 
-        // ⭐ אחוז ההתקדמות הכולל (0-100), מחושב באותה לוגיקה כמו ב-ProgressBar
-        const progress = calculateOverallProgress();
-
-        // ⭐ היחידה הנוכחית בפורמט "X/4"
-        const unit = getCurrentUnit();
-
-        // ⭐ ה-status נשלח גם כפרמטר נפרד ב-body (כנדרש ב-API) וגם בתוך stateJson עצמו
+        // ⭐ 3 = עבר בציון 70+, 2 = לא עבר
         const status = score >= 70 ? 3 : 2;
+        const progressData = getProgressData(status);
 
-        // ⭐ הכל נשלח עטוף ב-stateJson אחד, כנדרש ב-API
-        const stateJson = JSON.stringify({
-          lastPath: "/last-page",
-          score,
-          pass: score >= 70,
-          sessionState,
-          progress,
-          unit,
-          status,
-        });
+        // ⭐ stateJson מכיל רק sessionState
+        const stateJson = JSON.stringify({ sessionState });
 
         const res = await fetch("/umbraco/api/learning/SetIframeLearning", {
           method: "POST",
@@ -81,8 +64,9 @@ function LastPage() {
           body: JSON.stringify({
             learningId: LEARNING_ID,
             stateJson,
-            // ⭐ 3 = עבר את המבחן בציון 70+, 2 = הגיע לסיום אך לא עבר (עדיין "בתהליך")
+            progressData,
             status,
+            score,
           }),
         });
 
@@ -96,12 +80,13 @@ function LastPage() {
 
     saveToServer();
   }, []);
+
   const handleFeedbackClick = () => {
     setIsOpen(false);
     window.dispatchEvent(new Event("openFeedbackPopup"));
   };
 
-  // ⭐ הורדה למחשב לבדיקה (כולל אחוז ההתקדמות, היחידה הנוכחית והסטטוס)
+  // ⭐ הורדה למחשב לבדיקה
   const downloadReport = () => {
     const sessionState = {};
     STATE_KEYS.forEach((key) => {
@@ -109,19 +94,16 @@ function LastPage() {
       if (val !== null) sessionState[key] = val;
     });
 
-    const progress = calculateOverallProgress();
-    const unit = getCurrentUnit();
     const status = score >= 70 ? 3 : 2;
+    const progressData = getProgressData(status);
 
     const report = {
-      lastPath: "/last-page",
-      score,
-      pass: score >= 70,
-      sessionState,
-      progress,
-      unit,
+      learningId: LEARNING_ID,
+      stateJson: JSON.stringify({ sessionState }),
+      progressData,
       status,
     };
+
     const blob = new Blob([JSON.stringify(report, null, 2)], {
       type: "application/json",
     });
@@ -180,13 +162,9 @@ function LastPage() {
         {isPass && (
           <>
             <h2 className="lastPage__subtitle">
-              הציון עבר את הרף הנדרש לצורך קבלת תעודה, התעודה תחכה לך באיזור
-              האישי
+              הציון עבר את הרף הנדרש לצורך קבלת תעודה, התעודה תחכה לך באיזור האישי
             </h2>
-            <button
-              className="lastPage__button"
-              onClick={() => setOpenReview(true)}
-            >
+            <button className="lastPage__button" onClick={() => setOpenReview(true)}>
               איפה טעיתי
             </button>
           </>
@@ -201,13 +179,9 @@ function LastPage() {
             {isFirstTry && (
               <>
                 <h2 className="lastPage__subtitle_restart">
-                  שימו לב: יש לבצע את המבחן פעם נוספת, אך אם גם בפעם הזו לא
-                  תעברו אותו, תצטרכו לעבור את כל הלומדה מחדש.{" "}
+                  שימו לב: יש לבצע את המבחן פעם נוספת, אך אם גם בפעם הזו לא תעברו אותו, תצטרכו לעבור את כל הלומדה מחדש.
                 </h2>
-                <button
-                  className="lastPage__button"
-                  onClick={() => setOpenReview(true)}
-                >
+                <button className="lastPage__button" onClick={() => setOpenReview(true)}>
                   איפה טעיתי
                 </button>
                 <button
@@ -227,8 +201,7 @@ function LastPage() {
             {isSecondTry && (
               <>
                 <h2 className="lastPage__subtitle_restart">
-                  שימו לב: עליכם לעבור עוד פעם את הקורס על מנת לגשת שוב למבחן
-                  קבלת הסמכה
+                  שימו לב: עליכם לעבור עוד פעם את הקורס על מנת לגשת שוב למבחן קבלת הסמכה
                 </h2>
                 <button
                   className="lastPage__button lastPage__button--danger"
@@ -246,10 +219,7 @@ function LastPage() {
 
         <div className="lastPage__aboutWrapper">
           <span className="lastPage__aboutHint">שווה להציץ 👀</span>
-          <button
-            className="about-us-btn"
-            onClick={() => navigate("/CreditPage")}
-          >
+          <button className="about-us-btn" onClick={() => navigate("/CreditPage")}>
             אודות
           </button>
           <button className="about-us-btn" onClick={handleFeedbackClick}>
@@ -268,10 +238,7 @@ function LastPage() {
         <div className="modalOverlay" onClick={() => setOpenReview(false)}>
           <div className="modalContent" onClick={(e) => e.stopPropagation()}>
             <div className="modalHeader">
-              <button
-                className="modalCloseBtn"
-                onClick={() => setOpenReview(false)}
-              >
+              <button className="modalCloseBtn" onClick={() => setOpenReview(false)}>
                 ✕
               </button>
               <h2 className="modalTitle-center">סקירת טעויות</h2>
@@ -283,15 +250,9 @@ function LastPage() {
                 if (userAnswer === correct) return null;
                 return (
                   <div key={i} className="reviewItem">
-                    <p className="reviewQuestion">
-                      {i + 1}. {q.question}
-                    </p>
-                    <p className="reviewUser">
-                      תשובתך: {q.answers?.[userAnswer] || "לא נענה"}
-                    </p>
-                    <p className="reviewCorrect">
-                      תשובה נכונה: {q.answers?.[correct]}
-                    </p>
+                    <p className="reviewQuestion">{i + 1}. {q.question}</p>
+                    <p className="reviewUser">תשובתך: {q.answers?.[userAnswer] || "לא נענה"}</p>
+                    <p className="reviewCorrect">תשובה נכונה: {q.answers?.[correct]}</p>
                   </div>
                 );
               })}

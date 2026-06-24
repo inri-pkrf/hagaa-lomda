@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { STATE_KEYS } from "./Data/Statekeys"; // ⭐ ייבוא משותף
-import { calculateOverallProgress, getCurrentUnit } from "./components/Progressunits.jsx"; // ⭐ חישוב אחוז התקדמות + יחידה נוכחית, משותף
+import { getProgressData } from "./components/Progressunits.jsx";
 
 // עמודים כללים של כל הלומדה
 import Buttons from "./components/Buttons";
@@ -151,6 +151,13 @@ import QuestionRTE from "./units/Unit4/RoutineToEmergency/QuestionRTE.jsx";
 import InfoQuiz from "./components/QuizAtTheEnd/InfoQuiz.jsx";
 import LastPage from "./components/QuizAtTheEnd/LastPage.jsx";
 
+
+function getUrlParams() {
+  const params = new URLSearchParams(window.location.search);
+  return { learningId: parseInt(params.get("learningId"), 10) };
+}
+const { learningId: LEARNING_ID } = getUrlParams();
+
 // ─── קומפוננטת ה-overlay של מסך מלא ──────────
 function FullscreenOverlay() {
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -226,18 +233,16 @@ function App() {
       if (val !== null) sessionState[key] = val;
     });
 
-    const progress = calculateOverallProgress();
-    const unit = getCurrentUnit();
     const score = Number(sessionStorage.getItem("finalQuizScore")) || 0;
+    const status = location.pathname === "/" ? 1 : score >= 70 ? 3 : 2;
+    const progressData = getProgressData(status);
 
     const report = {
-      lastPath: location.pathname,
-      score,
-      pass: score >= 70,
-      sessionState,
-      progress,
-      unit,
-      status: location.pathname === "/" ? 1 : score >= 70 ? 3 : 2,
+      learningId: LEARNING_ID,
+      stateJson: JSON.stringify({ sessionState }),
+      progressData,
+      status,
+      score, 
     };
 
     const blob = new Blob([JSON.stringify(report, null, 2)], {

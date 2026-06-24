@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import "../components/Styles/ProgressBar.css";
 import NavBarData from "../Data/NavBarData";
 import { calculateUnitProgress, calculateOverallProgress } from "./Progressunits";
@@ -6,7 +6,33 @@ import { calculateUnitProgress, calculateOverallProgress } from "./Progressunits
 const ProgressBar = ({ unitInfo }) => {
   const currentStep = unitInfo?.unitNumber || 1;
 
-  const percentage = calculateOverallProgress();
+  // ⭐ state במקום חישוב ישיר — כדי שיתעדכן דינמית
+  const [percentage, setPercentage] = useState(calculateOverallProgress());
+  const [unitProgresses, setUnitProgresses] = useState(
+    NavBarData.map((unit, index) => calculateUnitProgress(unit, index + 1))
+  );
+
+  // ⭐ פונקציה שמחשבת מחדש את כל הנתונים
+  const recalculate = () => {
+    setPercentage(calculateOverallProgress());
+    setUnitProgresses(
+      NavBarData.map((unit, index) => calculateUnitProgress(unit, index + 1))
+    );
+  };
+
+  useEffect(() => {
+    // ⭐ מאזין לאירועים שמסמנים שינוי בהתקדמות
+    window.addEventListener('updateNavbar', recalculate);
+    window.addEventListener('updateTotalProgress', recalculate);
+
+    // ⭐ גם מחשב מחדש בכל שינוי ב-unitInfo (כלומר בכל ניווט)
+    recalculate();
+
+    return () => {
+      window.removeEventListener('updateNavbar', recalculate);
+      window.removeEventListener('updateTotalProgress', recalculate);
+    };
+  }, [unitInfo]);
 
   return (
     <div className="pg-container">
@@ -20,7 +46,7 @@ const ProgressBar = ({ unitInfo }) => {
       <div className="pg-steps-section">
         {NavBarData.map((unit, index) => {
           const step = index + 1;
-          const isUnitComplete = calculateUnitProgress(unit, step) === 1;
+          const isUnitComplete = unitProgresses[index] === 1;
           const isCurrentUnit = step === currentStep;
 
           return (

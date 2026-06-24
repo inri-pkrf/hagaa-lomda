@@ -2,10 +2,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import headerData from "../Data/HeaderData";
 import "./Styles/Buttons.css";
 import React, { useEffect, useState, useRef } from "react";
-import { STATE_KEYS } from "../Data/Statekeys"; // ⭐ ייבוא משותף
-import { calculateOverallProgress, getCurrentUnit } from "./Progressunits"; // ⭐ חישוב אחוז התקדמות + יחידה נוכחית, משותף
+import { STATE_KEYS } from "../Data/Statekeys";
+import { getProgressData } from "./Progressunits";
 
-// ⭐ שליפת learningId מה-URL (פרמטר חובה בכל קריאות ה-API)
 function getUrlParams() {
   const params = new URLSearchParams(window.location.search);
   return {
@@ -240,10 +239,7 @@ const openingToPrev = {
   "/unit-four-opening": "/summary-checklist-unit3",
 };
 
-// ⭐ קביעת status לפי הנתיב הנוכחי:
-// 1 = טרם התחיל (רק בעמוד הבית "/")
-// 2 = בתהליך (כל שאר העמודים)
-// (status 3 = הושלם בהצלחה, נקבע רק ב-LastPage לפי ציון המבחן)
+// ⭐ 1 = טרם התחיל, 2 = בתהליך
 const getStatusForPath = (path) => (path === "/" ? 1 : 2);
 
 function Buttons() {
@@ -255,15 +251,12 @@ function Buttons() {
   const [nextPath, setNextPath] = useState(null);
   const [isNextDisabled, setIsNextDisabled] = useState(false);
   const [isMamad3Complete, setIsMamad3Complete] = useState(false);
-  const [isSafeRoomExerciseComplete, setIsSafeRoomExerciseComplete] =
-    useState(false);
-  const [isEarthquakeExerciseComplete, setIsEarthquakeExerciseComplete] =
-    useState(false);
+  const [isSafeRoomExerciseComplete, setIsSafeRoomExerciseComplete] = useState(false);
+  const [isEarthquakeExerciseComplete, setIsEarthquakeExerciseComplete] = useState(false);
   const [isPrevDisabled, setIsPrevDisabled] = useState(false);
   const [highlightNext, setHighlightNext] = useState(false);
   const prevIsNextDisabled = useRef(true);
   const isFirstRender = useRef(true);
-  // ⭐ מונע ניווט אוטומטי חוזר אחרי הניווט הראשוני
   const hasRestoredState = useRef(false);
 
   const currentPath = location.pathname;
@@ -288,39 +281,32 @@ function Buttons() {
     };
   }, [location.pathname]);
 
-  // ⭐ טעינת מצב מהשרת + שחזור sessionStorage — רץ רק פעם אחת
+  // ⭐ טעינת מצב מהשרת + שחזור sessionStorage
   const getState = async () => {
     if (hasRestoredState.current) return;
-    // ⭐ אם המשתמש כבר התקדם בסשן הנוכחי - לא לדרוס
     if (location.pathname !== "/") return;
-
     if (!LEARNING_ID || Number.isNaN(LEARNING_ID)) {
       console.warn("learningId חסר או לא תקין ב-URL");
       return;
     }
-
     try {
       const res = await fetch(
         `/umbraco/api/learning/GetIframeLearning?learningId=${LEARNING_ID}`,
-        { credentials: "include" },
+        { credentials: "include" }
       );
       if (!res.ok) {
         console.warn("השרת לא זמין:", res.status);
         return;
       }
       const data = await res.json();
-
-      // ⭐ stateJson מגיע כ-string מהשרת ולכן יש לפענח אותו
       if (data.success && data.stateJson) {
         const parsedState = JSON.parse(data.stateJson);
         const { lastPath, sessionState } = parsedState;
-
         if (sessionState) {
           Object.entries(sessionState).forEach(([key, val]) => {
             sessionStorage.setItem(key, val);
           });
         }
-
         const index = routeOrder.indexOf(lastPath);
         if (index !== -1) {
           hasRestoredState.current = true;
@@ -333,13 +319,12 @@ function Buttons() {
     }
   };
 
-  // ⭐ שמירת מצב לשרת כולל כל sessionStorage + אחוז ההתקדמות הכולל
+  // ⭐ שמירת מצב לשרת במבנה החדש
   const saveState = async (path) => {
     if (!LEARNING_ID || Number.isNaN(LEARNING_ID)) {
       console.warn("learningId חסר או לא תקין ב-URL, לא נשלחת שמירה");
       return;
     }
-
     try {
       const sessionState = {};
       STATE_KEYS.forEach((key) => {
@@ -347,23 +332,12 @@ function Buttons() {
         if (val !== null) sessionState[key] = val;
       });
 
-      // ⭐ אחוז ההתקדמות הכולל (0-100), מחושב באותה לוגיקה כמו ב-ProgressBar
-      const progress = calculateOverallProgress();
-
-      // ⭐ היחידה הנוכחית בפורמט "X/4"
-      const unit = getCurrentUnit();
-
-      // ⭐ ה-status נשלח גם כפרמטר נפרד ב-body (כנדרש ב-API) וגם בתוך stateJson עצמו
       const status = getStatusForPath(path);
+      const progressData = getProgressData(status);
 
-      // ⭐ הכל (lastPath + sessionState + progress + unit + status) נשלח עטוף ב-stateJson אחד, כנדרש ב-API
-      const stateJson = JSON.stringify({
-        lastPath: path,
-        sessionState,
-        progress,
-        unit,
-        status,
-      });
+      // ⭐ stateJson מכיל רק sessionState
+      const stateJson = JSON.stringify({ sessionState });
+      const score = Number(sessionStorage.getItem("finalQuizScore")) || 0;
 
       const res = await fetch("/umbraco/api/learning/SetIframeLearning", {
         method: "POST",
@@ -372,8 +346,9 @@ function Buttons() {
         body: JSON.stringify({
           learningId: LEARNING_ID,
           stateJson,
-          // ⭐ 1 = טרם התחיל (רק בעמוד "/"), 2 = בתהליך (כל עמוד אחר)
+          progressData,
           status,
+          score,
         }),
       });
 
@@ -413,7 +388,7 @@ function Buttons() {
     setNextPath(
       index >= 0 && index < routeOrder.length - 1
         ? routeOrder[index + 1]
-        : null,
+        : null
     );
     sessionStorage.setItem("routeIndex", String(index));
     saveState(currentPath);
@@ -426,26 +401,24 @@ function Buttons() {
       setIsMamad3Complete(
         location.pathname === "/TimeToEnterMamad3"
           ? sessionStorage.getItem("TimeToEnterMamad3Complete") === "true"
-          : false,
+          : false
       );
       setIsSafeRoomExerciseComplete(
         location.pathname === "/SafeRoomExercise"
           ? sessionStorage.getItem("SafeRoomExerciseComplete") === "true"
-          : false,
+          : false
       );
       setIsEarthquakeExerciseComplete(
         location.pathname === "/EarthquakeExercise"
           ? sessionStorage.getItem("EarthquakeExerciseComplete") === "true"
-          : false,
+          : false
       );
     };
     checkExerciseComplete();
     if (
-      [
-        "/TimeToEnterMamad3",
-        "/SafeRoomExercise",
-        "/EarthquakeExercise",
-      ].includes(location.pathname)
+      ["/TimeToEnterMamad3", "/SafeRoomExercise", "/EarthquakeExercise"].includes(
+        location.pathname
+      )
     ) {
       intervalId = setInterval(checkExerciseComplete, 300);
     }
@@ -463,12 +436,7 @@ function Buttons() {
     const nextWasDisabled = prevIsNextDisabled.current;
     const nextIsNowEnabled = !isCurrentlyDisabled;
     const nextPathExists = !!nextPath;
-    if (
-      nextWasDisabled &&
-      nextIsNowEnabled &&
-      nextPathExists &&
-      !isBuildingMaintenance
-    ) {
+    if (nextWasDisabled && nextIsNowEnabled && nextPathExists && !isBuildingMaintenance) {
       setHighlightNext(true);
     }
     prevIsNextDisabled.current = isCurrentlyDisabled;
@@ -538,25 +506,14 @@ function Buttons() {
         path: "/fire",
         key: "clickedFireFrames",
         frames: [1, 2, 3, 4, 5],
-        keys: [
-          "unitTwo-opening",
-          "unitTwo-first",
-          "unitTwo-second",
-          "unitTwo-third",
-        ],
+        keys: ["unitTwo-opening", "unitTwo-first", "unitTwo-second", "unitTwo-third"],
         nav: "/intro-unit-two",
       },
       {
         path: "/chemical",
         key: "clickedChemicalFrames",
         frames: [1, 2, 3, 4, 5],
-        keys: [
-          "unitTwo-opening",
-          "unitTwo-first",
-          "unitTwo-second",
-          "unitTwo-third",
-          "unitTwo-fourth",
-        ],
+        keys: ["unitTwo-opening", "unitTwo-first", "unitTwo-second", "unitTwo-third", "unitTwo-fourth"],
         nav: "/intro-unit-two",
       },
       {
@@ -577,39 +534,21 @@ function Buttons() {
         path: "/Resources",
         key: "clickedResourcesFrames",
         frames: [1, 2, 3],
-        keys: [
-          "unitThree-opening",
-          "unitThree-first",
-          "unitThree-second",
-          "unitThree-third",
-        ],
+        keys: ["unitThree-opening", "unitThree-first", "unitThree-second", "unitThree-third"],
         nav: "/intro-unit-three",
       },
       {
         path: "/ExternalRecruits",
         key: "clickedExternalRecruitsFrames",
         frames: [1, 2, 3, 4],
-        keys: [
-          "unitThree-opening",
-          "unitThree-first",
-          "unitThree-second",
-          "unitThree-third",
-          "unitThree-fourth",
-        ],
+        keys: ["unitThree-opening", "unitThree-first", "unitThree-second", "unitThree-third", "unitThree-fourth"],
         nav: "/intro-unit-three",
       },
       {
         path: "/FactoryFile",
         key: "clickedFactoryFrames",
         frames: [1, 2],
-        keys: [
-          "unitThree-opening",
-          "unitThree-first",
-          "unitThree-second",
-          "unitThree-third",
-          "unitThree-fourth",
-          "unitThree-fifth",
-        ],
+        keys: ["unitThree-opening", "unitThree-first", "unitThree-second", "unitThree-third", "unitThree-fourth", "unitThree-fifth"],
         nav: "/intro-unit-three",
       },
     ];
@@ -618,7 +557,7 @@ function Buttons() {
         if (location.pathname === check.path) {
           try {
             const clicked = JSON.parse(
-              sessionStorage.getItem(check.key) || "[]",
+              sessionStorage.getItem(check.key) || "[]"
             );
             if (check.frames.every((id) => clicked.includes(id))) {
               check.keys.forEach((k) => sessionStorage.setItem(k, "finished"));
@@ -631,34 +570,13 @@ function Buttons() {
         }
       }
     }
-    if (isNext && location.pathname === "/Sub1Legal") {
-      navigate("/Sub2Legal");
-      return;
-    }
-    if (isNext && location.pathname === "/BuildingMaintenance") {
-      navigate("/preparation");
-      return;
-    }
-    if (isNext && location.pathname === "/preparation") {
-      navigate("/rockets");
-      return;
-    }
-    if (isNext && location.pathname === "/preparation-earth") {
-      navigate("/earthquake");
-      return;
-    }
-    if (isNext && location.pathname === "/HowPreper") {
-      navigate("/preparation-earth");
-      return;
-    }
-    if (isNext && location.pathname === "/DetailEmergencyTeams/2") {
-      navigate("/EmergencyTeams");
-      return;
-    }
-    if (isNext && location.pathname === "/UsesFactoryFile") {
-      navigate("/FactoryFile");
-      return;
-    }
+    if (isNext && location.pathname === "/Sub1Legal") { navigate("/Sub2Legal"); return; }
+    if (isNext && location.pathname === "/BuildingMaintenance") { navigate("/preparation"); return; }
+    if (isNext && location.pathname === "/preparation") { navigate("/rockets"); return; }
+    if (isNext && location.pathname === "/preparation-earth") { navigate("/earthquake"); return; }
+    if (isNext && location.pathname === "/HowPreper") { navigate("/preparation-earth"); return; }
+    if (isNext && location.pathname === "/DetailEmergencyTeams/2") { navigate("/EmergencyTeams"); return; }
+    if (isNext && location.pathname === "/UsesFactoryFile") { navigate("/FactoryFile"); return; }
     navigate(targetPath);
   };
 

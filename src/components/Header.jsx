@@ -77,7 +77,7 @@ const Header = () => {
       <h1 className="header-title">{mainTitle}</h1>
 
       {shouldShowProgressBar && unitInfo && (
-        <ProgressBar unitInfo={unitInfo} />
+        <ProgressBar key={location.pathname} unitInfo={unitInfo} />
       )}
     </header>
   );
