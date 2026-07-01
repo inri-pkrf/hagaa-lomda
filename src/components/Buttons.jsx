@@ -138,7 +138,6 @@ const routeOrder = [
   "/chemical",
   "/GuidelinesChemical",
   "/ActionsChemical",
-  "/ChemicalPoster",
   "/chemical",
   "/summary-checklist-unit2-sub3",
   "/chemical",

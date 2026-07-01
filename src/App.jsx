@@ -108,7 +108,6 @@ import PreparationChemical from "./units/Unit2/Chemical/PreparationChemical.jsx"
 import ActionsChemical from "./units/Unit2/Chemical/actionsChemical.jsx";
 import SubThreeDefensePolicy from "./units/Unit2/DefensePolicy/SubThreeDefensePolicy";
 import FirePoster from "./units/Unit2/Fire/FirePoster.jsx";
-import ChemicalPoster from "./units/Unit2/Chemical/ChemicalPoster.jsx";
 
 // קומפוננטות של יחידה 3
 import IntroUnitThree from "./units/Unit3/IntroUnitThree";
@@ -437,7 +436,6 @@ function App() {
           />
           <Route path="/ActionsChemical" element={<ActionsChemical />} />
           <Route path="/FirePoster" element={<FirePoster />} />
-          <Route path="/ChemicalPoster" element={<ChemicalPoster />} />
         </Route>
 
         <Route element={<UnitThreeLayout />}>

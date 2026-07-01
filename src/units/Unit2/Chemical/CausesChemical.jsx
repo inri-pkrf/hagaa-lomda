@@ -37,8 +37,8 @@ function CausesChemical() {
       <div className="video-text-container chemical-text-container">
         <h1 className="chemical-causes-title">גורמים</h1>
         <h2 className="chemical-subtitle">
-          אירוע חומרים מסוכנים הוא דליפה של חומר מסוכן משטח המפעל למרחב. גורמי
-          אירוע חומרים מסוכנים:{" "}
+          אירוע חומרים מסוכנים הוא שפך, דליפה, פיזור , פיצוץ , התאיידות או דליקה
+          של חומר מסוכן.<br></br>גורמי אירוע חומרים מסוכנים:
         </h2>
       </div>
       <div className="chemical-section-row">
