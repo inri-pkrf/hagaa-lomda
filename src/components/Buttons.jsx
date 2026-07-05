@@ -51,6 +51,7 @@ const routeOrder = [
   "/ProtectedSpace",
   "/preparation",
   "/Alert",
+  "/Alert/1.5",
   "/Alert/2",
   "/Alert/3",
   "/Alert/4",
@@ -360,7 +361,7 @@ function Buttons() {
   };
 
   const multiStepPages = {
-    "/Alert": ["/Alert", "/Alert/2", "/Alert/3", "/Alert/4"],
+    "/Alert": ["/Alert","/Alert/1.5", "/Alert/2", "/Alert/3", "/Alert/4"],
   };
 
   useEffect(() => {

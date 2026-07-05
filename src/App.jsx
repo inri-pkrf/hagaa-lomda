@@ -336,6 +336,7 @@ function App() {
           <Route path="/Alert/2" element={<Alert />} />
           <Route path="/Alert/3" element={<Alert />} />
           <Route path="/Alert/4" element={<Alert />} />
+          <Route path="/Alert/1.5" element={<Alert />} />
           <Route path="/Defense" element={<Defense />} />
           <Route path="/Defense/2" element={<Defense />} />
           <Route path="/ChoosingSafeRoom" element={<ChoosingSafeRoom />} />
