@@ -122,7 +122,7 @@ function Alert() {
     setMessagesSeen(Array(PAGE5_MESSAGES.length).fill(false));
 
     if (ringAudioRef.current) {
-      ringAudioRef.current.currentTime = 0;
+      ringAudioRef.current.currentTime = 3;
       ringAudioRef.current.play().catch(() => {});
     }
 
