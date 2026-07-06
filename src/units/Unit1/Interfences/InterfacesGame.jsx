@@ -30,8 +30,8 @@ function InterfacesGame() {
     },
     {
       question: "פרצה שריפה במחסן החומרים - מי הגוף האחראי?",
-      correctId: 10,
-      options: [1, 10, 9],
+      correctId: 9,
+      options: [1, 8, 9],
     },
     {
       question: "מי קובע את הנחיות המיגון לעובדים בזמן חירום?",

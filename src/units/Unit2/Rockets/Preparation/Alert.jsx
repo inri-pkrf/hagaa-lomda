@@ -9,13 +9,12 @@ const PAGE5_MESSAGES = [
     notifSubtitle: "עדכון",
     isAlert: false,
     intro: [
-      "במקרים בהם מתאפשר, פיקוד העורף מפיץ הנחיה מקדימה המאפשרת להיערך כמה דקות לפני קבלת ההתרעה, במטרה לאפשר זמן נוסף כדי לשפר מיקום למיגון המיטבי ביותר.",
-      "ההנחיה המקדימה נועדה לתת זמן ומידע נוסף לדריכות ומוכנות מקדימה לאזרחים כדי להבטיח מיגון טוב יותר, וכן לשפר את תחושת הביטחון האישית.",
-    ],
+      "**במקרים בהם מתאפשר, פיקוד העורף מפיץ הנחיה מקדימה המאפשרת להיערך כמה דקות לפני קבלת ההתרעה:**"
+      ],
     checklist: [
+      "זמן ומידע נוסף לדריכות ומוכנות ",
       "זמן לשפר מיקום למיגון המיטבי ביותר",
-      "זמן לשפר מיקום למיגון המיטבי ביותר",
-      "זמן לשפר מיקום למיגון המיטבי ביותר",
+      "שיפור תחושת הביטחון האישית",
     ],
   },
   {
@@ -23,8 +22,9 @@ const PAGE5_MESSAGES = [
     notifSubtitle: "עדכון",
     isAlert: false,
     intro: [
-      "ההנחיה תתקבל באמצעות הודעה שתשלח ב-CB וביישומון פיקוד העורף, בפורטל החירום הלאומי (אתר זה) ובערוצי הטלגרם של פיקוד העורף.",
-      "ההנחיה המקדימה מופצת לאזורים נרחבים בהם קיים פוטנציאל איום כדי לאפשר זמן היערכות, בעוד שההתרעה (אזעקה) מופצת לאזורים בהם האיום מתממש. לפיכך יישנם מקרים בהם תתקבל הנחיה מקדימה אך לא תתקבל לאחריה התרעה (אזעקה).",
+      "ההנחיה תתקבל באמצעות הודעה שתשלח ב-CB (cellular broadcast) וביישומון פיקוד העורף, בפורטל החירום הלאומי  ובערוצי הטלגרם של פיקוד העורף.",
+      "ההנחיה המקדימה מופצת לאזורים נרחבים בהם קיים פוטנציאל איום כדי לאפשר זמן היערכות, בעוד שההתרעה (אזעקה) מופצת לאזורים בהם האיום מתממש.",
+      "**לפיכך יישנם מקרים בהם תתקבל הנחיה מקדימה אך לא תתקבל לאחריה התרעה (אזעקה)**"
     ],
     checklist: null,
   },
@@ -33,7 +33,7 @@ const PAGE5_MESSAGES = [
     notifSubtitle: "ירי רקטות וטילים | באזורך",
     isAlert: true,
     intro: [
-      "בכל מקרה ההתרעה היא הקובעת - רק אם מתקבלת התרעה, יש להיכנס למרחב המוגן בהתאם לזמן ההתגוננות ולהישאר בו עד לקבלת הנחיה מפורשת.",
+      "**בכל מקרה האזעקה היא הקובעת!**\nרק אם מתקבלת התרעה, יש להיכנס למרחב המוגן בהתאם לזמן ההתגוננות ולהישאר בו עד לקבלת הנחיה מפורשת."
     ],
     checklist: null,
   },
@@ -42,6 +42,26 @@ const PAGE5_MESSAGES = [
 const RING_DURATION_MS = 5000;
 const NEXT_NOTIF_DELAY_MS = 500;
 const ASSET_BASE = `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/AlertPre-alarm`;
+
+// מפרש טקסט עם **בולד** ו-\n לירידת שורה, ומחזיר JSX
+function renderFormattedText(text) {
+  const lines = text.split("\n");
+  return lines.map((line, lineIdx) => {
+    const segments = line.split(/\*\*(.+?)\*\*/g);
+    return (
+      <React.Fragment key={lineIdx}>
+        {segments.map((segment, segIdx) =>
+          segIdx % 2 === 1 ? (
+            <strong key={segIdx}>{segment}</strong>
+          ) : (
+            segment
+          ),
+        )}
+        {lineIdx < lines.length - 1 && <br />}
+      </React.Fragment>
+    );
+  });
+}
 
 function Alert() {
   const location = useLocation();
@@ -353,46 +373,55 @@ function Alert() {
               <div className="phone-notifications-list">
                 {PAGE5_MESSAGES.slice(0, arrivedCount).map((msg, i) => {
                   const seen = messagesSeen[i];
+                  const isActiveHint = !seen && i === arrivedCount - 1;
                   return (
-                    <div
-                      key={i}
-                      className={`phone-notification${seen ? " seen" : " unseen"}${
-                        msg.isAlert ? " is-alert" : ""
-                      }`}
-                      onClick={() => handleNotificationClick(i)}
-                    >
-                      <div className="notif-left">
-                        {seen ? (
-                          <span className="notif-checkmark">✔</span>
-                        ) : msg.isAlert ? (
-                          <img
-                            src={`${ASSET_BASE}/alert-icon.png`}
-                            alt="התרעה"
-                            className="notif-left-alert-icon"
-                          />
-                        ) : (
-                          <span className="notif-time">כעת</span>
-                        )}
-                      </div>
+                    <div key={i} className="notif-row">
+                      {isActiveHint && (
+                        <div className="notif-pointer-arrow">
+                          <svg viewBox="0 0 24 24" fill="none">
+                            <path
+                              d="M20 12H4M4 12L10 6M4 12L10 18"
+                              stroke="#f5b400"
+                              strokeWidth="2.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </div>
+                      )}
 
-                      <div className="notif-text">
-                        <span className="notif-title">{msg.notifTitle}</span>
-                        <span className="notif-sub">{msg.notifSubtitle}</span>
-                      </div>
-
-                      <div className="notif-icon-wrap">
-                        <img
-                          src={`${ASSET_BASE}/logo.png`}
-                          alt="פיקוד העורף"
-                          className="notif-main-icon"
-                        />
-                        {!msg.isAlert && (
+                      <div
+                        className={`phone-notification${seen ? " seen" : " unseen"}${
+                          msg.isAlert ? " is-alert" : ""
+                        }${isActiveHint ? " active-hint" : ""}`}
+                        onClick={() => handleNotificationClick(i)}
+                      >
+                        <div className="notif-icon-wrap">
                           <img
-                            src={`${ASSET_BASE}/whatsapp-badge.png`}
-                            alt=""
-                            className="notif-whatsapp-badge"
+                            src={`${ASSET_BASE}/logo-message.png`}
+                            alt="פיקוד העורף"
+                            className="notif-main-icon"
                           />
-                        )}
+                        </div>
+
+                        <div className="notif-text">
+                          <span className="notif-title">{msg.notifTitle}</span>
+                          <span className="notif-sub">{msg.notifSubtitle}</span>
+                        </div>
+
+                        <div className="notif-left">
+                          {seen ? (
+                            <span className="notif-checkmark">✔</span>
+                          ) : msg.isAlert ? (
+                            <img
+                              src={`${ASSET_BASE}/alert-icon.png`}
+                              alt="התרעה"
+                              className="notif-left-alert-icon"
+                            />
+                          ) : (
+                            <span className="notif-time">כעת</span>
+                          )}
+                        </div>
                       </div>
                     </div>
                   );
@@ -410,28 +439,31 @@ function Alert() {
               key={openedMessage}
             >
               <img
-                src={`${ASSET_BASE}/logo-message.png`}
+                src={`${ASSET_BASE}/logo.png`}
                 alt="פיקוד העורף"
                 className="message-icon"
               />
-              <div className="message-body">
-                {PAGE5_MESSAGES[openedMessage].intro.map((paragraph, idx) => (
-                  <p key={idx}>{paragraph}</p>
-                ))}
-              </div>
 
-              {PAGE5_MESSAGES[openedMessage].checklist && (
-                <ul className="message-checklist">
-                  {PAGE5_MESSAGES[openedMessage].checklist.map((item, idx) => (
-                    <li key={idx}>
-                      <span>{item}</span>
-                      <span className="check-mark">✔</span>
-                    </li>
+              <div className="message-content">
+                <div className="message-body">
+                  {PAGE5_MESSAGES[openedMessage].intro.map((paragraph, idx) => (
+                    <p key={idx}>{renderFormattedText(paragraph)}</p>
                   ))}
-                </ul>
-              )}
+                </div>
 
-              <span className="message-time">06:07</span>
+                {PAGE5_MESSAGES[openedMessage].checklist && (
+                  <ul className="message-checklist">
+                    {PAGE5_MESSAGES[openedMessage].checklist.map((item, idx) => (
+                      <li key={idx}>
+                        <span className="check-mark">✔</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                <span className="message-time">06:07</span>
+              </div>
             </div>
           )}
 
