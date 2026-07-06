@@ -626,3 +626,21 @@
     box-shadow: 0 0 0 0.6vmin rgba(245, 180, 0, 0), 0 0.4vh 1vh rgba(0, 0, 0, 0.12);
   }
 }
+
+.recorded-sound-notice {
+  position: absolute;
+  top: 25vh;           /* היה 2vh - עכשיו מתחת לאזור ה-Header, ליד הכותרת */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 244, 214, 0.95);
+  border: 0.15vh solid #e0a730;
+  border-radius: 1vmin;
+  padding: 0.8vh 2vw;
+  font-family: "Assistant";
+  font-weight: 600;
+  font-size: 1.8vmin;
+  color: #6b4e10;
+  text-align: center;
+  z-index: 999;         /* היה 20 - עכשיו גבוה משמעותית */
+  box-shadow: 0 0.4vh 1vh rgba(0, 0, 0, 0.1);
+}

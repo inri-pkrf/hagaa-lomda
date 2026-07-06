@@ -345,24 +345,31 @@ function Alert() {
           </p>
         </div>
       )}
-      {page === 5 && (
-        <div id="alert-page2" className="page5-container">
-          <img
-            src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/icons/Alert.png`}
-            alt="Siren"
-            id="alert-icon"
-          />
-          <h2 id="headline-icon">הנחיה מקדימה – זמן להיערך</h2>
-          <p id="alert-sub-text2">מהי הנחיה מקדימה?</p>
+          {page === 5 && (
+            <div id="alert-page2" className="page5-container">
+              <img
+                src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/icons/Alert.png`}
+                alt="Siren"
+                id="alert-icon"
+              />
+              <h2 id="headline-icon">הנחיה מקדימה – זמן להיערך</h2>
+              <p id="alert-sub-text2">מהי הנחיה מקדימה?</p>
+
 
           {/* שלב 1: הטלפון מצלצל (phoneInHend.png זז מצד לצד + סאונד אזעקה) */}
           {page5Phase === "ringing" && (
-            <div className="phone-ring-wrapper">
-              <img src={`${ASSET_BASE}/phoneInHend.png`} alt="טלפון מצלצל" />
-              <audio ref={ringAudioRef} autoPlay loop>
-                <source src={`${ASSET_BASE}/alarm-sound.mp3`} type="audio/mpeg" />
-              </audio>
-            </div>
+            <>
+              <div className="recorded-sound-notice">
+                <span>⚠️ שימו לב: אזעקה מוקלטת ברקע</span>
+              </div>
+
+              <div className="phone-ring-wrapper">
+                <img src={`${ASSET_BASE}/phoneInHend.png`} alt="טלפון מצלצל" />
+                <audio ref={ringAudioRef} autoPlay loop>
+                  <source src={`${ASSET_BASE}/alarm-sound.mp3`} type="audio/mpeg" />
+                </audio>
+              </div>
+            </>
           )}
 
           {/* שלב 2: מסך שיחה - phone.png + ערימת התראות שמצטברת */}
