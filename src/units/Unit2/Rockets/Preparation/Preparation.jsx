@@ -31,6 +31,7 @@ function Preparation() {
       hasInfo: true,
       hasPlay: false,
     },
+    
     {
       id: `Alert`,
       title: "התרעה",

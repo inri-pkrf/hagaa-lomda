@@ -24,6 +24,7 @@ const outsideSteps = [
     left: "52%",
     zIndex: 2,
   },
+  
   {
     id: "sign",
     text: "הצבת שלט הכוונה למרחב המוגן.",

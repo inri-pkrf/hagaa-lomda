@@ -265,6 +265,7 @@ function Alert() {
             alt="Siren"
             className="alert-background"
           />
+          
         </div>
       )}
       {page === 4 && (
@@ -474,6 +475,7 @@ function Alert() {
             </div>
           )}
 
+
           <img
             src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/alert-background.png`}
             alt="Siren"
@@ -484,5 +486,6 @@ function Alert() {
     </div>
   );
 }
+
 
 export default Alert;
