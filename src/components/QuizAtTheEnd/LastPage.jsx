@@ -10,8 +10,12 @@ function getUrlParams() {
   const hash = window.location.hash;
   const queryString = hash.includes("?") ? hash.split("?")[1] : "";
   const params = new URLSearchParams(queryString);
+  const learningId = parseInt(params.get("learningId"), 10);
+  console.log("🔍 [LastPage.jsx] URL Hash:", hash);
+  console.log("🔍 [LastPage.jsx] Query String:", queryString);
+  console.log("🔍 [LastPage.jsx] learningId:", learningId);
   return {
-    learningId: parseInt(params.get("learningId"), 10),
+    learningId,
     key: params.get("key"),
   };
 }
@@ -40,10 +44,13 @@ function LastPage() {
 
   useEffect(() => {
     const saveToServer = async () => {
-      if (!LEARNING_ID || Number.isNaN(LEARNING_ID)) {
-        console.warn("learningId חסר או לא תקין ב-URL, לא נשלחת שמירה");
+      // בפיתוח (development) - לא נשלח לשרת
+      const isDev = LEARNING_ID === undefined || Number.isNaN(LEARNING_ID);
+      if (isDev) {
+        console.log("🔵 [DEV MODE] לא משלחים ל-UMBRACCO (אין learningId)");
         return;
       }
+
       try {
         const sessionState = {};
         STATE_KEYS.forEach((key) => {
@@ -54,6 +61,13 @@ function LastPage() {
         const status = score >= 70 ? 3 : 2;
         const progressData = getProgressData(status);
         const stateJson = JSON.stringify({ sessionState });
+
+        console.log("📤 [LastPage] שולח ל-UMBRACCO:", {
+          learningId: LEARNING_ID,
+          score,
+          status,
+          stateJson: stateJson.substring(0, 100) + "...",
+        });
 
         const res = await fetch("/umbraco/api/learning/SetIframeLearning", {
           method: "POST",
@@ -69,10 +83,12 @@ function LastPage() {
         });
 
         if (!res.ok) {
-          console.error("שגיאת שרת בשמירת ציון:", res.status);
+          console.error("❌ שגיאת שרת בשמירת ציון:", res.status);
+        } else {
+          console.log("✅ ציון נשמר בהצלחה!");
         }
       } catch (e) {
-        console.error("שגיאה בשמירת ציון:", e);
+        console.error("❌ שגיאה בשמירת ציון:", e);
       }
     };
 

@@ -6,9 +6,15 @@ import { STATE_KEYS } from "../Data/Statekeys";
 import { getProgressData } from "./Progressunits";
 
 function getUrlParams() {
-  const params = new URLSearchParams(window.location.search);
+  const hash = window.location.hash;
+  const queryString = hash.includes("?") ? hash.split("?")[1] : "";
+  const params = new URLSearchParams(queryString);
+  const learningId = parseInt(params.get("learningId"), 10);
+  console.log("🔍 URL Hash:", hash);
+  console.log("🔍 Query String:", queryString);
+  console.log("🔍 learningId:", learningId);
   return {
-    learningId: parseInt(params.get("learningId"), 10),
+    learningId,
     key: params.get("key"),
   };
 }
@@ -321,10 +327,13 @@ function Buttons() {
 
   // ⭐ שמירת מצב לשרת במבנה החדש
   const saveState = async (path) => {
-    if (!LEARNING_ID || Number.isNaN(LEARNING_ID)) {
-      console.warn("learningId חסר או לא תקין ב-URL, לא נשלחת שמירה");
+    // בפיתוח (development) - לא נשלח לשרת
+    const isDev = LEARNING_ID === undefined || Number.isNaN(LEARNING_ID);
+    if (isDev) {
+      console.log("🔵 [DEV MODE] לא משלחים ל-UMBRACCO (אין learningId)");
       return;
     }
+
     try {
       const sessionState = {};
       STATE_KEYS.forEach((key) => {
@@ -338,6 +347,14 @@ function Buttons() {
       // ⭐ stateJson מכיל רק sessionState
       const stateJson = JSON.stringify({ sessionState });
       const score = Number(sessionStorage.getItem("finalQuizScore")) || 0;
+
+      console.log("📤 שולח ל-UMBRACCO:", {
+        learningId: LEARNING_ID,
+        path,
+        status,
+        score,
+        stateJson: stateJson.substring(0, 100) + "...",
+      });
 
       const res = await fetch("/umbraco/api/learning/SetIframeLearning", {
         method: "POST",
@@ -353,10 +370,12 @@ function Buttons() {
       });
 
       if (!res.ok) {
-        console.error("שגיאת שרת בשמירה:", res.status);
+        console.error("❌ שגיאת שרת בשמירה:", res.status);
+      } else {
+        console.log("✅ נשמר בהצלחה!");
       }
     } catch (e) {
-      console.error("שגיאה בשמירה:", e);
+      console.error("❌ שגיאה בשמירה:", e);
     }
   };
 
@@ -462,6 +481,10 @@ function Buttons() {
       sessionStorage.setItem("currentUnit", "UnitZero");
       sessionStorage.setItem("MainTitle", "מבנה שיעור הסמכה דיגיטלי");
     }
+    
+    // ⭐ שמירה לשרת לפני ניווט
+    saveState(targetPath);
+    
     const navEvent = new CustomEvent(isNext ? "onNextNav" : "onPrevNav", {
       cancelable: true,
     });

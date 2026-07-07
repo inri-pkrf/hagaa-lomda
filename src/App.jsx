@@ -152,8 +152,14 @@ import LastPage from "./components/QuizAtTheEnd/LastPage.jsx";
 
 
 function getUrlParams() {
-  const params = new URLSearchParams(window.location.search);
-  return { learningId: parseInt(params.get("learningId"), 10) };
+  const hash = window.location.hash;
+  const queryString = hash.includes("?") ? hash.split("?")[1] : "";
+  const params = new URLSearchParams(queryString);
+  const learningId = parseInt(params.get("learningId"), 10);
+  console.log("🔍 [App.jsx] URL Hash:", hash);
+  console.log("🔍 [App.jsx] Query String:", queryString);
+  console.log("🔍 [App.jsx] learningId:", learningId);
+  return { learningId };
 }
 const { learningId: LEARNING_ID } = getUrlParams();
 
