@@ -11,13 +11,13 @@ function FireRightBehavior() {
       />
       <h2 id="FireRightBehavior-headline">היערכות נכונה בשעת שריפה</h2>
       <p id="FireRightBehavior-text1">
-        היערכות מראש לשרפות, כוללת אפשרות לגילוי מוקדם, לצד היכולת לכבות את האש
+        היערכות מראש לשריפות, כוללת אפשרות לגילוי מוקדם, לצד היכולת לכבות את האש
         מיד עם התפרצותה.
       </p>
       <p id="FireRightBehavior-text2">
         כמו כן,
         <strong> חשוב </strong>
-        להכיר את הנחיות ההתנהגות במקרה שרפה ולתרגל אותן מראש.
+        להכיר את הנחיות ההתנהגות במקרה שריפה ולתרגל אותן מראש.
       </p>
 
       <p id="FireRightBehavior-text3">

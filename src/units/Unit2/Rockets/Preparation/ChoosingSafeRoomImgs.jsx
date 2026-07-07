@@ -40,7 +40,7 @@ function ChoosingSafeRoomImgs() {
       </p>
 
       <img
-        src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/choosing-img1.jpg`}
+        src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/choosing-img1.jpeg`}
         alt="defense-img1"
         id="choosing-img1"
         className={selectedImg === "img1" ? "enlarged" : "shrinked"}

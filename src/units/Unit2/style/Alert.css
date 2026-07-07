@@ -33,6 +33,7 @@
   line-height: 1.5;
   direction: rtl;
   text-align: right;
+  z-index: 100;
 }
 
 
@@ -134,6 +135,22 @@
   direction: rtl;
 }
 
+#alert-sub-text3 {
+  position: absolute;
+  width: 40vw;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 27vh;
+  font-family: "Assistant";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 4vmin;
+  line-height: 6vh;
+  text-align: right;
+  direction: rtl;
+  z-index: 100;
+}
+
 
 #alert-list2 {
   position: absolute;
@@ -151,6 +168,7 @@
   list-style-type: "✔ ";
   margin-block-start: 1vh;
   margin-block-end: 1vh;
+  z-index: 100;
 }
 
 #alert-list5 {

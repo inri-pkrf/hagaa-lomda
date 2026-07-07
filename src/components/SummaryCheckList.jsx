@@ -215,7 +215,7 @@ function SummaryCheckList({ checklist = {}, onFinish, pinImg }) {
                     : checklist.color || "red",
                 }}
               >
-                לסיכום, משימותיכם כממוני הג"א:
+                לסיכום, משימותיכם כממונה הג"א:
               </p>
             )}
             {items.map((item, idx) => (

@@ -9,6 +9,7 @@
   text-align: center;
   z-index: 10;
   color: #e8742c;
+  direction: rtl;
 }
 
 #wait10min-icon {

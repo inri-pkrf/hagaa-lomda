@@ -91,7 +91,7 @@ const EmergencyTeamsData = [
     id: "workers",
     teamTitle: "צוות טיפול בעובדים",
     teamGoals: "הגברת החוסן האישי והארגוני של העובדים ומוכנותם למצבי חירום.",
-    methodOfTraining: `מונחה מקצועית על ידי ממוני הג"א,
+    methodOfTraining: `מונחה מקצועית על ידי ממונה הג"א,
 הכרת מודלים לעזרה ראשונית נפשית.`,
     establishment: "עדיפות לשיבוץ עובדים סוציאליים ומתחום משאבי האנוש. ",
     teamTasks: [

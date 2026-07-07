@@ -147,7 +147,7 @@ function ExplainEmergency() {
             <>
               <div className="tv-red-header">
                 <h3 className="tv-title">
-                  במצב חירום עליכם כממוני הג”א לפעול באופן הבא:
+                  במצב חירום עליכם כממונה הג"א לפעול באופן הבא:
                 </h3>
               </div>
 

@@ -2,7 +2,7 @@
 const openingData = {
   UnitOne: {
     title: "הפרק הראשון",
-    subtitle: `תכירו את הייעוד והמשימות כממוני הג"א`,
+    subtitle: `תכירו את הייעוד והמשימות כממונה הג"א`,
     image: "/assets/General/OpeningUnitPage/unitOneStartBuilding.webp",
     mainTitle: "יחידה 1: מבוא",
     text: (

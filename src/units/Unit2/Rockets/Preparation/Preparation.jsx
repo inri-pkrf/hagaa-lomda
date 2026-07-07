@@ -31,7 +31,7 @@ function Preparation() {
       hasInfo: true,
       hasPlay: false,
     },
-    
+
     {
       id: `Alert`,
       title: "התרעה",
@@ -92,7 +92,7 @@ function Preparation() {
 
   return (
     <div className="preparation-page-container">
-      <h1 className="preparation-main-header">היערכות והתנהגות</h1>
+      <h1 className="preparation-main-header">היערכות והתגוננות</h1>
       <p className="preparation-sub-text">
         לפניכם מספר עקרונות להיערכות והתנהגות בתרחיש ירי טילים.
         <br />
