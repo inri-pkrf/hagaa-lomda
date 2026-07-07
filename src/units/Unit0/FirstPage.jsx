@@ -13,7 +13,7 @@ function FirstPage() {
       }}
     >
       <div id="content">
-        <h2 id="Title1-FirstPage">ברוכים הבאים והבאות לקורס הכשרה מקוון להסמכת</h2>
+        <h2 id="Title1-FirstPage">ברוכים הבאים והבאות להכשרה מקוונת לתפקיד</h2>
         <h1 id="Title2-FirstPage">ממונה התגוננות אזרחית במפעל / מוסד</h1>
         <button id="button-FirstPage" onClick={() => navigate('/info-lomda')}>
           התחלה
