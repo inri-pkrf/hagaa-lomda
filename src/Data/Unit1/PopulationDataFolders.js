@@ -21,7 +21,7 @@ export const populationDataFolders = [
     id: 3,
     idName: "thirdFolder",
     title: "נסיבות",
-    text: `בעת התרחשות ירי רקטות וטילים, רעידת אדמה, שריפה, שטפונות וכדומה, יחול שיבוש בשגרת החיים של העובדים והעובדות במפעל.`,
+    text: `בעת התרחשות ירי רקטות וטילים, רעידת אדמה, שרפה, שטפונות וכדומה, יחול שיבוש בשגרת החיים של העובדים והעובדות במפעל.`,
     folderImg: `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/RedFolder.jpg`,
     icon: `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/RedIcon.png`,
   },

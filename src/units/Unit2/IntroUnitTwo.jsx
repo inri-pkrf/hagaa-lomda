@@ -238,7 +238,7 @@ function IntroUnitTwo() {
                   : "default",
             }}
           >
-            <p className="door-sign-UnitTwo-title-third">שריפה</p>
+            <p className="door-sign-UnitTwo-title-third">שרפה</p>
             <img
               src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsSigns/DoorSignThree.png`}
               alt="Sign 3"

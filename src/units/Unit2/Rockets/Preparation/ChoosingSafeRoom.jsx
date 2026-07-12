@@ -30,14 +30,14 @@ function ChoosingSafeRoom() {
       id: 3,
       priority: "3",
       title: "חדר מדרגות",
-      description: `חלל מדרגות פנימי`,
+      description: `מקום טוב באמצע- חדר מדרגות פנימי ובהיעדרו חלל פנימי`,
       image: `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/flipcard3.png`,
     },
     {
       id: 4,
       priority: "4",
       title: "חדר פנימי",
-      description: `חלל פנימי`,
+      description: `בשטח פתוח בדרך- מיגונית ואם לא ניתן, לשכב על הקרקע ולהגן על הראש עם הידיים`,
       image: `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/flipcard4.png`,
     },
   ];

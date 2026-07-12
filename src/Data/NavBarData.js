@@ -69,14 +69,14 @@ const NavBarData = [
                 ]
             },
             {
-                title: "שריפה", path: "/fire",
+                title: "שרפה", path: "/fire",
                 subChapters: [
                     { title: "מאפייני האיום", path: "/InfoFire" },
-                    { title: "היערכות נכונה בשעת שריפה", path: "/PreparationFire" },
-                    { title:"כללי התנהגות בשריפה", path: "/FireBehaviorIn" },
+                    { title: "היערכות נכונה בשעת שרפה", path: "/PreparationFire" },
+                    { title:"כללי התנהגות בשרפה", path: "/FireBehaviorIn" },
                    
                    
-                    { title: "מה עושים בזמן שריפה?", path: "/LifeSavingFire" },
+                    { title: "מה עושים בזמן שרפה?", path: "/LifeSavingFire" },
                     { title: "סיכום", path: "/summary-checklist-unit2-sub4" }
                 ]
             },

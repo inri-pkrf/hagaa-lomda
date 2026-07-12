@@ -33,7 +33,7 @@ function PreparationFire() {
 
   return (
     <div id="PreparationFire-body">
-      <h2 id='PreparationFire-headline'>היערכות נכונה בשעת שריפה</h2>
+      <h2 id='PreparationFire-headline'>היערכות נכונה בשעת שרפה</h2>
       <p id='PreparationFire-text'>יש ללחוץ על הקלסרים כאשר יהיו מסומנים</p>
 
       <div

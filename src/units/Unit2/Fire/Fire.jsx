@@ -37,7 +37,7 @@ function Fire() {
         text: (
           <>
             כללי התנהגות
-            <br /> בשריפה
+            <br /> בשרפה
             <br />
           </>
         ),
@@ -49,7 +49,7 @@ function Fire() {
         text: (
           <>
             מה עושים <br />
-            בזמן שריפה
+            בזמן שרפה
             <br />
           </>
         ),
@@ -105,7 +105,7 @@ function Fire() {
   }, [location.pathname]);
 
   useEffect(() => {
-    sessionStorage.setItem("MainTitle", "שריפה");
+    sessionStorage.setItem("MainTitle", "שרפה");
     if (!hasPlayedIntro) {
       const sequenceTimeout = setTimeout(() => {
         setStartSequence(true);

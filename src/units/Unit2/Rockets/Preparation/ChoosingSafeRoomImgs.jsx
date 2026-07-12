@@ -28,7 +28,7 @@ function ChoosingSafeRoomImgs() {
       className="choosing-safe-room-wrapper"
       style={{ position: "relative" }}
     >
-      <h2 id="choosingSafeRoom-headline"> בחירת מרחב מוגן </h2>
+      <h2 id="choosingSafeRoom-headline"> בחירה והכנת מרחב מוגן </h2>
       <img
         src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/icons/ChoosingSafeRoom.png`}
         alt="icon"
@@ -40,7 +40,7 @@ function ChoosingSafeRoomImgs() {
       </p>
 
       <img
-        src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/choosing-img1.jpeg`}
+        src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/choosing-img2.jpg`}
         alt="defense-img1"
         id="choosing-img1"
         className={selectedImg === "img1" ? "enlarged" : "shrinked"}
@@ -58,7 +58,7 @@ function ChoosingSafeRoomImgs() {
       )}
 
       <img
-        src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/choosing-img2.jpg`}
+        src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/choosing-img1.jpeg`}
         alt="defense-img2"
         id="choosing-img2"
         className={selectedImg === "img2" ? "enlarged" : "shrinked"}

@@ -99,7 +99,7 @@ const UnitTwoSidebar = () => {
           isLocked = !finished.rockets;
           isFinished = finished.earthquake;
         }
-        else if (ch.title === "שריפה") {
+        else if (ch.title === "שרפה") {
           isLocked = !finished.earthquake;
           isFinished = finished.fire;
         }
@@ -136,7 +136,7 @@ const UnitTwoSidebar = () => {
             if (subIndex === 2) subFinished = finished.earthquakeSub3;
             if (subIndex === 3) subFinished = finished.earthquakeSub4;
           }
-          else if (ch.title === "שריפה") {
+          else if (ch.title === "שרפה") {
             if (subIndex === 0) subFinished = finished.fireSub1;
             if (subIndex === 1) subFinished = finished.fireSub2;
             if (subIndex === 2) subFinished = finished.fireSub3;

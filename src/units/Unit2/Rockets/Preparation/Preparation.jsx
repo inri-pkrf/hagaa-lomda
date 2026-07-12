@@ -17,7 +17,7 @@ function Preparation() {
     },
     {
       id: `ChoosingSafeRoom`,
-      title: "בחירת מרחב מוגן",
+      title: "בחירה והכנת מרחב מוגן",
       bgColor: "#E2787A",
       icon: "choose-space.png",
       hasInfo: true,

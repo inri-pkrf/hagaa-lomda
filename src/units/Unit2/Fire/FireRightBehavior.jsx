@@ -9,7 +9,7 @@ function FireRightBehavior() {
         alt="bg"
         id="FireRightBehavior-bg"
       />
-      <h2 id="FireRightBehavior-headline">היערכות נכונה בשעת שריפה</h2>
+      <h2 id="FireRightBehavior-headline">היערכות נכונה בשעת שרפה</h2>
       <p id="FireRightBehavior-text1">
         היערכות מראש לשריפות, כוללת אפשרות לגילוי מוקדם, לצד היכולת לכבות את האש
         מיד עם התפרצותה.
@@ -17,7 +17,7 @@ function FireRightBehavior() {
       <p id="FireRightBehavior-text2">
         כמו כן,
         <strong> חשוב </strong>
-        להכיר את הנחיות ההתנהגות במקרה שריפה ולתרגל אותן מראש.
+        להכיר את הנחיות ההתנהגות במקרה שרפה ולתרגל אותן מראש.
       </p>
 
       <p id="FireRightBehavior-text3">
@@ -27,7 +27,7 @@ function FireRightBehavior() {
         <li>מנעול פרפר</li>
         <li>מתזים</li>
         <li>מטף</li>
-        <li>ברזי שריפה/זרנוק</li>
+        <li>ברזי שרפה/זרנוק</li>
         <li>מערכות לגילוי אש ועשן</li>
       </ul>
     </div>

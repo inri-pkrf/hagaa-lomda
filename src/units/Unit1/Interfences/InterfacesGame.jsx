@@ -29,7 +29,7 @@ function InterfacesGame() {
       options: [2, 4, 3],
     },
     {
-      question: "פרצה שריפה במחסן החומרים - מי הגוף האחראי?",
+      question: "פרצה שרפה במחסן החומרים - מי הגוף האחראי?",
       correctId: 9,
       options: [1, 8, 9],
     },

@@ -5,18 +5,19 @@ const TitlesData = {
     default: "שיעור הסמכה דיגיטלי לממונה התגוננות אזרחית",
     pages: {
       "/": "שיעור הסמכה דיגיטלי לממונה התגוננות אזרחית",
-      "/info-lomda": "מידע על הלומדה",
-      "/info-lomda/2": "מידע על הלומדה",
-      "/info-lomda/3": "מידע על הלומדה",
-      "/info-lomda/4": "מידע על הלומדה",
-      "/info-lomda/5": "מידע על הלומדה",
-      "/Structure": "מבנה שיעור הסמכה דיגיטלי",
+      "/info-lomda": null,
+      "/info-lomda/2": null,
+      "/info-lomda/3": null,
+      "/info-lomda/4": null,
+      "/info-lomda/5": null,
+      "/Structure": "מבנה השיעור",
       "/units-division": "חלוקת הפרקים ביחידות",
       "/orientation-explanation": "הדרכה על הממשק",
       "/elevator": "מעלית",
       "/CreditPage": "קרדיטים",
     },
   },
+
 
   // ===== יחידה 1 =====
   UnitOne: {
@@ -37,12 +38,14 @@ const TitlesData = {
     },
   },
 
+
   // ===== יחידה 2 =====
   UnitTwo: {
     default: "יחידה 2 - שגרה",
     pages: {
       "/unit-two-opening": "יחידה 2 - שגרה",
       "/goals-unit-two": "יחידה 2 - מטרות",
+
 
       // ירי טילים
       "/rockets": "ירי טילים",
@@ -70,6 +73,7 @@ const TitlesData = {
       "/defense-policy/sub-three": "מדיניות התגוננות",
       "/summary-checklist-unit2-sub1": "ירי טילים - סיכום",
 
+
       // רעידת אדמה
       "/earthquake": "רעידת אדמה וצונמי",
       "/earthquake/info-earthquake": "רעידת אדמה",
@@ -89,16 +93,18 @@ const TitlesData = {
       "/EarthquakeExercise": "רעידת אדמה - תרגיל אירוע",
       "/summary-checklist-unit2-sub2": "רעידת אדמה וצונמי- סיכום",
 
-      // שריפה
-      "/fire": "שריפה",
-      "/InfoFire": "שריפה",
-      "/PreparationFire": "שריפה",
-      "/FireBehaviorIn": "שריפה",
-      "/FireBehaviorOut": "שריפה",
-      "/FirePoster": "שריפה",
-      "/FireRightBehavior": "שריפה",
-      "/LifeSavingFire": "שריפה",
-      "/summary-checklist-unit2-sub4": "שריפה - סיכום",
+
+      // שרפה
+      "/fire": "שרפה",
+      "/InfoFire": "שרפה",
+      "/PreparationFire": "שרפה",
+      "/FireBehaviorIn": "שרפה",
+      "/FireBehaviorOut": "שרפה",
+      "/FirePoster": "שרפה",
+      "/FireRightBehavior": "שרפה",
+      "/LifeSavingFire": "שרפה",
+      "/summary-checklist-unit2-sub4": "שרפה - סיכום",
+
 
       // חומרים מסוכנים
       "/chemical": "חומרים מסוכנים",
@@ -116,12 +122,14 @@ const TitlesData = {
     },
   },
 
+
   // ===== יחידה 3 =====
   UnitThree: {
     default: "יחידה 3 - שגרה",
     pages: {
       "/unit-three-opening": "יחידה 3 - שגרה",
       "/goals-unit-three": "יחידה 3 - מטרות",
+
 
       // צוותי חירום
       "/EmergencyTeams": "צוותי חירום",
@@ -131,6 +139,7 @@ const TitlesData = {
       "/QuizEmergencyTeams": "צוותי חירום",
       "/summary-checklist-unit3-sub1": "צוותי חירום - סיכום",
 
+
       // שמרטפיה
       "/Education": "מסגרות חינוכיות להפעלת ילדי העובדים",
       "/EducationInfo": "מסגרות חינוכיות  להפעלת ילדי העובדים - מבוא",
@@ -138,11 +147,13 @@ const TitlesData = {
       "/summary-checklist-unit3-sub2":
         "מסגרות חינוכיות להפעלת ילדי העובדים - סיכום",
 
+
       // משאבים
       "/Resources": "משאבים",
       "/ResourcesInfo": "משאבים - מבוא",
       "/ResourcesGame": "משאבים - משחק",
       "/summary-checklist-unit3-sub3": "משאבים - סיכום",
+
 
       // מגויסי חוץ
       "/ExternalRecruits": "מגויסי חוץ",
@@ -150,6 +161,7 @@ const TitlesData = {
       "/ManPower": "כוח אדם",
       "/ExternalRecruitsQuestion": "מגויסי חוץ",
       "/summary-checklist-unit3-sub4": "מגויסי חוץ - סיכום",
+
 
       // תיק מפעל
       "/FactoryFile": "תיק מפעל",
@@ -161,10 +173,12 @@ const TitlesData = {
       "/QuestionFactoryFile": "תיק מפעל - שאלת סיכום",
       "/toolkit": "ארגז כלים",
 
+
       "/questions-end/3": "שאלות סיכום - יחידה 3",
       "/summary-checklist-unit3": "יחידה 3 - סיכום",
     },
   },
+
 
   // ===== יחידה 4 =====
   UnitFour: {
@@ -174,6 +188,7 @@ const TitlesData = {
       "/goals-unit-four": "יחידה 4 - מטרות",
       "/intro-unit-four": "יחידה 4 - חירום",
 
+
       // מצבים משפטיים
       "/Sub1Legal": "מצבים משפטיים - מצבי יסוד",
       "/LegalState": "מצבים משפטיים - מצבי יסוד",
@@ -181,10 +196,12 @@ const TitlesData = {
       "/Sub2Legal": "מצבים משפטיים - מצבי יסוד",
       "/GameLegalSituation": "מצבים משפטיים - משחק גרירה",
 
+
       // מעבר משגרה לחירום
       "/ExplainationRTE": "מעבר משגרה לחירום",
       "/ExplainationRTE2": "מעבר משגרה לחירום",
       "/QuestionRTE": "מעבר משגרה לחירום - שאלת סיכום",
+
 
       //אירוע חירום
       "/ExplainEmergency": "אירוע חירום",
@@ -192,6 +209,7 @@ const TitlesData = {
       "/summary-checklist-unit4": "יחידה 4 - סיכום",
     },
   },
+
 
   // ===== סיכום כללי =====
   Summary: {
@@ -203,4 +221,8 @@ const TitlesData = {
   },
 };
 
+
 export default TitlesData;
+
+
+

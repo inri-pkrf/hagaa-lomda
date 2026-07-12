@@ -19,7 +19,7 @@ function FireBehaviorOut() {
       />
 
       <h2 id="FireBehaviorOut-headline">
-        כללי התנהגות בשריפה במצב שבו
+        כללי התנהגות בשרפה במצב שבו
         <span id="FireBehaviorOut-bold"> לא ניתן </span>
         לצאת מהמבנה
       </h2>

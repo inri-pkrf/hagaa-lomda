@@ -4,7 +4,7 @@ import "../../Unit2/style/FireBehaviorIn.css";
 
 function FireBehaviorIn() {
   const items = [
-    "אם השריפה קטנה, כבו אותה",
+    "אם השרפה קטנה, כבו אותה",
     "אם לא ניתן לכבות - יש להתפנות מהמבנה",
     "יש לחייג 102",
     "לסגור את הדלת, אך לא לנעול",
@@ -22,7 +22,7 @@ function FireBehaviorIn() {
       />
 
       <h2 id="FireBehaviorIn-headline">
-        כללי התנהגות בשריפה במצב שבו
+        כללי התנהגות בשרפה במצב שבו
         <span id="FireBehaviorIn-bold"> ניתן </span>
         לצאת מהמבנה
       </h2>

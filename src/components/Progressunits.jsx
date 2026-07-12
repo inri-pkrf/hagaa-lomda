@@ -11,7 +11,7 @@ export const chapterSessionKeys = {
   "פתיחה_2": 'unittwo-opening',
   "ירי טילים": 'unitTwo-first',
   "רעידת אדמה וצונאמי": 'unitTwo-second',
-  "שריפה": 'unitTwo-third',
+  "שרפה": 'unitTwo-third',
   "חומרים מסוכנים": 'unitTwo-fourth',
   "שאלות סיכום_2": 'unitTwo-questions',
   "סיכום פרק_2": 'unitTwo-checklist',

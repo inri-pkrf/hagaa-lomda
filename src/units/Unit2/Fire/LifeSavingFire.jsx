@@ -30,11 +30,11 @@ function LifeSavingFire() {
         id="LifeSavingFire-bg"
       />
 
-      <p id="LifeSavingFire-headline">מה עושים בזמן שריפה?</p>
+      <p id="LifeSavingFire-headline">מה עושים בזמן שרפה?</p>
 
       <p id="LifeSavingFire-text">
         יש ללחוץ על האייקון על מנת לצפות בסרטון וללמוד עוד על התנהלות נכונה
-        בעת התמודדות עם שריפה:
+        בעת התמודדות עם שרפה:
       </p>
 
       <img

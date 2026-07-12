@@ -43,7 +43,7 @@ function Wait10mins() {
           />
           <p id="wait10min-text1">סכנה לנפילת שברי יירוט</p>
           <p id="wait10min-text2">מטח הרקטות יכול להימשך</p>
-          <p id="wait10min-text3">שיפור ההגנה לאזרח</p>
+          <p id="wait10min-text3">וידוא סיום האיום</p>
           <img
             src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/image-removebg-preview (49) 1.png`}
             alt="Siren"

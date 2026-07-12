@@ -2,7 +2,7 @@ import React from "react";
 import "../../Unit2/style/Chemical.css";
 
 const chemicalCauses = [
-  { id: 1, title: "שריפה", icon: "fire", type: "routine" },
+  { id: 1, title: "שרפה", icon: "fire", type: "routine" },
   { id: 2, title: "תקלות", icon: "problems", type: "routine" },
   { id: 3, title: "טעויות אנוש", icon: "mistakes", type: "routine" },
   {
