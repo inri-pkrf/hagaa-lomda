@@ -19,7 +19,7 @@ function PreparationEarth() {
     },
     {
       id: `VideoPreperEarth`, //לשים בApp את הנתיב
-      title: "התנהגות נכונה- הנחיות מצילות חיים",
+      title: "התנהגות נכונה - הנחיות מצילות חיים",
       bgColor: "#56C3A9",
       icon: "goodBehavior.png",
       hasPlay: true,
@@ -71,9 +71,9 @@ function PreparationEarth() {
     <div className="preparation-page-container">
       <h1 className="preparation-main-header">היערכות והתנהגות</h1>
       <p className="preparation-sub-text">
-        לפניך מספר עקרונות להיערכות והתנהגות התרחיש רעידת אדמה
+        לפניך כמה עקרונות להיערכות והתנהגות בתרחיש רעידת אדמה
         <br />
-        <strong>יש ללחוץ על האייקונים בכדי ללמוד אודותיהם:</strong>
+        <strong>יש ללחוץ על האייקונים כדי ללמוד עליהם:</strong>
       </p>
 
 

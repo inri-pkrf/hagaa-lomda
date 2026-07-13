@@ -12,7 +12,7 @@ export const populationDataFolders = [
   {
     id: 2,
     idName: "secondFolder",
-    title: "תפיסת איום",
+    title: "תפיסת האיום",
     text: `כל אדם תופס את מצב החירום בצורה שונה. דבר זה נובע מכמה סיבות: תפיסת האיום ויכולת ההתמודדות איתו, ניסיון התמודדות קודם עם מצב דומה, אישיות האדם, מיידיות הסכנה, הכנה מוקדמת או תגובת הסביבה הקרובה.`,
     folderImg: `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/GreenFolder.jpg`,
     icon: `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/GreenIcon.png`,

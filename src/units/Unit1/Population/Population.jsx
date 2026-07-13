@@ -47,7 +47,7 @@ function Population() {
 
 
   useEffect(() => {
-    sessionStorage.setItem("MainTitle", "אוכלוסיה");
+    sessionStorage.setItem("MainTitle", "אוכלוסייה");
 
 
     const laptopStatus =

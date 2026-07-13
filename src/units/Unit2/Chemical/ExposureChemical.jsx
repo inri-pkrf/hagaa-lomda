@@ -49,7 +49,7 @@ function ExposureChemical() {
           <strong>
             <br></br>יש לעבור עם העכבר
           </strong>{" "}
-          מעל כל כרטיסייה על מנת לגלות באיזו פעולה מדובר.
+          מעל כל כרטיסייה כדי לגלות באיזו פעולה מדובר.
         </p>
       </div>
       <div className="exposure-grid">

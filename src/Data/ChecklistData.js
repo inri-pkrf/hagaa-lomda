@@ -3,7 +3,7 @@
 
 export const unitOneChecklist = {
   items: [
-    '**כל הכבוד!** סיימתם את יחידת הלימוד הראשונה במסגרת הכשרתכם לתפקיד ממונה הג"א.  יחידות הלימוד הבאות יתמקדו בהכנת תוכנית חירום ומשימות משלימות שעליכם לבצע בשגרה, וכן יעמיקו בתפקידכם במעבר משגרה לחירום ובאירוע חירום במפעל. נאחל לכם המשך למידה מהנה ופורייה גם ביחידות הלימוד הבאות. בהצלחה! ',
+    '**כל הכבוד!** סיימתם את יחידת הלימוד הראשונה במסגרת הכשרתכם לתפקיד ממונה הג"א.  יחידות הלימוד הבאות יתמקדו בהכנת תוכנית חירום ומשימות משלימות שעליכם לבצע בשגרה, וכן יעסקו בהרחבה בתפקידכם במעבר משגרה לחירום ובאירוע חירום במפעל. נאחל לכם המשך למידה מהנה ופורייה גם ביחידות הלימוד הבאות. בהצלחה! ',
   ],
   image: `${process.env.PUBLIC_URL}/assets/General/check-list-data/BuildingUnit1.webp`,
   checklistImg: `${process.env.PUBLIC_URL}/assets/General/check-list-data/CheckListUnit1.png`,
@@ -12,7 +12,7 @@ export const unitOneChecklist = {
 
 export const unitTwoChecklist = {
   items: [
-    '**כל הכבוד!** סיימתם את יחידת הלימוד השנייה במסגרת הכשרתכם לתפקיד ממונה הג"א. ביחידה זו למדתם להסביר את העקרונות לבניית תכנית התגוננות במפעל המותאמת לתרחיש הייחוס, והתנסיתם בהערכת כשירות המרחב המוגן במפעלכם. נאחל לכם המשך למידה מהנה ופורייה גם ביחידות הלימוד הבאות. בהצלחה!',
+    '**כל הכבוד!** סיימתם את יחידת הלימוד השנייה במסגרת הכשרתכם לתפקיד ממונה הג"א. ביחידה זו למדתם להסביר את העקרונות לבניית תוכנית התגוננות במפעל המותאמת לתרחיש הייחוס, והתנסיתם בהערכת כשירות המרחב המוגן במפעלכם. נאחל לכם המשך למידה מהנה ופורייה גם ביחידות הלימוד הבאות. בהצלחה!',
   ],
   image: `${process.env.PUBLIC_URL}/assets/General/check-list-data/BuildingUnit2.webp`,
   checklistImg: `${process.env.PUBLIC_URL}/assets/General/check-list-data/CheckListUnit2.png`,
@@ -27,12 +27,12 @@ export const unitTwoSub1Checklist = {
     "מינוי אחראי מקלט מרגע פתיחתו",
     "התרעה בתוך המבנים",
     "תדריך התנהגות באירוע לעובדים",
-    "הקמת צוותי מענה לאירועים, אימונם תרגולם",
+    "הקמת צוותי מענה לאירועים, אימונם ותרגולם",
   ],
   image: `${process.env.PUBLIC_URL}/assets/General/check-list-data/Door-check-list.webp`,
   checklistImg: `${process.env.PUBLIC_URL}/assets/General/check-list-data/CheckListUnit2.png`,
   color: "#56C3A9",
-  doorTitle: "ירי טילים",
+  doorTitle: "ירי טילים ורקטות",
 };
 
 export const unitTwoSub2Checklist = {
@@ -42,7 +42,7 @@ export const unitTwoSub2Checklist = {
     "סימון שטחים פתוחים לכינוס העובדים",
     "לחלק את מרחב המפעל לגזרות אחריות ולהגדיר מנהל בכל אזור",
     "לתרגל את עובדי המפעל בשגרה",
-    "במפעלים או במוסדות הסמוכים לחוף יש לסמן ולהוסיף שילוט המפנה למבנים גבוהים לקראת אירוע צונמי",
+    "במפעלים או במוסדות הסמוכים לחוף יש לסמן ולהוסיף שילוט המַפנה למבנים גבוהים לקראת אירוע צונמי",
   ],
   image: `${process.env.PUBLIC_URL}/assets/General/check-list-data/Door-check-list.webp`,
   checklistImg: `${process.env.PUBLIC_URL}/assets/General/check-list-data/CheckListUnit2.png`,
@@ -112,7 +112,7 @@ export const unitThreeSub2Checklist = {
     "למנות אחראי למסגרת",
     "לשבץ כוח אדם להפעלת המסגרת",
     "לוודא הצטיידות לתפעול המסגרת",
-    "לוודא מול אגף משאבי אנוש צורך בהתאם למספר הילדים בגילאים הרלוונטיים",
+    "לוודא מול אגף משאבי אנוש צורך בהתאם למספר הילדים בגילים הרלוונטיים",
     "לסירוגין - ביצוע תיאום למסגרת במפעל שכן/ רשותי",
   ],
   image: `${process.env.PUBLIC_URL}/assets/General/check-list-data/Door-check-list.webp`,

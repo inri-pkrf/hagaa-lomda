@@ -24,12 +24,12 @@ function InterfacesGame() {
 
   const questions = [
     {
-      question: "חסר ציוד ותפעול שוטף במפעל - למי יש לפנות?",
+      question: "חסר ציוד לתפעול שוטף במפעל - למי יש לפנות?",
       correctId: 3,
       options: [2, 4, 3],
     },
     {
-      question: "פרצה שרפה במחסן החומרים - מי הגוף האחראי?",
+      question: "פרצה שרֵפה במחסן החומרים - למי יש לפנות?",
       correctId: 9,
       options: [1, 8, 9],
     },

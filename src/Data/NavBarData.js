@@ -13,7 +13,7 @@ const NavBarData = [
             ]
              },
             {
-                title: "אוכלוסיה", path: "/population",
+                title: "אוכלוסייה", path: "/population",
                 subChapters: [
                     { title: "שיעור 1", path: "/populationInfo" },
                     { title: "שיעור 2", path: "/population-parts" },

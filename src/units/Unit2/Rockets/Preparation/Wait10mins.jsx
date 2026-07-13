@@ -10,7 +10,7 @@ function Wait10mins() {
   return (
     <div className="wait10min-wrapper">
       <div style={{ position: "relative" }}>
-        <h2 id="wait10min-headline">למה חשוב להמתין להנחיה מפורשת?</h2>
+        <h2 id="wait10min-headline">למה חשוב להמתין להנחיה מפורשת לשחרור?</h2>
         <img
           src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/icons/Wait10mins.png`}
           alt="icon"

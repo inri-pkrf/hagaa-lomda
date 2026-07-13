@@ -17,7 +17,7 @@ function Preparation() {
     },
     {
       id: `ChoosingSafeRoom`,
-      title: "בחירה והכנת מרחב מוגן",
+      title: "בחירת המרחב המוגן והכנתו",
       bgColor: "#E2787A",
       icon: "choose-space.png",
       hasInfo: true,
@@ -25,7 +25,7 @@ function Preparation() {
     },
     {
       id: `BuildingMaintenance`,
-      title: "ציוד מרחב מוגן ואחזקתו",
+      title: "ציוד המרחב המוגן ואחזקתו",
       bgColor: "#567691",
       icon: "equipment.png",
       hasInfo: true,
@@ -50,7 +50,7 @@ function Preparation() {
     },
     {
       id: `Wait10mins`,
-      title: "למה חשוב להמתין להנחיה מפורשת?",
+      title: "למה חשוב להמתין להנחיה מפורשת לשחרור?",
       bgColor: "#E67E22",
       icon: "timer10.png",
       hasInfo: true,
@@ -94,9 +94,9 @@ function Preparation() {
     <div className="preparation-page-container">
       <h1 className="preparation-main-header">היערכות והתגוננות</h1>
       <p className="preparation-sub-text">
-        לפניכם מספר עקרונות להיערכות והתנהגות בתרחיש ירי טילים.
+        לפניכם כמה עקרונות להיערכות והתנהגות בתרחיש ירי טילים
         <br />
-        <strong>יש ללחוץ על האייקונים להרחבה:</strong>
+        <strong>יש ללחוץ על האייקונים כדי ללמוד עליהם:</strong>
       </p>
 
       <div className="topics-grid">

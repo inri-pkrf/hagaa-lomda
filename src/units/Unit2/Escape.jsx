@@ -1,7 +1,6 @@
 import React from "react";
 import "./style/HowPreper.css";
 
-
 function Escape() {
   // 4 האייקונים החדשים של תוכנית המילוט
   const escapeItems = [
@@ -32,7 +31,6 @@ function Escape() {
     },
   ];
 
-
   return (
     <div className="how-preper-page">
       {/* כותרת הדף והאייקון */}
@@ -48,7 +46,6 @@ function Escape() {
         <h2 className="prep-title">הכנת תוכנית מילוט</h2>
       </div>
 
-
       {/* הלוח המחיק */}
       <div className="whiteboard-wrapper">
         <img
@@ -60,12 +57,10 @@ function Escape() {
           className="whiteboard-image bottom"
         />
 
-
         <div className="escape-bold-text-top">
           כחלק מהיערכות המפעל לרעידת אדמה יש דרישה להכין תוכנית מילוט מהמבנים
           לשטחים פתוחים. תוכנית זו תכלול:
         </div>
-
 
         {/* 4 האייקונים מסודרים בשורה על הלוח */}
         <div className="escape-items-container">
@@ -77,18 +72,13 @@ function Escape() {
           ))}
         </div>
 
-
         <div className="escape-bold-text-bottom">
-          יש לשלט את דרכי המילוט בתוך המבנים במפעל על מנת להכווין את העובדים וכן
-          את האורחים המזדמנים
+          יש לשלט את דרכי המילוט בתוך המבנים במפעל כדי להכווין את העובדים וכן את
+          האורחים המזדמנים
         </div>
       </div>
     </div>
   );
 }
 
-
 export default Escape;
-
-
-

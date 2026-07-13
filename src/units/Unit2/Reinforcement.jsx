@@ -36,7 +36,7 @@ function Reinforcement() {
     {
       id: 2,
       title: "חומרים מסוכנים",
-      description: "מיגון מיכלים עם חומרים מסוכנים, תשתיות חשמל וגז",
+      description: "מיגון מכלים עם חומרים מסוכנים, תשתיות חשמל וגז",
       icon: "hazmat-icon-red",
     },
     {
@@ -49,7 +49,7 @@ function Reinforcement() {
       id: 4,
       title: "חשמל וגז",
       description:
-        "תיקון וחיזוק חיווטי חשמל וחיבורי גז המהווים מקור סיכון\u00A0לשריפות",
+        "תיקון וחיזוק חוטי חשמל וחיבורי גז המהווים מקור סיכון\u00A0לשרפות",
       icon: "electrical-gas-icon-red",
     },
   ];
@@ -108,8 +108,8 @@ function Reinforcement() {
         />
 
         <h2 className="grid-instruction-title">
-          באירוע רעידת אדמה נדרשות מספר פעולות היערכות. בעת לחיצה על האייקונים
-          יתאפשר לגלות אודותיהם.
+          באירוע רעידת אדמה נדרשות כמה פעולות היערכות. בעת לחיצה על האייקונים
+          יתאפשר לגלות על אודותיהם.
         </h2>
 
         <div className="icons-grid-red icons-grid">

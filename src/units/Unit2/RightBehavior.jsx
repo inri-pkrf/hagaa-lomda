@@ -33,7 +33,7 @@ function RightBehavior() {
       img: process.env.PUBLIC_URL + "/assets/UnitTwoImgs/earthquake/beach.jpg",
       title: "חוף הים",
       alt: "חוף ים",
-      text: "יש להתרחק מהחוף ככל האפשר.\n במצבים שלא ניתן להתרחק קילומטר מהחוף, יש לעלות למבנה קרוב בין 4 קומות לפחות",
+      text: "יש להתרחק מהחוף ככל האפשר.\n במצבים שלא ניתן להתרחק קילומטר מהחוף, יש לעלות למבנה קרוב בן 4 קומות לפחות",
     },
   ];
 
@@ -86,13 +86,13 @@ function RightBehavior() {
       {showPopup && (
         <div className="RightBehavior-popup-overlay">
           <div className="RightBehavior-popup-content custom-design">
-            {/* מיכל הטקסט של הפופ-אפ */}
+            {/* מכל הטקסט של הפופ-אפ */}
             <div className="popup-text-container">
               <h2>הנחיות</h2>
               <p>
-                עליכם לעבור עם העכבר מעל התמונות על מנת לגלות על התנהגות נכונה
-                בעת רעידת אדמה.
-                רק לאחר שתעברו על כל התמונות, תוכלו להמשיך&nbsp;הלאה.{" "}
+                עליכם לעבור עם העכבר מעל התמונות כדי ללמוד על התנהגות נכונה בעת
+                רעידת אדמה. רק לאחר שתעברו על כל התמונות, תוכלו
+                להמשיך&nbsp;הלאה.{" "}
               </p>
             </div>
 

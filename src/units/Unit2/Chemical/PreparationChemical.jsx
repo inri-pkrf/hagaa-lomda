@@ -24,15 +24,15 @@ function PreparationChemical() {
       text: "יש להתקין ולהפעיל מתזי מים באזורי אחסון רגישים.",
     },
     alarm_system: {
-      title: "גלאי התראה",
-      text: "יש להתקין גלאי התראה פעילים עם חיווי קולי וויזואלי.",
+      title: "גלאי התרעה",
+      text: "יש להתקין גלאי התרעה פעילים עם חיווי קולי וחזותי.",
     },
     tank_protection: {
-      title: "מיגון מיכלים",
-      text: "יש לוודא שכל המיכלים מוגנים מפני פגיעה מכנית או קורוזיה.",
+      title: "מיגון מכלים",
+      text: "יש לוודא שכל המכלים מוגנים מפני פגיעה מכנית או קורוזיה.",
     },
     tank_burial: {
-      title: "הטמנת מיכלים",
+      title: "הטמנת מכלים",
       text: "יש לבצע הטמנה בהתאם לתקני איכות הסביבה ומניעת זליגה.",
     },
     signage: {
@@ -48,8 +48,8 @@ function PreparationChemical() {
     { id: "team_training", label: "הכשרת צוות", icon: "🎓" },
     { id: "water_monitor", label: "התקנת מנטרי מים", icon: "💧" },
     { id: "alarm_system", label: "גלאי התראה", icon: "🚨" },
-    { id: "tank_protection", label: "מיגון מיכלים", icon: "🛢️" },
-    { id: "tank_burial", label: "הטמנת מיכלים", icon: "🕳️" },
+    { id: "tank_protection", label: "מיגון מכלים", icon: "🛢️" },
+    { id: "tank_burial", label: "הטמנת מכלים", icon: "🕳️" },
     { id: "signage", label: "שילוט", icon: "⚠️" },
   ];
 
@@ -109,7 +109,8 @@ function PreparationChemical() {
       <div className="text-panel">
         <h2 id="chemical-title">היערכות ומניעה</h2>
         <p className="chemical-second">
-          כדי למנוע אירוע שבו יש חשיפה לחומרים מסוכנים, יש להקפיד על&nbsp;הנחיות.
+          כדי למנוע אירוע שבו יש חשיפה לחומרים מסוכנים, יש להקפיד
+          על&nbsp;ההנחיות.
         </p>
 
         {activeTopic && contentData[activeTopic] ? (

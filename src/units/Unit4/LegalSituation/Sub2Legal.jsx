@@ -75,7 +75,7 @@ function Sub2Legal() {
       />
 
       <p id="Sub2Legal-subtext">
-        {isDifference ? "השוני בין 2 המצבים" : "הדמיון בין 2 המצבים"}
+        {isDifference ? "השוני בין שני המצבים" : "הדמיון בין שני המצבים"}
       </p>
 
       <p id="Sub2Legal-text2">

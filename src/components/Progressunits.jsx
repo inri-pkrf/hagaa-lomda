@@ -5,7 +5,7 @@ export const chapterSessionKeys = {
   "היערכות לאיומים": 'unitOne-first',
   "מצבי תפקוד": 'unitOne-second',
   "ממשקים": 'unitOne-third',
-  "אוכלוסיה": 'unitOne-fourth',
+  "אוכלוסייה": 'unitOne-fourth',
   "שאלות סיכום_1": 'unitOne-questions',
   "סיכום פרק_1": 'unitOne-checklist',
   "פתיחה_2": 'unittwo-opening',

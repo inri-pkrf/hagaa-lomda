@@ -95,7 +95,7 @@ function ChoosingSafeRoom() {
 
   return (
     <div className="choosing-safe-room-wrapper">
-      <h2 id="choosingSafeRoom-headline"> בחירת מרחב מוגן </h2>
+      <h2 id="choosingSafeRoom-headline"> בחירת המרחב המוגן והכנתו </h2>
       <img
         src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/icons/ChoosingSafeRoom.png`}
         alt="icon"

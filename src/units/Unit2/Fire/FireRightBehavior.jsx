@@ -11,7 +11,7 @@ function FireRightBehavior() {
       />
       <h2 id="FireRightBehavior-headline">היערכות נכונה בשעת שרפה</h2>
       <p id="FireRightBehavior-text1">
-        היערכות מראש לשריפות, כוללת אפשרות לגילוי מוקדם, לצד היכולת לכבות את האש
+        היערכות מראש לשרפות, כוללת אפשרות לגילוי מוקדם, לצד היכולת לכבות את האש
         מיד עם התפרצותה.
       </p>
       <p id="FireRightBehavior-text2">

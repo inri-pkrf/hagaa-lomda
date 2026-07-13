@@ -146,7 +146,7 @@ function EducationGame() {
   const isLastStep = activeStep === steps.length - 1;
   const popupContent = isIntro
     ? {
-        text: "יש ללחוץ בכל פעם על האלמנט המבהב כדי לחשוף מידע אודות מסגרות חינוכיות להפעלת ילדי העובדים",
+        text: "יש ללחוץ בכל פעם על האלמנט המבהב כדי לחשוף מידע על אודות מסגרות חינוכיות להפעלת ילדי העובדים",
         btn: "התחלה",
       }
     : {

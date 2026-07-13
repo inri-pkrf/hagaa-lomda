@@ -27,7 +27,7 @@ const CREDIT_DATA = [
   {
     id: "management",
     title: "ניהול",
-    subtitle: "לניהול והובלת הפרויקט הייתה אחראית יועצת חדשנות ודיגיטל ",
+    subtitle: "לניהול הפרויקט והובלתו הייתה אחראית יועצת חדשנות ודיגיטל ",
     className: "credit-page-management",
     items: [
       {
@@ -41,7 +41,7 @@ const CREDIT_DATA = [
     title: "תוכן",
     subtitle: (
       <>
-        לתיקוף וחידוש התוכן היו אחראיים
+        לתיקוף וחידוש התוכן היו אחראים
         <br />
         מומחי התוכן
       </>

@@ -80,7 +80,7 @@ const UnitOneSidebar = () => {
           isLocked = !finished.states;
           isFinished = finished.interfaces;
         }
-        else if (ch.title === "אוכלוסיה") {
+        else if (ch.title === "אוכלוסייה") {
           isLocked = !finished.interfaces;
           isFinished = finished.population;
         }
@@ -100,7 +100,7 @@ const UnitOneSidebar = () => {
         // עדכון תתי-שיעורים (אוכלוסייה)
         const updatedSubChapters = ch.subChapters?.map((sub, subIndex) => {
           let subFinished = false;
-          if (ch.title === "אוכלוסיה") {
+          if (ch.title === "אוכלוסייה") {
             if (subIndex === 0) subFinished = finished.pop1;
             if (subIndex === 1) subFinished = finished.pop2;
             if (subIndex === 2) subFinished = finished.pop3;

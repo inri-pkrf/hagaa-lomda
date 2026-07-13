@@ -252,7 +252,7 @@ function IntroUnitFour() {
             <span className="sticker sticker-star s3">⭐</span>
             <span className="sticker sticker-star s4">✨</span>
             <p id="questions-end-page-headline">
-              הגעתם לסוף היחידה, כעת נעבור על מספר שאלות כדי לוודא הבנה
+              הגעתם לסוף היחידה, כעת נעבור על כמה שאלות כדי לוודא הבנה
             </p>
           </div>
         </div>
