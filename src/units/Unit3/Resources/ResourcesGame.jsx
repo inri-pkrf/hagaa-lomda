@@ -38,7 +38,7 @@ function ResourcesGame() {
     {
       id: "protection",
       img: "protection.png",
-      label: `מיגון אישי (חומ"ס בהתאם לתקנות)`,
+      label: `מיגון אישי ושכפ"ץ`,
       top: "28%",
       left: "8%",
     },

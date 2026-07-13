@@ -28,35 +28,6 @@ function ChoosingSafeRoomImgs() {
       className="choosing-safe-room-wrapper"
       style={{ position: "relative" }}
     >
-      <h2 id="choosingSafeRoom-headline"> בחירה והכנת מרחב מוגן </h2>
-      <img
-        src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/icons/ChoosingSafeRoom.png`}
-        alt="icon"
-        id="choosingSafeRoom-icon"
-      />
-      <p id="choosingSafeRoomImgs-pictures-text" className="subtitles">
-        להגדלת כל תמונה, יש ללחוץ עליה. כדי להקטין אותה בחזרה יש ללחוץ עליה פעם
-        נוספת או ללחוץ על התמונה השנייה.
-      </p>
-
-      <img
-        src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/choosing-img2.jpg`}
-        alt="defense-img1"
-        id="choosing-img1"
-        className={selectedImg === "img1" ? "enlarged" : "shrinked"}
-        onClick={() => handleImgClick("img1")}
-      />
-      {viewedImgs.img1 && (
-        <div
-          className="completion-v-choosing-img"
-          style={{ left: "29%", top: "30vh" }}
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4">
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
-        </div>
-      )}
-
       <img
         src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/choosing-img1.jpeg`}
         alt="defense-img2"

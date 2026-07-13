@@ -211,7 +211,7 @@ function SummaryCheckList({ checklist = {}, onFinish, pinImg }) {
                 id="summery-check-list-title"
                 style={{
                   color: location.pathname.includes("unit3")
-                    ? "#FFB356"
+                      ? "#d38e3a"
                     : checklist.color || "red",
                 }}
               >
@@ -237,7 +237,7 @@ function SummaryCheckList({ checklist = {}, onFinish, pinImg }) {
                   className={`checklist-text ${isSingleItem ? "single" : ""}`}
                   style={{
                     color: location.pathname.includes("unit3")
-                      ? "#FFB356"
+                      ? "#d38e3a"
                       : checklist.color || "red",
                   }}
                 >

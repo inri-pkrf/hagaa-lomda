@@ -1,7 +1,7 @@
 import React from "react";
 import "../../Unit2/style/flipCard.css";
 
-function FlipCard({ priority, description, image }) {
+function FlipCard({ priority, description, image, title }) {
   return (
     <div className="flip-card">
       <div className="flip-card-inner">
@@ -16,6 +16,7 @@ function FlipCard({ priority, description, image }) {
         <div className="flip-card-back">
           <div className="flip-card-back-content">
             <div className="flip-priority">{priority}</div>
+            <div className="flip-title">{title}</div>
             <div className="flip-description">{description}</div>
           </div>
         </div>

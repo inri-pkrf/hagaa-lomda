@@ -124,6 +124,7 @@ function BuildingMaintenance() {
   const [isIntro, setIsIntro] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [clickedSteps, setClickedSteps] = useState([]);
+  const [showPoster, setShowPoster] = useState(false);
 
   // State חדש שמנהל את הופעת הפופ-אפ הבונוס בסוף
   const [isFinalExtraPopup, setIsFinalExtraPopup] = useState(false);
@@ -199,14 +200,12 @@ function BuildingMaintenance() {
         title: "בדיקה נוספת:",
         text: "יש לוודא שלא מותקנים חיפויים מסכנים על קירות המיגון והתקרות (קרמיקה, מראות, הנמכת תקרה) ולדרוש פירוקם אם קיימים.",
         btn: "סיום",
+        showPosterBtn: true, // סימון להצגת הכפתור
       };
     }
 
     // כאן זה נקי בלי התנאי המיותר
-    return {
-      text: currentSteps[activeStep].text,
-      btn: "המשך",
-    };
+    return { text: currentSteps[activeStep].text, btn: "המשך" };
   };
 
   const popupContent = getPopupContent();
@@ -278,25 +277,68 @@ function BuildingMaintenance() {
           return null;
         })}
       </div>
-
       {showPopup && (
         <div className="maintenance-popup-overlay">
           <div className="maintenance-popup-content custom-design">
             <button className="close-x-circle" onClick={handleClose}>
               ✕
             </button>
+
             <div className="popup-text-container single-text">
-              {popupContent.title && (
-                <h1 id="popup-title-rockets-game">{popupContent.title}</h1>
-              )}
+              {popupContent.title && <h1>{popupContent.title}</h1>}
               <h2 style={{ whiteSpace: "pre-line" }}>{popupContent.text}</h2>
+
+              {popupContent.showPosterBtn && (
+                <div
+                  className="image-hint-wrapper"
+                  style={{ marginTop: "15px", textAlign: "center" }}
+                >
+                  <img
+                    className="thumbnail-img"
+                    src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/choosing-img2.jpg`}
+                    alt="Preview"
+                    style={{
+                      width: "120px",
+                      cursor: "pointer",
+                      border: "2px solid #ccc",
+                      borderRadius: "8px",
+                    }}
+                    onClick={() => setShowPoster(true)}
+                  />
+                  <p
+                    style={{
+                      fontSize: "1.1rem",
+                      marginTop: "5px",
+                    }}
+                  >
+                    יש ללחוץ על התמונה בכדי להגדילה{" "}
+                  </p>
+                </div>
+              )}
             </div>
+
             <div className="popup-footer">
               <button className="continue-btn-new" onClick={handleClose}>
                 {popupContent.btn}
               </button>
             </div>
           </div>
+
+          {/* הפוסטר המוגדל - נמצא בתוך ה-Overlay של הפופאפ */}
+          {showPoster && (
+            <>
+              <div
+                className="alert-image-overlay"
+                onClick={() => setShowPoster(false)}
+              />
+              <img
+                src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/choosing-img2.jpg`}
+                alt="Poster"
+                className="enlarged"
+                onClick={() => setShowPoster(false)}
+              />
+            </>
+          )}
         </div>
       )}
     </div>

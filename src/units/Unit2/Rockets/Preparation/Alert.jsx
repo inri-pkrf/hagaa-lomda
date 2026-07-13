@@ -9,8 +9,8 @@ const PAGE5_MESSAGES = [
     notifSubtitle: "עדכון",
     isAlert: false,
     intro: [
-      "**במקרים בהם מתאפשר, פיקוד העורף מפיץ הנחיה מקדימה המאפשרת להיערך כמה דקות לפני קבלת ההתרעה:**"
-      ],
+      "**במקרים בהם מתאפשר, פיקוד העורף מפיץ הנחיה מקדימה המאפשרת להיערך כמה דקות לפני קבלת ההתרעה:**",
+    ],
     checklist: [
       "זמן ומידע נוסף לדריכות ומוכנות ",
       "זמן לשפר מיקום למיגון המיטבי ביותר",
@@ -24,7 +24,7 @@ const PAGE5_MESSAGES = [
     intro: [
       "ההנחיה תתקבל באמצעות הודעה שתשלח ב-CB (cellular broadcast) וביישומון פיקוד העורף, בפורטל החירום הלאומי  ובערוצי הטלגרם של פיקוד העורף.",
       "ההנחיה המקדימה מופצת לאזורים נרחבים בהם קיים פוטנציאל איום כדי לאפשר זמן היערכות, בעוד שההתרעה (אזעקה) מופצת לאזורים בהם האיום מתממש.",
-      "**לפיכך יישנם מקרים בהם תתקבל הנחיה מקדימה אך לא תתקבל לאחריה התרעה (אזעקה)**"
+      "**לפיכך יישנם מקרים בהם תתקבל הנחיה מקדימה אך לא תתקבל לאחריה התרעה (אזעקה)**",
     ],
     checklist: null,
   },
@@ -33,7 +33,7 @@ const PAGE5_MESSAGES = [
     notifSubtitle: "ירי רקטות וטילים | באזורך",
     isAlert: true,
     intro: [
-      "**בכל מקרה האזעקה היא הקובעת!**\nרק אם מתקבלת התרעה, יש להיכנס למרחב המוגן בהתאם לזמן ההתגוננות ולהישאר בו עד לקבלת הנחיה מפורשת."
+      "**בכל מקרה האזעקה היא הקובעת!**\nרק אם מתקבלת התרעה, יש להיכנס למרחב המוגן בהתאם לזמן ההתגוננות ולהישאר בו עד לקבלת הנחיה מפורשת.",
     ],
     checklist: null,
   },
@@ -51,11 +51,7 @@ function renderFormattedText(text) {
     return (
       <React.Fragment key={lineIdx}>
         {segments.map((segment, segIdx) =>
-          segIdx % 2 === 1 ? (
-            <strong key={segIdx}>{segment}</strong>
-          ) : (
-            segment
-          ),
+          segIdx % 2 === 1 ? <strong key={segIdx}>{segment}</strong> : segment,
         )}
         {lineIdx < lines.length - 1 && <br />}
       </React.Fragment>
@@ -64,6 +60,7 @@ function renderFormattedText(text) {
 }
 
 function Alert() {
+  const [showPreviewImage, setShowPreviewImage] = useState(false);
   const location = useLocation();
   const videoRef = useRef(null);
   const ringAudioRef = useRef(null);
@@ -85,7 +82,7 @@ function Alert() {
   if (location.pathname === "/Alert/1.5") page = 5;
   if (location.pathname === "/Alert/2") page = 2;
   if (location.pathname === "/Alert/3") page = 3;
-  if (location.pathname === "/Alert/4") page = 4;
+  // if (location.pathname === "/Alert/4") page = 4;
 
   useEffect(() => {
     if (page !== 1) return;
@@ -119,6 +116,7 @@ function Alert() {
     setPage5Phase("ringing");
     setArrivedCount(0);
     setOpenedMessage(null);
+    setShowPreviewImage(false);
     setMessagesSeen(Array(PAGE5_MESSAGES.length).fill(false));
 
     if (ringAudioRef.current) {
@@ -265,10 +263,9 @@ function Alert() {
             alt="Siren"
             className="alert-background"
           />
-
         </div>
       )}
-      {page === 4 && (
+      {/* {page === 4 && (
         <div id="alert-page2" style={{ position: "relative" }}>
           <img
             src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/icons/Alert.png`}
@@ -276,35 +273,6 @@ function Alert() {
             id="alert-icon"
           />
           <h2 id="headline-icon">התרעה</h2>
-
-          <img
-            src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/alert-img1.jpg`}
-            alt="Enlargable 1"
-            id="alert-hover-img"
-            className={activeImage === "img1" ? "enlarged" : ""}
-            onClick={() => handleImgClick("img1")}
-          />
-          {viewedImgs.img1 && (
-            <div
-              className="completion-v"
-              style={{
-                position: "absolute",
-                top: "42vh",
-                left: "30%",
-                transform: "translateX(-50%)",
-                zIndex: 999,
-              }}
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="white"
-                strokeWidth="4"
-              >
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-            </div>
-          )}
 
           <img
             src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/alert-img2.png`}
@@ -345,17 +313,16 @@ function Alert() {
             המקורי
           </p>
         </div>
-      )}
-          {page === 5 && (
-            <div id="alert-page2" className="page5-container">
-              <img
-                src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/icons/Alert.png`}
-                alt="Siren"
-                id="alert-icon"
-              />
-              <h2 id="headline-icon">הנחיה מקדימה – זמן להיערך</h2>
-              <p id="alert-sub-text2">מהי הנחיה מקדימה?</p>
-
+      )} */}
+      {page === 5 && (
+        <div id="alert-page2" className="page5-container">
+          <img
+            src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/icons/Alert.png`}
+            alt="Siren"
+            id="alert-icon"
+          />
+          <h2 id="headline-icon">הנחיה מקדימה – זמן להיערך</h2>
+          <p id="alert-sub-text2">מהי הנחיה מקדימה?</p>
 
           {/* שלב 1: הטלפון מצלצל (phoneInHend.png זז מצד לצד + סאונד אזעקה) */}
           {page5Phase === "ringing" && (
@@ -367,7 +334,10 @@ function Alert() {
               <div className="phone-ring-wrapper">
                 <img src={`${ASSET_BASE}/phoneInHend.png`} alt="טלפון מצלצל" />
                 <audio ref={ringAudioRef} autoPlay loop>
-                  <source src={`${ASSET_BASE}/alarm-sound.mp3`} type="audio/mpeg" />
+                  <source
+                    src={`${ASSET_BASE}/alarm-sound.mp3`}
+                    type="audio/mpeg"
+                  />
                 </audio>
               </div>
             </>
@@ -461,12 +431,14 @@ function Alert() {
 
                 {PAGE5_MESSAGES[openedMessage].checklist && (
                   <ul className="message-checklist">
-                    {PAGE5_MESSAGES[openedMessage].checklist.map((item, idx) => (
-                      <li key={idx}>
-                        <span className="check-mark">✔</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
+                    {PAGE5_MESSAGES[openedMessage].checklist.map(
+                      (item, idx) => (
+                        <li key={idx}>
+                          <span className="check-mark">✔</span>
+                          <span>{item}</span>
+                        </li>
+                      ),
+                    )}
                   </ul>
                 )}
 
@@ -474,7 +446,40 @@ function Alert() {
               </div>
             </div>
           )}
+          {/* כפתור להצגת דוגמת ההנחיה המקדימה */}
+          {openedMessage === 2 && !showPreviewImage && (
+            <button
+              className="alert-preview-btn"
+              onClick={() => {
+                setShowPreviewImage(true);
+                setActiveImage("img2");
+                setViewedImgs((prev) => ({ ...prev, img2: true }));
+              }}
+            >
+              🔍להרחבה בנושא הנחיה מקדימה מלבנון יש ללחוץ
+            </button>
+          )}
 
+          {/* חלון מוגדל */}
+          {showPreviewImage && (
+            <>
+              <div
+                className="alert-image-overlay"
+                onClick={() => {
+                  setShowPreviewImage(false);
+                  setActiveImage(null);
+                }}
+              />
+
+              <img
+                src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/alert-img2.png`}
+                alt="דוגמת הנחיה מקדימה"
+                id="alert-pos-hover-img2"
+                className="enlarged"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </>
+          )}
 
           <img
             src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/alert-background.png`}
@@ -486,6 +491,5 @@ function Alert() {
     </div>
   );
 }
-
 
 export default Alert;

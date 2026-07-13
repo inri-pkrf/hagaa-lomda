@@ -12,6 +12,8 @@
   direction: rtl;
 }
 
+
+
 #wait10min-icon {
   margin: 2vh;
   margin-top: 10.5vh;
@@ -21,6 +23,11 @@
   position: absolute;
   right: 0vw;
   z-index: 10;
+}
+
+#wait-pos-btn{
+  top: 80vh;
+  left: 50%;
 }
 
 #wait10min-dircations {

@@ -32,6 +32,11 @@
   height: 100vh;
 }
 
+#choosing-pos-btn{
+  top: 92vh;
+  left: 50%;
+}
+
 #website-link {
   position: absolute;
   bottom: 6vh;

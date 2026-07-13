@@ -12,6 +12,16 @@
   pointer-events: none;
 }
 
+.thumbnail-img {
+  transition: transform 0.2s ease;
+  z-index: 999999999;
+}
+
+.thumbnail-img:hover {
+  transform: scale(1.05); /* התמונה תגדל מעט כשעוברים עליה עם העכבר */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
 .maintenance-game-container {
   width: 100vw;
   height: 100vh;

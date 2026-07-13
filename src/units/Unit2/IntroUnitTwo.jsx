@@ -190,7 +190,7 @@ function IntroUnitTwo() {
             onClick={handleSignOneClick}
             style={{ cursor: "pointer" }}
           >
-            <p className="door-sign-UnitTwo-title-first">ירי טילים</p>
+            <p className="door-sign-UnitTwo-title-first">ירי טילים ורקטות</p>
             <img
               src={`${process.env.PUBLIC_URL}/assets/General/Doors/DoorsSigns/DoorSignOne.png`}
               alt="Sign 1"

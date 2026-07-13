@@ -11,33 +11,38 @@ const openWebsitePopup = () => {
 };
 
 function ChoosingSafeRoom() {
+  const [showPreviewImage, setShowPreviewImage] = useState(false);
+  const [activeImage, setActiveImage] = useState(null);
+  const [isEnlarged, setIsEnlarged] = useState(false);
+  const [viewed, setViewed] = useState(false);
+
   const safeRoomPriorities = [
     {
       id: 1,
       priority: "1",
-      title: "מרחב מוגן",
-      description: `ממ"ד, ממ"ק או ממ"מ (מרחב מוגן דירתי, קומתי או מוסדי)`,
+      title: "מרחב מוגן תקני פרטי",
+      description: `ממ"ד, ממ"ק, מקלט פרטי משותף`,
       image: `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/flipcard1.png`,
     },
     {
       id: 2,
       priority: "2",
-      title: "מקלט",
-      description: `מקלט (משותף או ציבורי)`,
+      title: "מרחב מוגן ציבורי",
+      description: `מקלטים ציבוריים, מקלטים במוסדות חינוך וציבור ומחסים ציבוריים מאושרים`,
       image: `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/flipcard2.png`,
     },
     {
       id: 3,
       priority: "3",
-      title: "חדר מדרגות",
-      description: `מקום טוב באמצע- חדר מדרגות פנימי ובהיעדרו חלל פנימי`,
+      title: "מקום טוב באמצע",
+      description: `חדר מדרגות פנימי ובהיעדרו חלל פנימי`,
       image: `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/flipcard3.png`,
     },
     {
       id: 4,
       priority: "4",
-      title: "חדר פנימי",
-      description: `בשטח פתוח בדרך- מיגונית ואם לא ניתן, לשכב על הקרקע ולהגן על הראש עם הידיים`,
+      title: "בשטח פתוח בדרך",
+      description: `מיגונית ואם לא ניתן, לשכב על הקרקע ולהגן על הראש עם הידיים`,
       image: `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/flipcard4.png`,
     },
   ];
@@ -138,6 +143,42 @@ function ChoosingSafeRoom() {
           </div>
         ))}
       </div>
+          {/* כפתור להצגת התמונה - בדיוק כמו ב-Alert */}
+        {!showPreviewImage && (
+          <button
+            className="alert-preview-btn"
+            id="choosing-pos-btn"
+            onClick={() => {
+              setShowPreviewImage(true);
+              setActiveImage("poster");
+            }}
+          >
+            🔍 להרחבה בנושא יש ללחוץ
+          </button>
+        )}
+
+        {/* חלון מוגדל - המנגנון המשותף */}
+        {showPreviewImage && (
+          <>
+            <div
+              className="alert-image-overlay"
+              onClick={() => {
+                setShowPreviewImage(false);
+                setActiveImage(null);
+              }}
+            />
+            <img
+              src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/choosing-img1.jpeg`}
+              alt="דוגמת הנחיה"
+              id="choosing-pos-hover-img2"
+              className="enlarged"
+              onClick={() => {
+                setShowPreviewImage(false);
+                setActiveImage(null);
+              }}
+            />
+          </>
+        )}
     </div>
   );
 }

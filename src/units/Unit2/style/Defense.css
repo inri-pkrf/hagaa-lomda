@@ -108,6 +108,6 @@
   top: 55% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
-  border: 4px solid #e9a572;
+  /* border: 4px solid #e9a572; */
   cursor: pointer;
 }

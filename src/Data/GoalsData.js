@@ -58,7 +58,7 @@ const openingData = {
             main: "#FFB356",
             layer1: "#fdd7a8",
             layer2: "#ffc884",
-            text: "#b47529"
+            text: "#3e29b4"
         },
     },
     UnitFour: {

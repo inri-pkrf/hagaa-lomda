@@ -60,17 +60,17 @@ const routeOrder = [
   "/Alert/1.5",
   "/Alert/2",
   "/Alert/3",
-  "/Alert/4",
+  // "/Alert/4",
   "/preparation",
   "/Defense",
   "/Defense/2",
   "/preparation",
   "/ChoosingSafeRoom",
-  "/ChoosingSafeRoomImgs",
+  // "/ChoosingSafeRoomImgs",
   "/ChoosingSafeRoomVideo",
   "/preparation",
   "/Wait10mins",
-  "/Wait10mins/2",
+  // "/Wait10mins/2",
   "/preparation",
   "/BuildingMaintenance",
   "/preparation",
@@ -257,8 +257,10 @@ function Buttons() {
   const [nextPath, setNextPath] = useState(null);
   const [isNextDisabled, setIsNextDisabled] = useState(false);
   const [isMamad3Complete, setIsMamad3Complete] = useState(false);
-  const [isSafeRoomExerciseComplete, setIsSafeRoomExerciseComplete] = useState(false);
-  const [isEarthquakeExerciseComplete, setIsEarthquakeExerciseComplete] = useState(false);
+  const [isSafeRoomExerciseComplete, setIsSafeRoomExerciseComplete] =
+    useState(false);
+  const [isEarthquakeExerciseComplete, setIsEarthquakeExerciseComplete] =
+    useState(false);
   const [isPrevDisabled, setIsPrevDisabled] = useState(false);
   const [highlightNext, setHighlightNext] = useState(false);
   const prevIsNextDisabled = useRef(true);
@@ -298,7 +300,7 @@ function Buttons() {
     try {
       const res = await fetch(
         `/umbraco/api/learning/GetIframeLearning?learningId=${LEARNING_ID}`,
-        { credentials: "include" }
+        { credentials: "include" },
       );
       if (!res.ok) {
         console.warn("השרת לא זמין:", res.status);
@@ -380,7 +382,7 @@ function Buttons() {
   };
 
   const multiStepPages = {
-    "/Alert": ["/Alert","/Alert/1.5", "/Alert/2", "/Alert/3", "/Alert/4"],
+    "/Alert": ["/Alert", "/Alert/1.5", "/Alert/2", "/Alert/3"],
   };
 
   useEffect(() => {
@@ -407,7 +409,7 @@ function Buttons() {
     setNextPath(
       index >= 0 && index < routeOrder.length - 1
         ? routeOrder[index + 1]
-        : null
+        : null,
     );
     sessionStorage.setItem("routeIndex", String(index));
     saveState(currentPath);
@@ -420,24 +422,26 @@ function Buttons() {
       setIsMamad3Complete(
         location.pathname === "/TimeToEnterMamad3"
           ? sessionStorage.getItem("TimeToEnterMamad3Complete") === "true"
-          : false
+          : false,
       );
       setIsSafeRoomExerciseComplete(
         location.pathname === "/SafeRoomExercise"
           ? sessionStorage.getItem("SafeRoomExerciseComplete") === "true"
-          : false
+          : false,
       );
       setIsEarthquakeExerciseComplete(
         location.pathname === "/EarthquakeExercise"
           ? sessionStorage.getItem("EarthquakeExerciseComplete") === "true"
-          : false
+          : false,
       );
     };
     checkExerciseComplete();
     if (
-      ["/TimeToEnterMamad3", "/SafeRoomExercise", "/EarthquakeExercise"].includes(
-        location.pathname
-      )
+      [
+        "/TimeToEnterMamad3",
+        "/SafeRoomExercise",
+        "/EarthquakeExercise",
+      ].includes(location.pathname)
     ) {
       intervalId = setInterval(checkExerciseComplete, 300);
     }
@@ -455,7 +459,12 @@ function Buttons() {
     const nextWasDisabled = prevIsNextDisabled.current;
     const nextIsNowEnabled = !isCurrentlyDisabled;
     const nextPathExists = !!nextPath;
-    if (nextWasDisabled && nextIsNowEnabled && nextPathExists && !isBuildingMaintenance) {
+    if (
+      nextWasDisabled &&
+      nextIsNowEnabled &&
+      nextPathExists &&
+      !isBuildingMaintenance
+    ) {
       setHighlightNext(true);
     }
     prevIsNextDisabled.current = isCurrentlyDisabled;
@@ -481,10 +490,10 @@ function Buttons() {
       sessionStorage.setItem("currentUnit", "UnitZero");
       sessionStorage.setItem("MainTitle", "מבנה שיעור הסמכה דיגיטלי");
     }
-    
+
     // ⭐ שמירה לשרת לפני ניווט
     saveState(targetPath);
-    
+
     const navEvent = new CustomEvent(isNext ? "onNextNav" : "onPrevNav", {
       cancelable: true,
     });
@@ -529,14 +538,25 @@ function Buttons() {
         path: "/fire",
         key: "clickedFireFrames",
         frames: [1, 2, 3, 4, 5],
-        keys: ["unitTwo-opening", "unitTwo-first", "unitTwo-second", "unitTwo-third"],
+        keys: [
+          "unitTwo-opening",
+          "unitTwo-first",
+          "unitTwo-second",
+          "unitTwo-third",
+        ],
         nav: "/intro-unit-two",
       },
       {
         path: "/chemical",
         key: "clickedChemicalFrames",
         frames: [1, 2, 3, 4, 5],
-        keys: ["unitTwo-opening", "unitTwo-first", "unitTwo-second", "unitTwo-third", "unitTwo-fourth"],
+        keys: [
+          "unitTwo-opening",
+          "unitTwo-first",
+          "unitTwo-second",
+          "unitTwo-third",
+          "unitTwo-fourth",
+        ],
         nav: "/intro-unit-two",
       },
       {
@@ -557,21 +577,39 @@ function Buttons() {
         path: "/Resources",
         key: "clickedResourcesFrames",
         frames: [1, 2, 3],
-        keys: ["unitThree-opening", "unitThree-first", "unitThree-second", "unitThree-third"],
+        keys: [
+          "unitThree-opening",
+          "unitThree-first",
+          "unitThree-second",
+          "unitThree-third",
+        ],
         nav: "/intro-unit-three",
       },
       {
         path: "/ExternalRecruits",
         key: "clickedExternalRecruitsFrames",
         frames: [1, 2, 3, 4],
-        keys: ["unitThree-opening", "unitThree-first", "unitThree-second", "unitThree-third", "unitThree-fourth"],
+        keys: [
+          "unitThree-opening",
+          "unitThree-first",
+          "unitThree-second",
+          "unitThree-third",
+          "unitThree-fourth",
+        ],
         nav: "/intro-unit-three",
       },
       {
         path: "/FactoryFile",
         key: "clickedFactoryFrames",
         frames: [1, 2],
-        keys: ["unitThree-opening", "unitThree-first", "unitThree-second", "unitThree-third", "unitThree-fourth", "unitThree-fifth"],
+        keys: [
+          "unitThree-opening",
+          "unitThree-first",
+          "unitThree-second",
+          "unitThree-third",
+          "unitThree-fourth",
+          "unitThree-fifth",
+        ],
         nav: "/intro-unit-three",
       },
     ];
@@ -580,7 +618,7 @@ function Buttons() {
         if (location.pathname === check.path) {
           try {
             const clicked = JSON.parse(
-              sessionStorage.getItem(check.key) || "[]"
+              sessionStorage.getItem(check.key) || "[]",
             );
             if (check.frames.every((id) => clicked.includes(id))) {
               check.keys.forEach((k) => sessionStorage.setItem(k, "finished"));
@@ -593,13 +631,34 @@ function Buttons() {
         }
       }
     }
-    if (isNext && location.pathname === "/Sub1Legal") { navigate("/Sub2Legal"); return; }
-    if (isNext && location.pathname === "/BuildingMaintenance") { navigate("/preparation"); return; }
-    if (isNext && location.pathname === "/preparation") { navigate("/rockets"); return; }
-    if (isNext && location.pathname === "/preparation-earth") { navigate("/earthquake"); return; }
-    if (isNext && location.pathname === "/HowPreper") { navigate("/preparation-earth"); return; }
-    if (isNext && location.pathname === "/DetailEmergencyTeams/2") { navigate("/EmergencyTeams"); return; }
-    if (isNext && location.pathname === "/UsesFactoryFile") { navigate("/FactoryFile"); return; }
+    if (isNext && location.pathname === "/Sub1Legal") {
+      navigate("/Sub2Legal");
+      return;
+    }
+    if (isNext && location.pathname === "/BuildingMaintenance") {
+      navigate("/preparation");
+      return;
+    }
+    if (isNext && location.pathname === "/preparation") {
+      navigate("/rockets");
+      return;
+    }
+    if (isNext && location.pathname === "/preparation-earth") {
+      navigate("/earthquake");
+      return;
+    }
+    if (isNext && location.pathname === "/HowPreper") {
+      navigate("/preparation-earth");
+      return;
+    }
+    if (isNext && location.pathname === "/DetailEmergencyTeams/2") {
+      navigate("/EmergencyTeams");
+      return;
+    }
+    if (isNext && location.pathname === "/UsesFactoryFile") {
+      navigate("/FactoryFile");
+      return;
+    }
     navigate(targetPath);
   };
 
