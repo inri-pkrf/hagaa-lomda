@@ -24,7 +24,7 @@ function ExternalInfo() {
       </h2>
 
       <p id="ExternalInfo-text1" className="orange-box">
-        מגויסי חוץ אינם עובדים במפעל בשגרה
+        מגויסי חוץ אינם עובדים במפעל בשגרה.
       </p>
 
       <p id="ExternalInfo-text2" className="orange-box">
