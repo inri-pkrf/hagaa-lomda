@@ -14,6 +14,14 @@ function InfoLomda() {
     "/info-lomda/5",
   ];
 
+  // כותרות לפי אותו סדר של PATHS
+  const TITLES = [
+    'ברוכים הבאים והבאות ללומדה להכשרת ממונה הג"א',
+    'מי נדרש למנות ממונה הג"א?',
+    "מה החוק אומר לגבי היערכות מפעל / מוסד לחירום?",
+    'תפקיד ממונה הג"א:',
+  ];
+
   const getStepFromPath = (path) => {
     const index = PATHS.indexOf(path);
     return index !== -1 ? index : 0;
@@ -113,9 +121,7 @@ function InfoLomda() {
   return (
     <div className="InfoLomda">
       <div className="InfoLomdaCard">
-        <h2 className="InfoLomda-title">
-          ברוכים הבאים והבאות ללומדה להכשרת ממונה הג"א
-        </h2>
+        <h2 className="InfoLomda-title">{TITLES[step]}</h2>
 
         {/* צעד 0 (שלב ראשון) */}
         {step === 0 && (
@@ -189,10 +195,6 @@ function InfoLomda() {
         {step === 1 && (
           <div className="step-content">
             <p className="InfoLomda-par3" id="pay-attention-step2">
-              <h3 style={{ marginBottom: 0, marginTop: 0, fontSize: "3vmin" }}>
-                <b>מי נדרש למנות ממונה הג"א?</b>
-              </h3>
-              <br />
               <b>מתוקף חוק הג"א ותקנות ההתגוננות האזרחית</b>
               <br></br> נדרש למנות מנהלים/ות לענייני התגוננות אזרחית (ממונה
               הג"א), במקרים הבאים:
@@ -228,10 +230,6 @@ function InfoLomda() {
         {step === 2 && (
           <div className="step-content">
             <p className="InfoLomda-par3">
-              <h3 style={{ marginBottom: 0, marginTop: 0, fontSize: "3vmin" }}>
-                <b>מה החוק אומר לגבי היערכות מפעל / מוסד לחירום?</b>
-              </h3>
-              <br />
               <b>
                 תקנות ההתגוננות האזרחית<br></br>
               </b>{" "}
@@ -267,10 +265,6 @@ function InfoLomda() {
         {step === 3 && (
           <div className="step-content">
             <p className="InfoLomda-par3">
-              <h3 style={{ marginBottom: 0, marginTop: 0, fontSize: "3vmin" }}>
-                <b>תפקיד ממונה הג"א:</b>
-              </h3>
-              <br />
               <b>
                 {" "}
                 הממונה על ההתגוננות האזרחית במפעל ירכז את הטיפול בכלל נושאי
