@@ -28,11 +28,11 @@ function PreparationChemical() {
       text: "יש להתקין גלאי התרעה פעילים עם חיווי קולי וחזותי.",
     },
     tank_protection: {
-      title: "מיגון מכלים",
-      text: "יש לוודא שכל המכלים מוגנים מפני פגיעה מכנית או קורוזיה.",
+      title: "מיגון מיכלים",
+      text: "יש לוודא שכל המיכלים מוגנים מפני פגיעה מכנית או קורוזיה.",
     },
     tank_burial: {
-      title: "הטמנת מכלים",
+      title: "הטמנת מיכלים",
       text: "יש לבצע הטמנה בהתאם לתקני איכות הסביבה ומניעת זליגה.",
     },
     signage: {
@@ -48,8 +48,8 @@ function PreparationChemical() {
     { id: "team_training", label: "הכשרת צוות", icon: "🎓" },
     { id: "water_monitor", label: "התקנת מנטרי מים", icon: "💧" },
     { id: "alarm_system", label: "גלאי התראה", icon: "🚨" },
-    { id: "tank_protection", label: "מיגון מכלים", icon: "🛢️" },
-    { id: "tank_burial", label: "הטמנת מכלים", icon: "🕳️" },
+    { id: "tank_protection", label: "מיגון מיכלים", icon: "🛢️" },
+    { id: "tank_burial", label: "הטמנת מיכלים", icon: "🕳️" },
     { id: "signage", label: "שילוט", icon: "⚠️" },
   ];
 

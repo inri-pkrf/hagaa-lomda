@@ -36,7 +36,7 @@ function Reinforcement() {
     {
       id: 2,
       title: "חומרים מסוכנים",
-      description: "מיגון מכלים עם חומרים מסוכנים, תשתיות חשמל וגז",
+      description: "מיגון מיכלים עם חומרים מסוכנים, תשתיות חשמל וגז",
       icon: "hazmat-icon-red",
     },
     {
