@@ -9,6 +9,7 @@ import {
 import React, { useState, useEffect } from "react";
 import { STATE_KEYS } from "./Data/Statekeys"; // ⭐ ייבוא משותף
 import { getProgressData } from "./components/Progressunits.jsx";
+import { getUrlParams } from "./utils/learningId"; // ⭐ תוקן: קריאה משותפת ונכונה של learningId
 
 // עמודים כללים של כל הלומדה
 import Buttons from "./components/Buttons";
@@ -150,17 +151,8 @@ import QuestionRTE from "./units/Unit4/RoutineToEmergency/QuestionRTE.jsx";
 import InfoQuiz from "./components/QuizAtTheEnd/InfoQuiz.jsx";
 import LastPage from "./components/QuizAtTheEnd/LastPage.jsx";
 
-
-function getUrlParams() {
-  const hash = window.location.hash;
-  const queryString = hash.includes("?") ? hash.split("?")[1] : "";
-  const params = new URLSearchParams(queryString);
-  const learningId = parseInt(params.get("learningId"), 10);
-  console.log("🔍 [App.jsx] URL Hash:", hash);
-  console.log("🔍 [App.jsx] Query String:", queryString);
-  console.log("🔍 [App.jsx] learningId:", learningId);
-  return { learningId };
-}
+// ⭐ תוקן: משתמשים בפונקציה המשותפת מ-utils/learningId.js
+// (במקום פונקציה מקומית שקראה רק מה-hash ולכן תמיד קיבלה NaN)
 const { learningId: LEARNING_ID } = getUrlParams();
 
 // ─── קומפוננטת ה-overlay של מסך מלא ──────────

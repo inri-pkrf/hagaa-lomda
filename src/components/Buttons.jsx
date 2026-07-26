@@ -4,20 +4,10 @@ import "./Styles/Buttons.css";
 import React, { useEffect, useState, useRef } from "react";
 import { STATE_KEYS } from "../Data/Statekeys";
 import { getProgressData } from "./Progressunits";
+import { getUrlParams } from "../utils/learningId"; // ⭐ תוקן: קריאה משותפת ונכונה של learningId
 
-function getUrlParams() {
-  const hash = window.location.hash;
-  const queryString = hash.includes("?") ? hash.split("?")[1] : "";
-  const params = new URLSearchParams(queryString);
-  const learningId = parseInt(params.get("learningId"), 10);
-  console.log("🔍 URL Hash:", hash);
-  console.log("🔍 Query String:", queryString);
-  console.log("🔍 learningId:", learningId);
-  return {
-    learningId,
-    key: params.get("key"),
-  };
-}
+// ⭐ תוקן: משתמשים בפונקציה המשותפת מ-utils/learningId.js
+// (במקום פונקציה מקומית שקראה רק מה-hash ולכן תמיד קיבלה NaN)
 const { learningId: LEARNING_ID } = getUrlParams();
 
 const routeOrder = [

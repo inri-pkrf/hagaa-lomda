@@ -126,7 +126,10 @@ function InfoLomda() {
         {/* צעד 0 (שלב ראשון) */}
         {step === 0 && (
           <div className="step-content">
-            <p className="InfoLomda-par1">
+            {/* ⭐ תוקן: היה <p> שמכיל בתוכו <div> - לא חוקי ב-HTML (p יכול
+                להכיל רק תוכן inline). הוחלף ל-<div> עם אותו className,
+                כך שהעיצוב לא משתנה אך המבנה תקין. */}
+            <div className="InfoLomda-par1">
               מטרת הלומדה להכשיר אתכם ואתכן לתפקיד.
               <br /> הכשרה זו תסייע לכם להיערך לאירוע חירום בארגון או במפעל,
               <br /> במטרה לשמור על רציפות תפקוד במצבי חירום. <br /> ההכשרה
@@ -150,7 +153,7 @@ function InfoLomda() {
                   </span>
                 </div>
               </div>
-            </p>
+            </div>
 
             <div
               className={`InfoLomda-par2 Pay-attention ${noticeOpen ? "notice-open" : "notice-closed"}`}

@@ -9,6 +9,7 @@
   box-sizing: border-box;
   direction: rtl;
   overflow: hidden;
+  background-color: #fdf9f4;
 }
 
 .info-page-headline {
