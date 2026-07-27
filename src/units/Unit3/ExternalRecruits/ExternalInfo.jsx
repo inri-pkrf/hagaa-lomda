@@ -20,7 +20,7 @@ function ExternalInfo() {
       />
       <h2 className="subtitles-ExternalInfo">
         מדובר בעובדים המתגברים את המפעל בזמן חירום בשל הפער שנוצר מגיוס
-        <br></br>עובדים קבועים במפעל למילואים
+        <br></br>למילואים של העובדים הקבועים במפעל
       </h2>
 
       <p id="ExternalInfo-text1" className="orange-box">
