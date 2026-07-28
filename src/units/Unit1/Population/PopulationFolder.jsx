@@ -97,7 +97,7 @@ function PopulationFolder() {
               viewBox="0 0 24 24"
               fill="none"
               stroke="white"
-              stroke-width="4"
+              strokeWidth="4"
             >
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>

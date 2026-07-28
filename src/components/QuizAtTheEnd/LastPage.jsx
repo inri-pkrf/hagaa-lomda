@@ -5,10 +5,10 @@ import { useWindowSize } from "react-use";
 import "./LastPage.css";
 import { STATE_KEYS } from "../../Data/Statekeys";
 import { getProgressData } from "../Progressunits";
-import { getUrlParams } from "../../utils/learningId"; // ⭐ תוקן: קריאה משותפת ונכונה של learningId
+import { getUrlParams } from "../../utils/learningId"; // ⭐ תוקן קודם: קריאה משותפת ונכונה של learningId
+import { mapStatusToUmbracoStatus } from "../../utils/umbracoStatus"; // ⭐ חדש: מיפוי סטטוס למחרוזת שהשרת מצפה לה
 
-// ⭐ תוקן: משתמשים בפונקציה המשותפת מ-utils/learningId.js
-// (במקום פונקציה מקומית שקראה רק מה-hash ולכן תמיד קיבלה NaN)
+// ⭐ משתמשים בפונקציה המשותפת מ-utils/learningId.js
 const { learningId: LEARNING_ID } = getUrlParams();
 
 function LastPage() {
@@ -48,28 +48,36 @@ function LastPage() {
           if (val !== null) sessionState[key] = val;
         });
 
-        const status = score >= 70 ? 3 : 2;
-        const progressData = getProgressData(status);
-        const stateJson = JSON.stringify({ sessionState });
+        const numericStatus = score >= 70 ? 3 : 2; // 3 = הושלם בהצלחה, 2 = לא עבר
+        const progressData = getProgressData(numericStatus);
 
-        console.log("📤 [LastPage] שולח ל-UMBRACCO:", {
-          learningId: LEARNING_ID,
+        // ⭐ תוקן לפי דוח הצוות: StateData חייבת לכלול lastPath, וכן שולבו בה
+        // score ו-progressData כי השרת לא מכיר בהם כשדות נפרדים ברמה העליונה
+        const stateData = JSON.stringify({
+          sessionState,
+          lastPath: "/last-page",
           score,
-          status,
-          stateJson: stateJson.substring(0, 100) + "...",
+          progressData,
         });
 
-        const res = await fetch("/umbraco/api/learning/SetIframeLearning", {
+        // ⭐ תוקן לפי דוח הצוות: שמות השדות באות גדולה, ו-Status הוא מחרוזת
+        const body = {
+          LearningId: LEARNING_ID,
+          StateData: stateData,
+          Status: mapStatusToUmbracoStatus(numericStatus),
+        };
+
+        console.log("📤 [LastPage] שולח ל-UMBRACCO:", {
+          ...body,
+          StateData: stateData.substring(0, 100) + "...",
+        });
+
+        // ⭐ תוקן לפי דוח הצוות: הנתיב הנכון הוא /umbraco/surface/... (לא /umbraco/api/...)
+        const res = await fetch("/umbraco/surface/learning/SetIframeLearning", {
           method: "POST",
           credentials: "include",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            learningId: LEARNING_ID,
-            stateJson,
-            progressData,
-            status,
-            score,
-          }),
+          body: JSON.stringify(body),
         });
 
         if (!res.ok) {

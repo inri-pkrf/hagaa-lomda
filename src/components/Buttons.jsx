@@ -4,10 +4,10 @@ import "./Styles/Buttons.css";
 import React, { useEffect, useState, useRef } from "react";
 import { STATE_KEYS } from "../Data/Statekeys";
 import { getProgressData } from "./Progressunits";
-import { getUrlParams } from "../utils/learningId"; // ⭐ תוקן: קריאה משותפת ונכונה של learningId
+import { getUrlParams } from "../utils/learningId"; // ⭐ תוקן קודם: קריאה משותפת ונכונה של learningId
+import { mapStatusToUmbracoStatus } from "../utils/umbracoStatus"; // ⭐ חדש: מיפוי סטטוס למחרוזת שהשרת מצפה לה
 
-// ⭐ תוקן: משתמשים בפונקציה המשותפת מ-utils/learningId.js
-// (במקום פונקציה מקומית שקראה רק מה-hash ולכן תמיד קיבלה NaN)
+// ⭐ משתמשים בפונקציה המשותפת מ-utils/learningId.js
 const { learningId: LEARNING_ID } = getUrlParams();
 
 const routeOrder = [
@@ -288,8 +288,9 @@ function Buttons() {
       return;
     }
     try {
+      // ⭐ תוקן לפי דוח הצוות: הנתיב הנכון הוא /umbraco/surface/... (לא /umbraco/api/...)
       const res = await fetch(
-        `/umbraco/api/learning/GetIframeLearning?learningId=${LEARNING_ID}`,
+        `/umbraco/surface/learning/GetIframeLearning?learningId=${LEARNING_ID}`,
         { credentials: "include" },
       );
       if (!res.ok) {
@@ -297,8 +298,9 @@ function Buttons() {
         return;
       }
       const data = await res.json();
-      if (data.success && data.stateJson) {
-        const parsedState = JSON.parse(data.stateJson);
+      // ⭐ תוקן לפי דוח הצוות: השרת מחזיר את המידע בשדה "stateData", לא "stateJson"
+      if (data.success && data.stateData) {
+        const parsedState = JSON.parse(data.stateData);
         const { lastPath, sessionState } = parsedState;
         if (sessionState) {
           Object.entries(sessionState).forEach(([key, val]) => {
@@ -317,8 +319,10 @@ function Buttons() {
     }
   };
 
-  // ⭐ שמירת מצב לשרת במבנה החדש
-  const saveState = async (path) => {
+  // ⭐ שמירת מצב לשרת - מבנה מתוקן לפי דוח הצוות
+  // path = הנתיב שאליו שומרים את ההתקדמות (ישמש כ-lastPath)
+  // stepIndex = המיקום המספרי של path בתוך routeOrder (לשחזור/התקדמות מספרית)
+  const saveState = async (path, stepIndex = null) => {
     // בפיתוח (development) - לא נשלח לשרת
     const isDev = LEARNING_ID === undefined || Number.isNaN(LEARNING_ID);
     if (isDev) {
@@ -333,32 +337,40 @@ function Buttons() {
         if (val !== null) sessionState[key] = val;
       });
 
-      const status = getStatusForPath(path);
-      const progressData = getProgressData(status);
-
-      // ⭐ stateJson מכיל רק sessionState
-      const stateJson = JSON.stringify({ sessionState });
+      const numericStatus = getStatusForPath(path); // 1 או 2 - נשאר לשימוש פנימי (progressData וכו')
+      const progressData = getProgressData(numericStatus);
       const score = Number(sessionStorage.getItem("finalQuizScore")) || 0;
 
-      console.log("📤 שולח ל-UMBRACCO:", {
-        learningId: LEARNING_ID,
-        path,
-        status,
+      // ⭐ תוקן לפי דוח הצוות: StateData היא מחרוזת JSON שחייבת לכלול lastPath
+      // (בלעדיו "המשך מאיפה שעצרת" לא יכול לעבוד), ואידיאלית גם step מספרי.
+      // progressData ו-score משולבים כאן בתוך ה-JSON, כי השרת לא מכיר בהם
+      // כשדות נפרדים ברמה העליונה של הבקשה.
+      const stateData = JSON.stringify({
+        sessionState,
+        lastPath: path,
+        ...(stepIndex !== null ? { step: stepIndex } : {}),
+        progressData,
         score,
-        stateJson: stateJson.substring(0, 100) + "...",
       });
 
-      const res = await fetch("/umbraco/api/learning/SetIframeLearning", {
+      // ⭐ תוקן לפי דוח הצוות: שמות השדות באות גדולה, ו-Status הוא מחרוזת
+      const body = {
+        LearningId: LEARNING_ID,
+        StateData: stateData,
+        Status: mapStatusToUmbracoStatus(numericStatus),
+      };
+
+      console.log("📤 שולח ל-UMBRACCO:", {
+        ...body,
+        StateData: stateData.substring(0, 100) + "...",
+      });
+
+      // ⭐ תוקן לפי דוח הצוות: הנתיב הנכון הוא /umbraco/surface/... (לא /umbraco/api/...)
+      const res = await fetch("/umbraco/surface/learning/SetIframeLearning", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          learningId: LEARNING_ID,
-          stateJson,
-          progressData,
-          status,
-          score,
-        }),
+        body: JSON.stringify(body),
       });
 
       if (!res.ok) {
@@ -402,7 +414,7 @@ function Buttons() {
         : null,
     );
     sessionStorage.setItem("routeIndex", String(index));
-    saveState(currentPath);
+    saveState(currentPath, index);
     setHighlightNext(false);
   }, [currentPath]);
 
@@ -481,8 +493,8 @@ function Buttons() {
       sessionStorage.setItem("MainTitle", "מבנה שיעור הסמכה דיגיטלי");
     }
 
-    // ⭐ שמירה לשרת לפני ניווט
-    saveState(targetPath);
+    // ⭐ שמירה לשרת לפני ניווט - מעבירים גם את המיקום המספרי של היעד
+    saveState(targetPath, routeOrder.indexOf(targetPath));
 
     const navEvent = new CustomEvent(isNext ? "onNextNav" : "onPrevNav", {
       cancelable: true,
