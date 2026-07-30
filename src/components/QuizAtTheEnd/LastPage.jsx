@@ -4,11 +4,9 @@ import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
 import "./LastPage.css";
 import { STATE_KEYS } from "../../Data/Statekeys";
-import { getProgressData } from "../Progressunits";
-import { getUrlParams } from "../../utils/learningId"; // ⭐ תוקן קודם: קריאה משותפת ונכונה של learningId
-import { mapStatusToUmbracoStatus } from "../../utils/umbracoStatus"; // ⭐ חדש: מיפוי סטטוס למחרוזת שהשרת מצפה לה
+import { getUrlParams } from "../../utils/learningId";
+import { buildUmbracoPayload } from "../../utils/buildUmbracoPayload";
 
-// ⭐ משתמשים בפונקציה המשותפת מ-utils/learningId.js
 const { learningId: LEARNING_ID } = getUrlParams();
 
 function LastPage() {
@@ -32,9 +30,33 @@ function LastPage() {
 
   const [showConfetti, setShowConfetti] = useState(false);
 
+  // ⭐ בונה את ה-sessionState (זהה לזה שנשלח לשרת) - שימוש משותף
+  // גם ל-saveToServer וגם ל-downloadReport, כדי שלא יהיה שוני ביניהם.
+  const collectSessionState = () => {
+    const sessionState = {};
+    STATE_KEYS.forEach((key) => {
+      const val = sessionStorage.getItem(key);
+      if (val !== null) sessionState[key] = val;
+    });
+    return sessionState;
+  };
+
+  // ⭐ בעמוד הסיום הסטטוס נקבע לפי הציון (3 = עבר, 2 = לא עבר) - לא לפי
+  // הנתיב כמו בשאר האפליקציה, ולכן מעבירים statusOverride במפורש.
+  const buildLastPagePayload = () => {
+    const numericStatus = score >= 70 ? 3 : 2;
+    return buildUmbracoPayload({
+      learningId: LEARNING_ID,
+      path: "/last-page",
+      sessionState: collectSessionState(),
+      stepIndex: null,
+      score,
+      statusOverride: numericStatus,
+    });
+  };
+
   useEffect(() => {
     const saveToServer = async () => {
-      // בפיתוח (development) - לא נשלח לשרת
       const isDev = LEARNING_ID === undefined || Number.isNaN(LEARNING_ID);
       if (isDev) {
         console.log("🔵 [DEV MODE] לא משלחים ל-UMBRACCO (אין learningId)");
@@ -42,37 +64,13 @@ function LastPage() {
       }
 
       try {
-        const sessionState = {};
-        STATE_KEYS.forEach((key) => {
-          const val = sessionStorage.getItem(key);
-          if (val !== null) sessionState[key] = val;
-        });
-
-        const numericStatus = score >= 70 ? 3 : 2; // 3 = הושלם בהצלחה, 2 = לא עבר
-        const progressData = getProgressData(numericStatus);
-
-        // ⭐ תוקן לפי דוח הצוות: StateData חייבת לכלול lastPath, וכן שולבו בה
-        // score ו-progressData כי השרת לא מכיר בהם כשדות נפרדים ברמה העליונה
-        const stateData = JSON.stringify({
-          sessionState,
-          lastPath: "/last-page",
-          score,
-          progressData,
-        });
-
-        // ⭐ תוקן לפי דוח הצוות: שמות השדות באות גדולה, ו-Status הוא מחרוזת
-        const body = {
-          LearningId: LEARNING_ID,
-          StateData: stateData,
-          Status: mapStatusToUmbracoStatus(numericStatus),
-        };
+        const body = buildLastPagePayload();
 
         console.log("📤 [LastPage] שולח ל-UMBRACCO:", {
           ...body,
-          StateData: stateData.substring(0, 100) + "...",
+          StateData: body.StateData.substring(0, 100) + "...",
         });
 
-        // ⭐ תוקן לפי דוח הצוות: הנתיב הנכון הוא /umbraco/surface/... (לא /umbraco/api/...)
         const res = await fetch("/umbraco/surface/learning/SetIframeLearning", {
           method: "POST",
           credentials: "include",
@@ -98,25 +96,13 @@ function LastPage() {
     window.dispatchEvent(new Event("openFeedbackPopup"));
   };
 
+  // ⭐ תוקן: מוריד עכשיו בדיוק את אותו גוף בקשה (body) שבאמת נשלח ונשמר
+  // בשרת - כולל שמות השדות (LearningId/StateData/Status) והתוכן בפנים
+  // (lastPath, progressData, score) - במקום מבנה debug ישן ונפרד.
   const downloadReport = () => {
-    const sessionState = {};
-    STATE_KEYS.forEach((key) => {
-      const val = sessionStorage.getItem(key);
-      if (val !== null) sessionState[key] = val;
-    });
+    const body = buildLastPagePayload();
 
-    const status = score >= 70 ? 3 : 2;
-    const progressData = getProgressData(status);
-
-    const report = {
-      learningId: LEARNING_ID,
-      stateJson: JSON.stringify({ sessionState }),
-      progressData,
-      status,
-      score,
-    };
-
-    const blob = new Blob([JSON.stringify(report, null, 2)], {
+    const blob = new Blob([JSON.stringify(body, null, 2)], {
       type: "application/json",
     });
     const url = URL.createObjectURL(blob);

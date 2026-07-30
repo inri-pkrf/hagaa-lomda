@@ -8,8 +8,8 @@ import {
 } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { STATE_KEYS } from "./Data/Statekeys"; // ⭐ ייבוא משותף
-import { getProgressData } from "./components/Progressunits.jsx";
-import { getUrlParams } from "./utils/learningId"; // ⭐ תוקן: קריאה משותפת ונכונה של learningId
+import { getUrlParams } from "./utils/learningId";
+import { buildUmbracoPayload } from "./utils/buildUmbracoPayload"; // ⭐ חדש: אותה פונקציה שבונה את מה שנשלח לשרת
 
 // עמודים כללים של כל הלומדה
 import Buttons from "./components/Buttons";
@@ -151,8 +151,6 @@ import QuestionRTE from "./units/Unit4/RoutineToEmergency/QuestionRTE.jsx";
 import InfoQuiz from "./components/QuizAtTheEnd/InfoQuiz.jsx";
 import LastPage from "./components/QuizAtTheEnd/LastPage.jsx";
 
-// ⭐ תוקן: משתמשים בפונקציה המשותפת מ-utils/learningId.js
-// (במקום פונקציה מקומית שקראה רק מה-hash ולכן תמיד קיבלה NaN)
 const { learningId: LEARNING_ID } = getUrlParams();
 
 // ─── קומפוננטת ה-overlay של מסך מלא ──────────
@@ -221,8 +219,11 @@ function App() {
     }
   };
 
-  // ⭐ הורדת JSON לבדיקה - כולל כל sessionStorage, אחוז ההתקדמות, היחידה הנוכחית והסטטוס
-  // זמין מכל עמוד בלומדה (לא רק בעמוד הסיום) כדי לאפשר בדיקה באמצע התהליך
+  // ⭐ תוקן: "הורד JSON לבדיקה" מציג עכשיו בדיוק את אותו גוף בקשה (body)
+  // שבאמת נשלח ל-SetIframeLearning ונשמר בשרת - כולל שמות השדות
+  // (LearningId/StateData/Status) והתוכן בפנים (lastPath, step,
+  // progressData, score) - באמצעות אותה פונקציה buildUmbracoPayload
+  // שמשמשת גם את Buttons.jsx בפועל, כך שאין סיכוי לסטייה בין השניים.
   const handleDownloadReport = () => {
     const sessionState = {};
     STATE_KEYS.forEach((key) => {
@@ -231,18 +232,19 @@ function App() {
     });
 
     const score = Number(sessionStorage.getItem("finalQuizScore")) || 0;
-    const status = location.pathname === "/" ? 1 : score >= 70 ? 3 : 2;
-    const progressData = getProgressData(status);
+    // ⭐ אותו stepIndex ש-Buttons.jsx שמר בפועל עבור הנתיב הנוכחי
+    const storedIndex = Number(sessionStorage.getItem("routeIndex"));
+    const stepIndex = Number.isNaN(storedIndex) ? null : storedIndex;
 
-    const report = {
+    const body = buildUmbracoPayload({
       learningId: LEARNING_ID,
-      stateJson: JSON.stringify({ sessionState }),
-      progressData,
-      status,
-      score, 
-    };
+      path: location.pathname,
+      sessionState,
+      stepIndex,
+      score,
+    });
 
-    const blob = new Blob([JSON.stringify(report, null, 2)], {
+    const blob = new Blob([JSON.stringify(body, null, 2)], {
       type: "application/json",
     });
     const url = URL.createObjectURL(blob);

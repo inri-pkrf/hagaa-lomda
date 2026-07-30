@@ -4,10 +4,14 @@
 * {
   font-family: "Assistant";
   color: #472e1a;
+
 }
+
 
 .App {
   text-align: center;
+  background-color: #FDF9F4;
+  min-height: 100vh;
 }
 
 .App-logo {
