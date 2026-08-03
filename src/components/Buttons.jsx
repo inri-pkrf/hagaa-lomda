@@ -275,9 +275,8 @@ function Buttons() {
     };
   }, [location.pathname]);
 
-  // ⭐ שמירת מצב לשרת - הגוף נבנה ע"י buildUmbracoPayload, אותה פונקציה
-  // בדיוק שבה משתמש גם "הורד JSON לבדיקה" (App.jsx, LastPage.jsx), כדי
-  // שהקובץ שמורידים תמיד יהיה זהה למה שבאמת נשלח ונשמר בשרת.
+  // ⭐ שמירת מצב לשרת - הגוף נבנה ע"י buildUmbracoPayload, בפורמט הסופי
+  // שסוכם: { learningId, stateJson, progressData, status }
   const saveState = async (path, stepIndex = null) => {
     const isDev = LEARNING_ID === undefined || Number.isNaN(LEARNING_ID);
     if (isDev) {
@@ -304,7 +303,7 @@ function Buttons() {
 
       console.log("📤 שולח ל-UMBRACCO:", {
         ...body,
-        StateData: body.StateData.substring(0, 100) + "...",
+        stateJson: body.stateJson.substring(0, 100) + "...",
       });
 
       const res = await fetch("/umbraco/surface/learning/SetIframeLearning", {
@@ -324,7 +323,8 @@ function Buttons() {
     }
   };
 
-  // ⭐ טעינת מצב מהשרת + שחזור sessionStorage
+  // ⭐ טעינת מצב מהשרת + שחזור sessionStorage - קורא מ-data.stateJson
+  // (הפורמט הסופי שסוכם), לא data.stateData
   const getState = async () => {
     if (hasRestoredState.current) {
       restoreCheckComplete.current = true;
@@ -349,8 +349,8 @@ function Buttons() {
         return;
       }
       const data = await res.json();
-      if (data.success && data.stateData) {
-        const parsedState = JSON.parse(data.stateData);
+      if (data.success && data.stateJson) {
+        const parsedState = JSON.parse(data.stateJson);
         const { lastPath, sessionState } = parsedState;
         if (sessionState) {
           Object.entries(sessionState).forEach(([key, val]) => {

@@ -9,7 +9,7 @@ import {
 import React, { useState, useEffect } from "react";
 import { STATE_KEYS } from "./Data/Statekeys"; // ⭐ ייבוא משותף
 import { getUrlParams } from "./utils/learningId";
-import { buildUmbracoPayload } from "./utils/buildUmbracoPayload"; // ⭐ חדש: אותה פונקציה שבונה את מה שנשלח לשרת
+import { buildUmbracoPayload } from "./utils/buildUmbracoPayload"; // ⭐ אותה פונקציה שבונה את מה שנשלח לשרת
 
 // עמודים כללים של כל הלומדה
 import Buttons from "./components/Buttons";
@@ -153,8 +153,59 @@ import LastPage from "./components/QuizAtTheEnd/LastPage.jsx";
 
 const { learningId: LEARNING_ID } = getUrlParams();
 
+// ⭐ שינוי: רוחב המסך שממנו ומטה נחשב "טלפון" ומעליו נחשב "מחשב"
+// אפשר לשנות את המספר הזה לפי הצורך (למשל 600 / 900)
+const MOBILE_BREAKPOINT = 768;
+
+// ⭐ שינוי: הוק ריאקטיבי במקום פונקציה חד-פעמית מבוססת userAgent.
+// עוקב אחרי רוחב החלון בזמן אמת - אם המשתמש משנה גודל חלון / מסובב
+// מכשיר, התצוגה מתעדכנת אוטומטית בלי רענון דף.
+// ⭐ בדיקה משולבת: גם רוחב מסך קטן וגם התקן מגע (pointer: coarse)
+// כך מחשב עם חלון צר (למשל DevTools פתוח, זום גבוה, חלון לא ממוקסם)
+// לא ייחסם בטעות - הוא עדיין משתמש בעכבר.
+function useIsMobile() {
+  const getIsMobile = () => {
+    const isNarrow = window.innerWidth <= MOBILE_BREAKPOINT;
+    const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+    return isNarrow && isCoarsePointer;
+  };
+
+  const [isMobile, setIsMobile] = useState(getIsMobile());
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(getIsMobile());
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return isMobile;
+}
+
+// ─── מסך חסימה למכשירים ניידים ──────────
+function MobileBlockScreen() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: "100vh",
+        padding: "2rem",
+        textAlign: "center",
+        direction: "rtl",
+        fontFamily: "inherit",
+      }}
+    >
+      <p style={{ fontSize: "1.3rem", fontWeight: 600, lineHeight: 1.6 }}>
+        יש להתחבר ממחשב על מנת לעבור את ההסמכה
+      </p>
+    </div>
+  );
+}
+
 // ─── קומפוננטת ה-overlay של מסך מלא ──────────
 function FullscreenOverlay() {
+  const isMobile = useIsMobile(); // ⭐ שינוי: משתמש בהוק הריאקטיבי החדש
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
@@ -181,8 +232,8 @@ function FullscreenOverlay() {
       console.error("שגיאה בכניסה למסך מלא:", err);
     });
   };
-  const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-  if (isMobile) return null;
+
+  if (isMobile) return null; // ⭐ שינוי
   if (isFullscreen) return null;
 
   return (
@@ -203,6 +254,7 @@ function FullscreenOverlay() {
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
+  const isMobile = useIsMobile(); // ⭐ שינוי: ריאקטיבי - מתעדכן חי בזמן שינוי גודל מסך
 
   const [videoPlaying, setVideoPlaying] = useState(
     sessionStorage.getItem("VIDEO_IS_PLAYING") === "true",
@@ -219,11 +271,10 @@ function App() {
     }
   };
 
-  // ⭐ תוקן: "הורד JSON לבדיקה" מציג עכשיו בדיוק את אותו גוף בקשה (body)
-  // שבאמת נשלח ל-SetIframeLearning ונשמר בשרת - כולל שמות השדות
-  // (LearningId/StateData/Status) והתוכן בפנים (lastPath, step,
-  // progressData, score) - באמצעות אותה פונקציה buildUmbracoPayload
-  // שמשמשת גם את Buttons.jsx בפועל, כך שאין סיכוי לסטייה בין השניים.
+  // ⭐ "הורד JSON לבדיקה" מציג בדיוק את אותו גוף בקשה (body) שבאמת נשלח
+  // ל-SetIframeLearning ונשמר בשרת - { learningId, stateJson, progressData,
+  // status } - באמצעות אותה פונקציה buildUmbracoPayload שמשמשת גם את
+  // Buttons.jsx בפועל, כך שאין סיכוי לסטייה בין השניים.
   const handleDownloadReport = () => {
     const sessionState = {};
     STATE_KEYS.forEach((key) => {
@@ -256,6 +307,12 @@ function App() {
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
   };
+
+  // ⭐ שינוי: חסימת האפליקציה כולה במכשיר נייד - עכשיו ריאקטיבי לפי רוחב מסך.
+  // אם המשתמש יעבור מטלפון למחשב (או להפך), התצוגה תתעדכן מיד ללא רענון.
+  if (isMobile) {
+    return <MobileBlockScreen />;
+  }
 
   return (
     <div className="App">

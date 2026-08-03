@@ -43,6 +43,8 @@ function LastPage() {
 
   // ⭐ בעמוד הסיום הסטטוס נקבע לפי הציון (3 = עבר, 2 = לא עבר) - לא לפי
   // הנתיב כמו בשאר האפליקציה, ולכן מעבירים statusOverride במפורש.
+  // buildUmbracoPayload מחזירה כעת בדיוק את הפורמט הסופי שסוכם:
+  // { learningId, stateJson, progressData, status }
   const buildLastPagePayload = () => {
     const numericStatus = score >= 70 ? 3 : 2;
     return buildUmbracoPayload({
@@ -68,7 +70,7 @@ function LastPage() {
 
         console.log("📤 [LastPage] שולח ל-UMBRACCO:", {
           ...body,
-          StateData: body.StateData.substring(0, 100) + "...",
+          stateJson: body.stateJson.substring(0, 100) + "...",
         });
 
         const res = await fetch("/umbraco/surface/learning/SetIframeLearning", {
@@ -96,9 +98,8 @@ function LastPage() {
     window.dispatchEvent(new Event("openFeedbackPopup"));
   };
 
-  // ⭐ תוקן: מוריד עכשיו בדיוק את אותו גוף בקשה (body) שבאמת נשלח ונשמר
-  // בשרת - כולל שמות השדות (LearningId/StateData/Status) והתוכן בפנים
-  // (lastPath, progressData, score) - במקום מבנה debug ישן ונפרד.
+  // ⭐ מוריד בדיוק את אותו גוף בקשה (body) שבאמת נשלח ונשמר בשרת - בפורמט
+  // הסופי שסוכם: { learningId, stateJson, progressData, status }
   const downloadReport = () => {
     const body = buildLastPagePayload();
 
