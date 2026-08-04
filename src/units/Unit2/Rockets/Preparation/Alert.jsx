@@ -63,7 +63,6 @@ function Alert() {
   const [showPreviewImage, setShowPreviewImage] = useState(false);
   const location = useLocation();
   const videoRef = useRef(null);
-  const ringAudioRef = useRef(null);
   const ringTimerRef = useRef(null);
   const nextNotifTimerRef = useRef(null);
 
@@ -71,12 +70,14 @@ function Alert() {
   const [viewedImgs, setViewedImgs] = useState({ img1: false, img2: false });
 
   // --- state עבור עמוד 5 (הודעת "הנחיה מקדימה") ---
-  const [page5Phase, setPage5Phase] = useState("ringing"); // "ringing" | "call-screen"
+  const [page5Phase, setPage5Phase] = useState("idle"); // "idle" | "ringing" | "call-screen"
   const [arrivedCount, setArrivedCount] = useState(0); // כמה התראות כבר "הגיעו" ומוצגות בערימה
   const [openedMessage, setOpenedMessage] = useState(null); // איזו הודעה מוצגת כרגע בפאנל הימני
   const [messagesSeen, setMessagesSeen] = useState(
     Array(PAGE5_MESSAGES.length).fill(false),
   );
+  const [showPage5Modal, setShowPage5Modal] = useState(false);
+  const [muteAlarm, setMuteAlarm] = useState(false);
 
   let page = 1;
   if (location.pathname === "/Alert/1.5") page = 5;
@@ -113,31 +114,48 @@ function Alert() {
   useEffect(() => {
     if (page !== 5) return;
 
-    setPage5Phase("ringing");
+    // don't start ringing until the modal is dismissed via startPage5Sequence
+    setPage5Phase("idle");
     setArrivedCount(0);
     setOpenedMessage(null);
     setShowPreviewImage(false);
     setMessagesSeen(Array(PAGE5_MESSAGES.length).fill(false));
+    setShowPage5Modal(true);
+    setMuteAlarm(false);
 
-    if (ringAudioRef.current) {
-      ringAudioRef.current.currentTime = 3;
-      ringAudioRef.current.play().catch(() => {});
-    }
-
-    ringTimerRef.current = setTimeout(() => {
-      if (ringAudioRef.current) {
-        ringAudioRef.current.pause();
-        ringAudioRef.current.currentTime = 0;
-      }
-      setPage5Phase("call-screen");
-      setArrivedCount(1); // ההתראה הראשונה "מגיעה" ברגע שנפתח מסך השיחה
-    }, RING_DURATION_MS);
+      // Prevent narration from auto-playing while the modal is open
+      window.dispatchEvent(new CustomEvent("setNarrationPaused", { detail: true }));
+      // Disable narration controls while modal is open
+      window.dispatchEvent(new CustomEvent("setNarrationDisabled", { detail: true }));
 
     return () => {
       clearTimeout(ringTimerRef.current);
       clearTimeout(nextNotifTimerRef.current);
     };
   }, [page]);
+
+  const startPage5Sequence = () => {
+    setShowPage5Modal(false);
+
+    // begin the ringing visual/audio sequence only after modal closed
+    setPage5Phase("ringing");
+
+      // Re-enable narration controls now that modal is closed
+      window.dispatchEvent(new CustomEvent("setNarrationDisabled", { detail: false }));
+
+      // If user didn't choose to mute, unpause narration so the alert sound plays.
+      if (!muteAlarm) {
+        window.dispatchEvent(new CustomEvent("setNarrationPaused", { detail: false }));
+      } else {
+        // keep narration paused when user chose to mute
+        window.dispatchEvent(new CustomEvent("setNarrationPaused", { detail: true }));
+      }
+
+    ringTimerRef.current = setTimeout(() => {
+      setPage5Phase("call-screen");
+      setArrivedCount(1); // ההתראה הראשונה "מגיעה" ברגע שנפתח מסך השיחה
+    }, RING_DURATION_MS);
+  };
 
   // --- נעילת כפתור "הבא" עד שכל שלוש ההודעות נפתחו ---
   useEffect(() => {
@@ -229,7 +247,9 @@ function Alert() {
             כממונה הג"א באחריותך לוודא שמותקן צופר במפעל / קבוצת מפעלים, אשר
             ישמש כאמצעי התרעה לעובדים.
           </p>
-          <p id="alert-sub-text">החברוֹת הקשורות בהסכם עם משרד הביטחון להתקנת צופר:</p>
+          <p id="alert-sub-text">
+            החברוֹת הקשורות בהסכם עם משרד הביטחון להתקנת צופר:
+          </p>
           <ul id="alert-list">
             <li>אלפם</li>
             <li>שמרד</li>
@@ -324,6 +344,47 @@ function Alert() {
           <h2 id="headline-icon">הנחיה מקדימה – זמן להיערך</h2>
           <p id="alert-sub-text2">מהי הנחיה מקדימה?</p>
 
+          {showPage5Modal && (
+            <div className="maintenance-popup-overlay">
+              <div className="maintenance-popup-content custom-design alert-page5-modal">
+                <button
+                  className="close-x-circle"
+                  onClick={() => setShowPage5Modal(false)}
+                  aria-label="סגור"
+                  style={{ opacity: 0 }}
+                >
+                  ✕
+                </button>
+
+                <div className="popup-text-container single-text">
+                  <p style={{ whiteSpace: "pre-line" }}>
+                    במסך הבא יושמע צליל המדמה התרעה מוקדמת של פיקוד העורף.
+                    {"\n"}
+                    {"\n"}
+                    אם אינך מעוניין/ת לשמוע את הצליל, ניתן להשתיק אותו מראש.
+                  </p>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={muteAlarm}
+                      onChange={(event) => setMuteAlarm(event.target.checked)}
+                    />
+                    השתקת הצליל
+                  </label>
+                </div>
+
+                <div className="popup-footer">
+                  <button
+                    className="continue-btn-new"
+                    onClick={startPage5Sequence}
+                  >
+                    המשך{" "}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* שלב 1: הטלפון מצלצל (phoneInHend.png זז מצד לצד + סאונד אזעקה) */}
           {page5Phase === "ringing" && (
             <>
@@ -333,12 +394,6 @@ function Alert() {
 
               <div className="phone-ring-wrapper">
                 <img src={`${ASSET_BASE}/phoneInHend.png`} alt="טלפון מצלצל" />
-                <audio ref={ringAudioRef} autoPlay loop>
-                  <source
-                    src={`${ASSET_BASE}/alarm-sound.mp3`}
-                    type="audio/mpeg"
-                  />
-                </audio>
               </div>
             </>
           )}

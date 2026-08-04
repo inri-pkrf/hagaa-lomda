@@ -12,6 +12,7 @@ const isFullscreen = () => {
 export default function NarrationPlayer() {
   const { srcs, autoplay, skipFullscreenCheck } = useNarration();
   const audioRef = useRef(null);
+  const [controlsLocked, setControlsLocked] = useState(false);
   useEffect(() => {
     window.__narrationAudio = audioRef.current;
   }, []);
@@ -42,8 +43,12 @@ export default function NarrationPlayer() {
     };
 
     window.addEventListener("setNarrationPaused", handleNarrationPaused);
-    return () =>
+    const handleDisabled = (e) => setControlsLocked(Boolean(e.detail));
+    window.addEventListener("setNarrationDisabled", handleDisabled);
+    return () => {
       window.removeEventListener("setNarrationPaused", handleNarrationPaused);
+      window.removeEventListener("setNarrationDisabled", handleDisabled);
+    };
   }, []);
 
   const currentSrc = srcs?.[currentIndex];
@@ -135,7 +140,7 @@ export default function NarrationPlayer() {
   // };
 
   const togglePlay = () => {
-    if (!audioRef.current) return;
+    if (!audioRef.current || controlsLocked) return;
 
     const noticeAudio = window.__noticeAudio;
     const noticeIsActive =
@@ -181,13 +186,15 @@ export default function NarrationPlayer() {
         src={`${process.env.PUBLIC_URL}/${currentSrc}`}
         onEnded={handleEnded}
       />
-      <button
-        className="narration-btn"
-        onClick={togglePlay}
-        title={muted ? "הפעל קריינות" : "השהה קריינות"}
-      >
-        {muted ? "🔇" : "🔊"}
-      </button>
+      {!controlsLocked && (
+        <button
+          className={`narration-btn${controlsLocked ? " locked" : ""}`}
+          onClick={() => !controlsLocked && togglePlay()}
+          title={muted ? "הפעל קריינות" : "השהה קריינות"}
+        >
+          {muted ? "🔇" : "🔊"}
+        </button>
+      )}
     </div>
   );
 }

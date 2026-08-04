@@ -27,6 +27,7 @@ export const narrationMap = {
   ],
   "/TimeToEnterMamad3": ["recordings/02 - unit2/016 - TimeToEnterMamad3.mp3"],
   "/SafeRoomExercise": ["recordings/02 - unit2/0161 - SafeRoomExercise.mp3"],
+  "/Alert/1.5": ["recordings/02 - unit2/alarm-sound.mp3"],
 
   "/summary-checklist-unit2-sub1": [
     "recordings/02 - unit2/017 - summary-checklist-unit2-sub1.mp3",

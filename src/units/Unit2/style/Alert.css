@@ -187,6 +187,58 @@
   text-align: right;
 }
 
+.alert-page5-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2vh 2vw;
+}
+
+.alert-page5-modal {
+  width: min(56vw, 520px);
+  background: #fffdf5;
+  border: 0.4vh solid #56c3a9;
+  border-radius: 4vw 4vw 4vw 6vh;
+  padding: 3.5vh 3.5vw 4vh;
+  box-shadow: 0 1.5vh 4vw rgba(0, 0, 0, 0.4);
+  direction: rtl;
+  position: relative;
+}
+
+.alert-page5-modal h2 {
+  margin: 0 0 1.5vh;
+  font-size: 4.3vmin;
+  line-height: 1.2;
+}
+
+.alert-page5-modal p {
+  margin: 0 0 2vh;
+  font-size: 2.2vmin;
+  line-height: 1.7;
+}
+
+.alert-page5-modal label {
+  display: flex;
+  align-items: center;
+  gap: 0.8vw;
+  margin-bottom: 2.5vh;
+  font-size: 2.1vmin;
+  cursor: pointer;
+}
+
+.alert-page5-modal input[type="checkbox"] {
+  width: 2.2vw;
+  height: 2.2vw;
+  min-width: 24px;
+  min-height: 24px;
+}
+
+
+
 #alert-sub-text2 {
   position: absolute;
   width: 40vw;
