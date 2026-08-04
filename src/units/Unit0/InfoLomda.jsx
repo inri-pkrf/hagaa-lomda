@@ -142,13 +142,13 @@ function InfoLomda() {
                   <br />
                   <span className="list-icon list-icon-clock">🕓</span>
                   <span>
-                    זמן משוער להשלמת הלומדה: בין שעה וחצי לשעתיים וחצי.
+                    זמן משוער להשלמת ההסמכה הדיגיטלית בלומדה: בין שעה וחצי לשעתיים וחצי.
                   </span>
                 </div>
                 <div className="list-item">
                   <span className="list-icon">🔊</span>
                   <span>
-                    יחידה זו כוללת שימוש בשמע, לכן מומלץ להצטייד באוזניות או
+                    השיעור כולל שימוש בשמע, לכן מומלץ להצטייד באוזניות או
                     ברמקולים.
                   </span>
                 </div>

@@ -3,7 +3,6 @@ export const narrationMap = {
   "/": ["recordings/00-hakdama/001-firstPage.mp3"],
   "/info-lomda": [
     "recordings/00-hakdama/003 - info-lomda-01.mp3",
-    "recordings/00-hakdama/004 -  info-lomda-04.mp3",
   ],
   "/info-lomda/5": ["recordings/00-hakdama/005 -  info-lomda-05.mp3"],
   //יחידה 1
