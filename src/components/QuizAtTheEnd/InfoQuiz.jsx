@@ -32,12 +32,12 @@ function InfoQuiz() {
 
       <div id="person-div">
         <img
-          src={`${process.env.PUBLIC_URL}/assets/General/Quiz/man.webp`}
+          src={`${process.env.PUBLIC_URL}/assets/General/Quiz/man.png`}
           alt="man"
           className="person"
         />
         <img
-          src={`${process.env.PUBLIC_URL}/assets/General/Quiz/woman.webp`}
+          src={`${process.env.PUBLIC_URL}/assets/General/Quiz/woman.png`}
           alt="woman"
           className="person"
         />

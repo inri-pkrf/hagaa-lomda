@@ -93,7 +93,7 @@ function EarthquakeExercise() {
       onDragOver={(e) => e.preventDefault()}
     >
       <img
-        src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/earthquake/EarthquakeExercise-bg.webp`}
+        src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/earthquake/EarthquakeExercise-bg.png`}
         id="EarthquakeExercise-background"
         alt="background"
       />

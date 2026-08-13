@@ -25,7 +25,7 @@ function LegalState() {
         alt="icon"
       />
       <img
-        src={`${process.env.PUBLIC_URL}/assets/UnitFourImgs/LegalSituation/icon-legalState.webp`}
+        src={`${process.env.PUBLIC_URL}/assets/UnitFourImgs/LegalSituation/icon-legalState.png`}
         id="LegalState-img"
         alt="icon"
       />

@@ -32,7 +32,7 @@ function SummaryCheckList({ checklist = {}, onFinish, pinImg }) {
 
   const buildingImg =
     checklist.image ||
-    `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Group 494.webp`;
+    `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Group 494.png`;
   const checklistImg =
     checklist.checklistImg ||
     `${process.env.PUBLIC_URL}/assets/UnitOneImgs/CheckListEnd.png`;

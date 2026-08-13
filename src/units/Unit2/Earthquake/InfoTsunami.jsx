@@ -13,8 +13,8 @@ function InfoTsunami() {
         "בנזקי משנה: זיהום מקורות מים, פגיעה במערכות חשמל ותקשורת, דליפת חומרים מסוכנים והתפרצות שרפות.",
       ]}
       sliderImages={[
-        `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/tsunami/tsunami1.webp`,
-        `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/tsunami/tsunami2.webp`,
+        `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/tsunami/tsunami1.png`,
+        `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/tsunami/tsunami2.png`,
         `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/tsunami/tsunami3.jpg`,
         `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/tsunami/tsunami4.jpg`,
       ]}

@@ -88,7 +88,7 @@ function PopulationLaptop() {
   return (
     <div className="populationLaptop-container">
       <img
-        src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/populationComp.webp`}
+        src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/populationComp.png`}
         className="populationLaptop-background visible"
         alt="laptop-background"
       />

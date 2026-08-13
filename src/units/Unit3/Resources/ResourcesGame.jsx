@@ -8,14 +8,14 @@ function ResourcesGame() {
   const steps = [
     {
       id: "communication",
-      img: "communication.webp",
+      img: "communication.png",
       label: "תקשורת ודרכי תקשורת",
       top: "58%",
       left: "59%",
     },
     {
       id: "backup",
-      img: "backup.webp",
+      img: "backup.png",
       label: "מחשוב וגיבוי למערכות מידע",
       top: "59%",
       left: "45%",
@@ -27,7 +27,7 @@ function ResourcesGame() {
       top: "82%",
       left: "21%",
     },
-    { id: "food", img: "food.webp", label: "מזון", top: "74%", left: "32%" },
+    { id: "food", img: "food.png", label: "מזון", top: "74%", left: "32%" },
     {
       id: "emergency_light",
       img: "light.png",
@@ -42,8 +42,8 @@ function ResourcesGame() {
       top: "28%",
       left: "8%",
     },
-    { id: "solar", img: "solar.webp", label: "סולר", top: "84%", left: "86%" },
-    { id: "fuel", img: "fuel.webp", label: "דלק", top: "90%", left: "74%" },
+    { id: "solar", img: "solar.png", label: "סולר", top: "84%", left: "86%" },
+    { id: "fuel", img: "fuel.png", label: "דלק", top: "90%", left: "74%" },
     {
       id: "hygiene",
       img: "hygiene.png",

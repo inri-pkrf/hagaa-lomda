@@ -24,7 +24,7 @@ function FactState() {
           alt="memo"
         />
         <img
-          src={`${process.env.PUBLIC_URL}/assets/UnitFourImgs/LegalSituation/rockets-factState.webp`}
+          src={`${process.env.PUBLIC_URL}/assets/UnitFourImgs/LegalSituation/rockets-factState.png`}
           id="FactState-img"
           alt="icon"
         />

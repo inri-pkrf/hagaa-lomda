@@ -16,10 +16,10 @@ function InfoEarthquake() {
         "נזקי משנה: שרפות, דליפות גז או חומרים מסוכנים, הצפה מצינורות שהתבקעו, מפולות וסחף קרקע, פגיעה בשרשרת אספקה ושיבוש שגרת החיים.",
       ]}
       sliderImages={[
-        `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/earthquake/earthquake1.webp`,
+        `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/earthquake/earthquake1.png`,
         `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/earthquake/earthquake2.jpg`,
         `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/earthquake/earthquake3.jpg`,
-        `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/earthquake/earthquake4.webp`,
+        `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/earthquake/earthquake4.png`,
       ]}
     />
   );

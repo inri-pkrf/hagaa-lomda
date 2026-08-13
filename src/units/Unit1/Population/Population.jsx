@@ -8,9 +8,9 @@ function Population() {
   const location = useLocation();
 
 
-  const backgroundImg = `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/PopulationBackground.webp`;
-  const laptopImg = `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/populationComp.webp`;
-  const foldersImg = `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/PopulationFolders.webp`;
+  const backgroundImg = `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/PopulationBackground.png`;
+  const laptopImg = `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/populationComp.png`;
+  const foldersImg = `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/PopulationFolders.png`;
   const lampImg = `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/lamp.png`;
 
 

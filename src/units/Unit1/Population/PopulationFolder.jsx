@@ -77,7 +77,7 @@ function PopulationFolder() {
 
       <img
         className="Population-foldersImg"
-        src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/PopulationFolders.webp`}
+        src={`${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/PopulationFolders.png`}
         alt="Population Folders"
       />
 

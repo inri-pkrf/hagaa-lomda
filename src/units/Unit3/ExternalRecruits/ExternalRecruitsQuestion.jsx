@@ -33,7 +33,7 @@ function ExternalRecruitsQuestion() {
       {isSolved && <div className="signs-overlay" />}
 
       <img
-        src={`${process.env.PUBLIC_URL}/assets/UnitThreeImgs/ExternalRecruits/ExternalInfo-bg.webp`}
+        src={`${process.env.PUBLIC_URL}/assets/UnitThreeImgs/ExternalRecruits/ExternalInfo-bg.png`}
         className="ExternalInfo-left-half-bg"
         alt=""
       />

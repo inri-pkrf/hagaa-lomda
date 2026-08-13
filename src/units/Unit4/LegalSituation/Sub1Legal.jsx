@@ -84,7 +84,7 @@ function Sub1Legal() {
         </p>
 
         <img
-          src={`${process.env.PUBLIC_URL}/assets/UnitFourImgs/LegalSituation/scales.webp`}
+          src={`${process.env.PUBLIC_URL}/assets/UnitFourImgs/LegalSituation/scales.png`}
           className="final-normal-image"
           alt="Final context"
         />

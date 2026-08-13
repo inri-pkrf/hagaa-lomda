@@ -19,10 +19,10 @@ function EducationInfo() {
         },
       ]}
       sliderImages={[
-        `${process.env.PUBLIC_URL}/assets/UnitThreeImgs/Education/gallery01.webp`,
-        `${process.env.PUBLIC_URL}/assets/UnitThreeImgs/Education/gallery02.webp`,
-        `${process.env.PUBLIC_URL}/assets/UnitThreeImgs/Education/gallery03.webp`,
-        `${process.env.PUBLIC_URL}/assets/UnitThreeImgs/Education/gallery04.webp`,
+        `${process.env.PUBLIC_URL}/assets/UnitThreeImgs/Education/gallery01.png`,
+        `${process.env.PUBLIC_URL}/assets/UnitThreeImgs/Education/gallery02.png`,
+        `${process.env.PUBLIC_URL}/assets/UnitThreeImgs/Education/gallery03.png`,
+        `${process.env.PUBLIC_URL}/assets/UnitThreeImgs/Education/gallery04.png`,
       ]}
     />
   );

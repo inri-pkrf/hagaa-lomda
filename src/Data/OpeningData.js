@@ -3,7 +3,7 @@ const openingData = {
   UnitOne: {
     title: "הפרק הראשון",
     subtitle: `תכירו את הייעוד והמשימות כממונה הג"א`,
-    image: "/assets/General/OpeningUnitPage/unitOneStartBuilding.webp",
+    image: "/assets/General/OpeningUnitPage/unitOneStartBuilding.png",
     mainTitle: "יחידה 1: מבוא",
     text: (
       <>
@@ -28,7 +28,7 @@ const openingData = {
   UnitTwo: {
     title: "הפרק השני",
     subtitle: `בפרק השני תכיר את האיומים על העורף ותבין מהי תוכנית התגוננות `,
-    image: "/assets/General/OpeningUnitPage/unitTwoStartBuilding.webp",
+    image: "/assets/General/OpeningUnitPage/unitTwoStartBuilding.png",
     mainTitle: "יחידה 2: הכנה",
     text: (
       <>
@@ -54,7 +54,7 @@ const openingData = {
   UnitThree: {
     title: "הפרק השלישי",
     subtitle: `נתמקד במשימותיכם עכשיו, בזמן שגרה`,
-    image: "/assets/General/OpeningUnitPage/unitThreeStartBuilding.webp",
+    image: "/assets/General/OpeningUnitPage/unitThreeStartBuilding.png",
     mainTitle: "יחידה 3: צוותי חירום",
     text: (
       <>
@@ -78,7 +78,7 @@ const openingData = {
   UnitFour: {
     title: "הפרק הרביעי",
     subtitle: `נעסוק במעבר משגרה לחירום ובאירוע חירום במפעל`,
-    image: "/assets/General/OpeningUnitPage/unitFourStartBuilding.webp",
+    image: "/assets/General/OpeningUnitPage/unitFourStartBuilding.png",
     mainTitle: "יחידה 4: סיכום",
     text: (
       <>

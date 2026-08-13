@@ -58,7 +58,7 @@ function EducationGame() {
     },
     {
       id: "clock",
-      img: "clock.webp",
+      img: "clock.png",
       text: "מסגרות החינוך יופעלו למשך כל תקופת החירום שהוגדרה ובמהלך כל היום (שעות ההפעלה ייקבעו על ידי המפעל).",
       top: "25%",
       left: "53%",
@@ -66,7 +66,7 @@ function EducationGame() {
     },
     {
       id: "nanny",
-      img: "educationNaany.webp",
+      img: "educationNaany.png",
       text: 'בכל מסגרת חינוך יוגדר מנהל אחראי מטעם המפעל. \nכוח אדם להפעלת המסגרת חינוך ייקבע ע"י המפעל בתיאום עם הרשות המקומית/ מפעלים סמוכים, כל זאת בהתאם לתצורה שתיקבע.',
       top: "69%",
       left: "85%",
@@ -157,7 +157,7 @@ function EducationGame() {
   return (
     <div className="education-game-container">
       <img
-        src={`${process.env.PUBLIC_URL}/assets/UnitThreeImgs/Education/EducationBackground.webp`}
+        src={`${process.env.PUBLIC_URL}/assets/UnitThreeImgs/Education/EducationBackground.png`}
         className="education-bg"
         alt="bg"
       />

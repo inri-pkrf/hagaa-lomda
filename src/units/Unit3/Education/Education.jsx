@@ -129,7 +129,7 @@ function Education() {
         <div
           className="rockets-background-layer"
           style={{
-            backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitThreeImgs/bg-topics.webp)`,
+            backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitThreeImgs/bg-topics.jpg)`,
           }}
         />
       )}

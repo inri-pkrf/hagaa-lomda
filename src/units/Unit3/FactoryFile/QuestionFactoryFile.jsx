@@ -71,7 +71,7 @@ function QuestionFactoryFile() {
               <div
                 className={getAnswerClass(index)}
                 style={{
-                  backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitThreeImgs/FactoryFile/folder.webp)`,
+                  backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitThreeImgs/FactoryFile/folder.png)`,
                 }}
               >
                 {answer}

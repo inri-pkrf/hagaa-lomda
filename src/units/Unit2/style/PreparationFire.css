@@ -27,12 +27,12 @@ html, body {
 
 @keyframes firstSlider {
   0% {
-    background-image: url("/public/assets/UnitTwoImgs/fire/fire-bg1.webp");
+    background-image: url("/public/assets/UnitTwoImgs/fire/fire-bg1.png");
   }
 
 
   100% {
-    background-image: url("/public/assets/UnitTwoImgs/fire/fire-bg2.webp");
+    background-image: url("/public/assets/UnitTwoImgs/fire/fire-bg2.png");
   }
 }
 
@@ -41,12 +41,12 @@ html, body {
 
 @keyframes secondSlider {
   0% {
-    background-image: url("/public/assets/UnitTwoImgs/fire/fire-bg2.webp");
+    background-image: url("/public/assets/UnitTwoImgs/fire/fire-bg2.png");
   }
 
 
   100% {
-    background-image: url("/public/assets/UnitTwoImgs/fire/fire-bg2-marked.webp");
+    background-image: url("/public/assets/UnitTwoImgs/fire/fire-bg2-marked.png");
   }
 }
 

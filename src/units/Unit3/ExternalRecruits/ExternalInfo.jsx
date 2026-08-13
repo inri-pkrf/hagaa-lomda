@@ -14,7 +14,7 @@ function ExternalInfo() {
   return (
     <div className="ExternalInfo">
       <img
-        src={`${process.env.PUBLIC_URL}/assets/UnitThreeImgs/ExternalRecruits/ExternalInfo-bg.webp`}
+        src={`${process.env.PUBLIC_URL}/assets/UnitThreeImgs/ExternalRecruits/ExternalInfo-bg.png`}
         className="ExternalInfo-left-half-bg"
         alt="bg"
       />

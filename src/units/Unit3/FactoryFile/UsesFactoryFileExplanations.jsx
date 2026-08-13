@@ -141,7 +141,7 @@ function UsesFactoryFileExplanations() {
 
       <div className="scrollable-content">
         <img
-          src={`${process.env.PUBLIC_URL}/assets/UnitThreeImgs/FactoryFile/med-folder.webp`}
+          src={`${process.env.PUBLIC_URL}/assets/UnitThreeImgs/FactoryFile/med-folder.png`}
           id="UsesFactoryFileExplanations-background"
           alt="background"
         />

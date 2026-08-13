@@ -23,7 +23,7 @@ function Structure() {
     <main className="OpeningPage">
       <img
         className='openingPage-building'
-        src={`${process.env.PUBLIC_URL}/assets/General/mainBuilding.webp`}
+        src={`${process.env.PUBLIC_URL}/assets/General/mainBuilding.png`}
         alt="Pakar Logo"
       />
       

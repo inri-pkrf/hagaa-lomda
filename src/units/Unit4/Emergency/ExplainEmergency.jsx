@@ -10,7 +10,7 @@ function ExplainEmergency() {
 
   // תמונות
   const lobbyImg = `${process.env.PUBLIC_URL}/assets/UnitFourImgs/emergency/lobby_no_tv.jpg`;
-  const tvUnitImg = `${process.env.PUBLIC_URL}/assets/UnitFourImgs/emergency/tv_unit.webp`;
+  const tvUnitImg = `${process.env.PUBLIC_URL}/assets/UnitFourImgs/emergency/tv_unit.png`;
   const soldierWithTvImg = `${process.env.PUBLIC_URL}/assets/UnitFourImgs/emergency/soldier_with_tv.jpg`;
 
   const steps = [

@@ -87,7 +87,7 @@ function DetailEmergencyTeams() {
             בהתרחש אירוע חירום במפעל.
           </div>
           <img
-            src={`${process.env.PUBLIC_URL}/assets/UnitThreeImgs/EmergencyTeams/צוות-חירום-כללי.webp`}
+            src={`${process.env.PUBLIC_URL}/assets/UnitThreeImgs/EmergencyTeams/צוות-חירום-כללי.png`}
             alt="EmergencyTeams"
             id="EmergencyTeams-img"
           />
@@ -104,7 +104,7 @@ function DetailEmergencyTeams() {
 
           <div className="interactive-map-container">
             <img
-              src={`${process.env.PUBLIC_URL}/assets/UnitThreeImgs/EmergencyTeams/צוות-חירום-פירוט.webp`}
+              src={`${process.env.PUBLIC_URL}/assets/UnitThreeImgs/EmergencyTeams/צוות-חירום-פירוט.png`}
               alt="EmergencyTeams"
               id="EmergencyTeamsPeople-img"
             />

@@ -99,7 +99,7 @@ function Interfaces() {
             className={`tringle t${key} ${visited.includes(key) ? "visited" : ""}`}
             onClick={() => handleTriangleClick(key, item)}
             style={{
-              backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitOneImgs/Interfences/NameTringle.webp)`,
+              backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitOneImgs/Interfences/NameTringle.png)`,
             }}
           >
             <p

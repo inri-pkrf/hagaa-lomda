@@ -229,7 +229,7 @@ function LastPage() {
       </div>
 
       <img
-        src={`${process.env.PUBLIC_URL}/assets/General/Quiz/building.webp`}
+        src={`${process.env.PUBLIC_URL}/assets/General/Quiz/building.png`}
         alt="building"
         className="lastPage__building"
       />

@@ -246,7 +246,7 @@ function CreditPage() {
                 </div>
               </div>
               <img
-                src={`${PUBLIC_URL}/assets/CreditPage/protrait.webp`}
+                src={`${PUBLIC_URL}/assets/CreditPage/protrait.png`}
                 alt="group-picture"
                 className="credit-protrait-popup"
               />

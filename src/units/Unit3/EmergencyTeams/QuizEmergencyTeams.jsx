@@ -46,7 +46,7 @@ function QuizEmergencyTeams() {
                 </div>
             </div>
 
-            <img src={`${process.env.PUBLIC_URL}/assets/UnitThreeImgs/צוות-חירום-כללי.webp`} alt="EmergencyTeams" id='EmergencyTeams-img-quize' />
+            <img src={`${process.env.PUBLIC_URL}/assets/UnitThreeImgs/צוות-חירום-כללי.png`} alt="EmergencyTeams" id='EmergencyTeams-img-quize' />
 
             <div className='answers-container'>
                 {[

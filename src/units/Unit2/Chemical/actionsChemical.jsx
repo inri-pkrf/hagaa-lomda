@@ -19,7 +19,7 @@ const ActionsChemical = () => {
     <div
       className="hazard-screen"
       style={{
-        backgroundImage: `url('${imagesPath}/chemical-bottom-bg.webp')`,
+        backgroundImage: `url('${imagesPath}/chemical-bottom-bg.png')`,
       }}
     >
       <h1 id="chemical-actions-title" className="chemical-causes-title">
@@ -37,7 +37,7 @@ const ActionsChemical = () => {
         {signs.map((sign, index) => (
           <div className="sign-item" key={index}>
             <img
-              src={`${imagesPath}/sign2.webp`}
+              src={`${imagesPath}/sign2.png`}
               style={{ transform: sign.flip ? "scaleX(-1)" : "none" }}
             />
             <span className="sign-text">

@@ -11,10 +11,10 @@ function InfoFire() {
         <b>שרשרת תגובה כימית + חום + חומר בערה + חמצן</b>,
       ]}
       sliderImages={[
-        `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/fire/fire-img1.webp`,
+        `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/fire/fire-img1.png`,
         `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/fire/fire-img2.jpg`,
         `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/fire/fire-img3.jpeg`,
-        `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/fire/fire-img4.webp`,
+        `${process.env.PUBLIC_URL}/assets/UnitTwoImgs/fire/fire-img4.png`,
       ]}
     />
   );

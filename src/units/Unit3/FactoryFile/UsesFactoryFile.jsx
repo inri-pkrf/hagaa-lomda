@@ -184,7 +184,7 @@ function UsesFactoryFile() {
       </p>
 
       <img
-        src={`${process.env.PUBLIC_URL}/assets/UnitThreeImgs/FactoryFile/factoryFile-bg.webp`}
+        src={`${process.env.PUBLIC_URL}/assets/UnitThreeImgs/FactoryFile/factoryFile-bg.png`}
         className="background"
         alt="background"
       />

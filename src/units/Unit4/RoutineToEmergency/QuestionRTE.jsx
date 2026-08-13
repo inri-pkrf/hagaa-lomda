@@ -8,9 +8,9 @@ function QuestionRTE() {
   const [wrongAnswers, setWrongAnswers] = useState([]); // רשימת הטעויות שנלחצו
 
   const imgPath = `${process.env.PUBLIC_URL}/assets/UnitFourImgs/RoutineToEmergency`;
-  const bgImageUrl = `${imgPath}/emergency-question-bg.webp`;
-  const womanImageUrl = `${imgPath}/women.webp`;
-  const clipboardImg = `${imgPath}/clipboard.webp`;
+  const bgImageUrl = `${imgPath}/emergency-question-bg.png`;
+  const womanImageUrl = `${imgPath}/women.png`;
+  const clipboardImg = `${imgPath}/clipboard.png`;
 
   const correctAnswer = "קידום משימות להגברת מוכנות המפעל לאירוע חירום";
 

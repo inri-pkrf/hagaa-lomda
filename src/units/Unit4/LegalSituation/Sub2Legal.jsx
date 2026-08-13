@@ -148,7 +148,7 @@ function Sub2Legal() {
       </p>
 
       <img
-        src={`${process.env.PUBLIC_URL}/assets/UnitFourImgs/LegalSituation/${isDifference ? "scales-left.webp" : "scales-right.webp"}`}
+        src={`${process.env.PUBLIC_URL}/assets/UnitFourImgs/LegalSituation/${isDifference ? "scales-left.png" : "scales-right.png"}`}
         id="scales-left"
         alt="Scales"
       />

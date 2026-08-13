@@ -39,7 +39,7 @@ const InterfencesData = {
   7: {
     name: "מגויסי חוץ",
     description: `כוח אדם המתגבר את המפעל בשגרת החירום ממקורות חיצוניים, תחת צו ריתוק משקי, לאור מחסור בכוח אדם, לדוגמה עקב גיוס עובדים מהמפעל למילואים.`,
-    image: `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Interfences/Outsider.webp`,
+    image: `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Interfences/Outsider.png`,
     colorCircle: "#3fc6f3",
   },
 

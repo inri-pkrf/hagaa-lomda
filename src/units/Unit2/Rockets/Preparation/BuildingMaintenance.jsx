@@ -142,8 +142,8 @@ function BuildingMaintenance() {
 
   const currentSteps = isInside ? insideSteps : outsideSteps;
   const currentBg = isInside
-    ? "insideSafeRoomBg-new.webp"
-    : "outsideSafeRoomBg.webp";
+    ? "insideSafeRoomBg-new.png"
+    : "outsideSafeRoomBg.png";
 
   const handleElementClick = (index) => {
     // אם אנחנו כבר בפופ-אפ הסופי, לא נאפשר לחיצות נוספות

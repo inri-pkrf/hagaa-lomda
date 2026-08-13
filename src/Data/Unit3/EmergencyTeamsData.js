@@ -14,7 +14,7 @@ const EmergencyTeamsData = [
       "דיווח על כל תקלה או מפגע שנמצאו במהלך הבדיקות התקופתיות.",
     ],
     srcTeamImg:
-      "/assets/UnitThreeImgs/EmergencyTeams/עותק של צוות-אחזקה-מרחבים-מוגנים.webp",
+      "/assets/UnitThreeImgs/EmergencyTeams/עותק של צוות-אחזקה-מרחבים-מוגנים.png",
     srcTeamIcon: "/assets/UnitThreeImgs/EmergencyTeams/עותק של icon-ET.png",
   },
   {

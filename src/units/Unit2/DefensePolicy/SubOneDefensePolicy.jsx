@@ -5,7 +5,7 @@ function SubOneDefensePolicy() {
   return (
     <div className="defense-policy-page">
       <img
-        src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/CourtGavel.webp`}
+        src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/CourtGavel.png`}
         className="gavel-background"
         alt=""
         aria-hidden="true"
