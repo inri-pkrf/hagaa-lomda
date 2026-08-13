@@ -123,10 +123,14 @@ function Alert() {
     setShowPage5Modal(true);
     setMuteAlarm(false);
 
-      // Prevent narration from auto-playing while the modal is open
-      window.dispatchEvent(new CustomEvent("setNarrationPaused", { detail: true }));
-      // Disable narration controls while modal is open
-      window.dispatchEvent(new CustomEvent("setNarrationDisabled", { detail: true }));
+    // Prevent narration from auto-playing while the modal is open
+    window.dispatchEvent(
+      new CustomEvent("setNarrationPaused", { detail: true }),
+    );
+    // Disable narration controls while modal is open
+    window.dispatchEvent(
+      new CustomEvent("setNarrationDisabled", { detail: true }),
+    );
 
     return () => {
       clearTimeout(ringTimerRef.current);
@@ -140,16 +144,22 @@ function Alert() {
     // begin the ringing visual/audio sequence only after modal closed
     setPage5Phase("ringing");
 
-      // Re-enable narration controls now that modal is closed
-      window.dispatchEvent(new CustomEvent("setNarrationDisabled", { detail: false }));
+    // Re-enable narration controls now that modal is closed
+    window.dispatchEvent(
+      new CustomEvent("setNarrationDisabled", { detail: false }),
+    );
 
-      // If user didn't choose to mute, unpause narration so the alert sound plays.
-      if (!muteAlarm) {
-        window.dispatchEvent(new CustomEvent("setNarrationPaused", { detail: false }));
-      } else {
-        // keep narration paused when user chose to mute
-        window.dispatchEvent(new CustomEvent("setNarrationPaused", { detail: true }));
-      }
+    // If user didn't choose to mute, unpause narration so the alert sound plays.
+    if (!muteAlarm) {
+      window.dispatchEvent(
+        new CustomEvent("setNarrationPaused", { detail: false }),
+      );
+    } else {
+      // keep narration paused when user chose to mute
+      window.dispatchEvent(
+        new CustomEvent("setNarrationPaused", { detail: true }),
+      );
+    }
 
     ringTimerRef.current = setTimeout(() => {
       setPage5Phase("call-screen");
@@ -358,10 +368,10 @@ function Alert() {
 
                 <div className="popup-text-container single-text">
                   <p style={{ whiteSpace: "pre-line" }}>
-                    במסך הבא יושמע צליל המדמה התרעה מוקדמת של פיקוד העורף.
+                    במסך הבא ישמע צליל המדמה התרעה מקדימה של פיקוד העורף.
                     {"\n"}
                     {"\n"}
-                    אם אינך מעוניין/ת לשמוע את הצליל, ניתן להשתיק אותו מראש.
+                    ניתן להשתיק אותו מראש על ידי סימון התיבה
                   </p>
                   <label>
                     <input

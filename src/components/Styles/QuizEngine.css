@@ -208,3 +208,13 @@
 .selected-blue {
   border: #4a82c2 solid 0.2vw !important;
 }
+
+.quiz-underline-word {
+  text-decoration: underline;
+  font: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+}

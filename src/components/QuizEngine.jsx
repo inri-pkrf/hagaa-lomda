@@ -215,6 +215,28 @@ const QuizEngine = ({ data, unitNumber, onFinished }) => {
     }
   };
 
+  const renderQuestion = (question) => {
+    if (!question.underlineWord) {
+      return question.question;
+    }
+
+    const word = question.underlineWord.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+    const parts = question.question.split(
+      new RegExp(`(?<!\\p{L})(${word})(?!\\p{L})`, "u"),
+    );
+
+    return parts.map((part, index) =>
+      part === question.underlineWord ? (
+        <span key={index} className="quiz-underline-word">
+          {part}
+        </span>
+      ) : (
+        part
+      ),
+    );
+  };
+
   return (
     <div className="quiz-engine-container">
       <main className="quiz-engine-main">
@@ -222,7 +244,10 @@ const QuizEngine = ({ data, unitNumber, onFinished }) => {
           שאלה {currentIndex + 1} מתוך {data.length}
         </div>
 
-        <h2 className="quiz-question-text">{currentQuestion.question}</h2>
+        {/* <h2 className="quiz-question-text">{currentQuestion.question}</h2> */}
+        <h2 className="quiz-question-text">
+          {renderQuestion(currentQuestion)}
+        </h2>
 
         <div className="quiz-answers-list">
           {currentQuestion.answers.map((answer, index) => {
