@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/hagaa-lomda/static/css/main.a8403eac.css",
-    "main.js": "/hagaa-lomda/static/js/main.d0db4abe.js",
+    "main.css": "/hagaa-lomda/static/css/main.3ad9785a.css",
+    "main.js": "/hagaa-lomda/static/js/main.8c389b8b.js",
     "static/js/453.162221fa.chunk.js": "/hagaa-lomda/static/js/453.162221fa.chunk.js",
-    "static/media/fire-bg2.webp": "/hagaa-lomda/static/media/fire-bg2.4d07c9688e255a454abd.webp",
+    "static/media/fire-bg2.png": "/hagaa-lomda/static/media/fire-bg2.6d3c76ce818e853f9052.png",
+    "static/media/fire-bg2-marked.png": "/hagaa-lomda/static/media/fire-bg2-marked.e138f8e1c8ac2a7683fc.png",
+    "static/media/fire-bg1.png": "/hagaa-lomda/static/media/fire-bg1.c397cb347c92aef48b89.png",
     "static/media/legalSituation-bg.jpg": "/hagaa-lomda/static/media/legalSituation-bg.c51f4a1659ab6a2a311a.jpg",
-    "static/media/fire-bg2-marked.webp": "/hagaa-lomda/static/media/fire-bg2-marked.a6f1fe207ceb112f2821.webp",
-    "static/media/fire-bg1.webp": "/hagaa-lomda/static/media/fire-bg1.96288261f2c6b2e1733b.webp",
     "static/media/mainBackground.jpg": "/hagaa-lomda/static/media/mainBackground.ddf52942952357e4936e.jpg",
     "index.html": "/hagaa-lomda/index.html",
-    "main.a8403eac.css.map": "/hagaa-lomda/static/css/main.a8403eac.css.map",
-    "main.d0db4abe.js.map": "/hagaa-lomda/static/js/main.d0db4abe.js.map",
+    "main.3ad9785a.css.map": "/hagaa-lomda/static/css/main.3ad9785a.css.map",
+    "main.8c389b8b.js.map": "/hagaa-lomda/static/js/main.8c389b8b.js.map",
     "453.162221fa.chunk.js.map": "/hagaa-lomda/static/js/453.162221fa.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a8403eac.css",
-    "static/js/main.d0db4abe.js"
+    "static/css/main.3ad9785a.css",
+    "static/js/main.8c389b8b.js"
   ]
 }
