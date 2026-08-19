@@ -275,8 +275,7 @@ function Buttons() {
     };
   }, [location.pathname]);
 
-  // ⭐ שמירת מצב לשרת - הגוף נבנה ע"י buildUmbracoPayload, בפורמט הסופי
-  // שסוכם: { learningId, stateJson, progressData, status }
+  // ⭐ שמירת מצב לשרת - הגוף נבנה ע"י buildUmbracoPayload
   const saveState = async (path, stepIndex = null) => {
     const isDev = LEARNING_ID === undefined || Number.isNaN(LEARNING_ID);
     if (isDev) {
@@ -323,8 +322,7 @@ function Buttons() {
     }
   };
 
-  // ⭐ טעינת מצב מהשרת + שחזור sessionStorage - קורא מ-data.stateJson
-  // (הפורמט הסופי שסוכם), לא data.stateData
+  // ⭐ טעינת מצב מהשרת + שחזור sessionStorage
   const getState = async () => {
     if (hasRestoredState.current) {
       restoreCheckComplete.current = true;
@@ -406,7 +404,17 @@ function Buttons() {
     );
     sessionStorage.setItem("routeIndex", String(index));
 
-    if (currentPath !== "/" || restoreCheckComplete.current) {
+    // ⭐ תוקן: לא שולחים שמירה "כללית" כשמגיעים ל-/last-page - כי
+    // LastPage.jsx כבר אחראי במפורש על השמירה שם, עם הסטטוס הנכון (מבוסס
+    // ציון, לא נתיב). בלי התנאי הזה, שתי השמירות (הכללית כאן, והמפורשת
+    // ב-LastPage.jsx) היו "מתחרות" זו בזו כמעט בו-זמנית - ומי שהתשובה שלו
+    // חוזרת אחרונה מהשרת "מנצחת", מה שגרם לכך שלפעמים נשמר status:2
+    // (שגוי) ולפעמים status:3 (נכון) בצורה לא עקבית.
+    const shouldAutoSave =
+      currentPath !== "/last-page" &&
+      (currentPath !== "/" || restoreCheckComplete.current);
+
+    if (shouldAutoSave) {
       saveState(currentPath, index);
     }
 
@@ -488,7 +496,10 @@ function Buttons() {
       sessionStorage.setItem("MainTitle", "מבנה שיעור הסמכה דיגיטלי");
     }
 
-    saveState(targetPath, routeOrder.indexOf(targetPath));
+    // ⭐ אותו כלל - לא שולחים שמירה כללית אם היעד הוא /last-page
+    if (targetPath !== "/last-page") {
+      saveState(targetPath, routeOrder.indexOf(targetPath));
+    }
 
     const navEvent = new CustomEvent(isNext ? "onNextNav" : "onPrevNav", {
       cancelable: true,

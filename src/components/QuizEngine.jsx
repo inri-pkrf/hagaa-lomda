@@ -238,7 +238,12 @@ const QuizEngine = ({ data, unitNumber, onFinished }) => {
   };
 
   return (
-    <div className="quiz-engine-container">
+    <div
+      className="quiz-engine-container"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/General/mainBackground.jpg)`,
+      }}
+    >
       <main className="quiz-engine-main">
         <div className="question-counter">
           שאלה {currentIndex + 1} מתוך {data.length}

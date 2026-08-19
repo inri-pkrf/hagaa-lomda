@@ -200,7 +200,12 @@ function SummaryCheckList({ checklist = {}, onFinish, pinImg }) {
   };
 
   return (
-    <div className="OpeningPage">
+    <div
+      className="OpeningPage"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/General/mainBackground.jpg)`,
+      }}
+    >
       <div className="summary-row">
         <div className="checklist-wrapper">
           <img className="check-list" src={checklistImg} alt="checklist" />

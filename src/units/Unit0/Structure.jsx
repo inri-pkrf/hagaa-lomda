@@ -6,9 +6,7 @@ function Structure() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // פונקציה שמאזינה ללחיצה על חץ "הבא" הכללי
     const handleNext = (e) => {
-
       navigate('/info-lomda');
     };
 
@@ -20,13 +18,17 @@ function Structure() {
   }, [navigate]);
 
   return (
-    <main className="OpeningPage">
+    <main
+      className="OpeningPage"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/General/mainBackground.jpg)`,
+      }}
+    >
       <img
         className='openingPage-building'
         src={`${process.env.PUBLIC_URL}/assets/General/mainBuilding.png`}
         alt="Pakar Logo"
       />
-      
     </main>
   );
 }

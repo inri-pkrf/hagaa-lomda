@@ -71,8 +71,6 @@ function QuestionsEnd({ unitNumber: unitProp }) {
     5: attempt >= 2 ? questionsDataQuizB : questionsDataQuiz,
   };
 
-  const [isModalOpen, setIsModalOpen] = useState(unitNumber !== 5);
-
   // ניהול מצב הפופ-אפ שלפני ההגשה הסופית
 
   const [showConfirmPopup, setShowConfirmPopup] = useState(false);
@@ -221,9 +219,7 @@ function QuestionsEnd({ unitNumber: unitProp }) {
         </div>
       )}
 
-      <div
-        className={`questions-end-content ${isModalOpen ? "questions-end-content-hidden" : ""}`}
-      >
+      <div className="questions-end-content">
         <QuizEngine
           key={unitNumber}
           data={questionsDataMap[unitNumber]}

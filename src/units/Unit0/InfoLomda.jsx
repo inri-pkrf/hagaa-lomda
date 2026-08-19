@@ -119,7 +119,12 @@ function InfoLomda() {
   }, [step, noticeClicked]);
 
   return (
-    <div className="InfoLomda">
+    <div
+      className="InfoLomda"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/General/mainBackground.jpg)`,
+      }}
+    >
       <div className="InfoLomdaCard">
         <h2 className="InfoLomda-title">{TITLES[step]}</h2>
 

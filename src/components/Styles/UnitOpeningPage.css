@@ -3,7 +3,7 @@
   inset: 0; /* במקום top/left/width/height */
 
   background-color: #e9f3f8;
-  background-image: url("/public/assets/General/mainBackground.jpg");
+  /* background-image הוסר מכאן - עובר ל-JSX (inline style) */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover; /* 🔥 זה הכי חשוב שחסר לך */

@@ -8,13 +8,11 @@
 //   "progressData": { percent, percentPicId, currentChapter, totalChapters, title, subText, titleIconId },
 //   "status": 1, // 1 = טרם התחיל, 2 = בתהליך, 3 = הסתיים
 //   "score": 0   // ⭐ הרחבה מעבר לפורמט המקורי שסוכם - יש לוודא מול צוות
-//                //    האתר שה-controller בשרת אכן קורא ושומר שדה זה,
-//                //    אחרת הוא פשוט יישלח ולא ישמר (כמו שקרה בעבר עם
-//                //    LearningId/StateData).
+//                //    האתר שה-controller בשרת אכן קורא ושומר שדה זה.
 // }
 //
-// לשם בטיחות, ה-score עדיין משולב גם בתוך stateJson (כמו קודם) - כך
-// שגם אם צוות האתר עדיין לא קולט את השדה הנפרד, שום מידע לא הולך לאיבוד.
+// לשם בטיחות, ה-score עדיין משולב גם בתוך stateJson - כך שגם אם צוות
+// האתר עדיין לא קולט את השדה הנפרד, שום מידע לא הולך לאיבוד.
 //
 // גם השמירה בפועל (Buttons.jsx, LastPage.jsx) וגם "הורד JSON לבדיקה"
 // (App.jsx, LastPage.jsx) משתמשים באותה פונקציה בדיוק, כדי שלא יהיה
@@ -34,7 +32,7 @@ export const getStatusForPath = (path) => (path === "/" ? 1 : 2);
  * @param {number|null} stepIndex - מיקום מספרי בתוך routeOrder (אופציונלי)
  * @param {number} score - הציון הנוכחי (ברירת מחדל 0)
  * @param {number|null} statusOverride - סטטוס מספרי מפורש (למשל 3 בעמוד הסיום),
- *   אם לא מועבר - מחושב אוטומטית לפי הנתיב (getStatusForPath)
+ *   אם לא מועבר - מחושב אוטומטית (ראו הלוגיקה למטה)
  */
 export function buildUmbracoPayload({
   learningId,
@@ -44,8 +42,21 @@ export function buildUmbracoPayload({
   score = 0,
   statusOverride = null,
 }) {
-  const numericStatus =
-    statusOverride !== null ? statusOverride : getStatusForPath(path);
+  let numericStatus;
+
+  if (statusOverride !== null) {
+    // ⭐ סטטוס מפורש (למשל מ-LastPage.jsx) - תמיד מכבדים אותו כמו שהוא
+    numericStatus = statusOverride;
+  } else {
+    // ⭐ אם המשתמש/ת כבר עברו את המבחן בעבר (ציון 70+ נשמר כבר
+    // ב-sessionStorage), הסטטוס נשאר "הושלם" (3) - גם כשממשיכים לנווט
+    // לעמודים אחרים אחרי הסיום (כמו "אודות"/CreditPage). בלי זה, כל
+    // ניווט אחרי סיום מוצלח היה "דורס" את status:3 בחזרה ל-status:2.
+    const alreadyPassedScore =
+      Number(sessionStorage.getItem("finalQuizScore")) || 0;
+    numericStatus =
+      alreadyPassedScore >= 70 ? 3 : getStatusForPath(path);
+  }
 
   // ⭐ progressData נשארת ברמה העליונה של הבקשה (לא בתוך stateJson) -
   // בדיוק לפי הפורמט הסופי שסוכם.
@@ -65,6 +76,6 @@ export function buildUmbracoPayload({
     stateJson,
     progressData,
     status: numericStatus,
-    score, // ⭐ חדש: score כשדה נפרד ברמה העליונה, לפי בקשה מפורשת
+    score, // ⭐ score כשדה נפרד ברמה העליונה, לפי בקשה מפורשת
   };
 }

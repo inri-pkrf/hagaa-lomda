@@ -5,7 +5,7 @@
   width: 100vw;
   height: 100vh;
   background-color: #e9f3f8;
-  background-image: url("/public/assets/General/mainBackground.jpg");
+  /* background-image הוסר מכאן - עובר ל-JSX (inline style ב-InfoLomda.jsx) */
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;

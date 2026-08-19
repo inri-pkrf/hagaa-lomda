@@ -9,7 +9,7 @@
   height: 100vh;
 
   background: linear-gradient(to bottom, #f0f7f6, #ffffff);
-  background-image: url("/public/assets/General/mainBackground.jpg");
+  /* background-image הוסר מכאן - עובר ל-JSX (inline style ב-QuizEngine.jsx) */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

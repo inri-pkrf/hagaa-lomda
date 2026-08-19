@@ -153,13 +153,14 @@ import LastPage from "./components/QuizAtTheEnd/LastPage.jsx";
 
 const { learningId: LEARNING_ID } = getUrlParams();
 
-// ⭐ חדש: בדיקת מכשיר נייד משותפת - אותו בדיקה בדיוק ששימשה עד עכשיו
-// רק בתוך FullscreenOverlay, עכשיו גם לחסימת האפליקציה כולה בנייד.
-const isMobileDevice = () =>
-  /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+// ⭐ תוקן: זיהוי "נייד" עכשיו לפי רוחב המסך בפועל (לא לפי User Agent).
+// 768px הוא הגבול הסטנדרטי המקובל בין טלפון/טאבלט קטן למחשב.
+// יתרון: לא מושפע מ"הדמיית מכשיר" בכלי הפיתוח או ממחרוזות User Agent
+// חריגות - רק מהגודל האמיתי של חלון הדפדפן.
+const MOBILE_MAX_WIDTH = 768;
+const isMobileViewport = () => window.innerWidth <= MOBILE_MAX_WIDTH;
 
 // ─── מסך חסימה למכשירים ניידים ──────────
-// ⭐ חדש: מוצג במקום כל האפליקציה כשנכנסים ממכשיר נייד.
 function MobileBlockScreen() {
   return (
     <div
@@ -209,7 +210,7 @@ function FullscreenOverlay() {
       console.error("שגיאה בכניסה למסך מלא:", err);
     });
   };
-  if (isMobileDevice()) return null;
+  if (isMobileViewport()) return null;
   if (isFullscreen) return null;
 
   return (
@@ -235,6 +236,17 @@ function App() {
     sessionStorage.getItem("VIDEO_IS_PLAYING") === "true",
   );
 
+  // ⭐ חדש: מצב תגובתי לרוחב המסך - מתעדכן בזמן אמת בכל שינוי גודל חלון,
+  // לא רק בטעינה הראשונית. כך אם מישהו מקטין/מגדיל את חלון הדפדפן תוך
+  // כדי שימוש, מסך החסימה יופיע/ייעלם באופן חי, בלי צורך ברענון.
+  const [isMobile, setIsMobile] = useState(isMobileViewport());
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(isMobileViewport());
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const handleResetAll = () => {
     const confirmReset = window.confirm(
       "האם לאפס את כל ההתקדמות בלומדה ולחזור להתחלה?",
@@ -248,8 +260,8 @@ function App() {
 
   // ⭐ "הורד JSON לבדיקה" מציג בדיוק את אותו גוף בקשה (body) שבאמת נשלח
   // ל-SetIframeLearning ונשמר בשרת - { learningId, stateJson, progressData,
-  // status } - באמצעות אותה פונקציה buildUmbracoPayload שמשמשת גם את
-  // Buttons.jsx בפועל, כך שאין סיכוי לסטייה בין השניים.
+  // status, score } - באמצעות אותה פונקציה buildUmbracoPayload שמשמשת גם
+  // את Buttons.jsx בפועל, כך שאין סיכוי לסטייה בין השניים.
   const handleDownloadReport = () => {
     const sessionState = {};
     STATE_KEYS.forEach((key) => {
@@ -262,11 +274,8 @@ function App() {
     const storedIndex = Number(sessionStorage.getItem("routeIndex"));
     const stepIndex = Number.isNaN(storedIndex) ? null : storedIndex;
 
-    // ⭐ תוקן: כברירת מחדל הסטטוס מחושב לפי הנתיב בלבד (1 בעמוד הבית,
-    // 2 בכל עמוד אחר) - וזה נכון לכל עמודי הלומדה הרגילים. אבל בעמוד
-    // הסיום (/last-page) הסטטוס האמיתי תלוי בציון, לא בנתיב - בדיוק כמו
-    // שכבר מחושב ב-LastPage.jsx. בלי זה, כפתור ההורדה הכללי הזה תמיד
-    // הציג status:2 גם כשבפועל המשתמש/ת סיימו בהצלחה עם ציון עובר.
+    // ⭐ תוקן: בעמוד הסיום (/last-page) הסטטוס האמיתי תלוי בציון, לא בנתיב
+    // - בדיוק כמו שכבר מחושב ב-LastPage.jsx.
     const statusOverride =
       location.pathname === "/last-page" ? (score >= 70 ? 3 : 2) : null;
 
@@ -292,9 +301,9 @@ function App() {
     URL.revokeObjectURL(url);
   };
 
-  // ⭐ חדש: חסימת האפליקציה כולה במכשיר נייד - מוצג מסך הודעה בלבד
-  // במקום כל תוכן הלומדה (כולל הכפתורים, ה-Routes וכו').
-  if (isMobileDevice()) {
+  // ⭐ חסימת האפליקציה כולה במסכים קטנים - מוצג מסך הודעה בלבד במקום כל
+  // תוכן הלומדה. מבוסס על רוחב המסך בפועל (isMobile, state תגובתי).
+  if (isMobile) {
     return <MobileBlockScreen />;
   }
 
