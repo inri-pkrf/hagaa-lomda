@@ -42,15 +42,15 @@ const summaryChecklistMap = {
   5: "/last-page",
 };
 
-const DEBUG_SCENARIOS = [
-  { label: "100 – מושלם", score: 100, attempt: 1 },
+// const DEBUG_SCENARIOS = [
+//   { label: "100 – מושלם", score: 100, attempt: 1 },
 
-  { label: "80 – עובר", score: 80, attempt: 1 },
+//   { label: "80 – עובר", score: 80, attempt: 1 },
 
-  { label: "50 – נכשל פעם 1", score: 50, attempt: 1 },
+//   { label: "50 – נכשל פעם 1", score: 50, attempt: 1 },
 
-  { label: "50 – נכשל פעם 2", score: 50, attempt: 2 },
-];
+//   { label: "50 – נכשל פעם 2", score: 50, attempt: 2 },
+// ];
 
 function QuestionsEnd({ unitNumber: unitProp }) {
   const navigate = useNavigate();
@@ -191,7 +191,7 @@ function QuestionsEnd({ unitNumber: unitProp }) {
             zIndex: 9999,
           }}
         >
-          {DEBUG_SCENARIOS.map((s) => (
+          {/* {DEBUG_SCENARIOS.map((s) => (
             <button
               key={s.label}
               onClick={() => handleDebugScenario(s)}
@@ -215,7 +215,7 @@ function QuestionsEnd({ unitNumber: unitProp }) {
             >
               🧪 {s.label}
             </button>
-          ))}
+          ))} */}
         </div>
       )}
 

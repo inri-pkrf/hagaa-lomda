@@ -199,35 +199,32 @@
 }
 
 .alert-page5-modal {
-  width: min(56vw, 520px);
+  width: min(50vw, 480px);
   background: #fffdf5;
   border: 0.4vh solid #56c3a9;
-  border-radius: 4vw 4vw 4vw 6vh;
-  padding: 3.5vh 3.5vw 4vh;
+  border-radius: 3vw;
+  padding: 5vh 4vw;
   box-shadow: 0 1.5vh 4vw rgba(0, 0, 0, 0.4);
   direction: rtl;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .alert-page5-modal h2 {
   margin: 0 0 1.5vh;
   font-size: 4.3vmin;
   line-height: 1.2;
+  text-align: center;
 }
 
 .alert-page5-modal p {
   margin: 0 0 2vh;
   font-size: 2.2vmin;
   line-height: 1.7;
-}
-
-.alert-page5-modal label {
-  display: flex;
-  align-items: center;
-  gap: 0.8vw;
-  margin-bottom: 2.5vh;
-  font-size: 2.1vmin;
-  cursor: pointer;
+  text-align: center;
 }
 
 .alert-page5-modal input[type="checkbox"] {
@@ -237,7 +234,96 @@
   min-height: 24px;
 }
 
+/* ===== עיצוב חדש לתוכן פופ-אפ "שימו לב" בעמוד 5 - ממורכז ===== */
 
+/* עוטף את כל תוכן הטקסט וממרכז אותו כיחידה אחת */
+.alert-page5-modal .popup-text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* כותרת "שימו לב:" - בולטת, ממורכזת, עם קו מפריד עדין מתחתיה */
+.alert-modal-heading {
+  margin: 0 0 2.4vh;
+  padding-bottom: 1.6vh;
+  font-family: "Assistant";
+  font-weight: 800;
+  font-size: 3.2vmin;
+  color: #56c3a9;
+  text-align: center;
+  width: 100%;
+  border-bottom: 0.3vh solid rgba(0, 143, 109, 0.384);
+}
+
+/* הטקסט הראשי - ממורכז, בולט וקריא */
+.alert-modal-main-text {
+  margin: 0 0 0vh;
+  font-family: "Assistant";
+  font-weight: 600;
+  font-size: 2.5vmin;
+  line-height: 1.7;
+  text-align: center;
+  max-width: 90%;
+}
+
+.popup-text-container.single-text p{
+  margin-top: 5vh;
+}
+
+/* קופסת ההשתקה - הטקסט המשני + התיבה יחד, ממורכזים בקופסה עדינה */
+.alert-modal-mute-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6vh;
+  width: 100%;
+  margin: 0 0 3.5vh;
+  padding: 2.2vh 2vw;
+  background: rgba(86, 195, 169, 0.08);
+  border: 0.12vh dashed rgba(86, 195, 169, 0.5);
+  border-radius: 1.6vh;
+}
+
+/* הטקסט המשני - קטן יותר, גוון עדין יותר, ממורכז */
+.alert-modal-sub-text p{
+  margin: 0;
+  font-family: "Assistant";
+  font-weight: 400;
+  font-size: 1.3vmin;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.popup-text-container.single-text .alert-modal-sub-text {
+  margin-top: 2vh;
+  font-size: 1.8vmin;
+}
+
+/* תיבת הסימון "השתקת הצליל" - ממורכזת */
+.alert-modal-checkbox-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8vw;
+  margin: 0;
+  font-family: "Assistant";
+  font-weight: 700;
+  font-size: 2.1vmin;
+  color: #3b2415;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.alert-modal-checkbox-label input[type="checkbox"] {
+  width: 2.2vw;
+  height: 2.2vw;
+  min-width: 22px;
+  min-height: 22px;
+  cursor: pointer;
+  accent-color: #56c3a9;
+}
 
 #alert-sub-text2 {
   position: absolute;

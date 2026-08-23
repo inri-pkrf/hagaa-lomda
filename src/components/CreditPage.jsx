@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // ⭐ חדש
 import "./Styles/CreditPage.css";
 
 const PUBLIC_URL = process.env.PUBLIC_URL || "";
+
+// ⭐ חדש: אותו מפתח ב-sessionStorage שבו Buttons.jsx שומר את נקודת החזרה
+const CREDIT_RETURN_KEY = "creditPageReturnPath";
 
 const CREDIT_DATA = [
   {
@@ -66,7 +70,7 @@ const CREDIT_DATA = [
     id: "development",
     title: "פיתוח",
     className: "credit-page-development",
-    highlightText: "מה היא מפתחת לומדה?",
+    highlightText: "מהי מפתחת לומדה?",
     items: [
       {
         name: "שלי יצחק - מפתחת לומדה",
@@ -140,6 +144,16 @@ function CloudShape({ width, color }) {
 
 function CreditPage() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const navigate = useNavigate(); // ⭐ חדש
+
+  // ⭐ תוקן: במקום window.history.back() (שמסתמך על היסטוריית הדפדפן,
+  // שמתאפסת בכל טעינת דף חדשה - כלומר אחרי כניסה מחדש לגמרי היא הייתה
+  // מחזירה תמיד ל-"/" ולא לעמוד שבאמת הגעת ממנו), עכשיו מנווטים ישירות
+  // לנתיב שנשמר ב-sessionStorage (ומשוחזר גם מהשרת ע"י Buttons.jsx).
+  const handleBackToLomda = () => {
+    const returnPath = sessionStorage.getItem(CREDIT_RETURN_KEY) || "/";
+    navigate(returnPath);
+  };
 
   return (
     <div className="credit-page">
@@ -255,10 +269,7 @@ function CreditPage() {
         </div>
       )}
 
-      <button
-        className="back-to-lomda-btn"
-        onClick={() => window.history.back()}
-      >
+      <button className="back-to-lomda-btn" onClick={handleBackToLomda}>
         <span className="btn-star">★</span>
         חזרה ללומדה
       </button>

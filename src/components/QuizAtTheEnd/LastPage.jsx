@@ -125,9 +125,9 @@ function LastPage() {
 
   return (
     <div className="lastPage">
-      <button className="lastPage_button" onClick={downloadReport}>
+      {/* <button className="lastPage_button" onClick={downloadReport}>
         הורד JSON לבדיקה
-      </button>
+      </button> */}
 
       {showConfetti && (
         <Confetti

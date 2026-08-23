@@ -60,7 +60,12 @@ function UnitsDivision() {
   }, []);
 
   return (
-    <div className="UnitsDivision">
+    <div
+      className="UnitsDivision"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/General/mainBackground.jpg)`,
+      }}
+    >
       <div className="unit-imgs-div">
         {units.map((unit) => (
           <div key={unit.id} className="unit-item">

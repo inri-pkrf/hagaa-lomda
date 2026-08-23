@@ -313,14 +313,14 @@ function App() {
       <FullscreenOverlay />
 
       {/* כפתורי פיתוח זמניים: איפוס + הורדת JSON לבדיקה */}
-      <div className="developer-toolbar">
+      {/* <div className="developer-toolbar">
         <button className="developer-reset-btn" onClick={handleResetAll}>
           איפוס לומדה 🔄
         </button>
         <button className="developer-download-btn" onClick={handleDownloadReport}>
           הורד JSON לבדיקה ⬇️
         </button>
-      </div>
+      </div> */}
 
       {location.pathname !== "/elevator" && <Header />}
 

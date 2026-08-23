@@ -367,20 +367,25 @@ function Alert() {
                 </button>
 
                 <div className="popup-text-container single-text">
-                  <p style={{ whiteSpace: "pre-line" }}>
+                  <h3 className="alert-modal-heading">שימו לב:</h3>
+                  <p className="alert-modal-main-text">
                     במסך הבא ישמע צליל המדמה התרעה מקדימה של פיקוד העורף.
-                    {"\n"}
-                    {"\n"}
-                    ניתן להשתיק אותו מראש על ידי סימון התיבה
                   </p>
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={muteAlarm}
-                      onChange={(event) => setMuteAlarm(event.target.checked)}
-                    />
-                    השתקת הצליל
-                  </label>
+                  <div className="alert-modal-mute-box">
+                    <p className="alert-modal-sub-text">
+                      ניתן להשתיק אותו מראש על ידי סימון התיבה
+                    </p>
+                    <label className="alert-modal-checkbox-label">
+                      <input
+                        type="checkbox"
+                        checked={muteAlarm}
+                        onChange={(event) =>
+                          setMuteAlarm(event.target.checked)
+                        }
+                      />
+                      השתקת הצליל
+                    </label>
+                  </div>
                 </div>
 
                 <div className="popup-footer">

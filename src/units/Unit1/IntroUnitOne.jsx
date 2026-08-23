@@ -245,7 +245,7 @@ function IntroUnitOne() {
         />
       )}
 
-      <button
+      {/* <button
         className="ShortcutButton"
         id="ShortcutButton1-one"
         onClick={() => {
@@ -284,7 +284,7 @@ function IntroUnitOne() {
         }}
       >
         כפתור קיצור- דלת 4
-      </button>
+      </button> */}
 
       {showEndModal && (
         <div className="questions-end-overlay">

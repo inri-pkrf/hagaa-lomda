@@ -8,6 +8,12 @@ import { buildUmbracoPayload } from "../utils/buildUmbracoPayload";
 
 const { learningId: LEARNING_ID } = getUrlParams();
 
+// ⭐ חדש: מפתח ב-sessionStorage ששומר "לאיזה עמוד לחזור" כשלוחצים
+// "חזרה ללומדה" בתוך CreditPage - מתעדכן בכל ניווט לעמוד אחר (לא
+// CreditPage עצמו), ונשמר/משוחזר גם דרך השרת כדי שיעבוד גם אחרי כניסה
+// מחדש לגמרי (לא רק בתוך אותו סשן דפדפן).
+const CREDIT_RETURN_KEY = "creditPageReturnPath";
+
 const routeOrder = [
   "/",
   "/info-lomda",
@@ -291,6 +297,9 @@ function Buttons() {
       });
 
       const score = Number(sessionStorage.getItem("finalQuizScore")) || 0;
+      // ⭐ חדש: מצרפים את נקודת החזרה השמורה, כדי שגם ב-stateJson שנשמר
+      // לשרת יהיה תמיד עדכני לצורך שחזור כפתור "חזרה ללומדה" ב-CreditPage
+      const returnPath = sessionStorage.getItem(CREDIT_RETURN_KEY) || "/";
 
       const body = buildUmbracoPayload({
         learningId: LEARNING_ID,
@@ -298,6 +307,7 @@ function Buttons() {
         sessionState,
         stepIndex,
         score,
+        returnPath,
       });
 
       console.log("📤 שולח ל-UMBRACCO:", {
@@ -349,16 +359,29 @@ function Buttons() {
       const data = await res.json();
       if (data.success && data.stateJson) {
         const parsedState = JSON.parse(data.stateJson);
-        const { lastPath, sessionState } = parsedState;
+        const { lastPath, sessionState, returnPath } = parsedState;
         if (sessionState) {
           Object.entries(sessionState).forEach(([key, val]) => {
             sessionStorage.setItem(key, val);
           });
         }
-        const index = routeOrder.indexOf(lastPath);
-        if (index !== -1) {
+        // ⭐ חדש: משחזרים גם את נקודת החזרה של CreditPage, כדי שכפתור
+        // "חזרה ללומדה" יעבוד נכון גם אחרי כניסה מחדש לגמרי
+        if (returnPath) {
+          sessionStorage.setItem(CREDIT_RETURN_KEY, returnPath);
+        }
+        // ⭐ תוקן: קודם מנווטים ל-lastPath אם הוא קיים בכלל - בלי קשר
+        // לשאלה אם הוא נמצא ב-routeOrder. עמודים "צדדיים" כמו /CreditPage
+        // (אודות) לא נמצאים ברשימת routeOrder (הם לא חלק מהרצף הראשי של
+        // הלומדה), ולכן routeOrder.indexOf עבורם תמיד מחזיר -1. בעבר, זה
+        // גרם לכך שהניווט אליהם לא קרה בכלל בזמן שחזור - האינדקס משמש
+        // רק למעקב פנימי (כפתורי הקודם/הבא), לא כתנאי לניווט עצמו.
+        if (lastPath) {
           hasRestoredState.current = true;
-          setCurrentIndex(index);
+          const index = routeOrder.indexOf(lastPath);
+          if (index !== -1) {
+            setCurrentIndex(index);
+          }
           navigate(lastPath);
         }
       }
@@ -403,6 +426,12 @@ function Buttons() {
         : null,
     );
     sessionStorage.setItem("routeIndex", String(index));
+
+    // ⭐ חדש: מעדכנים את "נקודת החזרה" של CreditPage בכל פעם שנמצאים
+    // בעמוד אחר (לא CreditPage עצמו) - כך תמיד יש ערך עדכני לחזרה אליו.
+    if (currentPath !== "/CreditPage") {
+      sessionStorage.setItem(CREDIT_RETURN_KEY, currentPath);
+    }
 
     // ⭐ תוקן: לא שולחים שמירה "כללית" כשמגיעים ל-/last-page - כי
     // LastPage.jsx כבר אחראי במפורש על השמירה שם, עם הסטטוס הנכון (מבוסס

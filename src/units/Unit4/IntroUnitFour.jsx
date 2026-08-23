@@ -209,7 +209,7 @@ function IntroUnitFour() {
       )}
 
       {/* כפתורי קיצור - למחוק אחר כך */}
-      <button
+      {/* <button
         className="ShortcutButton"
         id="ShortcutButton1-four"
         onClick={() => {
@@ -238,7 +238,7 @@ function IntroUnitFour() {
         }}
       >
         כפתור קיצור- דלת 3
-      </button>
+      </button> */}
 
       {/* מודל סיום */}
       {showEndModal && (

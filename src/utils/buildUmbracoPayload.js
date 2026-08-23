@@ -33,6 +33,8 @@ export const getStatusForPath = (path) => (path === "/" ? 1 : 2);
  * @param {number} score - הציון הנוכחי (ברירת מחדל 0)
  * @param {number|null} statusOverride - סטטוס מספרי מפורש (למשל 3 בעמוד הסיום),
  *   אם לא מועבר - מחושב אוטומטית (ראו הלוגיקה למטה)
+ * @param {string|null} returnPath - ⭐ חדש: הנתיב שאליו כפתור "חזרה ללומדה"
+ *   ב-CreditPage צריך לנווט (העמוד האחרון שבו היו לפני שנכנסו ל-CreditPage)
  */
 export function buildUmbracoPayload({
   learningId,
@@ -41,6 +43,7 @@ export function buildUmbracoPayload({
   stepIndex = null,
   score = 0,
   statusOverride = null,
+  returnPath = null,
 }) {
   let numericStatus;
 
@@ -63,11 +66,12 @@ export function buildUmbracoPayload({
   const progressData = getProgressData(numericStatus);
 
   // ⭐ stateJson מכיל את כל שאר המידע שצריך לשחזור: sessionState, lastPath,
-  // step מספרי, וה-score (גם כאן, לגיבוי - ראו הערה למעלה).
+  // step מספרי, ה-score (גם כאן, לגיבוי), ו-returnPath (החדש).
   const stateJson = JSON.stringify({
     sessionState,
     lastPath: path,
     ...(stepIndex !== null ? { step: stepIndex } : {}),
+    ...(returnPath !== null ? { returnPath } : {}),
     score,
   });
 

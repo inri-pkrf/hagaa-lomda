@@ -21,12 +21,12 @@ function FirstPage() {
       </div>
 
       {/* כפתורי קיצור - למחוק אחר כך */}
-      <div className="shortcutButtonsContainer">
+      {/* <div className="shortcutButtonsContainer">
         <button className="skipBtn" onClick={() => navigate('/intro-unit-one')}>כפתור קיצור - תוביל אותי פליז לדלתות של יחידה 1</button>
         <button className="skipBtn" onClick={() => navigate('/intro-unit-two')}>כפתור קיצור - תוביל אותי פליז לדלתות של יחידה 2</button>
         <button className="skipBtn" onClick={() => navigate('/intro-unit-three')}>כפתור קיצור - תוביל אותי פליז לדלתות של יחידה 3</button>
         <button className="skipBtn" onClick={() => navigate('/intro-unit-four')}>כפתור קיצור - תוביל אותי פליז לדלתות של יחידה 4</button>
-      </div>
+      </div> */}
     </div>
   );
 }
