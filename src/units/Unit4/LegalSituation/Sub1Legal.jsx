@@ -44,7 +44,14 @@ function Sub1Legal() {
 
   return (
     <div className="sub1-legal-container">
-      {showAnimation && <div className="zoom-bg"></div>}
+      {showAnimation && (
+        <div
+          className="zoom-bg"
+          style={{
+            backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitFourImgs/LegalSituation/legalSituation-bg.jpg)`,
+          }}
+        ></div>
+      )}
 
       <div
         className={`sub1-legal-content ${showAnimation ? "with-anim" : "no-anim"}`}

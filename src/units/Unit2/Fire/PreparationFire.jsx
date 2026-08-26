@@ -32,7 +32,14 @@ function PreparationFire() {
   };
 
   return (
-    <div id="PreparationFire-body">
+    <div
+      id="PreparationFire-body"
+      style={{
+        "--fire-bg1": `url(${process.env.PUBLIC_URL}/assets/UnitTwoImgs/fire/fire-bg1.png)`,
+        "--fire-bg2": `url(${process.env.PUBLIC_URL}/assets/UnitTwoImgs/fire/fire-bg2.png)`,
+        "--fire-bg2-marked": `url(${process.env.PUBLIC_URL}/assets/UnitTwoImgs/fire/fire-bg2-marked.png)`,
+      }}
+    >
       <h2 id='PreparationFire-headline'>היערכות נכונה בשעת שרפה</h2>
       <p id='PreparationFire-text'>יש ללחוץ על הקלסרים כאשר יהיו מסומנים</p>
 

@@ -357,9 +357,9 @@ function App() {
           <Route path="/interfaces" element={<Interfaces />} />
           <Route path="/interfaces-game" element={<InterfacesGame />} />
           <Route path="/population" element={<Population />} />
-          <Route path="/populationInfo" element={<PopulationLaptop />} />
+          <Route path="/PopulationInfo" element={<PopulationLaptop />} />
           <Route path="/population-parts" element={<PopulationFolders />} />
-          <Route path="/populationGame" element={<PopulationGame />} />
+          <Route path="/PopulationGame" element={<PopulationGame />} />
           <Route
             path="/questions-end/1"
             element={<QuestionsEnd unitNumber={1} />}

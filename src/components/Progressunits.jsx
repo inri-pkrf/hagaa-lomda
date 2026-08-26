@@ -1,4 +1,5 @@
 import NavBarData from "../Data/NavBarData";
+import { routeOrder } from "./Buttons";
 
 export const chapterSessionKeys = {
   "פתיחה_1": 'unitone-opening',
@@ -39,6 +40,32 @@ export const isChapterFinished = (chapterTitle, unitNum) => {
   const sessionKey = chapterSessionKeys[key];
   if (!sessionKey) return false;
   return sessionStorage.getItem(sessionKey) === 'finished';
+};
+
+// ⭐ חדש: מפתח ה-sessionStorage שבו Buttons.jsx שומר את האינדקס הרחוק
+// ביותר ב-routeOrder שאליו המשתמש הגיע אי-פעם בסשן הנוכחי (רק עולה,
+// אף פעם לא יורד - בשונה מ"routeIndex" הרגיל שמשקף את המיקום הנוכחי
+// בלבד ויכול לרדת כשחוזרים אחורה).
+const MAX_ROUTE_INDEX_KEY = "maxRouteIndex";
+
+// ⭐ חדש: בודק האם עמוד מסוים (למשל תת-פרק כמו "/interfaces-game")
+// כבר "נחצה" - כלומר המשתמש הגיע אליו והתקדם הלאה ממנו ברצף הלינארי
+// של הלומדה (routeOrder). זהו מקור אמת גנרי לסימון וי על תתי-פרקים
+// בסיידבר, בלי צורך שכל עמוד/תת-פרק ישמור בעצמו דגל "הושלם" נפרד -
+// כרגע אין מנגנון כזה לעמודי תוכן בודדים (learning content pages),
+// רק לפרקים ראשיים (chapterSessionKeys למעלה).
+//
+// שימו לב: אם path מופיע יותר מפעם אחת ב-routeOrder (למשל "hub" כמו
+// "/rockets" שחוזר עליו כמה פעמים), נבדק המופע הראשון - זה בסדר עבור
+// עמודי-תוכן ייחודיים (תתי-פרקים אמיתיים), שכל אחד מהם מופיע פעם
+// אחת בלבד ברצף.
+export const isPathVisited = (path) => {
+  if (!path) return false;
+  const savedMax = Number(sessionStorage.getItem(MAX_ROUTE_INDEX_KEY));
+  if (Number.isNaN(savedMax) || savedMax < 0) return false;
+  const idx = routeOrder.indexOf(path);
+  if (idx === -1) return false;
+  return idx < savedMax;
 };
 
 export const calculateUnitProgress = (unitData, unitNum) => {

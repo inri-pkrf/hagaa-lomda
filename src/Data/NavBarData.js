@@ -15,9 +15,9 @@ const NavBarData = [
             {
                 title: "אוכלוסייה", path: "/population",
                 subChapters: [
-                    { title: "שיעור 1", path: "/populationInfo" },
+                    { title: "שיעור 1", path: "/PopulationInfo" },
                     { title: "שיעור 2", path: "/population-parts" },
-                    { title: "שיעור 3", path: "/populationGame" }
+                    { title: "שיעור 3", path: "/PopulationGame" } 
                 ]
             },
             { title: "שאלות סיכום", path: "/questions-end/1" },

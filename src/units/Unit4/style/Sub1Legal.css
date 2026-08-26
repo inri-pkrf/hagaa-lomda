@@ -20,7 +20,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("/public/assets/UnitFourImgs/LegalSituation/legalSituation-bg.jpg");
+  /* background-image הוסר מכאן - עובר ל-JSX (inline style ב-Sub1Legal.jsx) */
   background-size: cover;
   background-position: center;
   z-index: 10;

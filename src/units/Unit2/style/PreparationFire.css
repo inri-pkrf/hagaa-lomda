@@ -1,5 +1,3 @@
-
-
 html, body {
   margin: 0;
   padding: 0;
@@ -27,12 +25,12 @@ html, body {
 
 @keyframes firstSlider {
   0% {
-    background-image: url("/public/assets/UnitTwoImgs/fire/fire-bg1.png");
+    background-image: var(--fire-bg1);
   }
 
 
   100% {
-    background-image: url("/public/assets/UnitTwoImgs/fire/fire-bg2.png");
+    background-image: var(--fire-bg2);
   }
 }
 
@@ -41,12 +39,12 @@ html, body {
 
 @keyframes secondSlider {
   0% {
-    background-image: url("/public/assets/UnitTwoImgs/fire/fire-bg2.png");
+    background-image: var(--fire-bg2);
   }
 
 
   100% {
-    background-image: url("/public/assets/UnitTwoImgs/fire/fire-bg2-marked.png");
+    background-image: var(--fire-bg2-marked);
   }
 }
 
@@ -101,8 +99,3 @@ html, body {
     color: rgb(0, 0, 0);
   }
 }
-
-
-
-
-

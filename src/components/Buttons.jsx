@@ -14,7 +14,18 @@ const { learningId: LEARNING_ID } = getUrlParams();
 // מחדש לגמרי (לא רק בתוך אותו סשן דפדפן).
 const CREDIT_RETURN_KEY = "creditPageReturnPath";
 
-const routeOrder = [
+// ⭐ חדש: מפתח ב-sessionStorage ששומר את האינדקס הרחוק ביותר ב-
+// routeOrder שאליו המשתמש הגיע אי-פעם בסשן הנוכחי. בשונה מ-"routeIndex"
+// (שמשקף את המיקום הנוכחי בלבד, ולכן יכול "לרדת" כשחוזרים אחורה בין
+// עמודים), הערך הזה רק עולה - ומשמש כמקור אמת גנרי לשאלה "האם המשתמש
+// כבר עבר את העמוד הזה והתקדם הלאה", בלי צורך שכל עמוד/תת-פרק ישמור
+// בעצמו דגל "הושלם" נפרד. זה משמש את isPathVisited ב-Progressunits.js
+// כדי להציג וי על תתי-פרקים בסיידבר.
+const MAX_ROUTE_INDEX_KEY = "maxRouteIndex";
+
+// ⭐ export כדי ש-Progressunits.js יוכל להשתמש באותו רצף עמודים בדיוק
+// (במקום לשכפל/לנחש אותו) לצורך isPathVisited.
+export const routeOrder = [
   "/",
   "/info-lomda",
   "/info-lomda/3",
@@ -415,7 +426,24 @@ function Buttons() {
       savedIndex >= 0 &&
       savedIndex < routeOrder.length
     ) {
-      if (matchingIndexes.includes(savedIndex)) index = savedIndex;
+      if (matchingIndexes.includes(savedIndex)) {
+        index = savedIndex;
+      } else {
+        // ⭐ תוקן: כשחוזרים לעמוד-"רכזת" שחוזר על עצמו כמה פעמים ב-
+        // routeOrder (כמו "/population" או "/rockets", שמפרידים בין
+        // תתי-פרקים), הבחירה בברירת מחדל הייתה תמיד המופע הראשון
+        // (matchingIndexes[0]) - שיכול להיות *נמוך* מהמיקום הקודם
+        // (savedIndex), ולכן maxRouteIndex "נתקע" ולא מתקדם עד שממש
+        // עוברים לתת-הפרק הבא. עכשיו בוחרים את המופע הקרוב ביותר
+        // *קדימה* ביחס למיקום הקודם - כך ההתקדמות תמיד "זזה קדימה"
+        // בעקביות גם דרך עמודי-רכזת, ותת-פרק מסומן כ"נחצה" (ולכן
+        // מקבל וי בסיידבר) מיד כשחוזרים ממנו לרכזת, ולא רק אחרי
+        // שמסיימים גם את התת-פרק הבא.
+        const forwardMatch = matchingIndexes.find((i) => i > savedIndex);
+        if (forwardMatch !== undefined) {
+          index = forwardMatch;
+        }
+      }
     }
 
     setCurrentIndex(index);
@@ -426,6 +454,19 @@ function Buttons() {
         : null,
     );
     sessionStorage.setItem("routeIndex", String(index));
+
+    // ⭐ חדש: מעדכנים את "האינדקס הרחוק ביותר שאליו הגענו" - רק עולה,
+    // אף פעם לא יורד (בשונה מ-routeIndex הרגיל שמשקף רק את המיקום
+    // הנוכחי ויכול לרדת כשחוזרים אחורה). זה מה שמאפשר לסיידבר לדעת
+    // אילו תתי-פרקים כבר "נחצו" ולסמן אותם בוי, גם בלי שכל עמוד ישמור
+    // דגל "הושלם" נפרד בעצמו.
+    if (index >= 0) {
+      const savedMax = Number(sessionStorage.getItem(MAX_ROUTE_INDEX_KEY));
+      const currentMax = Number.isNaN(savedMax) ? -1 : savedMax;
+      if (index > currentMax) {
+        sessionStorage.setItem(MAX_ROUTE_INDEX_KEY, String(index));
+      }
+    }
 
     // ⭐ חדש: מעדכנים את "נקודת החזרה" של CreditPage בכל פעם שנמצאים
     // בעמוד אחר (לא CreditPage עצמו) - כך תמיד יש ערך עדכני לחזרה אליו.

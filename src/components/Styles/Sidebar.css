@@ -179,16 +179,21 @@
 }
 
 
+/* ⭐ תוקן: היה justify-content: center, מה שדחק את הטקסט ואת הצ'ק
+   צמוד זה לזה במרכז וגרם לצ'ק להיראות "נעלם"/נחתך. עכשיו
+   space-between + padding אופקי, כמו ב-.chapter-card, כדי שהטקסט
+   יהיה בצד אחד והצ'ק בצד השני. גם הגובה הקבוע ב-vh הוחלף לריפוד
+   דינמי כדי שלא ייחתך על מסכים שונים. */
 .sub-chapter-item {
   width: 12vw;
-  height: 8vh;
+  min-height: 4vw;
   background: #bdefff;
-  padding: 0.52vw 0.78vw;
+  padding: 0.52vw 0.94vw;
   border-radius: 0.52vw;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  font-size: 2vh;
+  font-size: 1vw;
   color: #2c3e50;
   box-sizing: border-box;
   box-shadow: 0 0.1vw 0.21vw rgba(0, 0, 0, 0.05);
@@ -197,17 +202,24 @@
 }
 
 
+.sub-chapter-item.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 
 
 .check-badge-main, .check-badge-sub {
   width: 1.04vw;
   height: 1.04vw;
+  min-width: 1.04vw;
+  min-height: 1.04vw;
   background-color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 0.1vw 0.21vw rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
 }
 
 
@@ -325,4 +337,3 @@
   background-color: #333;
   color: #fff;
 }
-

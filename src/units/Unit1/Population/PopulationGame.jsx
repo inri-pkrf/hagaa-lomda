@@ -66,13 +66,15 @@ export default function PopulationGame() {
     window.dispatchEvent(
       new CustomEvent("setNextBtnDisabled", { detail: !isGameOver }),
     );
-    if (isGameOver) sessionStorage.setItem("populationGameFinished", "true");
-    sessionStorage.setItem("unitOne-fourth", "finished");
-    sessionStorage.setItem(
-      "currentChapter",
-      JSON.stringify({ name: "unitOne-fourth", state: "finished" }),
-    );
-    window.dispatchEvent(new Event("updateNavbar"));
+    if (isGameOver) {
+      sessionStorage.setItem("populationGameFinished", "true");
+      sessionStorage.setItem("unitOne-fourth", "finished");
+      sessionStorage.setItem(
+        "currentChapter",
+        JSON.stringify({ name: "unitOne-fourth", state: "finished" }),
+      );
+      window.dispatchEvent(new Event("updateNavbar"));
+    }
   }, [isGameOver]);
 
   return (
