@@ -26,7 +26,7 @@ function InterfacesGame() {
     {
       question: "חסר ציוד לתפעול שוטף במפעל - למי יש לפנות?",
       correctId: 3,
-      options: [2, 4, 3],
+      options: [2, 3, 4],
     },
     {
       question: "פרצה שרֵפה במחסן החומרים - למי יש לפנות?",
