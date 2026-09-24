@@ -4,50 +4,36 @@ html, body {
   height: 100%;
 }
 
-
 #PreparationFire-body {
     width: 100vw;
     height: 100vh;
     top: 0;
     left: 0;
     position: fixed;
-    background-size: 100% 100%;      /* ← במקום object-fit: cover */
-    background-position: center;   /* ← ממרכז את התמונה */
-    background-repeat: no-repeat;  /* ← מונע חזרה */
     z-index: 1;
-    animation:
-        firstSlider 2s ease-in-out forwards,
-        secondSlider 1s steps(1, end) 2s forwards;
+    overflow: hidden;
 }
 
-
-
-
-@keyframes firstSlider {
-  0% {
-    background-image: var(--fire-bg1);
-  }
-
-
-  100% {
-    background-image: var(--fire-bg2);
-  }
+/* ⭐ חדש: כל תמונת רקע היא "שכבה" נפרדת שמכסה את כל השטח, ומוצגת/מוסתרת
+   ע"י opacity (במקום החלפת background-image ישירה) - כך שהמעבר בין
+   תמונה לתמונה חלק (crossfade), ולא קפיצה מיידית. opacity הוא property
+   שדפדפנים כן יודעים להנפיש בצורה עקבית ואמינה. */
+.fire-bg-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    z-index: 0;
 }
 
-
-
-
-@keyframes secondSlider {
-  0% {
-    background-image: var(--fire-bg2);
-  }
-
-
-  100% {
-    background-image: var(--fire-bg2-marked);
-  }
+.fire-bg-layer.active {
+    opacity: 1;
 }
-
 
 .marked-folder{
     position: absolute;
@@ -56,10 +42,8 @@ html, body {
     left: 26vw;
     top: 54.5vh;
     cursor: pointer;
-
-
+    z-index: 2;
 }
-
 
 #PreparationFire-headline{
     font-family: 'Karantina';
@@ -68,15 +52,12 @@ html, body {
     right: 10vw;
     top: 4vh;
     color: rgb(0, 0, 0);
-
+    z-index: 2;
 
   animation:
     ToRed 2s ease-in-out 0.5s forwards,
     ToBlack 1s steps(1, end) 2s forwards;
-
-
 }
-
 
 #PreparationFire-text{
     font-family: 'Assistant';
@@ -84,15 +65,14 @@ html, body {
     position: absolute;
     right: 10vw;
     top: 14vh;
+    z-index: 2;
 }
-
 
 @keyframes ToRed {
   to {
     color: rgb(150, 2, 2);
   }
 }
-
 
 @keyframes ToBlack {
   to {
