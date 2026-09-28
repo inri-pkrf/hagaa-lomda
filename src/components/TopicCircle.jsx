@@ -1,6 +1,5 @@
-import React from 'react';
-import './Styles/TopicCircle.css';
-
+import React from "react";
+import "./Styles/TopicCircle.css";
 
 const TopicCircle = ({
   id,
@@ -10,14 +9,11 @@ const TopicCircle = ({
   isCompleted,
   hasInfo,
   hasPlay,
-  onClick
+  onClick,
 }) => {
   return (
     <div className="topic-circle-wrapper" onClick={() => onClick(id)}>
-      <div
-        className="main-circle"
-        style={{ backgroundColor: bgColor }}
-      >
+      <div className="main-circle" style={{ backgroundColor: bgColor }}>
         {/* ה-V הירוק של ההשלמה */}
         {isCompleted && (
           <div className="completion-v">
@@ -26,14 +22,18 @@ const TopicCircle = ({
             </svg>
           </div>
         )}
-       
+
         {/* שימי לב לנתיב כאן: assets/UnitTwoImgs/ */}
         <img
           src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/${icon}`}
-          alt={title}
+          // alt={title}
+          alt={
+            typeof title === "string"
+              ? title
+              : "התנהגות נכונה - הנחיות מצילות חיים"
+          }
           className="main-topic-icon"
         />
-
 
         {/* האייקונים הקטנים למטה */}
         <div className="small-icons-container">
@@ -45,7 +45,7 @@ const TopicCircle = ({
           )}
         </div>
       </div>
-     
+
       <h4 className="topic-title" style={{ color: bgColor }}>
         {title}
       </h4>
@@ -53,6 +53,4 @@ const TopicCircle = ({
   );
 };
 
-
 export default TopicCircle;
-

@@ -81,7 +81,7 @@ function GameLegalSituation() {
           >
             <p className="GameLegalSituation-column-label">שעת התקפה</p>
             <img
-              src={`${process.env.PUBLIC_URL}/assets/UnitFourImgs/LegalSituation/rockets-factState.png`}
+              src={`${process.env.PUBLIC_URL}/assets/UnitFourImgs/LegalSituation/rockets-attack-game.jpg`}
               className="GameLegalSituation-column-icon"
               alt="icon"
             />
@@ -100,7 +100,7 @@ function GameLegalSituation() {
           >
             <p className="GameLegalSituation-column-label">מצב מיוחד בעורף</p>
             <img
-              src={`${process.env.PUBLIC_URL}/assets/UnitFourImgs/LegalSituation/icon-legalState.png`}
+              src={`${process.env.PUBLIC_URL}/assets/UnitFourImgs/LegalSituation//emergency-discussion-game.jpg`}
               className="GameLegalSituation-column-icon"
               alt="icon"
             />

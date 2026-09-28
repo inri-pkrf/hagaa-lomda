@@ -1,8 +1,5 @@
 /* Styles for Unit2 DefensePolicy screens */
 
-
-
-
 .defense-policy-page {
   position: relative;
   width: 100%;
@@ -15,25 +12,19 @@
   background-color: #fdf9f4;
 }
 
-
-
-
 #defense-tasks-sub {
   position: absolute;
   width: 45vw;
   left: 50%;
   transform: translateX(-50%);
   top: 20%;
-  font-family: "Assistant";
+  font-family: "Karantina";
   font-style: normal;
   font-weight: 600;
-  font-size: 4vmin;
+  font-size: 5vmin;
   line-height: 60px;
   text-align: right;
 }
-
-
-
 
 #defense-tasks-list {
   position: absolute;
@@ -51,9 +42,6 @@
   list-style-type: "✔ ";
 }
 
-
-
-
 /* התמונה מוצמדת לשמאל וממלאת שטח משמעותי */
 .gavel-background {
   position: absolute;
@@ -66,9 +54,6 @@
   pointer-events: none;
 }
 
-
-
-
 .policy-content-container {
   position: relative;
   z-index: 2;
@@ -80,9 +65,6 @@
   flex-direction: column;
 }
 
-
-
-
 /* כותרת ראשית גדולה מאוד */
 .policy-main-title {
   font-size: 4vw;
@@ -92,9 +74,6 @@
   font-family: "karantina";
 }
 
-
-
-
 /* כותרת משנה ברורה */
 .policy-sub-title {
   font-size: 2.2vw;
@@ -103,9 +82,6 @@
   padding-right: 2vw;
 }
 
-
-
-
 /* מכל הציטוט - נמתח לרוחב */
 .quote-container {
   position: relative;
@@ -113,9 +89,6 @@
   margin-top: 2vh;
   max-width: 85vw; /* תופס את רוב רוחב המסך */
 }
-
-
-
 
 /* עיצוב המרכאות - מוגדלות ומוצבות בפינות הדיב */
 .quote-icon-top,
@@ -127,24 +100,15 @@
   line-height: 1;
 }
 
-
-
-
 .quote-icon-top {
   top: -4vh;
   right: 0;
 }
 
-
-
-
 .quote-icon-bottom {
   bottom: -8vh;
   left: 2vw;
 }
-
-
-
 
 /* הטקסט עצמו - גדול וממלא את השורות */
 .quote-text {
@@ -155,9 +119,6 @@
   text-align: justify; /* מיישר את הטקסט לשני הצדדים למראה מלא */
   text-justify: inter-word;
 }
-
-
-
 
 .policy-next-button {
   margin-top: 4vh;
@@ -174,16 +135,10 @@
   box-shadow: 0 4px 15px rgba(38, 166, 154, 0.3);
 }
 
-
-
-
 .policy-next-button:hover {
   background-color: #4a2f1d; /* הופך לחום במעבר עכבר */
   transform: scale(1.05);
 }
-
-
-
 
 /* ביטול שוליים של הדפדפן על כל העמוד */
 html,
@@ -193,9 +148,6 @@ body {
   height: 100%;
   overflow: hidden; /* מונע גלילה ברמת העמוד */
 }
-
-
-
 
 .video-page-layout {
   display: flex;
@@ -207,9 +159,6 @@ body {
   box-sizing: border-box;
 }
 
-
-
-
 .video-text-container {
   width: 90%;
   max-width: 1200px;
@@ -217,9 +166,6 @@ body {
   margin-bottom: 2vh; /* רווח קטן בין הטקסט לסרטון */
   flex-shrink: 0; /* מונע מהטקסט להתכווץ */
 }
-
-
-
 
 .policy-video-title {
   font-size: 9vh;
@@ -230,9 +176,6 @@ body {
   font-family: "karantina";
 }
 
-
-
-
 .policy-video-subtitle {
   font-size: 4vh;
   position: relative;
@@ -242,9 +185,6 @@ body {
   font-family: "assistant";
   font-weight: 400;
 }
-
-
-
 
 .video-frame-container {
   position: relative;
@@ -259,9 +199,6 @@ body {
   overflow: hidden;
 }
 
-
-
-
 .responsive-iframe {
   position: absolute;
   top: 0;
@@ -271,32 +208,13 @@ body {
   border: none;
 }
 
-
-
-
 #yt-player-defensepolicy {
   width: 100%;
   height: 100%;
 }
-
-
-
 
 #yt-player-defensepolicy iframe {
   width: 100% !important;
   height: 100% !important;
   border: none;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

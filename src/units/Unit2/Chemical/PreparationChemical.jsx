@@ -84,7 +84,15 @@ function PreparationChemical() {
   };
 
   return (
-    <div className="prep-page-wrapper">
+    <div
+      className="prep-page-wrapper"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitTwoImgs/chemical/bg/chemical-background.jpg)`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <div className="wheel-container">
         {activeTopic && (
           <div className="watermark-icon">

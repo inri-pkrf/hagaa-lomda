@@ -12,6 +12,13 @@
   background-color: #fdf9f4;
 }
 
+.LegalState-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
 #LegalState-sub-text {
   position: absolute;
   font-family: "Karantina";
@@ -35,7 +42,8 @@
 #LegalState-text2 {
   position: absolute;
   font-family: "Assistant";
-  font-size: 3vh;
+  font-size: 2.5vh;
+  font-weight: bold;
   left: 50%;
   transform: translateX(-50%);
   top: 60vh;
@@ -54,11 +62,11 @@
   transform: translateX(-50%);
   top: 60vh;
 }
-
+/* 
 #LegalState-img {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 50%;
   height: 90%;
-}
+} */

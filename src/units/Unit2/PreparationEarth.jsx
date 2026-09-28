@@ -3,10 +3,8 @@ import { useNavigate } from "react-router-dom";
 import TopicCircle from "../../components/TopicCircle.jsx";
 import "./style/Preparation.css";
 
-
 function PreparationEarth() {
   const navigate = useNavigate();
-
 
   // הגדרת 3 נושאים בלבד עבור רעידת אדמה
   const topicsData = [
@@ -19,7 +17,13 @@ function PreparationEarth() {
     },
     {
       id: `VideoPreperEarth`, //לשים בApp את הנתיב
-      title: "התנהגות נכונה - הנחיות מצילות חיים",
+      title: (
+        <>
+          התנהגות נכונה -
+          <br />
+          הנחיות מצילות חיים
+        </>
+      ),
       bgColor: "#56C3A9",
       icon: "goodBehavior.png",
       hasPlay: true,
@@ -34,12 +38,10 @@ function PreparationEarth() {
     },
   ];
 
-
   const [clickedTopics, setClickedTopics] = useState(() => {
     const saved = sessionStorage.getItem("clickedTopicsEarth");
     return saved ? JSON.parse(saved) : [];
   });
-
 
   const handleTopicClick = (id) => {
     setClickedTopics((prev) => {
@@ -53,7 +55,6 @@ function PreparationEarth() {
     navigate(`/${id}`);
   };
 
-
   useEffect(() => {
     const allClicked = topicsData.every((t) => clickedTopics.includes(t.id));
     window.dispatchEvent(
@@ -66,16 +67,19 @@ function PreparationEarth() {
     };
   }, [clickedTopics]);
 
-
   return (
-    <div className="preparation-page-container">
+    <div
+      className="preparation-page-container InfoLomda"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitTwoImgs/earthquake/tsunami-destruction-background.jpg)`,
+      }}
+    >
       <h1 className="preparation-main-header">היערכות והתנהגות</h1>
       <p className="preparation-sub-text">
         לפניך כמה עקרונות להיערכות והתנהגות בתרחיש רעידת אדמה
         <br />
         <strong>יש ללחוץ על האייקונים כדי ללמוד עליהם:</strong>
       </p>
-
 
       <div className="topics-grid">
         {topicsData.map((topic) => (
@@ -91,8 +95,4 @@ function PreparationEarth() {
   );
 }
 
-
 export default PreparationEarth;
-
-
-

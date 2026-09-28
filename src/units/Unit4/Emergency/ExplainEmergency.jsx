@@ -5,6 +5,8 @@ function ExplainEmergency() {
   const [stage, setStage] = useState(0);
   const [isScrolledToEnd, setIsScrolledToEnd] = useState(false);
 
+  const [checkedSteps, setCheckedSteps] = useState({});
+
   const scrollRef = useRef(null);
   const audioRef = useRef(null);
 
@@ -33,6 +35,10 @@ function ExplainEmergency() {
     },
     { text: "קשר עם הנהלת המתקן.", v: true },
   ];
+
+  const toggleCheck = (index) => {
+    setCheckedSteps((prev) => ({ ...prev, [index]: !prev[index] }));
+  };
 
   const getBackgroundImage = () => {
     if (stage === 0) return lobbyImg;
@@ -114,6 +120,15 @@ function ExplainEmergency() {
         </p>
       )}
 
+      {stage === 2 && (
+        <p
+          className="ExplainEmergency-title subtitles"
+          id="checklist-instruction-ExplainEmergency"
+        >
+          יש לסמן ✓ לאחר קריאת כל הנחיה
+        </p>
+      )}
+
       <div className="scene-viewport">
         <img
           src={getBackgroundImage()}
@@ -164,12 +179,31 @@ function ExplainEmergency() {
                 ref={scrollRef}
                 onScroll={handleScroll}
               >
-                {steps.map((s, i) => (
+                {/* {steps.map((s, i) => (
                   <div key={i} className="step-item">
                     <span className="v-mark">{s.v ? "✓" : ""}</span>
                     <p>{s.text}</p>
                   </div>
-                ))}
+                ))} */}
+                {steps.map((s, i) => {
+                  const isChecked = !!checkedSteps[i];
+                  return (
+                    <div key={i} className="step-item">
+                      <div
+                        className={`step-checkbox-emergency ${isChecked ? "checked" : ""}`}
+                        onClick={() => toggleCheck(i)}
+                      >
+                        <span className="v-mark-emergency">✓</span>
+                      </div>
+                      <p
+                        onClick={() => toggleCheck(i)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        {s.text}
+                      </p>
+                    </div>
+                  );
+                })}
               </div>
             </>
           )}

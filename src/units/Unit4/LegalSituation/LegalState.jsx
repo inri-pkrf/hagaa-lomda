@@ -3,7 +3,15 @@ import "../../Unit4/style/LegalState.css";
 
 function LegalState() {
   return (
-    <div className="LegalState-container">
+  <div
+  className="LegalState-container"
+  style={{
+    backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitFourImgs/LegalSituation/emergency-discussion-background1.jpg)`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+  }}
+>
       <h2 id="LegalState-headline"> מצב משפטי</h2>
       <p id="LegalState-sub-text"> מצב מיוחד בעורף </p>
       <p id="LegalState-text1">
@@ -24,11 +32,11 @@ function LegalState() {
         id="icon-pkar-legal"
         alt="icon"
       />
-      <img
+      {/* <img
         src={`${process.env.PUBLIC_URL}/assets/UnitFourImgs/LegalSituation/icon-legalState.png`}
         id="LegalState-img"
         alt="icon"
-      />
+      /> */}
     </div>
   );
 }

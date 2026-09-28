@@ -5,6 +5,7 @@ function InfoFire() {
   return (
     <InfoPageBase
       headline="מאפייני האיום"
+      backgroundImage={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/fire/factory-fire-background.jpg`}
       colorClass="green-box-InfoPage"
       boxes={[
         "שרֵפה היא התפשטות בלתי מבוקרת של בעֵרה, והיא מתרחשת כאשר יש מפגש בין ארבעת הגורמים הבאים:",

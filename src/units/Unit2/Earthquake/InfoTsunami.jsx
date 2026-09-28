@@ -5,6 +5,7 @@ function InfoTsunami() {
   return (
     <InfoPageBase
       headline="מאפייני האיום"
+      backgroundImage={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/earthquake/tsunami-destruction-background.jpg`}
       colorClass="green-box-InfoPage"
       boxes={[
         "צונמי (נחשול רעש) הוא תופעה של גלי ים גדולים המתפרצים בעוצמה רבה אל תוך חופי הים. בישראל ייתכן צונמי כתוצאה מרעידת אדמה בלב-ים או כתוצאה מרעידת אדמה בפנים הארץ.",

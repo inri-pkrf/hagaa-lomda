@@ -10,6 +10,9 @@
   direction: rtl;
   overflow: hidden;
   background-color: #fdf9f4;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .info-page-headline {

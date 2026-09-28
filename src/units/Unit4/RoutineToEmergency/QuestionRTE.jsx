@@ -93,7 +93,7 @@ function QuestionRTE() {
       style={{ backgroundImage: `url(${bgImageUrl})` }}
     >
       <p id="rte-question-click" className="subtitles">
-        יש ללחוץ על האישה המהבהבת כדי לעבור לשאלת הסיכום של הנושא
+        יש ללחוץ על המנהלת המהבהבת כדי לעבור לשאלת הסיכום של הנושא
       </p>
       <img
         src={womanImageUrl}

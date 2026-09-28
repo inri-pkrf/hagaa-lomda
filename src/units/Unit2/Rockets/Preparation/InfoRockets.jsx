@@ -5,6 +5,7 @@ function InfoRockets() {
   return (
     <InfoPageBase
       headline="מאפייני האיום"
+      backgroundImage={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/rockets-background1.jpg`}
       colorClass="green-box-InfoPage"
       boxes={[
         "ירי טילים ורקטות הוא אירוע מלחמתי המאיים על העורף ועלול לגרום לאובדן חיי אדם, שרפות ואירועי חומרים מסוכנים.",

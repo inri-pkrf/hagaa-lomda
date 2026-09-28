@@ -91,7 +91,12 @@ function Preparation() {
   }, [clickedTopics, topicsData]);
 
   return (
-    <div className="preparation-page-container">
+    <div
+      className="preparation-page-container InfoLomda"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitTwoImgs/rockets-background1.jpg)`,
+      }}
+    >
       <h1 className="preparation-main-header">היערכות והתגוננות</h1>
       <p className="preparation-sub-text">
         לפניכם כמה עקרונות להיערכות והתנהגות בתרחיש ירי טילים

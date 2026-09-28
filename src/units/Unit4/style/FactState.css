@@ -9,7 +9,14 @@
 }
 
 .FactState-container {
+  width: 100%;
+  height: 100vh;
   background-color: #fdf9f4;
+}
+
+.FactState-container > div {
+  width: 100%;
+  height: 100%;
 }
 
 #FactState-sub-text {
@@ -35,7 +42,8 @@
 #FactState-text2 {
   position: absolute;
   font-family: "Assistant";
-  font-size: 3vh;
+  font-size: 2.5vh;
+  font-weight: bold;
   left: 50%;
   transform: translateX(-50%);
   top: 60vh;
@@ -55,9 +63,3 @@
   top: 59.5vh;
 }
 
-#FactState-img {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 45%;
-}

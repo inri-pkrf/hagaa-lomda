@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./Styles/InfoPageBase.css";
 
-function InfoPageBase({ headline, boxes, listItems, sliderImages, colorClass, sliderColor }) {
+function InfoPageBase({
+  headline,
+  boxes,
+  listItems,
+  sliderImages,
+  colorClass,
+  sliderColor,
+  backgroundImage,
+}) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -11,17 +19,33 @@ function InfoPageBase({ headline, boxes, listItems, sliderImages, colorClass, sl
     return () => clearInterval(interval);
   }, [sliderImages.length]);
 
-  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % sliderImages.length);
-  const prevSlide = () => setCurrentIndex((prev) => (prev === 0 ? sliderImages.length - 1 : prev - 1));
+  const nextSlide = () =>
+    setCurrentIndex((prev) => (prev + 1) % sliderImages.length);
+  const prevSlide = () =>
+    setCurrentIndex((prev) =>
+      prev === 0 ? sliderImages.length - 1 : prev - 1,
+    );
 
   const renderBox = (item, i) => {
     if (item?.type === "headline") {
-      return <h2 key={i} className="info-page-headline">{item.text}</h2>;
+      return (
+        <h2 key={i} className="info-page-headline">
+          {item.text}
+        </h2>
+      );
     }
     if (item?.type === "box") {
-      return <p key={i} className={`info-page-box ${colorClass}`}>{item.text}</p>;
+      return (
+        <p key={i} className={`info-page-box ${colorClass}`}>
+          {item.text}
+        </p>
+      );
     }
-    return <p key={i} className={`info-page-box ${colorClass}`}>{item}</p>;
+    return (
+      <p key={i} className={`info-page-box ${colorClass}`}>
+        {item}
+      </p>
+    );
   };
 
   const MAX_DOTS = 4;
@@ -51,7 +75,14 @@ function InfoPageBase({ headline, boxes, listItems, sliderImages, colorClass, sl
   };
 
   return (
-    <div className="info-page-wrapper">
+    <div
+      className="info-page-wrapper"
+      style={
+        backgroundImage
+          ? { backgroundImage: `url(${backgroundImage})` }
+          : undefined
+      }
+    >
       <div className="info-page-body">
         <div className="info-page-content">
           <h2 className="info-page-headline">{headline}</h2>
@@ -68,25 +99,47 @@ function InfoPageBase({ headline, boxes, listItems, sliderImages, colorClass, sl
           )}
         </div>
 
-        <div className="info-page-slider" style={{ '--slider-color': sliderColor }}>
-          <button className="info-slider-arrow info-slider-arrow--prev" onClick={prevSlide}>&#10094;</button>
+        <div
+          className="info-page-slider"
+          style={{ "--slider-color": sliderColor }}
+        >
+          <button
+            className="info-slider-arrow info-slider-arrow--prev"
+            onClick={prevSlide}
+          >
+            &#10094;
+          </button>
           <div className="info-slider-frame">
             {sliderImages.map((src, i) => (
-              <img key={i} src={src} alt={`slide-${i + 1}`}
-                className={`info-slider-img ${i === currentIndex ? "active" : ""}`} />
+              <img
+                key={i}
+                src={src}
+                alt={`slide-${i + 1}`}
+                className={`info-slider-img ${i === currentIndex ? "active" : ""}`}
+              />
             ))}
           </div>
-          <button className="info-slider-arrow info-slider-arrow--next" onClick={nextSlide}>&#10095;</button>
+          <button
+            className="info-slider-arrow info-slider-arrow--next"
+            onClick={nextSlide}
+          >
+            &#10095;
+          </button>
 
           <div className="info-slider-dots">
             {getVisibleDots().map((item, i) => {
-                if (item.type === "ellipsis-start" || item.type === "ellipsis-end") {
+              if (
+                item.type === "ellipsis-start" ||
+                item.type === "ellipsis-end"
+              ) {
                 return (
-                    <span key={item.type} className="info-dot-ellipsis">
-                    <span /><span /><span />
-                    </span>
+                  <span key={item.type} className="info-dot-ellipsis">
+                    <span />
+                    <span />
+                    <span />
+                  </span>
                 );
-                }
+              }
               return (
                 <span
                   key={item.index}

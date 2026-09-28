@@ -81,7 +81,10 @@ function Reinforcement() {
   };
 
   return (
-    <div className="how-preper-page">
+    <div className="how-preper-page InfoLomda"
+     style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitTwoImgs/earthquake/tsunami-destruction-background.jpg)`,
+      }}>
       {/* כותרת הדף והאייקון */}
       <div className="header-container">
         <img

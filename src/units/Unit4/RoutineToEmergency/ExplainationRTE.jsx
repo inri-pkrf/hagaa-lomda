@@ -22,13 +22,13 @@ function ExplainationRTE() {
       new CustomEvent("setNextBtnDisabled", { detail: true }),
     );
 
-    const emergencyTimer = setTimeout(() => setStep("emergency"), 3000);
+    const emergencyTimer = setTimeout(() => setStep("emergency"), 2000);
     const contentTimer = setTimeout(() => {
       window.dispatchEvent(
         new CustomEvent("setNextBtnDisabled", { detail: false }),
       );
       navigate("/ExplainationRTE2");
-    }, 6000);
+    }, 4000);
 
     return () => {
       clearTimeout(emergencyTimer);
@@ -101,7 +101,12 @@ function ExplainationRTE() {
   // ── דף תוכן (/ExplainationRTE2) ──
   if (isContentPage) {
     return (
-      <div className="final-content-screen">
+      <div
+        className="final-content-screen InfoLomda"
+        style={{
+          backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitTwoImgs/rockets-background1.jpg)`,
+        }}
+      >
         <div className="header-section">
           <h1 className="rte-title">תיאור מקרה</h1>
           <div className="description-text">

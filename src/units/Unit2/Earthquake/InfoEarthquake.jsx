@@ -9,6 +9,7 @@ function InfoEarthquake() {
   return (
     <InfoPageBase
       headline="מאפייני האיום"
+      backgroundImage={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/earthquake/tsunami-destruction-background.jpg`}
       colorClass="green-box-InfoPage"
       boxes={[
         "רעידת אדמה היא תופעת טבע שכיחה בכדור הארץ. באזורים מיושבים ובנויים גורמת רעידת האדמה לרוב לנזק רב בנפש וברכוש, בהתאם לעוצמת הרעש, המרחק ממוקד הרעש, איכות הבנייה וסוג הקרקע שעליה המבנה ניצב.",

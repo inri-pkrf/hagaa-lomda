@@ -39,7 +39,11 @@ function Sub2Legal() {
   }, []);
 
   return (
-    <div className="Sub2Legal-container">
+    <div className="Sub2Legal-container InfoLomda"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/General/mainBackground.jpg)`,
+      }}
+    >
       <h2 id="Sub2Legal-headline"> השוני והדמיון בין המצבים </h2>
 
       <p id="Sub2Legal-text1">

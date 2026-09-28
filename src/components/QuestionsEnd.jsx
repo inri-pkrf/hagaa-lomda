@@ -322,7 +322,7 @@ function QuestionsEnd({ unitNumber: unitProp }) {
                   fontSize: "1.5vh",
                 }}
               >
-                כן, הגש
+                כן, הגישו
               </button>
 
               <button

@@ -17,7 +17,9 @@ function LastPage() {
   const score = Number(sessionStorage.getItem("finalQuizScore")) || 0;
   const answersKey = "unit_5_quiz_answers";
   const savedAnswers = JSON.parse(sessionStorage.getItem(answersKey)) || {};
-  const questions = JSON.parse(sessionStorage.getItem("unit_5_questions") || "[]");
+  const questions = JSON.parse(
+    sessionStorage.getItem("unit_5_questions") || "[]",
+  );
 
   const [openReview, setOpenReview] = useState(false);
   const attempts = Number(sessionStorage.getItem("quiz_attempt_5")) || 1;
@@ -140,7 +142,9 @@ function LastPage() {
 
       <div className="lastPage__center">
         <p className="lastPage__score">ציונך:</p>
-        <p className={`lastPage_score ${isFail ? "lastPage_score--fail" : "lastPage_score--pass"}`}>
+        <p
+          className={`lastPage_score ${isFail ? "lastPage_score--fail" : "lastPage_score--pass"}`}
+        >
           {score}/100
         </p>
 
@@ -159,9 +163,12 @@ function LastPage() {
         {isPass && (
           <>
             <h2 className="lastPage__subtitle">
-              הציון עבר את הרף הנדרש לצורך קבלת תעודה, התעודה תחכה לך באיזור האישי
+              סיימת את הסמכתך, התעודה תחכה לך באזור האישי{" "}
             </h2>
-            <button className="lastPage__button" onClick={() => setOpenReview(true)}>
+            <button
+              className="lastPage__button"
+              onClick={() => setOpenReview(true)}
+            >
               איפה טעיתי
             </button>
           </>
@@ -176,7 +183,8 @@ function LastPage() {
             {isFirstTry && (
               <>
                 <h2 className="lastPage__subtitle_restart">
-                  שימו לב: יש לבצע את המבחן פעם נוספת, אך אם גם בפעם הזו לא תעברו אותו, תצטרכו לעבור את כל הלומדה מחדש.
+                  שימו לב: יש לבצע את המבחן פעם נוספת, אך אם גם בפעם הזו לא
+                  תעברו אותו, תצטרכו לעבור את כל הלומדה מחדש.
                 </h2>
                 <button
                   className="lastPage__button-try"
@@ -189,7 +197,10 @@ function LastPage() {
                 >
                   נסו שוב
                 </button>
-                <button className="lastPage__button" onClick={() => setOpenReview(true)}>
+                <button
+                  className="lastPage__button"
+                  onClick={() => setOpenReview(true)}
+                >
                   איפה טעיתי
                 </button>
               </>
@@ -198,7 +209,8 @@ function LastPage() {
             {isSecondTry && (
               <>
                 <h2 className="lastPage__subtitle_restart">
-                  שימו לב: עליכם לעבור עוד פעם את הקורס על מנת לגשת שוב למבחן קבלת הסמכה
+                  שימו לב: עליכם לעבור עוד פעם את הקורס על מנת לגשת שוב למבחן
+                  קבלת הסמכה
                 </h2>
                 <button
                   className="lastPage__button-again lastPage__button--danger"
@@ -209,7 +221,10 @@ function LastPage() {
                 >
                   התחלת הלומדה מחדש
                 </button>
-                <button className="lastPage__button" onClick={() => setOpenReview(true)}>
+                <button
+                  className="lastPage__button"
+                  onClick={() => setOpenReview(true)}
+                >
                   איפה טעיתי
                 </button>
               </>
@@ -219,7 +234,10 @@ function LastPage() {
 
         <div className="lastPage__aboutWrapper">
           <span className="lastPage__aboutHint">שווה להציץ 👀</span>
-          <button className="about-us-btn" onClick={() => navigate("/CreditPage")}>
+          <button
+            className="about-us-btn"
+            onClick={() => navigate("/CreditPage")}
+          >
             אודות
           </button>
           <button className="about-us-btn" onClick={handleFeedbackClick}>
@@ -238,7 +256,10 @@ function LastPage() {
         <div className="modalOverlay" onClick={() => setOpenReview(false)}>
           <div className="modalContent" onClick={(e) => e.stopPropagation()}>
             <div className="modalHeader">
-              <button className="modalCloseBtn" onClick={() => setOpenReview(false)}>
+              <button
+                className="modalCloseBtn"
+                onClick={() => setOpenReview(false)}
+              >
                 ✕
               </button>
               <h2 className="modalTitle-center">סקירת טעויות</h2>
@@ -250,9 +271,15 @@ function LastPage() {
                 if (userAnswer === correct) return null;
                 return (
                   <div key={i} className="reviewItem">
-                    <p className="reviewQuestion">{i + 1}. {q.question}</p>
-                    <p className="reviewUser">תשובתך: {q.answers?.[userAnswer] || "לא נענה"}</p>
-                    <p className="reviewCorrect">תשובה נכונה: {q.answers?.[correct]}</p>
+                    <p className="reviewQuestion">
+                      {i + 1}. {q.question}
+                    </p>
+                    <p className="reviewUser">
+                      תשובתך: {q.answers?.[userAnswer] || "לא נענה"}
+                    </p>
+                    <p className="reviewCorrect">
+                      תשובה נכונה: {q.answers?.[correct]}
+                    </p>
                   </div>
                 );
               })}

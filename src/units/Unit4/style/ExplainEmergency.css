@@ -11,7 +11,6 @@
   background-color: #fdf9f4;
 }
 
-
 .ExplainEmergency-main-title {
   font-family: "Karantina";
   font-size: 9vh;
@@ -22,7 +21,6 @@
   width: 100%;
 }
 
-
 .active-glow-tv {
   pointer-events: auto;
   cursor: pointer;
@@ -30,7 +28,6 @@
   z-index: 100 !important;
   animation: pulse-orange 1.5s infinite ease-in-out;
 }
-
 
 @keyframes pulse-orange {
   0% {
@@ -45,7 +42,6 @@
   }
 }
 
-
 .scene-viewport {
   width: 100vw;
   height: 100vh;
@@ -54,12 +50,10 @@
   left: 0;
 }
 
-
 .stage-0 .bg-img {
   width: 100vw;
   height: 100vh;
 }
-
 
 .stage-1 .bg-img,
 .stage-2 .bg-img {
@@ -72,7 +66,6 @@
   opacity: 1;
 }
 
-
 .tv-hotspot {
   position: absolute;
   top: 10vh;
@@ -83,14 +76,12 @@
   z-index: 20;
 }
 
-
 .tv-standalone-img {
   width: 30vw;
   height: 30vh;
   position: relative;
   z-index: 2;
 }
-
 
 /* .glow-effect {
   position: absolute;
@@ -104,7 +95,6 @@
   z-index: 1;
 } */
 
-
 /* .tv-hotspot:hover .glow-effect {
   opacity: 1;
   box-shadow: 0 0 2vw 0.7vw rgba(233, 165, 114, 0.8);
@@ -114,7 +104,6 @@
   transform: scale(1.1);
 }
 
-
 .tv-content-container.visible {
   opacity: 1;
   transform: scale(1);
@@ -122,23 +111,19 @@
   overflow-y: auto;
 }
 
-
 .scroll-area {
   padding: 2vh;
   direction: rtl;
 }
 
-
 .click-hint-text {
   font-size: 2vh;
 }
-
 
 .v-mark {
   color: green;
   font-weight: bold;
 }
-
 
 .continue-btn {
   position: absolute;
@@ -155,7 +140,6 @@
   z-index: 110;
 }
 
-
 .ExplainEmergency-title {
   z-index: 10;
   position: fixed;
@@ -165,7 +149,6 @@
   padding-top: 6vh;
   padding-bottom: 1vh;
 }
-
 
 .tv-content-container {
   position: absolute;
@@ -186,21 +169,18 @@
   direction: rtl;
 }
 
-
 .tv-content-container.visible {
   opacity: 1;
   transform: scale(1);
   pointer-events: all;
 }
 
-
 .tv-red-header {
-  background-color: #ff0000;
+  background-color: #E2787A ;
   padding: 1vh;
   text-align: center;
   flex-shrink: 0;
 }
-
 
 .tv-title {
   color: white;
@@ -208,7 +188,6 @@
   font-size: 1.2vw;
   font-weight: bold;
 }
-
 
 .scroll-area-peach {
   flex: 1;
@@ -222,7 +201,6 @@
   width: 0.6vw;
 }
 
-
 /* עיצוב כל שורה ברשימה */
 .step-item {
   display: flex;
@@ -235,12 +213,10 @@
   padding-bottom: 0vh;
 }
 
-
 .step-item p {
   margin-block-start: 1.5vmin;
   margin-block-end: 1.5vmin;
 }
-
 
 .v-mark {
   color: green;
@@ -252,7 +228,6 @@
   display: flex;
   justify-content: center;
 }
-
 
 /* מכולת הנחיית הגלילה */
 .scroll-hint {
@@ -268,7 +243,6 @@
   z-index: 5;
 }
 
-
 .arrow-down {
   width: 0;
   height: 0;
@@ -277,7 +251,6 @@
   border-top: 0.7vh solid #ff0000;
   margin-top: 0.3vh;
 }
-
 
 /* האזור של החיילת */
 .soldier-hotspot {
@@ -294,7 +267,6 @@
   justify-content: center;
 }
 
-
 .pulse-circle {
   width: 7vw;
   height: 12vh;
@@ -310,7 +282,6 @@
   border: 0.15vw solid rgba(255, 255, 255, 0.8);
 }
 
-
 /* אנימציית פעימה חזקה יותר */
 @keyframes pulse-animation {
   0% {
@@ -318,19 +289,16 @@
     box-shadow: 0 0 0 0 rgba(230, 154, 69, 0.7);
   }
 
-
   70% {
     transform: scale(1.1);
     box-shadow: 0 0 0 2vw rgba(230, 154, 69, 0);
   }
-
 
   100% {
     transform: scale(0.9);
     box-shadow: 0 0 0 0 rgba(230, 154, 69, 0);
   }
 }
-
 
 /* שדרוג קטן לכיתוב כדי שיבלוט על התמונה */
 .click-hint {
@@ -345,5 +313,57 @@
   text-shadow: none;
 }
 
+/* עיצוב העיגול המהבהב והאינטראקטיבי */
+.step-checkbox-emergency {
+  width: 1.8vw;
+  height: 1.8vw;
+  min-width: 1.8vw;
+  border: 0.15vw solid #2e7d32;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  animation: pulse-green-emergency 2s infinite ease-in-out;
+  flex-shrink: 0;
+}
 
+.step-checkbox-emergency:hover {
+  transform: scale(1.1);
+  background-color: rgba(46, 125, 50, 0.1);
+}
 
+.step-checkbox-emergency.checked {
+  background-color: #2e7d32;
+  border-color: #2e7d32;
+  animation: none;
+}
+
+.step-checkbox-emergency .v-mark-emergency {
+  color: white;
+  font-weight: bold;
+  font-size: 1vw;
+  display: none;
+}
+
+.step-checkbox-emergency.checked .v-mark-emergency {
+  display: block;
+}
+
+@keyframes pulse-green-emergency {
+  0% {
+    box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 0.5vw rgba(46, 125, 50, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(46, 125, 50, 0);
+  }
+}
+
+#checklist-instruction-ExplainEmergency{
+  top: 15vh;
+}

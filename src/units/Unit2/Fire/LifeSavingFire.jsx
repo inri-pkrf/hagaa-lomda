@@ -6,14 +6,20 @@ function LifeSavingFire() {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: true }));
+    window.dispatchEvent(
+      new CustomEvent("setNextBtnDisabled", { detail: true }),
+    );
     return () => {
-      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
+      window.dispatchEvent(
+        new CustomEvent("setNextBtnDisabled", { detail: false }),
+      );
     };
   }, []);
 
   const handleEnded = () => {
-    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
+    window.dispatchEvent(
+      new CustomEvent("setNextBtnDisabled", { detail: false }),
+    );
   };
 
   // השהה את הסרטון כשהמודל נסגר
@@ -33,8 +39,8 @@ function LifeSavingFire() {
       <p id="LifeSavingFire-headline">מה עושים בזמן שרפה?</p>
 
       <p id="LifeSavingFire-text">
-        יש ללחוץ על האייקון על מנת לצפות בסרטון וללמוד עוד על התנהלות נכונה
-        בעת התמודדות עם שרפה:
+        יש ללחוץ על האייקון על מנת לצפות בסרטון וללמוד עוד על התנהלות נכונה בעת
+        התמודדות עם שרפה:
       </p>
 
       <img
@@ -44,7 +50,7 @@ function LifeSavingFire() {
         onClick={() => setIsOpen(true)}
       />
 
-      {isOpen && (
+      {/* {isOpen && (
         <div className="lifesaving-overlay">
           <div className="lifesaving-video-container">
             <button onClick={handleClose} className="lifesaving-close-btn">✖</button>
@@ -57,6 +63,34 @@ function LifeSavingFire() {
               controlsList="nodownload"
             >
               <source src={`${process.env.PUBLIC_URL}/assets/videos/LifeSavingFire.mp4`} type="video/mp4" />
+              הדפדפן שלך אינו תומך בהפעלת וידאו.
+            </video>
+          </div>
+        </div>
+      )} */}
+
+      {isOpen && (
+        <div className="lifesaving-overlay" onClick={handleClose}>
+          <div
+            className="lifesaving-video-container"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button onClick={handleClose} className="lifesaving-close-btn">
+              ✖
+            </button>
+
+            <video
+              ref={videoRef}
+              style={{ width: "100%", height: "100%", borderRadius: "1vw" }}
+              controls
+              autoPlay
+              onEnded={handleEnded}
+              controlsList="nodownload"
+            >
+              <source
+                src={`${process.env.PUBLIC_URL}/assets/videos/LifeSavingFire.mp4`}
+                type="video/mp4"
+              />
               הדפדפן שלך אינו תומך בהפעלת וידאו.
             </video>
           </div>

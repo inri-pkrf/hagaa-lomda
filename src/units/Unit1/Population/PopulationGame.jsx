@@ -11,7 +11,7 @@ const itemsData = [
   },
   {
     id: 2,
-    text: "מידע שוטף, הכוונה והדרכה על דרכי התמודדות, איתור בני משפחה ודאגה לשלומם",
+    text: " הכוונה והדרכה על דרכי התמודדות, מידע שוטף, איתור בני משפחה ודאגה לשלומם",
     correct: "info",
     summary: "על ידי הקמת מסגרות חינוכיות לטיפול בילדי העובדים",
     icon: `${process.env.PUBLIC_URL}/assets/UnitOneImgs/Population/iconGame2.png`,

@@ -5,6 +5,7 @@ function InfoChemical() {
   return (
     <InfoPageBase
       headline="מאפייני האיום"
+      backgroundImage={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/chemical/bg/chemical-background.jpg`}
       colorClass="green-box-InfoPage"
       boxes={[
         `אירוע חומרים מסוכנים הוא התרחשות בלתי מבוקרת או תאונה שבהן מעורב חומר מסוכן.`,
