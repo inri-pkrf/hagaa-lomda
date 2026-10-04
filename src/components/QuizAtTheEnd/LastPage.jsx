@@ -7,12 +7,19 @@ import { STATE_KEYS } from "../../Data/Statekeys";
 import { getUrlParams } from "../../utils/learningId";
 import { buildUmbracoPayload } from "../../utils/buildUmbracoPayload";
 
+
 const { learningId: LEARNING_ID } = getUrlParams();
+
+
+// ⭐ חדש: הקישור לאזור האישי להפקת תעודה
+const CERTIFICATE_URL = "https://inri.orc.org.il/learning/haga/";
+
 
 function LastPage() {
   const navigate = useNavigate();
   const { width, height } = useWindowSize();
   const [isOpen, setIsOpen] = useState(false);
+
 
   const score = Number(sessionStorage.getItem("finalQuizScore")) || 0;
   const answersKey = "unit_5_quiz_answers";
@@ -21,8 +28,10 @@ function LastPage() {
     sessionStorage.getItem("unit_5_questions") || "[]",
   );
 
+
   const [openReview, setOpenReview] = useState(false);
   const attempts = Number(sessionStorage.getItem("quiz_attempt_5")) || 1;
+
 
   const isPerfect = score === 100;
   const isPass = score >= 70 && score < 100;
@@ -30,7 +39,9 @@ function LastPage() {
   const isFirstTry = attempts < 2;
   const isSecondTry = attempts >= 2;
 
+
   const [showConfetti, setShowConfetti] = useState(false);
+
 
   // ⭐ בונה את ה-sessionState (זהה לזה שנשלח לשרת) - שימוש משותף
   // גם ל-saveToServer וגם ל-downloadReport, כדי שלא יהיה שוני ביניהם.
@@ -42,6 +53,7 @@ function LastPage() {
     });
     return sessionState;
   };
+
 
   // ⭐ בעמוד הסיום הסטטוס נקבע לפי הציון (3 = עבר, 2 = לא עבר) - לא לפי
   // הנתיב כמו בשאר האפליקציה, ולכן מעבירים statusOverride במפורש.
@@ -59,6 +71,7 @@ function LastPage() {
     });
   };
 
+
   useEffect(() => {
     const saveToServer = async () => {
       const isDev = LEARNING_ID === undefined || Number.isNaN(LEARNING_ID);
@@ -67,13 +80,16 @@ function LastPage() {
         return;
       }
 
+
       try {
         const body = buildLastPagePayload();
+
 
         console.log("📤 [LastPage] שולח ל-UMBRACCO:", {
           ...body,
           stateJson: body.stateJson.substring(0, 100) + "...",
         });
+
 
         const res = await fetch("/umbraco/surface/learning/SetIframeLearning", {
           method: "POST",
@@ -81,6 +97,7 @@ function LastPage() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),
         });
+
 
         if (!res.ok) {
           console.error("❌ שגיאת שרת בשמירת ציון:", res.status);
@@ -92,18 +109,56 @@ function LastPage() {
       }
     };
 
+
     saveToServer();
   }, []);
+
 
   const handleFeedbackClick = () => {
     setIsOpen(false);
     window.dispatchEvent(new Event("openFeedbackPopup"));
   };
 
+
+  // ⭐ חדש: כפתור "להפקת תעודה באיזור האישי" - מוצג רק למי שעבר בהצלחה.
+  // 1) יוצא ממסך מלא אם האפליקציה כרגע במסך מלא.
+  // 2) מנווט את חלון הדפדפן העליון (לא רק את ה-iframe של הלומדה) לקישור
+  //    האזור האישי, כדי שהניווט "ישבור" החוצה מה-iframe בפועל.
+  // 3) מוסיף פרמטר ייחודי (timestamp) לכתובת כדי להבטיח טעינה "רעננה"
+  //    של הדף (לא גרסה שמורה ב-cache של הדפדפן).
+  const handleCertificateClick = () => {
+    const freshUrl = `${CERTIFICATE_URL}?t=${Date.now()}`;
+
+
+    const navigateOut = () => {
+      try {
+        // מנסים לנווט את החלון העליון (פורצים מה-iframe)
+        if (window.top) {
+          window.top.location.href = freshUrl;
+        } else {
+          window.location.href = freshUrl;
+        }
+      } catch (e) {
+        // אם מסיבה כלשהי (למשל מדיניות cross-origin) אי אפשר לגשת
+        // ל-window.top, נופלים חזרה לניווט החלון הנוכחי בלבד
+        window.location.href = freshUrl;
+      }
+    };
+
+
+    if (document.fullscreenElement) {
+      document.exitFullscreen().then(navigateOut).catch(navigateOut);
+    } else {
+      navigateOut();
+    }
+  };
+
+
   // ⭐ מוריד בדיוק את אותו גוף בקשה (body) שבאמת נשלח ונשמר בשרת - בפורמט
   // הסופי שסוכם: { learningId, stateJson, progressData, status }
   const downloadReport = () => {
     const body = buildLastPagePayload();
+
 
     const blob = new Blob([JSON.stringify(body, null, 2)], {
       type: "application/json",
@@ -118,6 +173,7 @@ function LastPage() {
     URL.revokeObjectURL(url);
   };
 
+
   useEffect(() => {
     if (score >= 70) {
       setShowConfetti(true);
@@ -125,11 +181,13 @@ function LastPage() {
     }
   }, [score]);
 
+
   return (
     <div className="lastPage">
       {/* <button className="lastPage_button" onClick={downloadReport}>
         הורד JSON לבדיקה
       </button> */}
+
 
       {showConfetti && (
         <Confetti
@@ -140,6 +198,7 @@ function LastPage() {
         />
       )}
 
+
       <div className="lastPage__center">
         <p className="lastPage__score">ציונך:</p>
         <p
@@ -148,9 +207,11 @@ function LastPage() {
           {score}/100
         </p>
 
+
         {(isPerfect || isPass) && (
           <h1 className="lastPage__title">כל הכבוד!</h1>
         )}
+
 
         {isPerfect && (
           <h2 className="lastPage__subtitle">
@@ -159,6 +220,7 @@ function LastPage() {
             התעודה תחכה לך באזור האישי
           </h2>
         )}
+
 
         {isPass && (
           <>
@@ -174,11 +236,24 @@ function LastPage() {
           </>
         )}
 
+
+        {/* ⭐ חדש: כפתור להפקת תעודה - מוצג רק כשעברו בהצלחה (מושלם או עובר) */}
+        {(isPerfect || isPass) && (
+          <button
+            className="lastPage__certificate-btn"
+            onClick={handleCertificateClick}
+          >
+            להפקת תעודה באיזור האישי
+          </button>
+        )}
+
+
         {isFail && (
           <>
             <h1 className="lastPage__subtitle">
               לא עברת את הרף הנדרש לצורך קבלת תעודה
             </h1>
+
 
             {isFirstTry && (
               <>
@@ -206,6 +281,7 @@ function LastPage() {
               </>
             )}
 
+
             {isSecondTry && (
               <>
                 <h2 className="lastPage__subtitle_restart">
@@ -232,6 +308,7 @@ function LastPage() {
           </>
         )}
 
+
         <div className="lastPage__aboutWrapper">
           <span className="lastPage__aboutHint">שווה להציץ 👀</span>
           <button
@@ -246,11 +323,13 @@ function LastPage() {
         </div>
       </div>
 
+
       <img
         src={`${process.env.PUBLIC_URL}/assets/General/Quiz/building.png`}
         alt="building"
         className="lastPage__building"
       />
+
 
       {openReview && (
         <div className="modalOverlay" onClick={() => setOpenReview(false)}>
@@ -291,4 +370,6 @@ function LastPage() {
   );
 }
 
+
 export default LastPage;
+

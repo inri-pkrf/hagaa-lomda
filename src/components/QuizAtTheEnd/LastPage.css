@@ -9,15 +9,18 @@
   font-family: "Karantina";
   background: #fffaf7;
 
+
   /* 🔥 חשוב: לא לשבור תמונות */
   overflow: visible;
   margin-top: 4vw;
 }
 
+
 /* מרכז */
 .lastPage__center {
   position: absolute;
   z-index: 2;
+
 
   text-align: center;
   display: flex;
@@ -30,6 +33,7 @@
   transform: translate(-50%, -50%);
 }
 
+
 /* ציונים */
 .lastPage__score {
   font-size: 5vmin;
@@ -38,12 +42,14 @@
   font-family: "Karantina";
 }
 
+
 .lastPage_score {
   font-size: 7vmin;
   color: #78be4f;
   margin: 0;
   font-family: "Karantina";
 }
+
 
 /* כותרות */
 .lastPage__title {
@@ -53,6 +59,7 @@
   margin: 0;
   font-family: "Karantina";
 }
+
 
 .lastPage__subtitle {
   font-size: 6vmin;
@@ -64,6 +71,7 @@
   font-family: "Karantina";
 }
 
+
 .lastPage__building {
   position: absolute;
   bottom: -10vh;
@@ -72,6 +80,7 @@
   opacity: 0.2;
   z-index: 1;
 }
+
 
 .lastPage__button-try,
 .lastPage__button-again,
@@ -85,11 +94,13 @@
   z-index: 2;
 }
 
+
 .lastPage__button {
   padding: 1vh 2vw;
   font-size: 3vmin;
   border: none;
 }
+
 
 .lastPage__button-again,
 .lastPage__button-try {
@@ -99,12 +110,38 @@
   box-shadow: 0 0.5vw 1vw rgba(5, 58, 82, 0.445);
 }
 
+
 .lastPage__button-again:hover,
 .lastPage__button-try:hover,
 .lastPage__button:hover {
   background: #36b0d9;
   scale: 1.05;
 }
+
+
+/* ⭐ חדש: כפתור "להפקת תעודה באיזור האישי" - מודגש כפעולה המרכזית
+   (CTA) למי שעבר בהצלחה, לכן צבע בולט ושונה משאר הכפתורים. */
+.lastPage__certificate-btn {
+  margin-top: 1.5vh;
+  padding: 1.2vh 2.2vw;
+  font-size: 3.2vmin;
+  font-family: "Karantina";
+  background: #36b0d9;
+  color: white;
+  border: none;
+  border-radius: 1vw;
+  cursor: pointer;
+  box-shadow: 0 1vw 2vw rgba(5, 57, 82, 0.25);
+  z-index: 2;
+  transition: background 0.2s ease, scale 0.2s ease;
+}
+
+
+.lastPage__certificate-btn:hover {
+  background: #36b0d9;
+  scale: 1.05;
+}
+
 
 /* פופאפ */
 .modalOverlay {
@@ -119,6 +156,7 @@
   font-size: 1.8vmin;
 }
 
+
 .modalContent {
   background: white;
   width: 60%;
@@ -131,35 +169,28 @@
   direction: rtl;
 }
 
+
 /* סקירה */
 .reviewItem {
   border-bottom: 1px solid #ddd;
   padding: 1vh 0;
 }
 
+
 .reviewQuestion {
   font-weight: bold;
 }
+
 
 .reviewUser {
   color: #e67e22;
 }
 
+
 .reviewCorrect {
   color: #2ecc71;
 }
 
-/* .modalCloseBtn {
-  position: fixed;
-  top: 6.5vw;
-
-
-  font-size: 3.5vmin;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  z-index: 10;
-} */
 
 .modalCloseBtn {
   position: static; /* חשוב! */
@@ -168,6 +199,7 @@
   border: none;
   cursor: pointer;
 }
+
 
 .modalHeader {
   position: sticky;
@@ -178,21 +210,21 @@
   justify-content: space-between;
   align-items: center;
 
+
   padding-bottom: 1vh;
 }
+
 
 .modalTitle-center {
   position: absolute;
   left: 43%;
 }
 
+
 .modalContent {
   position: relative;
 }
 
-/* .modalContent {
-  position: relative;
-} */
 
 .lastPage__subtitle_restart {
   font-size: 4vmin;
@@ -203,19 +235,23 @@
   width: 60%;
 }
 
+
 .lastPage_score {
   font-size: 7vmin;
   margin: 0;
   font-family: "Karantina";
 }
 
+
 .lastPage_score--pass {
   color: #78be4f;
 }
 
+
 .lastPage_score--fail {
   color: #e25344;
 }
+
 
 .lastPage__aboutWrapper {
   display: flex;
@@ -224,12 +260,14 @@
   gap: 1vw;
 }
 
+
 .lastPage__aboutHint {
   font-size: 2vmin;
   font-weight: 600;
   color: #555;
   animation: hintPulse 1.8s infinite;
 }
+
 
 @keyframes hintPulse {
   0% {
@@ -246,6 +284,7 @@
   }
 }
 
+
 .lastPage_button {
   margin-top: 1.5vh;
   padding: 1vh 2vw;
@@ -259,3 +298,4 @@
   color: white;
   border-color: #ffffff;
 }
+

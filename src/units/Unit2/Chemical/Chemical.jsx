@@ -70,6 +70,9 @@ function Chemical() {
 
   const [startSequence, setStartSequence] = useState(hasPlayedIntro);
 
+  // true רק כשהאנימציה הסתיימה (או כשחוזרים לדף והאינטרו כבר הופעל)
+  const [animationDone, setAnimationDone] = useState(hasPlayedIntro);
+
   const [unlockedStep, setUnlockedStep] = useState(() => {
     const savedStep = sessionStorage.getItem("chemicalUnlockedStep");
     return savedStep ? parseInt(savedStep, 10) : 1;
@@ -102,7 +105,16 @@ function Chemical() {
         setStartSequence(true);
         sessionStorage.setItem("chemicalIntroPlayed", "true");
       }, 500);
-      return () => clearTimeout(sequenceTimeout);
+
+      // האנימציה נמשכת 2 שניות אחרי שהיא מתחילה (500ms)
+      const animationEndTimeout = setTimeout(() => {
+        setAnimationDone(true);
+      }, 2500);
+
+      return () => {
+        clearTimeout(sequenceTimeout);
+        clearTimeout(animationEndTimeout);
+      };
     }
   }, [hasPlayedIntro]);
 
@@ -138,11 +150,33 @@ function Chemical() {
 
   return (
     <div className={containerClass}>
-      {!hasPlayedIntro && (
+      {/* 1. רקע הפתיחה - נשאר עד שהאנימציה מסתיימת */}
+      {!animationDone && (
         <div
           className="rockets-background-layer"
           style={{
             backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitTwoImgs/rocketsOpeningBg.jpg)`,
+          }}
+        />
+      )}
+
+      {/* 2. רקע חדש - מופיע רק כשהאנימציה הסתיימה.
+          בלי הקלאס rockets-background-layer כדי שכללי ה-CSS של האנימציה לא יחולו עליו */}
+      {animationDone && (
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            zIndex: 1,
+            backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitTwoImgs/chemical/bg/chemical-background.jpg)`,
+            animation: hasPlayedIntro
+              ? "none"
+              : "fadeInAnimation 1s ease forwards",
           }}
         />
       )}

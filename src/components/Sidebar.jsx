@@ -25,7 +25,7 @@ const Sidebar = ({ unitInfo }) => {
     UnitFour: "unitFour-finished",
   };
 
-  // ⭐ חדש: במקום לסמוך על sessionStorage.getItem("currentUnit") (שערכו
+  // ⭐ במקום לסמוך על sessionStorage.getItem("currentUnit") (שערכו
   // עלול "להישכח"/להתאפס לאחור סתם בגלל דפדוף בין יחידות בסיידבר - כנראה
   // ע"י קוד אחר שמאפס אותו כשנכנסים ל-layout של יחידה ישנה), מחשבים כאן
   // באופן עצמאי ואמין את היחידה האחרונה שבאמת הגיעו אליה, לפי הדגלים
@@ -43,11 +43,22 @@ const Sidebar = ({ unitInfo }) => {
 
   const trueCurrentUnitIndex = getTrueCurrentUnitIndex();
 
-  const [displayedIndex, setDisplayedIndex] = useState(trueCurrentUnitIndex);
+  // ⭐ חדש: היחידה שבה המשתמש נמצא כרגע (לא בהכרח היחידה הכי מתקדמת
+  // שלו). נקבעת לפי currentUnit שנשמר בכל ניווט מהסיידבר, אבל לעולם לא
+  // עוברת את היחידה האמיתית הנוכחית (trueCurrentUnitIndex).
+  // כך, אחרי שעוברים מיחידה 3 ליחידה 2 דרך הסיידבר, פתיחה חוזרת שלו
+  // נשארת על יחידה 2 ולא "קופצת" בחזרה ליחידה 3.
+  const getViewedUnitIndex = () => {
+    const savedIdx = units.indexOf(sessionStorage.getItem("currentUnit"));
+    const trueIdx = getTrueCurrentUnitIndex();
+    return savedIdx === -1 ? trueIdx : Math.min(savedIdx, trueIdx);
+  };
+
+  const [displayedIndex, setDisplayedIndex] = useState(getViewedUnitIndex);
 
   const isViewingCurrentUnit = displayedIndex === trueCurrentUnitIndex;
 
-  // ⭐ חדש: תמיד שולפים את נתוני היחידה המוצגת ישירות מ-NavBarData לפי
+  // ⭐ תמיד שולפים את נתוני היחידה המוצגת ישירות מ-NavBarData לפי
   // האינדקס האמיתי - לא מה-unitInfo prop, כדי שלא "נירש" כותרת/צבע/
   // פרקים שגויים אם unitInfo עצמו נבנה מתוך currentUnit שגוי.
   const displayedUnitData = NavBarData[displayedIndex];
@@ -100,7 +111,8 @@ const Sidebar = ({ unitInfo }) => {
 
   const toggleSidebar = () => {
     if (!isOpen) {
-      setDisplayedIndex(getTrueCurrentUnitIndex());
+      // ⭐ שונה: פותחים על היחידה שבה המשתמש נמצא, לא על היחידה הכי מתקדמת
+      setDisplayedIndex(getViewedUnitIndex());
       setExpandedChapters(new Set());
       window.dispatchEvent(new Event("updateNavbar"));
     }
@@ -109,6 +121,9 @@ const Sidebar = ({ unitInfo }) => {
 
   const handleNavigation = (path, isLocked) => {
     if (!isLocked && path) {
+      // ⭐ חדש: מעדכנים את currentUnit ליחידה שאליה עוברים, כדי שהצבעים
+      // בכותרת, ה-ProgressBar והמעלית יתאימו ליחידה החדשה
+      sessionStorage.setItem("currentUnit", units[displayedIndex]);
       navigate(path);
       setIsOpen(false);
     }
@@ -267,7 +282,7 @@ const Sidebar = ({ unitInfo }) => {
                   {(() => {
                     if (!hasSubChapters) return null;
 
-                    // ⭐ חדש: אותה שיטת "נעילה מדורגת" שכבר קיימת לפרקים
+                    // ⭐ אותה שיטת "נעילה מדורגת" שכבר קיימת לפרקים
                     // הראשיים (chapterFinishedFlags/nextAvailableIdx
                     // למעלה), עכשיו גם בתוך כל פרק - ברמת תתי-הפרקים
                     // שלו. מוצאים את התת-פרק הראשון בתוך הפרק הזה שעדיין
@@ -288,21 +303,14 @@ const Sidebar = ({ unitInfo }) => {
                     return (
                       isExpanded &&
                       chapter.subChapters.map((sub, sIdx) => {
-                        // ⭐ תוקן (גנרי לכל היחידות/הפרקים): מציגים וי על
-                        // תת-פרק אם המשתמש כבר "חצה" אותו ברצף הלינארי של
-                        // הלומדה (routeOrder ב-Buttons.jsx) - כלומר הגיע
-                        // אליו והתקדם משם הלאה. זה עובד אוטומטית לכל
-                        // תתי-הפרקים בכל היחידות, בלי להסתמך על
-                        // sub.isFinished הסטטי (שלא קיים בכלל ב-
-                        // NavBarData) וגם בלי להסתמך על
-                        // chapterSessionKeys (שממופה רק לכותרות של פרקים
-                        // ראשיים, לא לתתי-פרקים).
+                        // ⭐ מציגים וי על תת-פרק אם המשתמש כבר "חצה" אותו
+                        // ברצף הלינארי של הלומדה (routeOrder ב-Buttons.jsx)
+                        // - כלומר הגיע אליו והתקדם משם הלאה.
                         const isSubFinished = subFinishedFlags[sIdx];
 
-                        // ⭐ חדש: תת-פרק נעול אם הפרק ההורה כולו נעול,
+                        // ⭐ תת-פרק נעול אם הפרק ההורה כולו נעול,
                         // או שהוא בא אחרי תת-פרק אחר בתוך אותו פרק
-                        // שעדיין לא הושלם - בדיוק כמו הנעילה בין פרקים
-                        // ראשיים, רק ברמה פנימית יותר.
+                        // שעדיין לא הושלם.
                         const isSubLocked =
                           isLocked || sIdx > nextAvailableSubIdx;
 
@@ -321,10 +329,7 @@ const Sidebar = ({ unitInfo }) => {
                           >
                             <span className="sub-title">{sub.title}</span>
                             {isSubLocked ? (
-                              <Lock
-                                size={"1vw"}
-                                className="lock-icon"
-                              />
+                              <Lock size={"1vw"} className="lock-icon" />
                             ) : (
                               isSubFinished && (
                                 <div className="check-badge-sub">
