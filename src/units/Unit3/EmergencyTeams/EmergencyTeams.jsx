@@ -1,17 +1,17 @@
-// ============================================================
-// EmergencyTeams.jsx
-// ============================================================
 import React, { useEffect, useState, useMemo } from "react";
+
 import { useNavigate, useLocation } from "react-router-dom";
 
 function EmergencyTeams() {
   const navigate = useNavigate();
+
   const location = useLocation();
 
   const rocketFramesData = useMemo(
     () => [
       {
         id: 1,
+
         text: (
           <>
             {" "}
@@ -19,11 +19,15 @@ function EmergencyTeams() {
             <br />
           </>
         ),
+
         path: "/DetailEmergencyTeams",
+
         completionKey: "emergencyFrame1Completed",
       },
+
       {
         id: 2,
+
         text: (
           <>
             {" "}
@@ -31,36 +35,53 @@ function EmergencyTeams() {
             <br />
           </>
         ),
+
         path: "/QuizEmergencyTeams",
+
         completionKey: "emergencyFrame2Completed",
       },
+
       {
         id: 3,
+
         text: (
           <>
             סיכום הפרק
             <br />
           </>
         ),
+
         path: "/summary-checklist-unit3-sub1",
+
         completionKey: "emergencyFrame3Completed",
       },
     ],
+
     [],
   );
 
   const getCompletedFrames = () =>
     rocketFramesData
+
       .filter((f) => sessionStorage.getItem(f.completionKey) === "true")
+
       .map((f) => f.id);
 
   const [clickedFrames, setClickedFrames] = useState(getCompletedFrames);
+
   const [hasPlayedIntro] = useState(
     () => sessionStorage.getItem("emergencyIntroPlayed") === "true",
   );
+
   const [startSequence, setStartSequence] = useState(hasPlayedIntro);
+
+  // נוסף כדי לנהל את תמונת הרקע הקבועה לאחר סיום האנימציה (בדיוק כמו בטילים)
+
+  const [animationDone, setAnimationDone] = useState(hasPlayedIntro);
+
   const [unlockedStep, setUnlockedStep] = useState(() => {
     const savedStep = sessionStorage.getItem("emergencyUnlockedStep");
+
     return savedStep ? parseInt(savedStep, 10) : 1;
   });
 
@@ -68,44 +89,68 @@ function EmergencyTeams() {
     rocketFramesData.forEach((frame) => {
       if (sessionStorage.getItem(`emergency-visited-${frame.id}`) === "true") {
         sessionStorage.setItem(frame.completionKey, "true");
+
         sessionStorage.setItem(
           `EmergencyTeams-sub${frame.id}-finished`,
+
           "finished",
         );
       }
     });
 
     const updated = getCompletedFrames();
+
     setClickedFrames(updated);
+
     sessionStorage.setItem("clickedEmergencyFrames", JSON.stringify(updated));
 
     const maxCompleted = updated.length > 0 ? Math.max(...updated) : 0;
+
     const newUnlocked = Math.max(maxCompleted + 1, 1);
+
     if (newUnlocked > unlockedStep) {
       setUnlockedStep(newUnlocked);
+
       sessionStorage.setItem("emergencyUnlockedStep", String(newUnlocked));
     }
   }, [location.pathname]);
 
   useEffect(() => {
     sessionStorage.setItem("MainTitle", "צוותי חירום");
+
     if (!hasPlayedIntro) {
-      const t = setTimeout(() => {
+      const sequenceTimeout = setTimeout(() => {
         setStartSequence(true);
+
         sessionStorage.setItem("emergencyIntroPlayed", "true");
       }, 500);
-      return () => clearTimeout(t);
+
+      // האנימציה נמשכת כמו בטילים
+
+      const animationEndTimeout = setTimeout(() => {
+        setAnimationDone(true);
+      }, 2500);
+
+      return () => {
+        clearTimeout(sequenceTimeout);
+
+        clearTimeout(animationEndTimeout);
+      };
     }
   }, [hasPlayedIntro]);
 
   const handleFrameClick = (frame) => {
     if (frame.id <= unlockedStep) {
       sessionStorage.setItem(`emergency-visited-${frame.id}`, "true");
+
       if (frame.id === unlockedStep && unlockedStep < rocketFramesData.length) {
         const next = unlockedStep + 1;
+
         setUnlockedStep(next);
+
         sessionStorage.setItem("emergencyUnlockedStep", String(next));
       }
+
       navigate(frame.path);
     }
   };
@@ -114,13 +159,17 @@ function EmergencyTeams() {
     const allClicked = rocketFramesData.every((f) =>
       clickedFrames.includes(f.id),
     );
+
     window.dispatchEvent(
       new CustomEvent("setNextBtnDisabled", { detail: !allClicked }),
     );
+
     if (allClicked) {
       sessionStorage.setItem("unitThree-first", "finished");
+
       window.dispatchEvent(new Event("updateNavbar"));
     }
+
     return () =>
       window.dispatchEvent(
         new CustomEvent("setNextBtnDisabled", { detail: false }),
@@ -129,9 +178,14 @@ function EmergencyTeams() {
 
   const containerClass = `rockets-container ${startSequence ? "sequence-active" : ""} ${hasPlayedIntro ? "no-animation" : ""}`;
 
+  const showContent = startSequence;
+
   return (
     <div className={containerClass}>
-      {!hasPlayedIntro && (
+      {/*רקע הפתיחה - נשאר עד שהאנימציה מסתיימת
+       */}
+
+      {!animationDone && (
         <div
           className="rockets-background-layer"
           style={{
@@ -139,17 +193,53 @@ function EmergencyTeams() {
           }}
         />
       )}
-      {startSequence && (
+
+      {/* 2. רקע קבוע - מופיע רק כשהאנימציה הסתיימה (או מיד אם כבר הוצג בעבר) */}
+
+      {animationDone && (
+        <div
+          style={{
+            position: "absolute",
+
+            top: 0,
+
+            left: 0,
+
+            width: "100%",
+
+            height: "100%",
+
+            backgroundSize: "cover",
+
+            backgroundPosition: "center",
+
+            zIndex: 1,
+
+            // כאן תוכלי לשים את נתיב התמונה הקבועה החדשה עבור צוותי חירום
+
+            backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitThreeImgs/EmergencyTeams/emergencyTeams-newBg.jpg)`,
+
+            animation: hasPlayedIntro
+              ? "none"
+              : "fadeInAnimation 1s ease forwards",
+          }}
+        />
+      )}
+
+      {showContent && (
         <div
           className={`rockets-sub-header ${hasPlayedIntro ? "" : "fade-in-delayed"}`}
         >
           <h3 className="title-rockets">בפרק זה נלמד על:</h3>
         </div>
       )}
+
       <div className="rockets-frames-container">
         {rocketFramesData.map((frame) => {
           const isLocked = frame.id > unlockedStep;
+
           const isClicked = clickedFrames.includes(frame.id);
+
           return (
             <div
               key={frame.id}
@@ -157,9 +247,13 @@ function EmergencyTeams() {
               onClick={() => handleFrameClick(frame)}
               style={{
                 position: "relative",
+
                 display: "flex",
+
                 flexDirection: "column",
+
                 alignItems: "center",
+
                 justifyContent: "center",
               }}
             >
@@ -167,29 +261,42 @@ function EmergencyTeams() {
                 className={`rocket-frame-center-text${isLocked ? " blurred" : ""}`}
                 style={{
                   position: "absolute",
+
                   top: "50%",
+
                   left: "50%",
+
                   transform: "translate(-50%,-50%)",
+
                   zIndex: 5,
+
                   textAlign: "center",
+
                   pointerEvents: "none",
+
                   fontWeight: 700,
+
                   fontSize: "1.5vmin",
+
                   color: "#472E1A",
+
                   lineHeight: 1.2,
                 }}
               >
                 {frame.text}
               </div>
+
               <img
                 src={`${process.env.PUBLIC_URL}/assets/UnitThreeImgs/frame${frame.id}.png`}
                 className={`rocket-frame-img${isLocked ? " blurred" : ""}`}
                 alt={`frame-${frame.id}`}
               />
+
               {isClicked && (
                 <div className="rocket-frame-v">
                   <svg viewBox="0 0 24 24" width="3vw" height="4vh">
                     <circle cx="12" cy="12" r="12" fill="#4CAF50" />
+
                     <polyline
                       points="20 6 9 17 4 12"
                       fill="none"
@@ -203,7 +310,8 @@ function EmergencyTeams() {
           );
         })}
       </div>
-      {startSequence && (
+
+      {showContent && (
         <div
           className={`rockets-footer-hint ${hasPlayedIntro ? "" : "fade-in-delayed"}`}
         >
@@ -215,4 +323,5 @@ function EmergencyTeams() {
 }
 
 export { EmergencyTeams };
+
 export default EmergencyTeams;

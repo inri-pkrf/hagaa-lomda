@@ -1,3 +1,6 @@
+// ============================================================
+// ExternalRecruits.jsx
+// ============================================================
 import React, { useEffect, useState, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -67,6 +70,8 @@ function ExternalRecruits() {
     () => sessionStorage.getItem("externalRecruitsIntroPlayed") === "true",
   );
   const [startSequence, setStartSequence] = useState(hasPlayedIntro);
+  const [animationDone, setAnimationDone] = useState(hasPlayedIntro);
+
   const [unlockedStep, setUnlockedStep] = useState(() => {
     const savedStep = sessionStorage.getItem("externalRecruitsUnlockedStep");
     return savedStep ? parseInt(savedStep, 10) : 1;
@@ -104,11 +109,19 @@ function ExternalRecruits() {
   useEffect(() => {
     sessionStorage.setItem("MainTitle", "מגויסי חוץ");
     if (!hasPlayedIntro) {
-      const t = setTimeout(() => {
+      const sequenceTimeout = setTimeout(() => {
         setStartSequence(true);
         sessionStorage.setItem("externalRecruitsIntroPlayed", "true");
       }, 500);
-      return () => clearTimeout(t);
+
+      const animationEndTimeout = setTimeout(() => {
+        setAnimationDone(true);
+      }, 2500);
+
+      return () => {
+        clearTimeout(sequenceTimeout);
+        clearTimeout(animationEndTimeout);
+      };
     }
   }, [hasPlayedIntro]);
 
@@ -142,10 +155,12 @@ function ExternalRecruits() {
   }, [clickedFrames, rocketFramesData]);
 
   const containerClass = `rockets-container ${startSequence ? "sequence-active" : ""} ${hasPlayedIntro ? "no-animation" : ""}`;
+  const showContent = startSequence;
 
   return (
     <div className={containerClass}>
-      {!hasPlayedIntro && (
+      {/* 1. רקע הפתיחה - נשאר עד שהאנימציה מסתיימת */}
+      {!animationDone && (
         <div
           className="rockets-background-layer"
           style={{
@@ -153,13 +168,35 @@ function ExternalRecruits() {
           }}
         />
       )}
-      {startSequence && (
+
+      {/* 2. רקע קבוע - מופיע רק כשהאנימציה הסתיימה */}
+      {animationDone && (
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            zIndex: 1,
+            backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitThreeImgs/ExternalRecruits/externalRecruits-newInfoBg.jpg)`,
+            animation: hasPlayedIntro
+              ? "none"
+              : "fadeInAnimation 1s ease forwards",
+          }}
+        />
+      )}
+
+      {showContent && (
         <div
           className={`rockets-sub-header ${hasPlayedIntro ? "" : "fade-in-delayed"}`}
         >
           <h3 className="title-rockets">בפרק זה נלמד על:</h3>
         </div>
       )}
+
       <div className="rockets-frames-container">
         {rocketFramesData.map((frame) => {
           const isLocked = frame.id > unlockedStep;
@@ -217,7 +254,8 @@ function ExternalRecruits() {
           );
         })}
       </div>
-      {startSequence && (
+
+      {showContent && (
         <div
           className={`rockets-footer-hint ${hasPlayedIntro ? "" : "fade-in-delayed"}`}
         >

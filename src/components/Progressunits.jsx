@@ -8,14 +8,14 @@ export const chapterSessionKeys = {
   "ממשקים": 'unitOne-third',
   "אוכלוסייה": 'unitOne-fourth',
   "שאלות סיכום_1": 'unitOne-questions',
-  "סיכום פרק_1": 'unitOne-checklist',
+  "סיכום היחידה_1": 'unitOne-checklist',
   "פתיחה_2": 'unittwo-opening',
-  "ירי טילים": 'unitTwo-first',
-  "רעידת אדמה וצונאמי": 'unitTwo-second',
+  "ירי טילים ורקטות": 'unitTwo-first',
+  "רעידת אדמה וצונמי": 'unitTwo-second',
   "שרפה": 'unitTwo-third',
   "חומרים מסוכנים": 'unitTwo-fourth',
   "שאלות סיכום_2": 'unitTwo-questions',
-  "סיכום פרק_2": 'unitTwo-checklist',
+  "סיכום היחידה_2": 'unitTwo-checklist',
   "פתיחה_3": 'unitthree-opening',
   "צוותי חירום": 'unitThree-first',
   " שמרטפיה": 'unitThree-second',
@@ -23,17 +23,17 @@ export const chapterSessionKeys = {
   "מגויסי חוץ ": 'unitThree-fourth',
   " תיק מפעל": 'unitThree-fifth',
   "שאלות סיכום_3": 'unitThree-questions',
-  "סיכום פרק_3": 'unitThree-checklist',
+  "סיכום היחידה_3": 'unitThree-checklist',
   "פתיחה_4": 'unitfour-opening',
   "מצבים משפטיים": 'unitFour-first',
   " מעבר משגרה לחירום": 'unitFour-second',
   "אירוע חירום": 'unitFour-third',
-  "שאלות סיכום_4": 'unitFour-questions',
-  "סיכום פרק_4": 'unitFour-checklist',
+  "שאלות היחידה_4": 'unitFour-questions',
+  "סיכום היחידה_4": 'unitFour-checklist',
 };
 
 export const isChapterFinished = (chapterTitle, unitNum) => {
-  const duplicateTitles = ["פתיחה", "שאלות סיכום", "סיכום פרק"];
+  const duplicateTitles = ["פתיחה", "שאלות סיכום", "סיכום היחידה"];
   const key = duplicateTitles.includes(chapterTitle)
     ? `${chapterTitle}_${unitNum}`
     : chapterTitle;

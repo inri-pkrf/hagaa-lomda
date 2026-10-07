@@ -53,7 +53,15 @@ function QuestionFactoryFile() {
   };
 
   return (
-    <div className="question-factory-container">
+    <div
+      className="question-factory-container"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitThreeImgs/FactoryFile/FactoryFile-bgInfo.jpg)`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       {/* דיב לבן מופיע רק אחרי תשובה נכונה */}
       {isCorrect && <div className="question-white-cover" />}
 

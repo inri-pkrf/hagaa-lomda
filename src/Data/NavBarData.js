@@ -21,7 +21,7 @@ const NavBarData = [
                 ]
             },
             { title: "שאלות סיכום", path: "/questions-end/1" },
-            { title: "סיכום פרק", path: "/summary-checklist-unit1" },
+            { title: "סיכום היחידה", path: "/summary-checklist-unit1" },
         ]
     },  // נב בר יחידה 1 מוכן סופית
     {
@@ -30,7 +30,7 @@ const NavBarData = [
         chapters: [
             { title: "פתיחה", path: "/unit-two-opening" },
              {
-                title: "ירי טילים", path: "/rockets",
+                title: "ירי טילים ורקטות", path: "/rockets",
                 subChapters: [
                     { title: "מאפייני האיום", path: "/info-rockets" },
                     {
@@ -43,7 +43,7 @@ const NavBarData = [
                         { title: "למה חשוב להמתין 10 דקות?", path: "/Wait10mins" },
                         { title: "ציוד ואחזקת מרחב מוגן", path: "/BuildingMaintenance" },
                     ]},
-                    { title: " מרבים מוגנים", path: "/TimeToEnterMamad1" },
+                    { title: " מרחבים מוגנים", path: "/TimeToEnterMamad1" },
                     {
                     title: "מדיניות התגוננות", path: "/defense-policy/sub-one" ,
                     subChapters:[
@@ -54,7 +54,7 @@ const NavBarData = [
                 ]
             },
             {
-                title: "רעידת אדמה וצונאמי", path: "/earthquake",
+                title: "רעידת אדמה וצונמי", path: "/earthquake",
                 subChapters: [
                     { title: "מאפייני האיום", path: "/earthquake/info-earthquake" },
                     {
@@ -95,7 +95,7 @@ const NavBarData = [
                 ]
             },
             { title: "שאלות סיכום", path: "/questions-end/2" },
-            { title: "סיכום פרק", path: "/summary-checklist-unit2" },
+            { title: "סיכום היחידה", path: "/summary-checklist-unit2" },
 
 
         ],
@@ -110,7 +110,7 @@ const NavBarData = [
                 subChapters: [
                     { title: " למידה על הצוותים", path: "/DetailEmergencyTeams" },
                     { title: "שאלת סיכום", path: "/QuizEmergencyTeams" },
-                    { title: "סיכום הפרק", path: "/summary-checklist-unit3-sub1" }
+                    { title: "סיכום היחידה", path: "/summary-checklist-unit3-sub1" }
                 ]
             },
             {
@@ -150,7 +150,7 @@ const NavBarData = [
 
 
             { title: "שאלות סיכום", path: "/questions-end/3" },
-            { title: "סיכום פרק", path: "/summary-checklist-unit3" },
+            { title: "סיכום היחידה", path: "/summary-checklist-unit3" },
         ]
     },
     {
@@ -175,7 +175,7 @@ const NavBarData = [
             },
             { title: "אירוע חירום", path: "/ExplainEmergency" },
             { title: "שאלות סיכום", path: "/questions-end/4" },
-            { title: "סיכום פרק", path: "/summary-checklist-unit4" },
+            { title: "סיכום היחידה", path: "/summary-checklist-unit4" },
         ]
     },
 ];

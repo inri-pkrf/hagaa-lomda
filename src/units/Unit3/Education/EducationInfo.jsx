@@ -5,6 +5,7 @@ function EducationInfo() {
   return (
     <InfoPageBase
       headline="מה זה בדיוק?"
+      backgroundImage={`${process.env.PUBLIC_URL}/assets/UnitThreeImgs/Education/education-newBgInfo.jpg`}
       colorClass="orange-box-InfoPage"
       sliderColor="#FFB356"
       boxes={[

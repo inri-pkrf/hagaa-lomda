@@ -34,9 +34,8 @@ function TimeToEnterMamad2() {
         יש להפעיל את הסרטון ולצפות בו. בסיומו ניתן להמשיך על ידי לחיצה על החץ.
       </p>
       <video
-        width="20%"
         controls
-        id="video-time-to-enter-mamad"
+        className="video-time-to-enter-mamad"
         onEnded={handleVideoEnd}
       >
         <source

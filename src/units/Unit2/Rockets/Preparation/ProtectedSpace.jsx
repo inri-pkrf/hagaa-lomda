@@ -45,7 +45,7 @@ function ProtectedSpace() {
         יש לצפות בסרטון, בסיומו יש ללחוץ על החץ להמשך
       </h2>
       <video
-        id="yt-player-protectedspace" // ה-ID הזה מושך את העיצוב מה-CSS
+        className="video-time-to-enter-mamad"
         ref={videoRef}
         controls
         controlsList="nodownload"

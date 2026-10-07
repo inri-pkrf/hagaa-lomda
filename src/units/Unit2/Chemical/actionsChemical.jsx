@@ -18,8 +18,11 @@ const ActionsChemical = () => {
   return (
     <div
       className="hazard-screen"
-      style={{
-        backgroundImage: `url('${imagesPath}/chemical-bottom-bg.png')`,
+         style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitTwoImgs/chemical/bg/chemical-background.jpg)`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
       }}
     >
       <h1 id="chemical-actions-title" className="chemical-causes-title">

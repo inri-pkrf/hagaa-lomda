@@ -304,7 +304,7 @@ body {
   border-radius: 8px;
 }
 
-#video-time-to-enter-mamad {
+/* #video-time-to-enter-mamad {
   width: 20vw;
   height: 62vh;
   top: 30vh;
@@ -314,6 +314,20 @@ body {
   padding: 2vh;
   border-radius: 2vw;
   position: absolute;
+} */
+
+.video-time-to-enter-mamad {
+  display: block;
+  position: absolute;
+  top: 27vh;
+  left: 50%;
+  transform: translate(-50%);
+  width: auto;
+  max-width: 90vw;
+  height: 70vh;
+  border-radius: 20px;
+  background-color: #000;
+  object-fit: contain;
 }
 
 #win {
