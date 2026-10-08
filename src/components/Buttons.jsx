@@ -270,6 +270,10 @@ function Buttons() {
   const hasRestoredState = useRef(false);
   const restoreCheckComplete = useRef(false);
 
+  // ⭐ חדש: "חתימה" של השמירה האחרונה שנשלחה בהצלחה לשרת. אם הבקשה הבאה
+  // זהה בדיוק (אותו סטטוס ואותו stateJson), לא שולחים אותה שוב.
+  const lastSentRef = useRef(null);
+
   const currentPath = location.pathname;
   const color = getHeaderColor();
   const isBuildingMaintenance = currentPath === "/BuildingMaintenance";
@@ -321,6 +325,13 @@ function Buttons() {
         returnPath,
       });
 
+      // ⭐ חדש: אם זה בדיוק אותו תוכן כמו השמירה האחרונה - לא שולחים שוב.
+      const signature = `${body.status}|${body.stateJson}`;
+      if (signature === lastSentRef.current) {
+        return; // אותו נתיב ואותו state - אין מה לשלוח
+      }
+      lastSentRef.current = signature;
+
       console.log("📤 שולח ל-UMBRACCO:", {
         ...body,
         stateJson: body.stateJson.substring(0, 100) + "...",
@@ -334,11 +345,15 @@ function Buttons() {
       });
 
       if (!res.ok) {
+        // ⭐ חדש: כישלון לא ימנע ניסיון חוזר באותו תוכן
+        lastSentRef.current = null;
         console.error("❌ שגיאת שרת בשמירה:", res.status);
       } else {
         console.log("✅ נשמר בהצלחה!");
       }
     } catch (e) {
+      // ⭐ חדש: כישלון לא ימנע ניסיון חוזר באותו תוכן
+      lastSentRef.current = null;
       console.error("❌ שגיאה בשמירה:", e);
     }
   };
@@ -566,10 +581,9 @@ function Buttons() {
       sessionStorage.setItem("MainTitle", "מבנה שיעור הסמכה דיגיטלי");
     }
 
-    // ⭐ אותו כלל - לא שולחים שמירה כללית אם היעד הוא /last-page
-    if (targetPath !== "/last-page") {
-      saveState(targetPath, routeOrder.indexOf(targetPath));
-    }
+    // ⭐ תוקן: הוסר ה-saveState מכאן. השמירה מתבצעת פעם אחת בלבד,
+    // ב-useEffect שתלוי ב-currentPath, אחרי שהניווט באמת קרה. כך אין
+    // שמירה כפולה, ואין שמירה של נתיב שהניווט אליו נחסם.
 
     const navEvent = new CustomEvent(isNext ? "onNextNav" : "onPrevNav", {
       cancelable: true,
