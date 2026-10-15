@@ -1,24 +1,37 @@
 import React, { useRef, useEffect } from "react";
-import '../style/DefensePolicy.css';
+import "../style/DefensePolicy.css";
 
 function SubTwoDefensePolicy() {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: true }));
+    window.dispatchEvent(
+      new CustomEvent("setNextBtnDisabled", { detail: true }),
+    );
     return () => {
-      window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
+      window.dispatchEvent(
+        new CustomEvent("setNextBtnDisabled", { detail: false }),
+      );
     };
   }, []);
 
   const handleEnded = () => {
-    window.dispatchEvent(new CustomEvent('setNextBtnDisabled', { detail: false }));
+    window.dispatchEvent(
+      new CustomEvent("setNextBtnDisabled", { detail: false }),
+    );
   };
 
   return (
-    <div className="defense-policy-page video-page-layout">
+    <div
+      className="defense-policy-page video-page-layout InfoLomda"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitTwoImgs/rockets-background1.jpg)`,
+      }}
+    >
       <div className="video-text-container">
-        <h2 className="policy-video-subtitle">צפו בסרטון ובסיומו לחצו על המשך</h2>
+        <h2 className="policy-video-subtitle">
+          צפו בסרטון ובסיומו לחצו על המשך
+        </h2>
       </div>
       <div className="video-frame-container">
         <video
@@ -28,7 +41,10 @@ function SubTwoDefensePolicy() {
           onEnded={handleEnded}
           controlsList="nodownload"
         >
-          <source src={`${process.env.PUBLIC_URL}/assets/videos/defense-policy.mp4`} type="video/mp4" />
+          <source
+            src={`${process.env.PUBLIC_URL}/assets/videos/defense-policy.mp4`}
+            type="video/mp4"
+          />
           הדפדפן שלך אינו תומך בהפעלת וידאו.
         </video>
       </div>

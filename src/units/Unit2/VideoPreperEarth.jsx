@@ -15,7 +15,11 @@ function VideoPreperEarth() {
   };
 
   return (
-    <div className="defense-policy-page video-page-layout">
+    <div className="defense-policy-page video-page-layout InfoLomda"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitTwoImgs/earthquake/tsunami-destruction-background.jpg)`,
+      }}
+    >
       <div className="video-text-container">
         <h2 className="policy-video-subtitle">
           צפו בסרטון ובסיומו לחצו על המשך

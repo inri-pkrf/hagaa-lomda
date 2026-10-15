@@ -34,7 +34,10 @@ function ChoosingSafeRoomVideo() {
 
   return (
     <div>
-      <div className="choosing-safe-room-wrapper">
+      <div className="choosing-safe-room-wrapper InfoLomda"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitTwoImgs/rockets-background1.jpg)`,
+      }}>
         <h2 id="choosingSafeRoom-headline"> בחירת מרחב מוגן </h2>
         <img
           src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/icons/ChoosingSafeRoom.png`}

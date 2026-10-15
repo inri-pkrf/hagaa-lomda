@@ -34,7 +34,10 @@ function ProtectedSpace() {
     };
   }, []);
   return (
-    <div className="protected-space-wrapper">
+    <div className="protected-space-wrapper InfoLomda"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitTwoImgs/rockets-background1.jpg)`,
+      }}>
       <img
         src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/icons/ProtectedSpace.png`}
         alt="icon"

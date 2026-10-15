@@ -40,7 +40,10 @@ function ExposureChemical() {
   }, []);
 
   return (
-    <div className="exposure-wrapper">
+    <div className="exposure-wrapper InfoLomda"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitTwoImgs/chemical/bg/chemical-background.jpg)`,
+      }}>
       <div className="exposure-header-section">
         <h1>דרכי חשיפה</h1>
         <p>

@@ -94,7 +94,11 @@ function ChoosingSafeRoom() {
   }, [hoveredCards]);
 
   return (
-    <div className="choosing-safe-room-wrapper">
+    <div className="choosing-safe-room-wrapper"
+    id="choosing-safe-room-wrapper-bg"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitTwoImgs/rockets-background1.jpg)`,
+      }}>
       <h2 id="choosingSafeRoom-headline"> בחירת המרחב המוגן והכנתו </h2>
       <img
         src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/icons/ChoosingSafeRoom.png`}

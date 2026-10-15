@@ -45,7 +45,7 @@ function Defense() {
   };
 
   return (
-    <div className="defense-wrapper" style={{ position: "relative", minHeight: "100vh" }}>
+    <div className="defense-wrapper InfoLomda" style={{ position: "relative", minHeight: "100vh",  backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitTwoImgs/rockets-background1.jpg)`, }}>
       <h2 id="defense-headline">כיצד נתגונן</h2>
       <img
         src={`${process.env.PUBLIC_URL}/assets/UnitTwoImgs/icons/Defense.png`}

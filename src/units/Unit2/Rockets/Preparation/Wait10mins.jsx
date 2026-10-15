@@ -8,7 +8,10 @@ function Wait10mins() {
   const [viewed, setViewed] = useState(false);
 
   return (
-    <div className="wait10min-wrapper">
+    <div className="wait10min-wrapper InfoLomda"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitTwoImgs/rockets-background1.jpg)`,
+      }}>
       <div style={{ position: "relative" }}>
         <h2 id="wait10min-headline">למה חשוב להמתין להנחיה מפורשת לשחרור?</h2>
         <img

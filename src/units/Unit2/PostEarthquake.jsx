@@ -3,7 +3,10 @@ import "./style/PostEarthquake.css";
 
 function PostEarthquake() {
   return (
-    <div className="post-earthquake-wrapper">
+    <div className="post-earthquake-wrapper InfoLomda"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/UnitTwoImgs/earthquake/tsunami-destruction-background.jpg)`,
+      }}>
       <h2 id="PostEarthquake-headline">לאחר רעידת אדמה</h2>
       <p id="PostEarthquake-text1">לאחר רעידת אדמה יש לנהוג באופן הבא:</p>
       <img
