@@ -81,7 +81,7 @@ function Defense() {
               />
               {viewedImgs[img.id] && selectedImg !== img.id && (
                 <div
-                  className="completion-v"
+                  className="completion-v-defensePosters"
                   style={{ position: "absolute", left: img.left, top: img.top, transform: "translateX(-50%)", zIndex: 999 }}
                 >
                   <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" width="30" height="30">

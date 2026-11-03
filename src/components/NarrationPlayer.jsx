@@ -21,6 +21,7 @@ export default function NarrationPlayer() {
     sessionStorage.getItem("narrationPaused") === "true";
 
   const [muted, setMuted] = useState(getInitialMuted);
+  const [locallyMuted, setLocallyMuted] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const previousSrcRef = useRef(null);
@@ -31,8 +32,9 @@ export default function NarrationPlayer() {
       setMuted(nextMuted);
       sessionStorage.setItem("narrationPaused", nextMuted ? "true" : "false");
       if (audioRef.current) {
-        audioRef.current.muted = nextMuted;
-        if (nextMuted) {
+        const shouldMute = nextMuted || locallyMuted;
+        audioRef.current.muted = shouldMute;
+        if (shouldMute) {
           audioRef.current.pause();
           setPlaying(false);
         } else if (audioRef.current.src) {
@@ -45,13 +47,17 @@ export default function NarrationPlayer() {
     window.addEventListener("setNarrationPaused", handleNarrationPaused);
     const handleDisabled = (e) => setControlsLocked(Boolean(e.detail));
     window.addEventListener("setNarrationDisabled", handleDisabled);
+    const handleLocalMute = (e) => setLocallyMuted(e.detail === true);
+    window.addEventListener("setNarrationLocalMuted", handleLocalMute);
     return () => {
       window.removeEventListener("setNarrationPaused", handleNarrationPaused);
       window.removeEventListener("setNarrationDisabled", handleDisabled);
+      window.removeEventListener("setNarrationLocalMuted", handleLocalMute);
     };
-  }, []);
+  }, [locallyMuted]);
 
   const currentSrc = srcs?.[currentIndex];
+  const effectiveMuted = muted || locallyMuted;
 
   useEffect(() => {
     setCurrentIndex(0);
@@ -72,8 +78,10 @@ export default function NarrationPlayer() {
       audioRef.current.load();
       previousSrcRef.current = currentSrc;
     }
-    audioRef.current.muted = muted;
-    if (muted) {
+    const shouldMute = muted || locallyMuted;
+    audioRef.current.muted = shouldMute;
+    if (shouldMute) {
+      audioRef.current.pause();
       setPlaying(false);
       return;
     }
@@ -90,7 +98,7 @@ export default function NarrationPlayer() {
       audioRef.current.play().catch(() => setPlaying(false));
       setPlaying(true);
     }
-  }, [currentSrc, autoplay, skipFullscreenCheck, muted]);
+  }, [currentSrc, autoplay, skipFullscreenCheck, muted, locallyMuted]);
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -146,20 +154,27 @@ export default function NarrationPlayer() {
     const noticeIsActive =
       noticeAudio && !noticeAudio.ended && noticeAudio.src !== "";
 
-    const nextMuted = !muted;
+    const nextMuted = !effectiveMuted;
     setMuted(nextMuted);
-    sessionStorage.setItem("narrationPaused", nextMuted ? "true" : "false");
+    setLocallyMuted(false);
+    sessionStorage.setItem(
+      "narrationPaused",
+      nextMuted ? "true" : "false",
+    );
 
     if (nextMuted) {
+      audioRef.current.muted = true;
       audioRef.current.pause();
       if (noticeIsActive) noticeAudio.pause();
       setPlaying(false);
       return;
     }
 
+    window.dispatchEvent(new CustomEvent("clearNarrationLocalMute"));
+    audioRef.current.muted = false;
+
     // מנגן רק את מה שרלוונטי — לא את שניהם
     if (noticeIsActive) {
-      // וודא שהקריינות הראשית מושתקת כשמנגנים notice
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
       noticeAudio.play().catch(() => setPlaying(false));
@@ -190,9 +205,9 @@ export default function NarrationPlayer() {
         <button
           className={`narration-btn${controlsLocked ? " locked" : ""}`}
           onClick={() => !controlsLocked && togglePlay()}
-          title={muted ? "הפעל קריינות" : "השהה קריינות"}
+          title={effectiveMuted ? "הפעל קריינות" : "השהה קריינות"}
         >
-          {muted ? "🔇" : "🔊"}
+          {effectiveMuted ? "🔇" : "🔊"}
         </button>
       )}
     </div>

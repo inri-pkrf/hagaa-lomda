@@ -123,23 +123,35 @@ function Alert() {
     setShowPage5Modal(true);
     setMuteAlarm(false);
 
-    // Prevent narration from auto-playing while the modal is open
     window.dispatchEvent(
-      new CustomEvent("setNarrationPaused", { detail: true }),
+      new CustomEvent("setNarrationLocalMuted", { detail: true }),
     );
     // Disable narration controls while modal is open
     window.dispatchEvent(
       new CustomEvent("setNarrationDisabled", { detail: true }),
     );
 
+    const handleGlobalUnmute = () => setMuteAlarm(false);
+    window.addEventListener("clearNarrationLocalMute", handleGlobalUnmute);
+
     return () => {
       clearTimeout(ringTimerRef.current);
       clearTimeout(nextNotifTimerRef.current);
+      window.removeEventListener(
+        "clearNarrationLocalMute",
+        handleGlobalUnmute,
+      );
+      window.dispatchEvent(
+        new CustomEvent("setNarrationLocalMuted", { detail: false }),
+      );
     };
   }, [page]);
 
   const startPage5Sequence = () => {
     setShowPage5Modal(false);
+    window.dispatchEvent(
+      new CustomEvent("setNarrationLocalMuted", { detail: muteAlarm }),
+    );
 
     // begin the ringing visual/audio sequence only after modal closed
     setPage5Phase("ringing");
@@ -148,18 +160,6 @@ function Alert() {
     window.dispatchEvent(
       new CustomEvent("setNarrationDisabled", { detail: false }),
     );
-
-    // If user didn't choose to mute, unpause narration so the alert sound plays.
-    if (!muteAlarm) {
-      window.dispatchEvent(
-        new CustomEvent("setNarrationPaused", { detail: false }),
-      );
-    } else {
-      // keep narration paused when user chose to mute
-      window.dispatchEvent(
-        new CustomEvent("setNarrationPaused", { detail: true }),
-      );
-    }
 
     ringTimerRef.current = setTimeout(() => {
       setPage5Phase("call-screen");
